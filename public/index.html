@@ -50,8 +50,8 @@ section{padding:100px 0}
 .bs{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;border-radius:40px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border:1px solid var(--hr);cursor:pointer;font-family:inherit;transition:.4s var(--ease);background:rgba(255,255,255,.02);color:var(--text)}
 .bs:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1)}
 /* Reveals with blur */
-.rv{opacity:0;transform:translateY(28px);filter:blur(5px);transition:opacity .8s ease,transform .8s var(--ease),filter .8s ease}
-.rv.v{opacity:1;transform:none;filter:none}
+.js .rv{opacity:0;transform:translateY(28px);filter:blur(5px);transition:opacity .8s ease,transform .8s var(--ease),filter .8s ease}
+.js .rv.v{opacity:1;transform:none;filter:none}
 .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
 /* Hero */
 .hero{min-height:100dvh;display:flex;align-items:center;padding:130px 0 80px}
@@ -388,5 +388,11 @@ section{padding:100px 0}
 </div></footer>
 </div>
 <script>
+document.documentElement.classList.add('js');
 var r=document.querySelectorAll('.rv');
-var o=new IntersectionObserver(function(e){e.forEach(funct
+var o=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('v');o.unobserve(n.target);}})},{threshold:0.02,rootMargin:'0px 0px -20px 0px'});
+r.forEach(function(el){o.observe(el)});
+var m=document.getElementById('mqt');if(m)m.innerHTML+=m.innerHTML;
+</script>
+</body>
+</html>
