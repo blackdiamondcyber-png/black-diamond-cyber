@@ -553,277 +553,182 @@ export default function FreeAuditPage() {
           </p>
         </div>
 
-        {/* Overall Score Ring */}
-        <ScoreRing score={result.overall} animated={animated} />
-
-        {/* Category Grid */}
-        <div className="audit-grid" style={{ marginTop: '32px' }}>
-          {/* Google Ranking */}
-          <div className="audit-card">
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginBottom: '12px',
-              }}
-            >
-              <h3
-                style={{
-                  fontFamily: "'Outfit', sans-serif",
-                  fontSize: '15px',
-                  fontWeight: 700,
-                  color: 'var(--text)',
-                }}
-              >
-                {'\u2295'} Google Ranking
-              </h3>
-              <span
-                style={{
-                  fontFamily: "'Instrument Serif', serif",
-                  fontSize: '28px',
-                  color:
-                    result.ranking.score >= 70
-                      ? 'var(--green)'
-                      : result.ranking.score >= 40
-                        ? '#F59E0B'
-                        : '#EF4444',
-                }}
-              >
-                {animated ? result.ranking.score : 0}
-              </span>
-            </div>
-            <ScoreBar score={result.ranking.score} animated={animated} />
-            <p
-              style={{
-                fontSize: '12px',
-                color: 'var(--t2)',
-                marginTop: '12px',
-                lineHeight: 1.6,
-              }}
-            >
-              {result.ranking.details}
+        {/* Overall Score */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '32px', padding: '40px', background: 'var(--bg1)', border: '1px solid var(--hr)', borderRadius: 'var(--rr)', marginBottom: '20px' }}>
+          <ScoreRing score={result.overall} animated={animated} />
+          <div>
+            <h2 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '22px', fontWeight: 700, color: 'var(--text)', marginBottom: '8px', letterSpacing: 0, lineHeight: 1.3 }}>
+              Overall Online Presence
+            </h2>
+            <p style={{ fontSize: '15px', color: 'var(--t2)', lineHeight: 1.7, maxWidth: '400px' }}>
+              {result.overall >= 70
+                ? 'Your online presence is strong. Fine-tuning could unlock even more leads.'
+                : result.overall >= 40
+                  ? 'There are clear opportunities to improve your visibility and attract more customers.'
+                  : 'Your online presence needs attention. Competitors are likely capturing your potential customers.'}
             </p>
-            {result.ranking.position && (
-              <p
-                style={{
-                  fontSize: '11px',
-                  color: 'var(--cyan)',
-                  marginTop: '4px',
-                }}
-              >
-                Position #{result.ranking.position} in search results
-              </p>
-            )}
+          </div>
+        </div>
+
+        {/* Category Cards — stacked full-width for professional report feel */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+
+          {/* Google Ranking */}
+          <div className="audit-card" style={{ padding: '36px 40px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
+              <div>
+                <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '20px', fontWeight: 700, color: 'var(--text)', letterSpacing: 0, lineHeight: 1.3, marginBottom: '4px' }}>
+                  Google Ranking
+                </h3>
+                <p style={{ fontSize: '14px', color: 'var(--t3)' }}>
+                  How you rank when patients search for &ldquo;{industry} in {cityState}&rdquo;
+                </p>
+              </div>
+              <div style={{ textAlign: 'right' as const }}>
+                <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: '42px', color: 'var(--text)', lineHeight: 1 }}>
+                  {animated ? result.ranking.score : 0}<span style={{ fontSize: '18px', color: 'var(--t3)' }}>/100</span>
+                </div>
+              </div>
+            </div>
+            <div style={{ height: '8px', borderRadius: '4px', background: 'rgba(255,255,255,.04)', overflow: 'hidden' }}>
+              <div style={{ height: '100%', borderRadius: '4px', width: animated ? `${result.ranking.score}%` : '0%', transition: 'width 1.5s cubic-bezier(.16,1,.3,1)' }} className={scoreColor(result.ranking.score)} />
+            </div>
+            <div style={{ marginTop: '16px', display: 'flex', gap: '32px', fontSize: '14px' }}>
+              <div>
+                <span style={{ color: 'var(--t3)' }}>Position: </span>
+                <span style={{ color: 'var(--text)', fontWeight: 600 }}>
+                  {result.ranking.position ? `#${result.ranking.position}` : 'Not found in top 20'}
+                </span>
+              </div>
+              <div>
+                <span style={{ color: 'var(--t3)' }}>Search phrase: </span>
+                <span style={{ color: 'var(--cyan)', fontWeight: 500 }}>{result.ranking.query}</span>
+              </div>
+            </div>
           </div>
 
-          {/* Reputation */}
-          <div className="audit-card">
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginBottom: '12px',
-              }}
-            >
-              <h3
-                style={{
-                  fontFamily: "'Outfit', sans-serif",
-                  fontSize: '15px',
-                  fontWeight: 700,
-                  color: 'var(--text)',
-                }}
-              >
-                {'\u2605'} Reputation Score
-              </h3>
-              <span
-                style={{
-                  fontFamily: "'Instrument Serif', serif",
-                  fontSize: '28px',
-                  color:
-                    result.reputation.score >= 70
-                      ? 'var(--green)'
-                      : result.reputation.score >= 40
-                        ? '#F59E0B'
-                        : '#EF4444',
-                }}
-              >
-                {animated ? result.reputation.score : 0}
-              </span>
+          {/* Reputation Score */}
+          <div className="audit-card" style={{ padding: '36px 40px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
+              <div>
+                <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '20px', fontWeight: 700, color: 'var(--text)', letterSpacing: 0, lineHeight: 1.3, marginBottom: '4px' }}>
+                  Reputation Score
+                </h3>
+                <p style={{ fontSize: '14px', color: 'var(--t3)' }}>
+                  Based on average star rating and total number of reviews
+                </p>
+              </div>
+              <div style={{ textAlign: 'right' as const }}>
+                <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: '42px', color: 'var(--text)', lineHeight: 1 }}>
+                  {animated ? result.reputation.score : 0}<span style={{ fontSize: '18px', color: 'var(--t3)' }}>/100</span>
+                </div>
+              </div>
             </div>
-            <ScoreBar score={result.reputation.score} animated={animated} />
-            <p
-              style={{
-                fontSize: '12px',
-                color: 'var(--t2)',
-                marginTop: '12px',
-                lineHeight: 1.6,
-              }}
-            >
+            <div style={{ height: '8px', borderRadius: '4px', background: 'rgba(255,255,255,.04)', overflow: 'hidden' }}>
+              <div style={{ height: '100%', borderRadius: '4px', width: animated ? `${result.reputation.score}%` : '0%', transition: 'width 1.5s cubic-bezier(.16,1,.3,1)' }} className={scoreColor(result.reputation.score)} />
+            </div>
+            <div style={{ marginTop: '16px', display: 'flex', gap: '32px', fontSize: '14px' }}>
               {result.reputation.rating && (
-                <span style={{ color: 'var(--cyan)' }}>
-                  {result.reputation.rating}{'\u2605'}{' '}
-                </span>
+                <div>
+                  <span style={{ color: 'var(--t3)' }}>Average rating: </span>
+                  <span style={{ color: '#F59E0B', fontWeight: 600 }}>{'★'.repeat(Math.round(result.reputation.rating))}</span>
+                  <span style={{ color: 'var(--text)', fontWeight: 600, marginLeft: '6px' }}>{result.reputation.rating}</span>
+                </div>
               )}
-              {result.reputation.reviewCount !== null &&
-                `${result.reputation.reviewCount} reviews`}
-            </p>
-            <p
-              style={{ fontSize: '11px', color: 'var(--t3)', marginTop: '4px' }}
-            >
-              Based on Google reviews
-            </p>
+              {result.reputation.reviewCount !== null && (
+                <div>
+                  <span style={{ color: 'var(--t3)' }}>Total reviews: </span>
+                  <span style={{ color: 'var(--text)', fontWeight: 600 }}>{result.reputation.reviewCount}</span>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Website Performance */}
-          <div className="audit-card">
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginBottom: '12px',
-              }}
-            >
-              <h3
-                style={{
-                  fontFamily: "'Outfit', sans-serif",
-                  fontSize: '15px',
-                  fontWeight: 700,
-                  color: 'var(--text)',
-                }}
-              >
-                {'\u26A1'} Website Performance
-              </h3>
-              <span
-                style={{
-                  fontFamily: "'Instrument Serif', serif",
-                  fontSize: '28px',
-                  color:
-                    result.performance.score >= 70
-                      ? 'var(--green)'
-                      : result.performance.score >= 40
-                        ? '#F59E0B'
-                        : '#EF4444',
-                }}
-              >
-                {animated ? result.performance.score : 0}
-              </span>
-            </div>
-            <ScoreBar score={result.performance.score} animated={animated} />
-            {result.performance.score > 0 ? (
-              <>
-                <div
-                  style={{
-                    display: 'flex',
-                    gap: '16px',
-                    marginTop: '12px',
-                    fontSize: '11px',
-                  }}
-                >
-                  {result.performance.loadTime && (
-                    <div>
-                      <span style={{ color: 'var(--t3)' }}>Load:</span>{' '}
-                      <span style={{ color: 'var(--text)', fontWeight: 600 }}>
-                        {result.performance.loadTime}
-                      </span>
-                    </div>
-                  )}
-                  {result.performance.mobileScore !== null && (
-                    <div>
-                      <span style={{ color: 'var(--t3)' }}>Mobile:</span>{' '}
-                      <span style={{ color: 'var(--text)', fontWeight: 600 }}>
-                        {result.performance.mobileScore}
-                      </span>
-                    </div>
-                  )}
-                </div>
-                <p
-                  style={{
-                    fontSize: '11px',
-                    color: 'var(--t3)',
-                    marginTop: '4px',
-                  }}
-                >
-                  Powered by Google Lighthouse
+          <div className="audit-card" style={{ padding: '36px 40px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
+              <div>
+                <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '20px', fontWeight: 700, color: 'var(--text)', letterSpacing: 0, lineHeight: 1.3, marginBottom: '4px' }}>
+                  Website Performance
+                </h3>
+                <p style={{ fontSize: '14px', color: 'var(--t3)' }}>
+                  Speed, security, and mobile friendliness of your current website
                 </p>
-              </>
+              </div>
+              <div style={{ textAlign: 'right' as const }}>
+                <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: '42px', color: 'var(--text)', lineHeight: 1 }}>
+                  {animated ? result.performance.score : 0}<span style={{ fontSize: '18px', color: 'var(--t3)' }}>/100</span>
+                </div>
+              </div>
+            </div>
+            <div style={{ height: '8px', borderRadius: '4px', background: 'rgba(255,255,255,.04)', overflow: 'hidden' }}>
+              <div style={{ height: '100%', borderRadius: '4px', width: animated ? `${result.performance.score}%` : '0%', transition: 'width 1.5s cubic-bezier(.16,1,.3,1)' }} className={scoreColor(result.performance.score)} />
+            </div>
+            {result.performance.score > 0 ? (
+              <div style={{ marginTop: '16px', display: 'flex', gap: '32px', fontSize: '14px' }}>
+                {result.performance.loadTime && (
+                  <div>
+                    <span style={{ color: 'var(--t3)' }}>Load time: </span>
+                    <span style={{ color: 'var(--text)', fontWeight: 600 }}>{result.performance.loadTime}</span>
+                  </div>
+                )}
+                {result.performance.mobileScore !== null && (
+                  <div>
+                    <span style={{ color: 'var(--t3)' }}>Mobile score: </span>
+                    <span style={{ color: 'var(--text)', fontWeight: 600 }}>{result.performance.mobileScore}/100</span>
+                  </div>
+                )}
+                {result.performance.seoScore !== null && (
+                  <div>
+                    <span style={{ color: 'var(--t3)' }}>SEO score: </span>
+                    <span style={{ color: 'var(--text)', fontWeight: 600 }}>{result.performance.seoScore}/100</span>
+                  </div>
+                )}
+              </div>
             ) : (
-              <p
-                style={{
-                  fontSize: '12px',
-                  color: 'var(--t2)',
-                  marginTop: '12px',
-                }}
-              >
-                No website found
+              <p style={{ fontSize: '14px', color: 'var(--t2)', marginTop: '16px' }}>
+                No website URL provided. We can build you one.
               </p>
             )}
           </div>
 
           {/* Directory Presence */}
-          <div className="audit-card">
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginBottom: '12px',
-              }}
-            >
-              <h3
-                style={{
-                  fontFamily: "'Outfit', sans-serif",
-                  fontSize: '15px',
-                  fontWeight: 700,
-                  color: 'var(--text)',
-                }}
-              >
-                {'\u2630'} Directory Presence
-              </h3>
-              <span
-                style={{
-                  fontFamily: "'Instrument Serif', serif",
-                  fontSize: '28px',
-                  color:
-                    result.directories.score >= 70
-                      ? 'var(--green)'
-                      : result.directories.score >= 40
-                        ? '#F59E0B'
-                        : '#EF4444',
-                }}
-              >
-                {animated ? result.directories.score : 0}
-              </span>
+          <div className="audit-card" style={{ padding: '36px 40px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
+              <div>
+                <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '20px', fontWeight: 700, color: 'var(--text)', letterSpacing: 0, lineHeight: 1.3, marginBottom: '4px' }}>
+                  Directory Presence
+                </h3>
+                <p style={{ fontSize: '14px', color: 'var(--t3)' }}>
+                  Accuracy and completeness of your online business listings
+                </p>
+              </div>
+              <div style={{ textAlign: 'right' as const }}>
+                <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: '42px', color: 'var(--text)', lineHeight: 1 }}>
+                  {animated ? result.directories.score : 0}<span style={{ fontSize: '18px', color: 'var(--t3)' }}>/100</span>
+                </div>
+              </div>
             </div>
-            <ScoreBar score={result.directories.score} animated={animated} />
-            <p
-              style={{
-                fontSize: '12px',
-                color: 'var(--t2)',
-                marginTop: '12px',
-                marginBottom: '8px',
-              }}
-            >
-              Found on {result.directories.found.length} of{' '}
-              {result.directories.found.length +
-                result.directories.missing.length}{' '}
-              directories
+            <div style={{ height: '8px', borderRadius: '4px', background: 'rgba(255,255,255,.04)', overflow: 'hidden' }}>
+              <div style={{ height: '100%', borderRadius: '4px', width: animated ? `${result.directories.score}%` : '0%', transition: 'width 1.5s cubic-bezier(.16,1,.3,1)' }} className={scoreColor(result.directories.score)} />
+            </div>
+            <p style={{ fontSize: '14px', color: 'var(--t2)', marginTop: '16px', marginBottom: '12px' }}>
+              Found on {result.directories.found.length} of {result.directories.found.length + result.directories.missing.length} directories checked
             </p>
-            <div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px 24px' }}>
               {result.directories.found.map((dir) => (
-                <div key={dir} className="dir-check dir-found">
-                  {'\u2713'} {dir}
+                <div key={dir} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', padding: '4px 0', color: 'var(--green)' }}>
+                  <span style={{ fontSize: '12px' }}>&#10003;</span> {dir}
                 </div>
               ))}
               {result.directories.missing.map((dir) => (
-                <div key={dir} className="dir-check dir-missing">
-                  {'\u2717'} {dir}
+                <div key={dir} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', padding: '4px 0', color: '#EF4444' }}>
+                  <span style={{ fontSize: '12px' }}>&#10007;</span> {dir}
                 </div>
               ))}
             </div>
           </div>
+
         </div>
 
         {/* CTA Section */}
