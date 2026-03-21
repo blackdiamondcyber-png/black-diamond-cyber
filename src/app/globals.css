@@ -213,8 +213,6 @@ section{padding:100px 0}
 .ms-stat-lbl{font-size:3px;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.3px}
 .ms-rating{font-size:5px;color:rgba(255,255,255,.4);letter-spacing:1px;margin-bottom:2px}
 
-/* Nav Audit Link */
-.nl-audit{font-size:11px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;color:var(--green);transition:.4s var(--ease)}.nl-audit:hover{color:var(--cyan);text-shadow:0 0 12px rgba(93,196,232,.3)}
 
 /* Audit Tool */
 .audit-card{background:var(--bg1);border:1px solid var(--hr);border-radius:var(--rr);padding:32px;transition:.5s var(--ease)}

@@ -7,10 +7,9 @@ export function Nav() {
       <div className="nl">
         <a href="#work">Work</a>
         <a href="#pricing">Pricing</a>
-        <a href="#process">Process</a>
+        <a href="/free-audit">Audit</a>
         <a href="#about">About</a>
       </div>
-      <a href="/free-audit" className="nl-audit">Free Audit</a>
       <a href="#book" className="nc">
         Free Consultation
       </a>
