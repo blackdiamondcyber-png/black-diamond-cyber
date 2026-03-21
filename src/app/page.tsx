@@ -9,10 +9,13 @@ import { Founder } from "@/components/Founder";
 import { Reviews } from "@/components/Reviews";
 import { CTA } from "@/components/CTA";
 import { Footer } from "@/components/Footer";
+import { BookingHandler } from "@/components/BookingHandler";
 
 export default function Home() {
   return (
     <>
+      {/* Contact modal handler - intercepts #book links */}
+      <BookingHandler />
       {/* Ambient background orbs */}
       <div className="amb">
         <div className="orb"></div>
