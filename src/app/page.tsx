@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero";
 import { Marquee } from "@/components/Marquee";
 import { TrustBar } from "@/components/TrustBar";
 import { Portfolio } from "@/components/Portfolio";
+import { Services } from "@/components/Services";
 import { HowItWorks } from "@/components/HowItWorks";
 import { Pricing } from "@/components/Pricing";
 import { Founder } from "@/components/Founder";
@@ -30,6 +31,8 @@ export default function Home() {
         <Marquee />
         <TrustBar />
         <Portfolio />
+        <div className="sep"></div>
+        <Services />
         <div className="sep"></div>
         <HowItWorks />
         <div className="sep"></div>

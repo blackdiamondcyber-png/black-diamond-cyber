@@ -1,3 +1,5 @@
+import { PricingButton } from '@/components/PricingButton';
+
 export function Pricing() {
   return (
     <section id="pricing">
@@ -33,9 +35,7 @@ export function Pricing() {
               <li>Basic SEO</li>
               <li>3-5 day delivery</li>
             </ul>
-            <a href="#book" className="pb">
-              Get Started
-            </a>
+            <PricingButton tier="starter" />
           </div>
 
           {/* Professional (Featured) */}
@@ -54,9 +54,7 @@ export function Pricing() {
               <li>Monthly analytics</li>
               <li>5-7 day delivery</li>
             </ul>
-            <a href="#book" className="pb">
-              Get Started
-            </a>
+            <PricingButton tier="professional" featured />
           </div>
 
           {/* Premium */}
@@ -75,9 +73,7 @@ export function Pricing() {
               <li>Unlimited updates</li>
               <li>10-14 day delivery</li>
             </ul>
-            <a href="#book" className="pb">
-              Get Started
-            </a>
+            <PricingButton tier="premium" />
           </div>
 
           {/* Cinematic */}
@@ -95,9 +91,7 @@ export function Pricing() {
               <li>Priority support</li>
               <li>Quarterly strategy call</li>
             </ul>
-            <a href="#book" className="pb">
-              Get Started
-            </a>
+            <PricingButton tier="cinematic" />
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ export function Nav() {
       </div>
       <div className="nl">
         <a href="#work">Work</a>
+        <a href="#services">Services</a>
         <a href="#pricing">Pricing</a>
         <a href="/free-audit">Audit</a>
         <a href="#about">About</a>
