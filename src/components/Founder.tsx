@@ -3,7 +3,24 @@ export function Founder() {
     <section className="fdr" id="about">
       <div className="c">
         <div className="fp rv">
-          <img src="/bdc-logo.png" alt="Black Diamond Cyber" loading="lazy" />
+          {/* Clean monogram instead of the clip-art logo */}
+          <div style={{
+            width: '80px',
+            height: '80px',
+            borderRadius: '50%',
+            background: 'linear-gradient(135deg, var(--blue), var(--cyan))',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '28px',
+            fontFamily: "'Instrument Serif', serif",
+            fontWeight: 400,
+            color: '#fff',
+            letterSpacing: '-1px',
+            boxShadow: '0 8px 32px rgba(40,135,204,.25), inset 0 1px 0 rgba(255,255,255,.2)',
+          }}>
+            EP
+          </div>
           <div className="fp-info">
             <h3>Erik Pearson</h3>
             <p>Founder &amp; CEO</p>

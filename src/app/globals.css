@@ -111,7 +111,7 @@ section{padding:100px 0}
 @keyframes sp{to{--angle:360deg}}
 .pc:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,0,0,.4),0 0 40px rgba(93,196,232,.04)}
 .pp{height:220px;overflow:hidden}
-.pm{padding:14px 18px}.pm h3{font-size:15px;color:var(--text);font-weight:700;margin-bottom:2px}.pm p{font-size:10px;color:var(--t3)}
+.pm{padding:14px 18px}.pm h3{font-family:'Outfit',system-ui,sans-serif;font-size:15px;color:var(--text);font-weight:700;margin-bottom:2px;letter-spacing:0}.pm p{font-size:10px;color:var(--t3)}
 .pm .res{font-size:11px;color:var(--green);font-weight:600;margin-top:6px;display:flex;align-items:center;gap:6px}
 .pm .res::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--green)}
 .ptags{display:flex;gap:4px;margin-top:8px;flex-wrap:wrap}
