@@ -10,6 +10,7 @@ export function Nav() {
         <a href="#process">Process</a>
         <a href="#about">About</a>
       </div>
+      <a href="/free-audit" className="nl-audit">Free Audit</a>
       <a href="#book" className="nc">
         Free Consultation
       </a>
