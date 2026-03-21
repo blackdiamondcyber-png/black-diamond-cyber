@@ -248,18 +248,6 @@ export default function FreeAuditPage() {
           style={{ maxWidth: '520px', width: '100%', position: 'relative', zIndex: 2 }}
         >
           <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-            <div className="tag" style={{ marginBottom: '16px' }}>
-              <span
-                style={{
-                  width: '6px',
-                  height: '6px',
-                  borderRadius: '50%',
-                  background: 'var(--green)',
-                  animation: 'p 2s infinite',
-                }}
-              />
-              Free Tool
-            </div>
             <h1
               style={{
                 fontFamily: "'Instrument Serif', Georgia, serif",
