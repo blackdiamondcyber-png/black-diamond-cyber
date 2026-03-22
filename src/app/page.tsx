@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
 import { Marquee } from "@/components/Marquee";
@@ -11,12 +12,17 @@ import { Reviews } from "@/components/Reviews";
 import { CTA } from "@/components/CTA";
 import { Footer } from "@/components/Footer";
 import { BookingHandler } from "@/components/BookingHandler";
+import { SuccessModal } from "@/components/SuccessModal";
 
 export default function Home() {
   return (
     <>
       {/* Contact modal handler - intercepts #book links */}
       <BookingHandler />
+      {/* Purchase success modal */}
+      <Suspense>
+        <SuccessModal />
+      </Suspense>
       {/* Ambient background orbs */}
       <div className="amb">
         <div className="orb"></div>
