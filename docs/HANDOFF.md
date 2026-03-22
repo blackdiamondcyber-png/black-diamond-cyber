@@ -1,104 +1,92 @@
-# Session Handoff — 2026-03-21 (Updated Evening Session)
+# Session Handoff — 2026-03-22
 
 ## Current Task
-Building Black Diamond Cyber (BDC) — an AI-powered website design and hosting company for local service businesses. Converted from static HTML to full Next.js SaaS platform in a single session.
+Black Diamond Cyber (BDC) — AI-powered website design and hosting SaaS for local service businesses. Full Next.js 16 platform with Stripe payments, Supabase backend, client portal, and admin tools.
 
-## Status
+## Live URL
+**https://bd-cyber.com** (domain via Wix DNS → Vercel)
 
-### Completed ✅
-- [x] Task 1: Fix deployed site (script was already fixed, verified)
-- [x] Task 2: Convert static HTML to Next.js 16 App Router (12 components)
-- [x] Task 3: Stripe integration (checkout API + webhook handler — needs keys to activate)
-- [x] Task 4: Supabase database (schema deployed, clients + contact_submissions tables live)
-- [x] Task 5: Contact form (modal + standalone page + API route + Zod validation)
-- [x] Task 6: Website generator admin pipeline (Claude API integration, intake form, preview)
-- [x] Task 7: Cold email optimizer script skeleton (Instantly.ai + autoresearch pattern)
-- [x] Task 8: SEO reporting admin page placeholder
-- [x] Free practice audit tool at /free-audit (lead generation engine)
-- [x] GitHub CLI installed and authenticated as blackdiamondcyber-png
-- [x] Vercel CLI authenticated and project linked
-- [x] Supabase project created (separate account: pearson_403@hotmail.com)
-- [x] Database migration 001_initial_schema.sql executed successfully
-- [x] All env vars added to Vercel (Supabase URL, anon key, service role key, Resend API key)
-- [x] Multiple visual polish iterations (hero cards, portfolio fonts, founder section, audit page)
-- [x] Stripe account created + all 3 keys deployed (secret, publishable, webhook secret)
-- [x] Pricing buttons wired to Stripe checkout (PricingButton.tsx client component)
-- [x] Services section added (5 categories: Websites, App Dev, Automation, SEO, AI Integration)
-- [x] Auto-email after audit (HTML email to lead + plain text admin notification via Resend)
-- [x] Mobile responsive polish (768px tablet breakpoint, viewport-relative card sizing, audit results stacking)
+## What Was Built This Session (Session 2)
 
-### Not Yet Started / Blocked
-- [ ] Anthropic API key for website generator (Erik needs to provide)
-- [ ] Instantly.ai API key for cold email system (Erik needs to provide)
-- [ ] AgencyAnalytics API for SEO reports (Erik needs to provide)
-- [ ] Google CSE + Places API keys for real audit data (optional — simulated data works)
-- [ ] Purchase blackdiamondcyber.dev domain ($13/yr on Vercel)
-- [ ] Resend domain verification (currently can only send from onboarding@resend.dev)
-- [ ] Test Stripe checkout flow end-to-end (test card 4242 4242 4242 4242)
+### Stripe Payments — FULLY WORKING
+- [x] Stripe account created (sandbox/test mode)
+- [x] All 3 keys deployed to Vercel: secret, publishable, webhook secret
+- [x] Pricing buttons wired to Stripe Checkout (PricingButton.tsx)
+- [x] Webhook endpoint updated to `https://bd-cyber.com/api/webhooks/stripe`
+- [x] Test purchase completed successfully (Premium tier, $3,196 + $199/mo)
+- [x] Webhook auto-creates Supabase Auth user after checkout
 
-## Decisions Made
-- **Next.js 16** (not 15) — create-next-app installed 16.2.1, kept it
-- **pnpm** as package manager (per global CLAUDE.md convention for new projects)
-- **Zod v4** (4.3.6) — note: `.errors` is now `.issues` on ZodError
-- **No default exports** except pages/layouts (per convention)
-- **CSS in globals.css** not Tailwind utilities — the design system is too complex for inline Tailwind in v1
-- **Progressive enhancement** for scroll reveals — `.js .rv{opacity:0}` pattern with IntersectionObserver in `<Script>` tag
-- **Simulated audit data** when no API keys configured — deterministic hash-based scores so the tool works immediately
-- **Founder section** uses "EP" monogram circle instead of the BD diamond logo (user felt logo was "cartoony")
-- **Supabase on separate account** — pearson_403@hotmail.com org, project ID: yudxkwlceagkcerugatv (MCP tools can't access it since they're connected to the gmail org)
-- **vercel.json** must include `"framework": "nextjs"` and `"outputDirectory": ".next"` — the project was originally static so Vercel cached the old settings
+### Client Portal
+- [x] Login page with Supabase Magic Link (OTP) auth (`/login`)
+- [x] Auth callback handler (`/auth/callback`)
+- [x] Middleware protecting `/dashboard/*` routes
+- [x] Dashboard with 9 cards: status tracker, checklist, subscription, website, help, prep, timeline, features, photos
+- [x] Status-driven UI (in_progress → review → live) with visual timeline
+- [x] Photo upload page (`/dashboard/photos`) — drag-and-drop, Supabase Storage
+- [x] LogoutButton component
 
-## Files Modified This Session
+### Admin Tools
+- [x] Admin clients page (`/admin/clients`) — view all clients, update project status
+- [x] Status update API (`/api/admin/update-status`) — sends branded email notifications
+- [x] Auto-email on status change (review ready, site live)
 
-### Core Framework
-- `src/app/layout.tsx` — Root layout with Outfit + Instrument Serif fonts, metadata, scroll reveal Script
-- `src/app/page.tsx` — Home page composing all 12 sections + BookingHandler
-- `src/app/globals.css` — Full dark luxe design system (~245 lines) extracted from original HTML + audit tool CSS
+### Homepage Enhancements
+- [x] Services section — 5 categories (Websites, App Dev, Automation, SEO, AI Integration)
+- [x] Services nav link added
+- [x] Success modal after Stripe purchase (shows tier, next steps, "Got It" button)
 
-### Components (all in src/components/)
-- `Nav.tsx` — Floating island nav with Work/Pricing/Audit/About links + CTA
-- `Hero.tsx` — Hero with realistic mini-site preview cards (Unsplash photos, nav bars, services)
-- `Marquee.tsx` — ('use client') Kinetic industry scroll with innerHTML duplication
-- `TrustBar.tsx` — Stats row (127+ Sites, 99.9% Uptime, etc.)
-- `Portfolio.tsx` — 8 horizontally-scrolling cards with full mini-site renders
-- `HowItWorks.tsx` — 4-step process cards with CSS counter numbering
-- `Pricing.tsx` — 4 glassmorphism tier cards (Starter→Cinematic)
-- `Founder.tsx` — EP monogram + about section
-- `Reviews.tsx` — 6 testimonial cards with ratings and metrics
-- `CTA.tsx` — Double-bezel booking card
-- `Footer.tsx` — 4-column footer
-- `ScrollReveal.tsx` — ('use client') IntersectionObserver (unused, logic moved to layout)
-- `ContactModal.tsx` — ('use client') Full contact form modal with Zod validation, dark styling
-- `BookingHandler.tsx` — ('use client') Intercepts all #book links to open ContactModal
+### Email Automation
+- [x] Auto-email after free audit — HTML results email to lead + admin notification
+- [x] Status change emails — "Ready for Review" and "Your Site is Live" branded emails
+- [x] Resend DNS records added to Wix (DKIM, SPF, DMARC) — pending verification
 
-### API Routes
-- `src/app/api/checkout/route.ts` — Stripe checkout session creation (4 tiers)
-- `src/app/api/webhooks/stripe/route.ts` — Stripe webhook (checkout.completed, subscription.deleted)
-- `src/app/api/contact/route.ts` — Contact form → Supabase + Resend email
-- `src/app/api/admin/generate/route.ts` — Claude API website content generation
-- `src/app/api/audit/run/route.ts` — Free audit tool (PageSpeed API + simulated ranking/reputation/directories)
+### Domain & Infrastructure
+- [x] bd-cyber.com connected via Wix DNS (A record → 76.76.21.21, CNAME www → cname.vercel-dns.com)
+- [x] NEXT_PUBLIC_SITE_URL updated to https://bd-cyber.com
+- [x] STRIPE_WEBHOOK_SECRET added to Vercel
+- [x] Mobile responsive polish (768px tablet breakpoint, 85vw viewport-relative cards)
 
-### Pages
-- `src/app/contact/page.tsx` — Standalone contact page
-- `src/app/admin/generate/page.tsx` — Password-protected AI website generator
-- `src/app/admin/reports/page.tsx` — SEO reports placeholder
-- `src/app/free-audit/page.tsx` — ('use client') Full audit tool with form→scanning→results states
+### Database Changes (run via Supabase SQL Editor)
+- [x] `project_status` column added to clients table
+- [x] `project_status_updated_at` column added
+- [x] `auth_user_id` column added (links to Supabase Auth)
+- [x] `client-uploads` storage bucket created with RLS policies
 
-### Libraries
-- `src/lib/stripe.ts` — getStripe() factory
-- `src/lib/supabase.ts` — getSupabaseAdmin() + getSupabaseBrowser()
-- `src/lib/schemas.ts` — Zod schemas (contactForm, checkout, generateSite) + INDUSTRIES constant
-- `src/lib/audit.ts` — Audit types, auditFormSchema, hashScore(), calculateOverall()
-- `src/types/index.ts` — SubscriptionTier, TIERS config, Client, ContactSubmission types
+## Files Added/Modified This Session
 
-### Other
-- `scripts/cold-email-optimizer.ts` — Instantly.ai autoresearch skeleton
-- `supabase/migrations/001_initial_schema.sql` — clients + contact_submissions tables
-- `.env.local` — Local env vars (Supabase + Resend configured, Stripe/Anthropic commented out)
-- `.env.local.example` — Template for all env vars
-- `CLAUDE.md` — Project documentation with file structure, stack, conventions
-- `vercel.json` — Framework: nextjs, outputDirectory: .next
-- `.claude/launch.json` — Dev server config (port 3005)
+### New Components
+- `src/components/Services.tsx` — 5 service category cards
+- `src/components/PricingButton.tsx` — ('use client') Stripe checkout trigger
+- `src/components/SuccessModal.tsx` — ('use client') Post-purchase thank you modal
+- `src/components/LogoutButton.tsx` — ('use client') Dashboard logout
+
+### New Pages
+- `src/app/login/page.tsx` — Magic link login
+- `src/app/auth/callback/route.ts` — Supabase auth callback
+- `src/app/dashboard/page.tsx` — Client dashboard (9 cards, status-driven)
+- `src/app/dashboard/layout.tsx` — Dashboard nav + auth guard
+- `src/app/dashboard/photos/page.tsx` — Photo upload (drag-and-drop)
+- `src/app/admin/clients/page.tsx` — Admin client management
+
+### New API Routes
+- `src/app/api/admin/clients/route.ts` — List all clients
+- `src/app/api/admin/update-status/route.ts` — Update project status + email
+- `src/app/api/photos/list/route.ts` — List client photos (signed URLs)
+- `src/app/api/photos/delete/route.ts` — Delete client photo
+
+### New Libraries
+- `src/lib/supabase-server.ts` — createServerSupabase() for SSR auth
+- `src/middleware.ts` — Auth protection for /dashboard routes
+
+### Modified Files
+- `src/app/page.tsx` — Added Services, SuccessModal
+- `src/app/globals.css` — Services grid, 768px breakpoint, mobile card fixes
+- `src/components/Nav.tsx` — Added Services link
+- `src/components/Pricing.tsx` — PricingButton instead of anchor tags
+- `src/app/api/checkout/route.ts` — bd-cyber.com URLs
+- `src/app/api/webhooks/stripe/route.ts` — Auto-create auth user after checkout
+- `src/app/api/audit/run/route.ts` — Auto-email results to lead + admin
+- `src/app/free-audit/page.tsx` — Mobile audit-results-row class
 
 ## Vercel Environment Variables (Production)
 | Variable | Status |
@@ -110,16 +98,33 @@ Building Black Diamond Cyber (BDC) — an AI-powered website design and hosting 
 | STRIPE_SECRET_KEY | ✅ Set (test mode) |
 | STRIPE_WEBHOOK_SECRET | ✅ Set |
 | NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY | ✅ Set (test mode) |
+| NEXT_PUBLIC_SITE_URL | ✅ Set (https://bd-cyber.com) |
 | ANTHROPIC_API_KEY | ❌ Not set |
-| ADMIN_PASSWORD | ❌ Not set (defaults in code) |
+| ADMIN_PASSWORD | ❌ Uses default: bdc-admin-2026 |
 
 ## Supabase Details
 - **Account**: pearson_403@hotmail.com (SEPARATE from gmail Supabase org)
 - **Project ID**: yudxkwlceagkcerugatv
 - **Region**: us-east-1
 - **URL**: https://yudxkwlceagkcerugatv.supabase.co
-- **Tables**: clients, contact_submissions (both with RLS enabled, service role full access)
-- **Note**: MCP Supabase tools CANNOT access this project (wrong org). Manual SQL Editor or new MCP connection needed.
+- **Tables**: clients (with project_status, auth_user_id), contact_submissions
+- **Storage**: client-uploads bucket (private, RLS per user)
+- **Auth**: Magic link (OTP) enabled
+- **Note**: MCP Supabase tools CANNOT access this project (wrong org)
+
+## Stripe Details
+- **Account**: New business sandbox (test mode)
+- **Webhook URL**: https://bd-cyber.com/api/webhooks/stripe
+- **Events**: checkout.session.completed, customer.subscription.deleted
+- **Test card**: 4242 4242 4242 4242, any expiry/CVC
+
+## Domain Details
+- **Domain**: bd-cyber.com (registered on Wix)
+- **DNS**: Managed via Wix DNS panel
+- **A Record**: bd-cyber.com → 76.76.21.21 (Vercel)
+- **CNAME**: www.bd-cyber.com → cname.vercel-dns.com
+- **TXT Records**: DKIM, SPF, DMARC for Resend (pending verification)
+- **Note**: Wix doesn't support subdomain MX records — Resend SPF may not fully verify
 
 ## GitHub / Vercel Details
 - **GitHub**: https://github.com/blackdiamondcyber-png/black-diamond-cyber
@@ -127,81 +132,67 @@ Building Black Diamond Cyber (BDC) — an AI-powered website design and hosting 
 - **GitHub email**: blackdiamondcyber@gmail.com
 - **Vercel Team**: team_XkGY68ItT13s4sukxCnfllAg ("Erik's projects")
 - **Vercel Project**: prj_30E6lpeSrJnp7iPlJz8n8Idbjip8
-- **Live URL**: https://black-diamond-cyber.vercel.app
-- **gh CLI**: Authenticated on this machine
-- **Vercel CLI**: Authenticated, project linked
+- **Live URL**: https://bd-cyber.com
+- **Old URL**: https://black-diamond-cyber.vercel.app (still works)
 
 ## Known Issues / Gotchas
-1. **vercel.json MUST have framework + outputDirectory** — without these, Vercel serves 404 (legacy static config cached)
+1. **vercel.json MUST have framework + outputDirectory** — Vercel cached old static config
 2. **Zod v4 uses `.issues` not `.errors`** on ZodError objects
-3. **Resend requires domain verification** to send from custom domain — currently can only send from onboarding@resend.dev
-4. **Audit tool uses simulated data** without Google API keys — scores are deterministic (hash-based), not random
-5. **ScrollReveal.tsx exists but is unused** — scroll reveal logic is in layout.tsx Script tag instead
-6. **`vercel --prod --force`** is needed for deploys — git-triggered deploys were queuing/failing on free tier
-7. **Portfolio card business names** use Outfit sans-serif (override in CSS) not the default Instrument Serif
-8. **Hero cards** have inline-styled mini-site renders with Unsplash photos — complex JSX
-9. **Hobby plan limits**: Vercel free tier, Supabase free tier (2 project limit on gmail org)
+3. **Resend domain pending** — emails come from onboarding@resend.dev until verified
+4. **Wix doesn't support subdomain MX** — Resend SPF may not fully verify
+5. **Stripe in test mode** — switch to live keys when ready for real payments
+6. **`vercel --prod --force`** needed for deploys (free tier queue issues)
+7. **Supabase MCP tools can't access this project** — different org than gmail account
 
 ## Remaining Work (Priority Order)
 
-### High Priority — Revenue Enablers
-1. ~~**Stripe setup**~~ ✅ DONE — All 3 keys deployed, pricing buttons wired to checkout
-2. ~~**Auto-email after audit**~~ ✅ DONE — HTML results email + admin notification
-3. **Resend domain verification** — Verify blackdiamondcyber.dev so emails come from custom domain
-4. **Test Stripe checkout** — Run a test purchase with card 4242 4242 4242 4242
-5. **Switch Stripe to live mode** — Once tested, switch from test keys to live keys
+### High Priority — Revenue Ready
+1. **Switch Stripe to live mode** — Get live keys from Stripe Dashboard, swap on Vercel
+2. **Check Resend domain verification** — May have propagated by now, check resend.com/domains
+3. **Dashboard enhancements** — More helpful resources, "things to consider" content, richer status details
 
 ### Medium Priority — Feature Expansion
-6. ~~**Service categories**~~ ✅ DONE — 5 categories added to homepage
-7. **Website generator activation** — Add ANTHROPIC_API_KEY to Vercel, test the /admin/generate flow
-8. **Real audit data** — Add GOOGLE_CSE_API_KEY + GOOGLE_CSE_ID + GOOGLE_PLACES_API_KEY for live ranking/reputation checks
-9. **Purchase blackdiamondcyber.dev** — $13/yr in Vercel Project Settings → Domains
+4. **Anthropic API key** → Unlocks /admin/generate AI website builder
+5. **Real audit data** — Google CSE + Places API keys for live ranking/reputation
+6. **Logo redesign** — Erik wants something less "cartoony"
 
-### Lower Priority — Polish & Scale
-10. ~~**Mobile polish**~~ ✅ DONE — 768px breakpoint, viewport-relative cards, audit results stacking
-11. **Cold email system** — Get Instantly.ai API key, set up GitHub Actions cron
-12. **SEO reports dashboard** — AgencyAnalytics API integration
-13. **Lighthouse audit** — Target 90+ performance score
-14. **Logo redesign** — Erik expressed dissatisfaction with current BD diamond logo
-
-## Pricing Reference
-| Tier | Setup Fee | Monthly | Delivery |
-|------|----------|---------|----------|
-| Starter | $997 | $79/mo | 3-5 days |
-| Professional | $1,997 | $129/mo | 5-7 days |
-| Premium | $2,997 | $199/mo | 10-14 days |
-| Cinematic | $4,997 | $249/mo | 10-14 days |
-
-## Design System Quick Reference
-- **BG**: #06080C | **BG1**: #0C0F16 | **BG2**: #12151E
-- **Blue**: #2887CC | **Cyan**: #5DC4E8 | **Green**: #34D399
-- **Text**: #DEE0E7 | **T2**: #7E8396 | **T3**: #474C5E
-- **Fonts**: Outfit (sans, 200-800) + Instrument Serif (display)
-- **Border radius**: 1.125rem (--r) / 1.5rem (--rr)
-- **Easing**: cubic-bezier(.16,1,.3,1)
+### Lower Priority — Scale
+7. **Cold email system** — Instantly.ai API key + GitHub Actions cron
+8. **SEO reports dashboard** — AgencyAnalytics API integration
+9. **Lighthouse performance audit** — Target 90+ score
 
 ## How to Resume
 ```bash
 cd "C:\Users\NUCAgent\OneDrive\Projects\black-diamond-cyber"
 git pull
 claude
-# Then say: "Read docs/HANDOFF.md and CLAUDE.md, then continue where we left off"
+# Say: "Read docs/HANDOFF.md and CLAUDE.md, then continue where we left off"
 ```
 
 ## Dev Server
 ```bash
-# Local dev (port 3005)
-pnpm dev
-
-# Or via Claude Preview MCP
-# Server name: "bdc" in global .claude/launch.json
+pnpm dev  # port 3005
+# Or via Claude Preview MCP — server name: "bdc"
 ```
 
 ## Deploy
 ```bash
-# Build check
 pnpm run build
-
-# Deploy (use --force due to free tier queue issues)
 vercel --prod --force
 ```
+
+## Pricing Reference
+| Tier | Setup | Monthly | Delivery |
+|------|-------|---------|----------|
+| Starter | $997 | $79/mo | 3-5 days |
+| Professional | $1,997 | $129/mo | 5-7 days |
+| Premium | $2,997 | $199/mo | 10-14 days |
+| Cinematic | $4,997 | $249/mo | 10-14 days |
+
+## Design System
+- **BG**: #06080C | **BG1**: #0C0F16 | **BG2**: #12151E
+- **Blue**: #2887CC | **Cyan**: #5DC4E8 | **Green**: #34D399
+- **Text**: #DEE0E7 | **T2**: #7E8396 | **T3**: #474C5E
+- **Fonts**: Outfit (sans) + Instrument Serif (display)
+- **Radius**: 1.125rem / 1.5rem
+- **Easing**: cubic-bezier(.16,1,.3,1)
