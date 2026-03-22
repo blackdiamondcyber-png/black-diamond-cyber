@@ -10,8 +10,8 @@ Owner: Erik Pearson | LLC: Black Diamond Cyber LLC | Email: blackdiamondcyber@gm
 - **Framework**: Next.js 16 App Router, React 19, TypeScript strict
 - **Styling**: Tailwind CSS v4 + custom dark luxe CSS (globals.css)
 - **Database**: Supabase (PostgreSQL + RLS)
-- **Payments**: Stripe (checkout sessions + webhooks) — test mode active
-- **AI**: Anthropic Claude API (website content generation) — needs key
+- **Payments**: Stripe (checkout sessions + webhooks) — LIVE mode
+- **AI**: Anthropic Claude API (website content generation) — key set
 - **Email**: Resend (contact form + audit result emails)
 - **Validation**: Zod v4
 - **Package Manager**: pnpm
@@ -75,10 +75,10 @@ supabase/
 | NEXT_PUBLIC_SUPABASE_ANON_KEY | ✅ Set |
 | SUPABASE_SERVICE_ROLE_KEY | ✅ Set |
 | RESEND_API_KEY | ✅ Set |
-| STRIPE_SECRET_KEY | ✅ Set (test mode) |
-| STRIPE_WEBHOOK_SECRET | ✅ Set |
-| NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY | ✅ Set (test mode) |
-| ANTHROPIC_API_KEY | ❌ Needs key from Erik |
+| STRIPE_SECRET_KEY | ✅ Set (LIVE mode) |
+| STRIPE_WEBHOOK_SECRET | ✅ Set (LIVE webhook) |
+| NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY | ✅ Set (LIVE mode) |
+| ANTHROPIC_API_KEY | ✅ Set |
 | ADMIN_PASSWORD | ❌ Uses default in code |
 
 ## Conventions

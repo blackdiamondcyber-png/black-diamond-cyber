@@ -1,92 +1,41 @@
-# Session Handoff — 2026-03-22
+# Session Handoff — 2026-03-22 (Session 3)
 
 ## Current Task
-Black Diamond Cyber (BDC) — AI-powered website design and hosting SaaS for local service businesses. Full Next.js 16 platform with Stripe payments, Supabase backend, client portal, and admin tools.
+Black Diamond Cyber (BDC) — AI-powered website design and hosting SaaS for local service businesses. Full Next.js 16 platform with live Stripe payments, Supabase backend, client portal, admin tools, and AI website generator.
 
 ## Live URL
 **https://bd-cyber.com** (domain via Wix DNS → Vercel)
 
-## What Was Built This Session (Session 2)
+## What Was Done This Session (Session 3)
 
-### Stripe Payments — FULLY WORKING
-- [x] Stripe account created (sandbox/test mode)
-- [x] All 3 keys deployed to Vercel: secret, publishable, webhook secret
-- [x] Pricing buttons wired to Stripe Checkout (PricingButton.tsx)
-- [x] Webhook endpoint updated to `https://bd-cyber.com/api/webhooks/stripe`
-- [x] Test purchase completed successfully (Premium tier, $3,196 + $199/mo)
-- [x] Webhook auto-creates Supabase Auth user after checkout
+### Stripe Live Mode — FULLY WORKING
+- [x] Switched from test mode to live mode
+- [x] Created live webhook endpoint (checkout.session.completed + customer.subscription.deleted)
+- [x] All 3 live keys deployed to Vercel (publishable, secret, webhook signing)
+- [x] Fixed critical bug: `vercel env add` was injecting trailing `\n` in all env vars
+- [x] Fixed ALL env vars (Stripe keys, SITE_URL, Anthropic key) — used `printf '%s'` pipe method
+- [x] Downgraded Stripe SDK from v20 to v17 for Vercel serverless compatibility
+- [x] All 4 pricing tiers verified working in production
 
-### Client Portal
-- [x] Login page with Supabase Magic Link (OTP) auth (`/login`)
-- [x] Auth callback handler (`/auth/callback`)
-- [x] Middleware protecting `/dashboard/*` routes
-- [x] Dashboard with 9 cards: status tracker, checklist, subscription, website, help, prep, timeline, features, photos
-- [x] Status-driven UI (in_progress → review → live) with visual timeline
-- [x] Photo upload page (`/dashboard/photos`) — drag-and-drop, Supabase Storage
-- [x] LogoutButton component
+### Anthropic API Key — SET
+- [x] API key deployed to Vercel production
+- [x] AI website generator (`/admin/generate`) confirmed working with Claude API
 
-### Admin Tools
-- [x] Admin clients page (`/admin/clients`) — view all clients, update project status
-- [x] Status update API (`/api/admin/update-status`) — sends branded email notifications
-- [x] Auto-email on status change (review ready, site live)
+### Admin Client Manager — Status Detail
+- [x] Added `status_detail` column to Supabase clients table (manual SQL migration)
+- [x] Admin clients page shows Status Detail input + Save button per client
+- [x] Update-status API accepts and saves `statusDetail` field
+- [x] Client dashboard shows "Currently working on:" when status_detail is set
 
-### Homepage Enhancements
-- [x] Services section — 5 categories (Websites, App Dev, Automation, SEO, AI Integration)
-- [x] Services nav link added
-- [x] Success modal after Stripe purchase (shows tier, next steps, "Got It" button)
+### Client Dashboard Enhancements
+- [x] Resources card — 5 guides (photos, bio, reviews, Google Business, social media)
+- [x] Things to Consider card — status-aware tips (different for in-progress vs live)
+- [x] Client type extended with `project_status`, `project_status_updated_at`, `status_detail`
 
-### Email Automation
-- [x] Auto-email after free audit — HTML results email to lead + admin notification
-- [x] Status change emails — "Ready for Review" and "Your Site is Live" branded emails
-- [x] Resend DNS records added to Wix (DKIM, SPF, DMARC) — pending verification
-
-### Domain & Infrastructure
-- [x] bd-cyber.com connected via Wix DNS (A record → 76.76.21.21, CNAME www → cname.vercel-dns.com)
-- [x] NEXT_PUBLIC_SITE_URL updated to https://bd-cyber.com
-- [x] STRIPE_WEBHOOK_SECRET added to Vercel
-- [x] Mobile responsive polish (768px tablet breakpoint, 85vw viewport-relative cards)
-
-### Database Changes (run via Supabase SQL Editor)
-- [x] `project_status` column added to clients table
-- [x] `project_status_updated_at` column added
-- [x] `auth_user_id` column added (links to Supabase Auth)
-- [x] `client-uploads` storage bucket created with RLS policies
-
-## Files Added/Modified This Session
-
-### New Components
-- `src/components/Services.tsx` — 5 service category cards
-- `src/components/PricingButton.tsx` — ('use client') Stripe checkout trigger
-- `src/components/SuccessModal.tsx` — ('use client') Post-purchase thank you modal
-- `src/components/LogoutButton.tsx` — ('use client') Dashboard logout
-
-### New Pages
-- `src/app/login/page.tsx` — Magic link login
-- `src/app/auth/callback/route.ts` — Supabase auth callback
-- `src/app/dashboard/page.tsx` — Client dashboard (9 cards, status-driven)
-- `src/app/dashboard/layout.tsx` — Dashboard nav + auth guard
-- `src/app/dashboard/photos/page.tsx` — Photo upload (drag-and-drop)
-- `src/app/admin/clients/page.tsx` — Admin client management
-
-### New API Routes
-- `src/app/api/admin/clients/route.ts` — List all clients
-- `src/app/api/admin/update-status/route.ts` — Update project status + email
-- `src/app/api/photos/list/route.ts` — List client photos (signed URLs)
-- `src/app/api/photos/delete/route.ts` — Delete client photo
-
-### New Libraries
-- `src/lib/supabase-server.ts` — createServerSupabase() for SSR auth
-- `src/middleware.ts` — Auth protection for /dashboard routes
-
-### Modified Files
-- `src/app/page.tsx` — Added Services, SuccessModal
-- `src/app/globals.css` — Services grid, 768px breakpoint, mobile card fixes
-- `src/components/Nav.tsx` — Added Services link
-- `src/components/Pricing.tsx` — PricingButton instead of anchor tags
-- `src/app/api/checkout/route.ts` — bd-cyber.com URLs
-- `src/app/api/webhooks/stripe/route.ts` — Auto-create auth user after checkout
-- `src/app/api/audit/run/route.ts` — Auto-email results to lead + admin
-- `src/app/free-audit/page.tsx` — Mobile audit-results-row class
+### Bug Fixes
+- [x] Trailing `\n` in Vercel env vars caused Stripe connection failures and invalid URL errors
+- [x] Stripe SDK v20 had connection issues with Vercel serverless — downgraded to v17
+- [x] Added better error logging to checkout route (code, type, message)
 
 ## Vercel Environment Variables (Production)
 | Variable | Status |
@@ -95,28 +44,35 @@ Black Diamond Cyber (BDC) — AI-powered website design and hosting SaaS for loc
 | NEXT_PUBLIC_SUPABASE_ANON_KEY | ✅ Set |
 | SUPABASE_SERVICE_ROLE_KEY | ✅ Set |
 | RESEND_API_KEY | ✅ Set |
-| STRIPE_SECRET_KEY | ✅ Set (test mode) |
-| STRIPE_WEBHOOK_SECRET | ✅ Set |
-| NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY | ✅ Set (test mode) |
+| STRIPE_SECRET_KEY | ✅ Set (LIVE mode) |
+| STRIPE_WEBHOOK_SECRET | ✅ Set (LIVE webhook) |
+| NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY | ✅ Set (LIVE mode) |
 | NEXT_PUBLIC_SITE_URL | ✅ Set (https://bd-cyber.com) |
-| ANTHROPIC_API_KEY | ❌ Not set |
+| ANTHROPIC_API_KEY | ✅ Set |
 | ADMIN_PASSWORD | ❌ Uses default: bdc-admin-2026 |
+
+## Important: Vercel Env Var Gotcha
+**NEVER use `echo` or heredoc with `vercel env add`** — it injects trailing newlines that silently break API keys. Always use:
+```bash
+printf '%s' 'your-value-here' | vercel env add VAR_NAME production
+```
 
 ## Supabase Details
 - **Account**: pearson_403@hotmail.com (SEPARATE from gmail Supabase org)
 - **Project ID**: yudxkwlceagkcerugatv
 - **Region**: us-east-1
 - **URL**: https://yudxkwlceagkcerugatv.supabase.co
-- **Tables**: clients (with project_status, auth_user_id), contact_submissions
+- **Tables**: clients (with project_status, auth_user_id, status_detail), contact_submissions
 - **Storage**: client-uploads bucket (private, RLS per user)
 - **Auth**: Magic link (OTP) enabled
 - **Note**: MCP Supabase tools CANNOT access this project (wrong org)
 
 ## Stripe Details
-- **Account**: New business sandbox (test mode)
+- **Account**: Erik Pearson (LIVE mode)
 - **Webhook URL**: https://bd-cyber.com/api/webhooks/stripe
 - **Events**: checkout.session.completed, customer.subscription.deleted
-- **Test card**: 4242 4242 4242 4242, any expiry/CVC
+- **SDK**: stripe@17.7.0 (v20 has Vercel compatibility issues)
+- **Tax registration**: Pending (Texas) — skipped for now, doesn't block payments
 
 ## Domain Details
 - **Domain**: bd-cyber.com (registered on Wix)
@@ -124,7 +80,6 @@ Black Diamond Cyber (BDC) — AI-powered website design and hosting SaaS for loc
 - **A Record**: bd-cyber.com → 76.76.21.21 (Vercel)
 - **CNAME**: www.bd-cyber.com → cname.vercel-dns.com
 - **TXT Records**: DKIM, SPF, DMARC for Resend (pending verification)
-- **Note**: Wix doesn't support subdomain MX records — Resend SPF may not fully verify
 
 ## GitHub / Vercel Details
 - **GitHub**: https://github.com/blackdiamondcyber-png/black-diamond-cyber
@@ -133,30 +88,28 @@ Black Diamond Cyber (BDC) — AI-powered website design and hosting SaaS for loc
 - **Vercel Team**: team_XkGY68ItT13s4sukxCnfllAg ("Erik's projects")
 - **Vercel Project**: prj_30E6lpeSrJnp7iPlJz8n8Idbjip8
 - **Live URL**: https://bd-cyber.com
-- **Old URL**: https://black-diamond-cyber.vercel.app (still works)
 
 ## Known Issues / Gotchas
-1. **vercel.json MUST have framework + outputDirectory** — Vercel cached old static config
-2. **Zod v4 uses `.issues` not `.errors`** on ZodError objects
-3. **Resend domain pending** — emails come from onboarding@resend.dev until verified
-4. **Wix doesn't support subdomain MX** — Resend SPF may not fully verify
-5. **Stripe in test mode** — switch to live keys when ready for real payments
-6. **`vercel --prod --force`** needed for deploys (free tier queue issues)
-7. **Supabase MCP tools can't access this project** — different org than gmail account
+1. **vercel env add MUST use printf pipe** — echo/heredoc adds trailing \n that breaks keys
+2. **Stripe SDK v17 required** — v20 has connection issues with Vercel serverless
+3. **Zod v4 uses `.issues` not `.errors`** on ZodError objects
+4. **Resend domain pending** — emails come from onboarding@resend.dev until verified
+5. **`vercel --prod --force`** needed for deploys (free tier queue issues)
+6. **Supabase MCP tools can't access this project** — different org than gmail account
 
 ## Remaining Work (Priority Order)
 
-### High Priority — Revenue Ready
-1. **Switch Stripe to live mode** — Get live keys from Stripe Dashboard, swap on Vercel
-2. **Check Resend domain verification** — May have propagated by now, check resend.com/domains
-3. **Dashboard enhancements** — More helpful resources, "things to consider" content, richer status details
+### High Priority
+1. **Test full purchase end-to-end** — Buy Starter tier yourself, verify webhook → Supabase → dashboard flow
+2. **Check Resend domain verification** — May have propagated, check resend.com/domains
+3. **Stripe tax registration** — Complete Texas tax setup in Stripe Dashboard
 
-### Medium Priority — Feature Expansion
-4. **Anthropic API key** → Unlocks /admin/generate AI website builder
-5. **Real audit data** — Google CSE + Places API keys for live ranking/reputation
-6. **Logo redesign** — Erik wants something less "cartoony"
+### Medium Priority
+4. **Real audit data** — Google CSE + Places API keys for live ranking/reputation
+5. **Logo redesign** — Erik wants something less "cartoony"
+6. **Admin password** — Move from hardcoded default to env var
 
-### Lower Priority — Scale
+### Lower Priority
 7. **Cold email system** — Instantly.ai API key + GitHub Actions cron
 8. **SEO reports dashboard** — AgencyAnalytics API integration
 9. **Lighthouse performance audit** — Target 90+ score
