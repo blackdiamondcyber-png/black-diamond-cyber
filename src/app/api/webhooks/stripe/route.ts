@@ -39,17 +39,38 @@ export async function POST(request: NextRequest) {
       const customerName = session.customer_details?.name;
 
       if (customerEmail && tier) {
-        await supabase.from('clients').insert({
-          business_name: customerName || 'Unknown',
-          owner_name: customerName || 'Unknown',
-          email: customerEmail,
-          industry: 'Unknown',
-          stripe_customer_id: session.customer as string,
-          subscription_tier: tier,
-          subscription_status: 'active',
-          monthly_price: Number(session.metadata?.monthlyPrice) || 0,
-          setup_fee: Number(session.metadata?.setupFee) || 0,
-        });
+        // Insert client record
+        const { data: clientRecord } = await supabase
+          .from('clients')
+          .insert({
+            business_name: customerName || 'Unknown',
+            owner_name: customerName || 'Unknown',
+            email: customerEmail,
+            industry: 'Unknown',
+            stripe_customer_id: session.customer as string,
+            subscription_tier: tier,
+            subscription_status: 'active',
+            monthly_price: Number(session.metadata?.monthlyPrice) || 0,
+            setup_fee: Number(session.metadata?.setupFee) || 0,
+            project_status: 'in_progress',
+          })
+          .select('id')
+          .single();
+
+        // Create Supabase Auth user for client portal access
+        if (clientRecord) {
+          const { data: authData } = await supabase.auth.admin.createUser({
+            email: customerEmail,
+            email_confirm: true,
+          });
+
+          if (authData?.user) {
+            await supabase
+              .from('clients')
+              .update({ auth_user_id: authData.user.id })
+              .eq('id', clientRecord.id);
+          }
+        }
       }
       break;
     }
