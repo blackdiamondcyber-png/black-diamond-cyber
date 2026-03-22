@@ -5,7 +5,7 @@ import "./globals.css";
 
 const outfit = Outfit({
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  weight: ["300", "500", "600", "700"],
   variable: "--font-outfit",
   display: "swap",
 });
@@ -22,10 +22,22 @@ export const metadata: Metadata = {
   title: "Black Diamond Cyber — Premium Websites for Local Businesses",
   description:
     "AI-powered websites for dental practices, HVAC, plumbing, electrical, roofing and more. Delivered in days. Starting at $997.",
+  metadataBase: new URL("https://black-diamond-cyber.vercel.app"),
   openGraph: {
     title: "Black Diamond Cyber",
     description: "Premium AI-powered websites for local businesses",
-    url: "https://blackdiamondcyber.dev",
+    url: "https://black-diamond-cyber.vercel.app",
+    siteName: "Black Diamond Cyber",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Black Diamond Cyber",
+    description: "Premium AI-powered websites for local businesses",
+  },
+  robots: { index: true, follow: true },
+  other: {
+    "theme-color": "#06080C",
   },
 };
 
