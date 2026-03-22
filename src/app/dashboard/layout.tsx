@@ -62,6 +62,19 @@ export default async function DashboardLayout({ children }: { children: React.Re
             >
               Dashboard
             </span>
+            <a
+              href="/dashboard/photos"
+              style={{
+                fontSize: '11px',
+                fontWeight: 600,
+                letterSpacing: '1px',
+                textTransform: 'uppercase' as const,
+                color: 'var(--t2)',
+                textDecoration: 'none',
+              }}
+            >
+              Photos
+            </a>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>

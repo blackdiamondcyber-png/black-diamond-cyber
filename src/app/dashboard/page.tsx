@@ -474,6 +474,21 @@ export default async function DashboardPage() {
             <p style={{ fontSize: '11px', color: 'var(--t3)', marginTop: '16px', lineHeight: 1.6 }}>
               Don&apos;t worry if you don&apos;t have everything — we can work with what you have and source the rest.
             </p>
+            <a
+              href="/dashboard/photos"
+              style={{
+                display: 'inline-block',
+                marginTop: '16px',
+                fontSize: '10px',
+                fontWeight: 700,
+                letterSpacing: '1px',
+                textTransform: 'uppercase',
+                color: 'var(--cyan)',
+                transition: '.4s',
+              }}
+            >
+              Upload Your Photos &rarr;
+            </a>
           </div>
         )}
 
