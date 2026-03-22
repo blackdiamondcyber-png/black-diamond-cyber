@@ -22,11 +22,11 @@ export const metadata: Metadata = {
   title: "Black Diamond Cyber — Premium Websites for Local Businesses",
   description:
     "AI-powered websites for dental practices, HVAC, plumbing, electrical, roofing and more. Delivered in days. Starting at $997.",
-  metadataBase: new URL("https://black-diamond-cyber.vercel.app"),
+  metadataBase: new URL("https://bd-cyber.com"),
   openGraph: {
     title: "Black Diamond Cyber",
     description: "Premium AI-powered websites for local businesses",
-    url: "https://black-diamond-cyber.vercel.app",
+    url: "https://bd-cyber.com",
     siteName: "Black Diamond Cyber",
     type: "website",
   },

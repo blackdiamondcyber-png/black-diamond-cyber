@@ -47,8 +47,8 @@ export async function POST(request: NextRequest) {
           quantity: 1,
         },
       ],
-      success_url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://black-diamond-cyber.vercel.app'}?success=true&tier=${tier}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://black-diamond-cyber.vercel.app'}?canceled=true`,
+      success_url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://bd-cyber.com'}?success=true&tier=${tier}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://bd-cyber.com'}?canceled=true`,
       metadata: {
         tier,
         setupFee: config.setupFee.toString(),
