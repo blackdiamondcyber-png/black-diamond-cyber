@@ -1,4 +1,4 @@
-# Session Handoff — 2026-03-21 3:15 PM
+# Session Handoff — 2026-03-21 (Updated Evening Session)
 
 ## Current Task
 Building Black Diamond Cyber (BDC) — an AI-powered website design and hosting company for local service businesses. Converted from static HTML to full Next.js SaaS platform in a single session.
@@ -21,17 +21,20 @@ Building Black Diamond Cyber (BDC) — an AI-powered website design and hosting 
 - [x] Database migration 001_initial_schema.sql executed successfully
 - [x] All env vars added to Vercel (Supabase URL, anon key, service role key, Resend API key)
 - [x] Multiple visual polish iterations (hero cards, portfolio fonts, founder section, audit page)
+- [x] Stripe account created + all 3 keys deployed (secret, publishable, webhook secret)
+- [x] Pricing buttons wired to Stripe checkout (PricingButton.tsx client component)
+- [x] Services section added (5 categories: Websites, App Dev, Automation, SEO, AI Integration)
+- [x] Auto-email after audit (HTML email to lead + plain text admin notification via Resend)
+- [x] Mobile responsive polish (768px tablet breakpoint, viewport-relative card sizing, audit results stacking)
 
 ### Not Yet Started / Blocked
-- [ ] Stripe account creation + API keys (Erik needs to create Stripe account)
 - [ ] Anthropic API key for website generator (Erik needs to provide)
 - [ ] Instantly.ai API key for cold email system (Erik needs to provide)
 - [ ] AgencyAnalytics API for SEO reports (Erik needs to provide)
 - [ ] Google CSE + Places API keys for real audit data (optional — simulated data works)
 - [ ] Purchase blackdiamondcyber.dev domain ($13/yr on Vercel)
-- [ ] Auto-email after audit (Resend key is set, code needs to be added to /api/audit/run)
-- [ ] Expand site with service categories (Websites, Apps, Automation, SEO, AI Integration)
 - [ ] Resend domain verification (currently can only send from onboarding@resend.dev)
+- [ ] Test Stripe checkout flow end-to-end (test card 4242 4242 4242 4242)
 
 ## Decisions Made
 - **Next.js 16** (not 15) — create-next-app installed 16.2.1, kept it
@@ -104,9 +107,9 @@ Building Black Diamond Cyber (BDC) — an AI-powered website design and hosting 
 | NEXT_PUBLIC_SUPABASE_ANON_KEY | ✅ Set |
 | SUPABASE_SERVICE_ROLE_KEY | ✅ Set |
 | RESEND_API_KEY | ✅ Set |
-| STRIPE_SECRET_KEY | ❌ Not set |
-| STRIPE_WEBHOOK_SECRET | ❌ Not set |
-| NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY | ❌ Not set |
+| STRIPE_SECRET_KEY | ✅ Set (test mode) |
+| STRIPE_WEBHOOK_SECRET | ✅ Set |
+| NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY | ✅ Set (test mode) |
 | ANTHROPIC_API_KEY | ❌ Not set |
 | ADMIN_PASSWORD | ❌ Not set (defaults in code) |
 
@@ -142,22 +145,24 @@ Building Black Diamond Cyber (BDC) — an AI-powered website design and hosting 
 ## Remaining Work (Priority Order)
 
 ### High Priority — Revenue Enablers
-1. **Stripe setup** — Erik creates Stripe account, provides keys, add to Vercel env vars. Code is 100% ready.
-2. **Auto-email after audit** — Add Resend email to `/api/audit/run` with personalized results. Key is already set.
-3. **Resend domain verification** — Verify blackdiamondcyber.dev (or gmail) so emails don't come from resend.dev
+1. ~~**Stripe setup**~~ ✅ DONE — All 3 keys deployed, pricing buttons wired to checkout
+2. ~~**Auto-email after audit**~~ ✅ DONE — HTML results email + admin notification
+3. **Resend domain verification** — Verify blackdiamondcyber.dev so emails come from custom domain
+4. **Test Stripe checkout** — Run a test purchase with card 4242 4242 4242 4242
+5. **Switch Stripe to live mode** — Once tested, switch from test keys to live keys
 
 ### Medium Priority — Feature Expansion
-4. **Service categories on homepage** — Erik wants sections for: Websites, App Development (Dental Divas proof), Automation (n8n/AI chatbots), SEO & Analytics, AI Integration
-5. **Website generator activation** — Add ANTHROPIC_API_KEY to Vercel, test the /admin/generate flow
-6. **Real audit data** — Add GOOGLE_CSE_API_KEY + GOOGLE_CSE_ID + GOOGLE_PLACES_API_KEY for live ranking/reputation checks
-7. **Purchase blackdiamondcyber.dev** — $13/yr in Vercel Project Settings → Domains
+6. ~~**Service categories**~~ ✅ DONE — 5 categories added to homepage
+7. **Website generator activation** — Add ANTHROPIC_API_KEY to Vercel, test the /admin/generate flow
+8. **Real audit data** — Add GOOGLE_CSE_API_KEY + GOOGLE_CSE_ID + GOOGLE_PLACES_API_KEY for live ranking/reputation checks
+9. **Purchase blackdiamondcyber.dev** — $13/yr in Vercel Project Settings → Domains
 
 ### Lower Priority — Polish & Scale
-8. **Cold email system** — Get Instantly.ai API key, set up GitHub Actions cron
-9. **SEO reports dashboard** — AgencyAnalytics API integration
-10. **Mobile polish** — Test all pages on 375px width, fix any layout issues
-11. **Lighthouse audit** — Target 90+ performance score
-12. **Logo redesign** — Erik expressed dissatisfaction with current BD diamond logo
+10. ~~**Mobile polish**~~ ✅ DONE — 768px breakpoint, viewport-relative cards, audit results stacking
+11. **Cold email system** — Get Instantly.ai API key, set up GitHub Actions cron
+12. **SEO reports dashboard** — AgencyAnalytics API integration
+13. **Lighthouse audit** — Target 90+ performance score
+14. **Logo redesign** — Erik expressed dissatisfaction with current BD diamond logo
 
 ## Pricing Reference
 | Tier | Setup Fee | Monthly | Delivery |

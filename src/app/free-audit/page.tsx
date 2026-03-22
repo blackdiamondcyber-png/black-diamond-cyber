@@ -542,7 +542,7 @@ export default function FreeAuditPage() {
         </div>
 
         {/* Overall Score */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '32px', padding: '40px', background: 'var(--bg1)', border: '1px solid var(--hr)', borderRadius: 'var(--rr)', marginBottom: '20px' }}>
+        <div className="audit-results-row" style={{ display: 'flex', alignItems: 'center', gap: '32px', padding: '40px', background: 'var(--bg1)', border: '1px solid var(--hr)', borderRadius: 'var(--rr)', marginBottom: '20px' }}>
           <ScoreRing score={result.overall} animated={animated} />
           <div>
             <h2 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '22px', fontWeight: 700, color: 'var(--text)', marginBottom: '8px', letterSpacing: 0, lineHeight: 1.3 }}>

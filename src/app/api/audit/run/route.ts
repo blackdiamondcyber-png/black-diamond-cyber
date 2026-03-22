@@ -413,6 +413,97 @@ export async function POST(request: NextRequest) {
       directories,
     };
 
+    // Send audit results email (non-blocking)
+    if (process.env.RESEND_API_KEY && email) {
+      try {
+        const { Resend } = await import('resend');
+        const resend = new Resend(process.env.RESEND_API_KEY);
+
+        const scoreColor = (s: number) =>
+          s >= 70 ? '#34D399' : s >= 40 ? '#F59E0B' : '#EF4444';
+        const scoreLabel = (s: number) =>
+          s >= 70 ? 'Good' : s >= 40 ? 'Needs Work' : 'Critical';
+
+        // Find weakest areas for recommendations
+        const categories = [
+          { name: 'Search Ranking', score: ranking.score, detail: ranking.details },
+          { name: 'Online Reputation', score: reputation.score, detail: reputation.details },
+          { name: 'Website Performance', score: performance.score, detail: performance.details },
+          { name: 'Directory Listings', score: directories.score, detail: directories.details },
+        ].sort((a, b) => a.score - b.score);
+
+        const recommendations = categories
+          .filter((c) => c.score < 70)
+          .slice(0, 3)
+          .map((c) => `<li style="margin-bottom:8px;color:#DEE0E7;">${c.name} (${c.score}/100): ${c.detail}</li>`)
+          .join('');
+
+        const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://black-diamond-cyber.vercel.app';
+
+        // Email to the lead
+        await resend.emails.send({
+          from: 'Black Diamond Cyber <onboarding@resend.dev>',
+          to: email,
+          subject: `Your Free Website Audit Results — ${overall}/100`,
+          html: `
+<div style="background:#06080C;padding:40px 20px;font-family:'Helvetica Neue',Arial,sans-serif;">
+  <div style="max-width:560px;margin:0 auto;background:#0C0F16;border:1px solid rgba(255,255,255,0.04);border-radius:18px;padding:40px 32px;">
+    <h1 style="color:#DEE0E7;font-size:24px;margin:0 0 4px;">Your Website Audit Results</h1>
+    <p style="color:#7E8396;font-size:14px;margin:0 0 28px;">${businessName} · ${cityState}</p>
+
+    <div style="text-align:center;margin:0 0 32px;">
+      <div style="display:inline-block;width:120px;height:120px;border-radius:50%;border:4px solid ${scoreColor(overall)};line-height:120px;font-size:42px;font-weight:700;color:${scoreColor(overall)};">
+        ${overall}
+      </div>
+      <p style="color:${scoreColor(overall)};font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-top:8px;">${scoreLabel(overall)} — Overall Score</p>
+    </div>
+
+    <table style="width:100%;border-collapse:collapse;margin-bottom:28px;">
+      <tr>
+        <td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);color:#7E8396;font-size:13px;">Search Ranking</td>
+        <td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);color:${scoreColor(ranking.score)};font-size:16px;font-weight:700;text-align:right;">${ranking.score}/100</td>
+      </tr>
+      <tr>
+        <td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);color:#7E8396;font-size:13px;">Online Reputation</td>
+        <td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);color:${scoreColor(reputation.score)};font-size:16px;font-weight:700;text-align:right;">${reputation.score}/100</td>
+      </tr>
+      <tr>
+        <td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);color:#7E8396;font-size:13px;">Website Performance</td>
+        <td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);color:${scoreColor(performance.score)};font-size:16px;font-weight:700;text-align:right;">${performance.score}/100</td>
+      </tr>
+      <tr>
+        <td style="padding:12px 0;color:#7E8396;font-size:13px;">Directory Listings</td>
+        <td style="padding:12px 0;color:${scoreColor(directories.score)};font-size:16px;font-weight:700;text-align:right;">${directories.score}/100</td>
+      </tr>
+    </table>
+
+    ${recommendations ? `
+    <div style="background:rgba(40,135,204,0.06);border:1px solid rgba(40,135,204,0.12);border-radius:12px;padding:20px;margin-bottom:28px;">
+      <h3 style="color:#5DC4E8;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin:0 0 12px;">Top Recommendations</h3>
+      <ul style="margin:0;padding:0 0 0 16px;font-size:13px;line-height:1.7;">${recommendations}</ul>
+    </div>` : ''}
+
+    <div style="text-align:center;">
+      <a href="${siteUrl}/#book" style="display:inline-block;padding:14px 36px;background:#2887CC;color:#fff;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;border-radius:40px;">Book a Free Strategy Call</a>
+      <p style="color:#474C5E;font-size:11px;margin-top:16px;">We'll walk through your results and show you exactly how to improve.</p>
+    </div>
+  </div>
+  <p style="text-align:center;color:#474C5E;font-size:10px;margin-top:16px;">© ${new Date().getFullYear()} Black Diamond Cyber · blackdiamondcyber.dev</p>
+</div>`,
+        });
+
+        // Admin notification
+        await resend.emails.send({
+          from: 'BDC Audit Alert <onboarding@resend.dev>',
+          to: 'blackdiamondcyber@gmail.com',
+          subject: `🔍 New audit: ${businessName} — ${overall}/100`,
+          text: `New audit completed!\n\nBusiness: ${businessName}\nEmail: ${email}\nLocation: ${cityState}\nIndustry: ${industry}\nWebsite: ${cleanUrl || 'Not provided'}\n\nOverall: ${overall}/100\nRanking: ${ranking.score}/100\nReputation: ${reputation.score}/100\nPerformance: ${performance.score}/100\nDirectories: ${directories.score}/100`,
+        });
+      } catch {
+        // Email failure should not block the audit response
+      }
+    }
+
     return NextResponse.json(result);
   } catch {
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
