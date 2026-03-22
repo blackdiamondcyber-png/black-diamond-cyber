@@ -60,6 +60,9 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     const message =
       error instanceof Error ? error.message : 'Unknown error';
+    const code = error instanceof Error && 'code' in error ? (error as Record<string, unknown>).code : 'unknown';
+    const type = error instanceof Error && 'type' in error ? (error as Record<string, unknown>).type : 'unknown';
+    console.error('[checkout] Stripe error:', JSON.stringify({ message, code, type }));
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }

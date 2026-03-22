@@ -8,6 +8,7 @@ interface UpdateStatusBody {
   clientId: string;
   status: string;
   password: string;
+  statusDetail?: string;
 }
 
 function buildStatusEmail(status: string, businessName: string, siteUrl: string | null): { subject: string; html: string } | null {
@@ -130,7 +131,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
   }
 
-  const { clientId, status, password } = body;
+  const { clientId, status, password, statusDetail } = body;
 
   if (password !== ADMIN_PASSWORD) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -148,12 +149,17 @@ export async function POST(request: NextRequest) {
   const supabase = getSupabaseAdmin();
 
   // Update client status
+  const updateData: Record<string, unknown> = {
+    project_status: status,
+    project_status_updated_at: new Date().toISOString(),
+  };
+  if (statusDetail !== undefined) {
+    updateData.status_detail = statusDetail;
+  }
+
   const { error: updateError } = await supabase
     .from('clients')
-    .update({
-      project_status: status,
-      project_status_updated_at: new Date().toISOString(),
-    })
+    .update(updateData)
     .eq('id', clientId);
 
   if (updateError) {

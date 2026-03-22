@@ -28,7 +28,7 @@ export default async function DashboardPage() {
     .from('clients')
     .select('*')
     .eq('auth_user_id', user.id)
-    .single<Client & { auth_user_id: string; project_status: string | null; project_status_updated_at: string | null }>();
+    .single<Client & { auth_user_id: string }>();
 
   if (!client) {
     return (
@@ -270,6 +270,23 @@ export default async function DashboardPage() {
             }}
           >
             Estimated delivery: <strong style={{ color: 'var(--cyan)' }}>{tierConfig.deliveryTime}</strong>
+          </div>
+        )}
+        {client.status_detail && (
+          <div
+            style={{
+              marginTop: '12px',
+              padding: '12px 16px',
+              background: 'var(--bg2)',
+              border: '1px solid var(--hr)',
+              borderRadius: 'var(--r)',
+              fontSize: '13px',
+            }}
+          >
+            <span style={{ color: 'var(--t3)', fontSize: '10px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase' }}>
+              Currently working on:
+            </span>
+            <p style={{ color: 'var(--cyan)', marginTop: '4px', lineHeight: 1.6 }}>{client.status_detail}</p>
           </div>
         )}
       </div>
@@ -625,6 +642,104 @@ export default async function DashboardPage() {
             </div>
           </div>
         )}
+
+        {/* Resources */}
+        <div style={cardStyle}>
+          <p style={labelStyle}>Resources</p>
+          <h3
+            style={{
+              fontFamily: "'Instrument Serif', Georgia, serif",
+              fontSize: '20px',
+              color: 'var(--text)',
+              fontWeight: 400,
+              marginBottom: '16px',
+            }}
+          >
+            Guides to help you <em style={{ color: 'var(--cyan)', fontStyle: 'italic' }}>prepare</em>
+          </h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            {[
+              { text: 'How to Take Great Business Photos', desc: 'Tips for showcasing your space, team, and work' },
+              { text: 'Writing Your Business Bio', desc: 'Craft an about section that connects with customers' },
+              { text: 'Gathering Client Reviews', desc: 'How to ask for and collect testimonials' },
+              { text: 'Setting Up Google Business Profile', desc: 'Appear in local search and Google Maps' },
+              { text: 'Social Media Best Practices', desc: 'Link your accounts and build your presence' },
+            ].map((item) => (
+              <div
+                key={item.text}
+                style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '10px',
+                  padding: '10px 14px',
+                  background: 'rgba(255,255,255,.02)',
+                  border: '1px solid var(--hr)',
+                  borderRadius: 'var(--r)',
+                }}
+              >
+                <span style={{ color: 'var(--cyan)', marginTop: '2px', flexShrink: 0 }}>◇</span>
+                <div>
+                  <p style={{ fontSize: '13px', color: 'var(--text)', fontWeight: 500 }}>{item.text}</p>
+                  <p style={{ fontSize: '11px', color: 'var(--t3)', marginTop: '2px', lineHeight: 1.5 }}>{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Things to Consider */}
+        <div style={cardStyle}>
+          <p style={labelStyle}>Things to Consider</p>
+          <h3
+            style={{
+              fontFamily: "'Instrument Serif', Georgia, serif",
+              fontSize: '20px',
+              color: 'var(--text)',
+              fontWeight: 400,
+              marginBottom: '16px',
+            }}
+          >
+            Maximize your <em style={{ color: 'var(--cyan)', fontStyle: 'italic' }}>online presence</em>
+          </h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            {(client.project_status === 'live'
+              ? [
+                  'Respond to every Google review — it boosts SEO and trust',
+                  'Post weekly on social media — consistency builds your audience',
+                  'Ask satisfied clients for referrals and reviews',
+                  'Keep your business hours and services updated',
+                  'Share your website link everywhere — email signatures, social bios, business cards',
+                  'Consider running Google Local Service Ads for more leads',
+                ]
+              : [
+                  'Claim your Google Business Profile — appear in local search and Maps',
+                  'Ask happy clients for Google reviews — boosts credibility and SEO',
+                  'Link your social media accounts — let us add these to your site',
+                  'Set up a professional business email (info@yourbusiness.com)',
+                  'Prepare before & after photos — great for portfolios and social proof',
+                  'Consider a booking tool — Calendly, Acuity, or built-in scheduling',
+                ]
+            ).map((item) => (
+              <div
+                key={item}
+                style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '10px',
+                  fontSize: '13px',
+                  color: 'var(--t2)',
+                  lineHeight: 1.6,
+                }}
+              >
+                <span style={{ color: 'var(--cyan)', marginTop: '2px', flexShrink: 0 }}>◇</span>
+                {item}
+              </div>
+            ))}
+          </div>
+          <p style={{ fontSize: '11px', color: 'var(--t3)', marginTop: '16px', lineHeight: 1.6 }}>
+            Not sure where to start? We&apos;re happy to help with any of these — just reach out.
+          </p>
+        </div>
       </div>
     </div>
   );

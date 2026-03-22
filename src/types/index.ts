@@ -108,6 +108,9 @@ export interface Client {
   monthly_price: number | null;
   setup_fee: number | null;
   notes: string | null;
+  project_status: string | null;
+  project_status_updated_at: string | null;
+  status_detail: string | null;
 }
 
 export interface ContactSubmission {
