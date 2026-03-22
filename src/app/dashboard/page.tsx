@@ -184,6 +184,96 @@ export default async function DashboardPage() {
         </div>
       </div>
 
+      {/* What's Happening Now */}
+      <div style={{ ...cardStyle, marginBottom: '24px' }}>
+        <p style={labelStyle}>
+          {client.project_status === 'live'
+            ? 'Monthly Services Active'
+            : client.project_status === 'review'
+              ? 'Action Required'
+              : 'Currently In Progress'}
+        </p>
+        <h2
+          style={{
+            fontFamily: "'Instrument Serif', Georgia, serif",
+            fontSize: '22px',
+            color: 'var(--text)',
+            fontWeight: 400,
+            marginBottom: '16px',
+          }}
+        >
+          {client.project_status === 'live' ? (
+            <>Your website is <em style={{ color: 'var(--green)', fontStyle: 'italic' }}>live and performing</em></>
+          ) : client.project_status === 'review' ? (
+            <>Your website preview is <em style={{ color: 'var(--cyan)', fontStyle: 'italic' }}>ready for review</em></>
+          ) : (
+            <>We&apos;re <em style={{ color: 'var(--cyan)', fontStyle: 'italic' }}>building your site</em></>
+          )}
+        </h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '10px' }}>
+          {(client.project_status === 'live'
+            ? [
+                { text: 'Hosting & uptime monitoring', done: true },
+                { text: 'SSL & security updates', done: true },
+                { text: 'Monthly analytics report', done: true },
+                { text: 'SEO optimization', done: true },
+                { text: 'Content updates on request', done: true },
+                { text: 'Priority support', done: true },
+              ]
+            : client.project_status === 'review'
+              ? [
+                  { text: 'Competitor analysis', done: true },
+                  { text: 'Content & copy creation', done: true },
+                  { text: 'Design & development', done: true },
+                  { text: 'Review all pages for accuracy', done: false },
+                  { text: 'Verify contact info & hours', done: false },
+                  { text: 'Test forms & booking links', done: false },
+                ]
+              : [
+                  { text: 'Competitor analysis', done: true },
+                  { text: 'Content & copy creation', done: false },
+                  { text: 'Custom design mockups', done: false },
+                  { text: 'Mobile optimization', done: false },
+                  { text: 'SEO setup & meta tags', done: false },
+                  { text: 'Forms & integrations', done: false },
+                ]
+          ).map((item) => (
+            <div
+              key={item.text}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px',
+                padding: '10px 14px',
+                background: item.done ? 'rgba(52,211,153,.04)' : 'rgba(255,255,255,.02)',
+                border: `1px solid ${item.done ? 'rgba(52,211,153,.12)' : 'var(--hr)'}`,
+                borderRadius: 'var(--r)',
+                fontSize: '12px',
+                color: item.done ? 'var(--green)' : 'var(--t2)',
+              }}
+            >
+              <span style={{ fontSize: '14px' }}>{item.done ? '✓' : '○'}</span>
+              {item.text}
+            </div>
+          ))}
+        </div>
+        {client.project_status === 'in_progress' && tierConfig && (
+          <div
+            style={{
+              marginTop: '16px',
+              padding: '12px 16px',
+              background: 'var(--blue-d)',
+              border: '1px solid var(--hr-b)',
+              borderRadius: 'var(--r)',
+              fontSize: '13px',
+              color: 'var(--t2)',
+            }}
+          >
+            Estimated delivery: <strong style={{ color: 'var(--cyan)' }}>{tierConfig.deliveryTime}</strong>
+          </div>
+        )}
+      </div>
+
       {/* Grid */}
       <div
         style={{
@@ -330,6 +420,196 @@ export default async function DashboardPage() {
             </a>
           </div>
         </div>
+      </div>
+
+      {/* What to Prepare + Timeline row */}
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: '24px',
+          marginTop: '24px',
+        }}
+      >
+        {/* What to Prepare */}
+        {client.project_status !== 'live' && (
+          <div style={cardStyle}>
+            <p style={labelStyle}>Things to Prepare</p>
+            <h3
+              style={{
+                fontFamily: "'Instrument Serif', Georgia, serif",
+                fontSize: '20px',
+                color: 'var(--text)',
+                fontWeight: 400,
+                marginBottom: '16px',
+              }}
+            >
+              Help us build your <em style={{ color: 'var(--cyan)', fontStyle: 'italic' }}>perfect site</em>
+            </h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {[
+                'High-quality photos of your business & team',
+                'Business hours and service areas',
+                'List of services with short descriptions',
+                'Testimonials or reviews to feature',
+                'Your logo files (PNG or SVG)',
+                'Google Business Profile access (if applicable)',
+              ].map((item) => (
+                <div
+                  key={item}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '10px',
+                    fontSize: '13px',
+                    color: 'var(--t2)',
+                    lineHeight: 1.6,
+                  }}
+                >
+                  <span style={{ color: 'var(--cyan)', marginTop: '2px', flexShrink: 0 }}>◇</span>
+                  {item}
+                </div>
+              ))}
+            </div>
+            <p style={{ fontSize: '11px', color: 'var(--t3)', marginTop: '16px', lineHeight: 1.6 }}>
+              Don&apos;t worry if you don&apos;t have everything — we can work with what you have and source the rest.
+            </p>
+          </div>
+        )}
+
+        {/* Your Timeline */}
+        <div style={cardStyle}>
+          <p style={labelStyle}>Your Timeline</p>
+          <h3
+            style={{
+              fontFamily: "'Instrument Serif', Georgia, serif",
+              fontSize: '20px',
+              color: 'var(--text)',
+              fontWeight: 400,
+              marginBottom: '20px',
+            }}
+          >
+            From kickoff to <em style={{ color: 'var(--cyan)', fontStyle: 'italic' }}>launch</em>
+          </h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+            {[
+              { day: 'Day 1', task: 'Strategy call & project brief', status: 'done' },
+              { day: 'Day 1-2', task: 'Competitor research & content plan', status: client.project_status === 'in_progress' ? 'active' : 'done' },
+              { day: `Day 2-${tierConfig?.deliveryTime?.split('-')[0] || '5'}`, task: 'Design, development & testing', status: client.project_status === 'in_progress' ? 'pending' : 'done' },
+              { day: `Day ${tierConfig?.deliveryTime?.split('-')[0] || '5'}`, task: 'Preview sent for your review', status: client.project_status === 'review' ? 'active' : client.project_status === 'live' ? 'done' : 'pending' },
+              { day: '+1-2 days', task: 'Revisions & final adjustments', status: client.project_status === 'review' ? 'active' : client.project_status === 'live' ? 'done' : 'pending' },
+              { day: 'Launch', task: 'Site goes live + analytics activated', status: client.project_status === 'live' ? 'done' : 'pending' },
+            ].map((step, i) => (
+              <div
+                key={i}
+                style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '14px',
+                  padding: '12px 0',
+                  borderBottom: i < 5 ? '1px solid var(--hr)' : 'none',
+                }}
+              >
+                <div
+                  style={{
+                    width: '8px',
+                    height: '8px',
+                    borderRadius: '50%',
+                    marginTop: '5px',
+                    flexShrink: 0,
+                    background:
+                      step.status === 'done'
+                        ? 'var(--green)'
+                        : step.status === 'active'
+                          ? 'var(--cyan)'
+                          : 'var(--t3)',
+                    boxShadow:
+                      step.status === 'active'
+                        ? '0 0 8px rgba(93,196,232,.5)'
+                        : 'none',
+                  }}
+                />
+                <div>
+                  <span
+                    style={{
+                      fontSize: '10px',
+                      fontWeight: 700,
+                      letterSpacing: '1px',
+                      textTransform: 'uppercase',
+                      color:
+                        step.status === 'done'
+                          ? 'var(--green)'
+                          : step.status === 'active'
+                            ? 'var(--cyan)'
+                            : 'var(--t3)',
+                    }}
+                  >
+                    {step.day}
+                  </span>
+                  <p
+                    style={{
+                      fontSize: '13px',
+                      color:
+                        step.status === 'pending' ? 'var(--t3)' : 'var(--text)',
+                      marginTop: '2px',
+                    }}
+                  >
+                    {step.task}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Included in Your Plan */}
+        {tierConfig && (
+          <div style={cardStyle}>
+            <p style={labelStyle}>Included in Your Plan</p>
+            <h3
+              style={{
+                fontFamily: "'Instrument Serif', Georgia, serif",
+                fontSize: '20px',
+                color: 'var(--text)',
+                fontWeight: 400,
+                marginBottom: '16px',
+              }}
+            >
+              {tierConfig.name} <em style={{ color: 'var(--cyan)', fontStyle: 'italic' }}>Package</em>
+            </h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {tierConfig.features.map((feature) => (
+                <div
+                  key={feature}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    fontSize: '13px',
+                    color: 'var(--text)',
+                  }}
+                >
+                  <span style={{ color: 'var(--blue)', fontSize: '6px' }}>●</span>
+                  {feature}
+                </div>
+              ))}
+            </div>
+            <div
+              style={{
+                marginTop: '20px',
+                padding: '12px 16px',
+                background: 'rgba(52,211,153,.04)',
+                border: '1px solid rgba(52,211,153,.12)',
+                borderRadius: 'var(--r)',
+                fontSize: '12px',
+                color: 'var(--green)',
+                fontWeight: 600,
+              }}
+            >
+              ✓ Hosting, SSL, CDN & support included
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
