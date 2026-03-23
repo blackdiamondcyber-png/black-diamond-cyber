@@ -36,6 +36,10 @@ export const metadata: Metadata = {
     description: "Premium AI-powered websites for local businesses",
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
   other: {
     "theme-color": "#06080C",
     "mobile-web-app-capable": "yes",
