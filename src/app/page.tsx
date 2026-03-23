@@ -14,9 +14,47 @@ import { Footer } from "@/components/Footer";
 import { BookingHandler } from "@/components/BookingHandler";
 import { SuccessModal } from "@/components/SuccessModal";
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Black Diamond Cyber",
+  description:
+    "AI-powered website design and hosting for local service businesses. Custom websites for dental practices, HVAC, plumbing, electrical, roofing and more.",
+  url: "https://bd-cyber.com",
+  email: "blackdiamondcyber@gmail.com",
+  founder: {
+    "@type": "Person",
+    name: "Erik Pearson",
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "The Woodlands",
+    addressRegion: "TX",
+    addressCountry: "US",
+  },
+  areaServed: "US",
+  priceRange: "$997 - $4997",
+  serviceType: [
+    "Website Design",
+    "Website Hosting",
+    "SEO",
+    "AI Website Generation",
+  ],
+  offers: {
+    "@type": "AggregateOffer",
+    lowPrice: "997",
+    highPrice: "4997",
+    priceCurrency: "USD",
+  },
+};
+
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Contact modal handler - intercepts #book links */}
       <BookingHandler />
       {/* Purchase success modal */}
