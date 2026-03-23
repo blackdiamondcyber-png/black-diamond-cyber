@@ -66,24 +66,39 @@ Black Diamond Cyber (BDC) — AI-powered website design and hosting SaaS for loc
 - [x] Created `public/sw.js` with SW_VERSION + CACHE_NAME (bump after each deploy)
 - [x] Cache-first for static assets, network-first for API/HTML
 - [x] Offline fallback page at `public/offline.html` (dark theme matching design system)
-- [x] Created `public/manifest.json` (name: Black Diamond Cyber, standalone, dark theme)
-- [x] Added manifest link to layout.tsx metadata
-- [x] Service worker registration already wired in layout.tsx
+- [x] Created `src/app/manifest.ts` using Next.js 16 native manifest route (auto-serves at /manifest.webmanifest)
+- [x] Service worker registration wired in layout.tsx
+- [x] Placeholder PWA icons from existing logo (192x192 + 512x512)
+
+### SEO — Full Setup ✅
+- [x] `robots.ts` — blocks /api/, /admin/, /dashboard/ from crawlers
+- [x] `sitemap.ts` — homepage, contact, free-audit, login with priorities
+- [x] JSON-LD structured data (ProfessionalService schema) on homepage
+- [x] Page-level metadata on contact, free-audit, login via layout files
+- [x] Apple-touch-icon + favicon configured in root layout metadata
+
+### Domain Transfer — In Progress
+- [x] Transferred domain to Namecheap ($11.68, order #197806219)
+- [ ] Waiting for Wix approval email (auto-approves in ~5 days if not clicked)
+- [ ] Once transferred: set nameservers to `aria.ns.cloudflare.com` / `ross.ns.cloudflare.com`
 
 ## What Was NOT Done (Carried Forward)
 
-### High Priority — Next Session
-1. **Domain transfer to Namecheap/Porkbun** — EPP code: `]E8Os{~mb@0t` (expires ~2026-03-30). Transfer from Wix, then point NS to Cloudflare for full DNS control + Resend @bd-cyber.com emails
-2. **Logo redesign** — Erik wants something less "cartoony"
-3. **PWA icons** — Need 192x192 and 512x512 PNG icons for manifest (placeholder sizes referenced)
+### Waiting
+1. **Domain transfer completion** — Namecheap processing, Wix approval pending (auto-completes in ~5 days)
+2. **After domain transfer**: Point NS to Cloudflare → enables Resend @bd-cyber.com emails
 
-### Medium Priority
-4. **Lighthouse performance audit** — Run manually in Brave DevTools (F12 → Lighthouse). Target 90+ on all categories
-5. **Convert portfolio images to next/image** — Currently using CSS backgroundImage on Unsplash URLs. Remote patterns already configured.
+### Need Erik's Input
+3. **Logo redesign** — Erik wants something less "cartoony"
+4. **Proper PWA icons** — Replace placeholder icons once new logo is ready
 
-### Lower Priority
-6. **Cold email system** — Instantly.ai API key + GitHub Actions cron
-7. **SEO reports dashboard** — AgencyAnalytics API integration
+### Need API Keys
+5. **Cold email system** — Needs Instantly.ai API key + GitHub Actions cron
+6. **SEO reports dashboard** — Needs AgencyAnalytics API key
+
+### Nice to Have
+7. **Lighthouse performance audit** — Run manually in Brave DevTools (F12 → Lighthouse). Target 90+ on all categories
+8. **Portfolio images** — Currently CSS backgroundImage on tiny mini-site mockups. Converting to next/image would break layout — not worth the refactor
 
 ## Vercel Environment Variables (Production)
 | Variable | Status |
