@@ -414,38 +414,36 @@ export async function POST(request: NextRequest) {
     };
 
     // Send audit results email (non-blocking)
-    if (process.env.RESEND_API_KEY && email) {
+    if (email) {
       try {
-        const { Resend } = await import('resend');
-        const resend = new Resend(process.env.RESEND_API_KEY);
+        const { sendEmail, isEmailConfigured } = await import('@/lib/email');
+        if (isEmailConfigured()) {
+          const scoreColor = (s: number) =>
+            s >= 70 ? '#34D399' : s >= 40 ? '#F59E0B' : '#EF4444';
+          const scoreLabel = (s: number) =>
+            s >= 70 ? 'Good' : s >= 40 ? 'Needs Work' : 'Critical';
 
-        const scoreColor = (s: number) =>
-          s >= 70 ? '#34D399' : s >= 40 ? '#F59E0B' : '#EF4444';
-        const scoreLabel = (s: number) =>
-          s >= 70 ? 'Good' : s >= 40 ? 'Needs Work' : 'Critical';
+          // Find weakest areas for recommendations
+          const categories = [
+            { name: 'Search Ranking', score: ranking.score, detail: ranking.details },
+            { name: 'Online Reputation', score: reputation.score, detail: reputation.details },
+            { name: 'Website Performance', score: performance.score, detail: performance.details },
+            { name: 'Directory Listings', score: directories.score, detail: directories.details },
+          ].sort((a, b) => a.score - b.score);
 
-        // Find weakest areas for recommendations
-        const categories = [
-          { name: 'Search Ranking', score: ranking.score, detail: ranking.details },
-          { name: 'Online Reputation', score: reputation.score, detail: reputation.details },
-          { name: 'Website Performance', score: performance.score, detail: performance.details },
-          { name: 'Directory Listings', score: directories.score, detail: directories.details },
-        ].sort((a, b) => a.score - b.score);
+          const recommendations = categories
+            .filter((c) => c.score < 70)
+            .slice(0, 3)
+            .map((c) => `<li style="margin-bottom:8px;color:#DEE0E7;">${c.name} (${c.score}/100): ${c.detail}</li>`)
+            .join('');
 
-        const recommendations = categories
-          .filter((c) => c.score < 70)
-          .slice(0, 3)
-          .map((c) => `<li style="margin-bottom:8px;color:#DEE0E7;">${c.name} (${c.score}/100): ${c.detail}</li>`)
-          .join('');
+          const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://black-diamond-cyber.vercel.app';
 
-        const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://black-diamond-cyber.vercel.app';
-
-        // Email to the lead
-        await resend.emails.send({
-          from: 'Black Diamond Cyber <onboarding@resend.dev>',
-          to: email,
-          subject: `Your Free Website Audit Results — ${overall}/100`,
-          html: `
+          // Email to the lead
+          await sendEmail({
+            to: email,
+            subject: `Your Free Website Audit Results — ${overall}/100`,
+            html: `
 <div style="background:#06080C;padding:40px 20px;font-family:'Helvetica Neue',Arial,sans-serif;">
   <div style="max-width:560px;margin:0 auto;background:#0C0F16;border:1px solid rgba(255,255,255,0.04);border-radius:18px;padding:40px 32px;">
     <h1 style="color:#DEE0E7;font-size:24px;margin:0 0 4px;">Your Website Audit Results</h1>
@@ -488,17 +486,18 @@ export async function POST(request: NextRequest) {
       <p style="color:#474C5E;font-size:11px;margin-top:16px;">We'll walk through your results and show you exactly how to improve.</p>
     </div>
   </div>
-  <p style="text-align:center;color:#474C5E;font-size:10px;margin-top:16px;">© ${new Date().getFullYear()} Black Diamond Cyber · blackdiamondcyber.dev</p>
+  <p style="text-align:center;color:#474C5E;font-size:10px;margin-top:16px;">© ${new Date().getFullYear()} Black Diamond Cyber · bd-cyber.com</p>
 </div>`,
-        });
+          });
 
-        // Admin notification
-        await resend.emails.send({
-          from: 'BDC Audit Alert <onboarding@resend.dev>',
-          to: 'blackdiamondcyber@gmail.com',
-          subject: `🔍 New audit: ${businessName} — ${overall}/100`,
-          text: `New audit completed!\n\nBusiness: ${businessName}\nEmail: ${email}\nLocation: ${cityState}\nIndustry: ${industry}\nWebsite: ${cleanUrl || 'Not provided'}\n\nOverall: ${overall}/100\nRanking: ${ranking.score}/100\nReputation: ${reputation.score}/100\nPerformance: ${performance.score}/100\nDirectories: ${directories.score}/100`,
-        });
+          // Admin notification
+          await sendEmail({
+            to: 'blackdiamondcyber@gmail.com',
+            subject: `New audit: ${businessName} — ${overall}/100`,
+            text: `New audit completed!\n\nBusiness: ${businessName}\nEmail: ${email}\nLocation: ${cityState}\nIndustry: ${industry}\nWebsite: ${cleanUrl || 'Not provided'}\n\nOverall: ${overall}/100\nRanking: ${ranking.score}/100\nReputation: ${reputation.score}/100\nPerformance: ${performance.score}/100\nDirectories: ${directories.score}/100`,
+            fromName: 'BDC Audit Alert',
+          });
+        }
       } catch {
         // Email failure should not block the audit response
       }

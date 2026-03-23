@@ -38,19 +38,18 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (process.env.RESEND_API_KEY) {
-      try {
-        const { Resend } = await import('resend');
-        const resend = new Resend(process.env.RESEND_API_KEY);
-        await resend.emails.send({
-          from: 'BDC Notifications <notifications@blackdiamondcyber.dev>',
+    try {
+      const { sendEmail, isEmailConfigured } = await import('@/lib/email');
+      if (isEmailConfigured()) {
+        await sendEmail({
           to: 'blackdiamondcyber@gmail.com',
           subject: `New inquiry from ${name} — ${businessName || 'No business name'}`,
           text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'N/A'}\nBusiness: ${businessName || 'N/A'}\nIndustry: ${industry}\nMessage: ${message || 'N/A'}`,
+          fromName: 'BDC Notifications',
         });
-      } catch {
-        // Email send failure should not block the form submission
       }
+    } catch {
+      // Email send failure should not block the form submission
     }
 
     return NextResponse.json({ success: true });

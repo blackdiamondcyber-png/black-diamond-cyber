@@ -1,6 +1,6 @@
 import { getSupabaseAdmin } from '@/lib/supabase';
+import { sendEmail, isEmailConfigured } from '@/lib/email';
 import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'bdc-admin-2026';
 
@@ -169,14 +169,12 @@ export async function POST(request: NextRequest) {
   // Fetch client for email
   const { data: client } = await supabase.from('clients').select('*').eq('id', clientId).single();
 
-  if (client?.email && process.env.RESEND_API_KEY) {
+  if (client?.email && isEmailConfigured()) {
     const emailContent = buildStatusEmail(status, client.business_name, client.site_url);
 
     if (emailContent) {
       try {
-        const resend = new Resend(process.env.RESEND_API_KEY);
-        await resend.emails.send({
-          from: 'Black Diamond Cyber <onboarding@resend.dev>',
+        await sendEmail({
           to: client.email,
           subject: emailContent.subject,
           html: emailContent.html,
