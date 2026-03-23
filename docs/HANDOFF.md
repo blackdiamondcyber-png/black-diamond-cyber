@@ -1,41 +1,56 @@
-# Session Handoff — 2026-03-22 (Session 3)
+# Session Handoff — 2026-03-23 (Session 4)
 
 ## Current Task
 Black Diamond Cyber (BDC) — AI-powered website design and hosting SaaS for local service businesses. Full Next.js 16 platform with live Stripe payments, Supabase backend, client portal, admin tools, and AI website generator.
 
 ## Live URL
-**https://bd-cyber.com** (domain via Wix DNS → Vercel)
+**https://bd-cyber.com** (domain registered on Wix, DNS via Wix → Vercel)
 
-## What Was Done This Session (Session 3)
+## What Was Done This Session (Session 4)
 
-### Stripe Live Mode — FULLY WORKING
-- [x] Switched from test mode to live mode
-- [x] Created live webhook endpoint (checkout.session.completed + customer.subscription.deleted)
-- [x] All 3 live keys deployed to Vercel (publishable, secret, webhook signing)
-- [x] Fixed critical bug: `vercel env add` was injecting trailing `\n` in all env vars
-- [x] Fixed ALL env vars (Stripe keys, SITE_URL, Anthropic key) — used `printf '%s'` pipe method
-- [x] Downgraded Stripe SDK from v20 to v17 for Vercel serverless compatibility
-- [x] All 4 pricing tiers verified working in production
+### Email Provider Switch — Resend → Gmail SMTP ✅
+- [x] Resend domain verification was blocked (Wix doesn't support subdomain MX records)
+- [x] Explored all Wix DNS options — confirmed MX on subdomains is impossible
+- [x] Investigated Cloudflare as alternative DNS — added bd-cyber.com to Cloudflare (Free plan)
+- [x] All 6 DNS records set up in Cloudflare (A, CNAME, 3x TXT, MX for send subdomain)
+- [x] Discovered Wix doesn't allow changing nameservers for Wix-registered domains
+- [x] **Switched email from Resend to Nodemailer + Gmail SMTP** — works immediately, no DNS needed
+- [x] Created shared `src/lib/email.ts` utility (sendEmail + isEmailConfigured)
+- [x] Updated all 3 email-sending routes: contact, audit/run, admin/update-status
+- [x] Installed nodemailer + @types/nodemailer
+- [x] Set GMAIL_APP_PASSWORD env var in Vercel
+- [x] Deployed and tested — emails arrive instantly from blackdiamondcyber@gmail.com ✅
 
-### Anthropic API Key — SET
-- [x] API key deployed to Vercel production
-- [x] AI website generator (`/admin/generate`) confirmed working with Claude API
+### Domain Transfer — Started, Deferred
+- [x] Obtained EPP/authorization code from Wix (sent to person.6.611@gmail.com)
+- [x] EPP Code: `]E8Os{~mb@0t` (valid for 7 days from 2026-03-23)
+- [ ] Cloudflare requires domain to be "Active" before registrar transfer — chicken-and-egg with Wix
+- [ ] **Deferred**: Can transfer to Namecheap or Porkbun later (they don't require pre-activation)
+- [ ] Once transferred, point nameservers to Cloudflare → Resend MX record already configured there
 
-### Admin Client Manager — Status Detail
-- [x] Added `status_detail` column to Supabase clients table (manual SQL migration)
-- [x] Admin clients page shows Status Detail input + Save button per client
-- [x] Update-status API accepts and saves `statusDetail` field
-- [x] Client dashboard shows "Currently working on:" when status_detail is set
+### Cloudflare Setup (Partial — Not Active)
+- bd-cyber.com added to Cloudflare Free plan
+- All DNS records imported + MX record added for Resend
+- Nameservers assigned: `javier.ns.cloudflare.com` / `sloan.ns.cloudflare.com`
+- Status: **Pending** (nameservers not pointed yet — Wix blocks this)
+- Account: blackdiamondcyber@gmail.com
 
-### Client Dashboard Enhancements
-- [x] Resources card — 5 guides (photos, bio, reviews, Google Business, social media)
-- [x] Things to Consider card — status-aware tips (different for in-progress vs live)
-- [x] Client type extended with `project_status`, `project_status_updated_at`, `status_detail`
+## What Was NOT Done (Carried Forward)
 
-### Bug Fixes
-- [x] Trailing `\n` in Vercel env vars caused Stripe connection failures and invalid URL errors
-- [x] Stripe SDK v20 had connection issues with Vercel serverless — downgraded to v17
-- [x] Added better error logging to checkout route (code, type, message)
+### High Priority — Next Session
+1. **Test full purchase end-to-end** — Buy Starter tier, verify: Stripe checkout → webhook → Supabase client creation → dashboard access
+2. **Stripe tax registration (Texas)** — Register in Stripe Dashboard → Settings → Tax → Registrations. Also add `automatic_tax: { enabled: true }` to checkout route (`src/app/api/checkout/route.ts`)
+3. **Domain transfer to Namecheap/Porkbun** — EPP code expires ~2026-03-30. Transfer from Wix, then point NS to Cloudflare for full DNS control + Resend @bd-cyber.com emails
+
+### Medium Priority
+4. **Real audit data** — Google CSE + Places API keys for live ranking/reputation checks
+5. **Logo redesign** — Erik wants something less "cartoony"
+6. **Admin password** — Move from hardcoded default (`bdc-admin-2026`) to env var
+
+### Lower Priority
+7. **Cold email system** — Instantly.ai API key + GitHub Actions cron
+8. **SEO reports dashboard** — AgencyAnalytics API integration
+9. **Lighthouse performance audit** — Target 90+ score
 
 ## Vercel Environment Variables (Production)
 | Variable | Status |
@@ -43,7 +58,7 @@ Black Diamond Cyber (BDC) — AI-powered website design and hosting SaaS for loc
 | NEXT_PUBLIC_SUPABASE_URL | ✅ Set |
 | NEXT_PUBLIC_SUPABASE_ANON_KEY | ✅ Set |
 | SUPABASE_SERVICE_ROLE_KEY | ✅ Set |
-| RESEND_API_KEY | ✅ Set |
+| GMAIL_APP_PASSWORD | ✅ Set (Gmail App Password for SMTP) |
 | STRIPE_SECRET_KEY | ✅ Set (LIVE mode) |
 | STRIPE_WEBHOOK_SECRET | ✅ Set (LIVE webhook) |
 | NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY | ✅ Set (LIVE mode) |
@@ -72,14 +87,24 @@ printf '%s' 'your-value-here' | vercel env add VAR_NAME production
 - **Webhook URL**: https://bd-cyber.com/api/webhooks/stripe
 - **Events**: checkout.session.completed, customer.subscription.deleted
 - **SDK**: stripe@17.7.0 (v20 has Vercel compatibility issues)
-- **Tax registration**: Pending (Texas) — skipped for now, doesn't block payments
+- **Tax registration**: Pending (Texas) — next session priority
 
 ## Domain Details
-- **Domain**: bd-cyber.com (registered on Wix)
-- **DNS**: Managed via Wix DNS panel
+- **Domain**: bd-cyber.com (registered on Wix, renews Feb 3, 2027)
+- **DNS**: Managed via Wix DNS panel (nameservers: ns8.wixdns.net, ns9.wixdns.net)
 - **A Record**: bd-cyber.com → 76.76.21.21 (Vercel)
 - **CNAME**: www.bd-cyber.com → cname.vercel-dns.com
-- **TXT Records**: DKIM, SPF, DMARC for Resend (pending verification)
+- **TXT Records**: DKIM (verified), SPF, DMARC for Resend
+- **Cloudflare**: bd-cyber.com added (pending activation), MX record for Resend ready
+- **Transfer**: EPP code obtained, transfer deferred — use Namecheap or Porkbun (not Cloudflare)
+
+## Email Details
+- **Provider**: Nodemailer + Gmail SMTP (switched from Resend in Session 4)
+- **Sends from**: blackdiamondcyber@gmail.com
+- **Utility**: `src/lib/email.ts` — sendEmail(), isEmailConfigured()
+- **Routes using email**: contact/route.ts, audit/run/route.ts, admin/update-status/route.ts
+- **Limit**: 500 emails/day (Gmail SMTP limit — more than enough)
+- **Future**: Once domain transfers to Cloudflare, can switch back to Resend for @bd-cyber.com sender
 
 ## GitHub / Vercel Details
 - **GitHub**: https://github.com/blackdiamondcyber-png/black-diamond-cyber
@@ -93,26 +118,11 @@ printf '%s' 'your-value-here' | vercel env add VAR_NAME production
 1. **vercel env add MUST use printf pipe** — echo/heredoc adds trailing \n that breaks keys
 2. **Stripe SDK v17 required** — v20 has connection issues with Vercel serverless
 3. **Zod v4 uses `.issues` not `.errors`** on ZodError objects
-4. **Resend domain pending** — emails come from onboarding@resend.dev until verified
-5. **`vercel --prod --force`** needed for deploys (free tier queue issues)
-6. **Supabase MCP tools can't access this project** — different org than gmail account
-
-## Remaining Work (Priority Order)
-
-### High Priority
-1. **Test full purchase end-to-end** — Buy Starter tier yourself, verify webhook → Supabase → dashboard flow
-2. **Check Resend domain verification** — May have propagated, check resend.com/domains
-3. **Stripe tax registration** — Complete Texas tax setup in Stripe Dashboard
-
-### Medium Priority
-4. **Real audit data** — Google CSE + Places API keys for live ranking/reputation
-5. **Logo redesign** — Erik wants something less "cartoony"
-6. **Admin password** — Move from hardcoded default to env var
-
-### Lower Priority
-7. **Cold email system** — Instantly.ai API key + GitHub Actions cron
-8. **SEO reports dashboard** — AgencyAnalytics API integration
-9. **Lighthouse performance audit** — Target 90+ score
+4. **Wix DNS can't do subdomain MX records** — why we switched to Gmail SMTP
+5. **Wix won't change nameservers** — must transfer domain to different registrar first
+6. **`vercel --prod --force`** needed for deploys (free tier queue issues)
+7. **Supabase MCP tools can't access this project** — different org than gmail account
+8. **Cloudflare domain is "pending"** — not active until nameservers change (blocked by Wix)
 
 ## How to Resume
 ```bash

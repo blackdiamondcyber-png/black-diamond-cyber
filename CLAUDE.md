@@ -12,7 +12,7 @@ Owner: Erik Pearson | LLC: Black Diamond Cyber LLC | Email: blackdiamondcyber@gm
 - **Database**: Supabase (PostgreSQL + RLS)
 - **Payments**: Stripe (checkout sessions + webhooks) — LIVE mode
 - **AI**: Anthropic Claude API (website content generation) — key set
-- **Email**: Resend (contact form + audit result emails)
+- **Email**: Nodemailer + Gmail SMTP (contact form + audit + status emails) — sends from blackdiamondcyber@gmail.com
 - **Validation**: Zod v4
 - **Package Manager**: pnpm
 - **Deployment**: Vercel (deploy with `vercel --prod --force`)
@@ -57,6 +57,7 @@ src/
 │   └── BookingHandler.tsx   # Intercepts #book links → opens modal
 ├── lib/
 │   ├── stripe.ts     # getStripe() factory
+│   ├── email.ts      # sendEmail() via Nodemailer + Gmail SMTP
 │   ├── supabase.ts   # getSupabaseAdmin() + getSupabaseBrowser()
 │   ├── schemas.ts    # Zod validation schemas + INDUSTRIES constant
 │   └── audit.ts      # Audit types, auditFormSchema, hashScore()
@@ -74,7 +75,7 @@ supabase/
 | NEXT_PUBLIC_SUPABASE_URL | ✅ Set |
 | NEXT_PUBLIC_SUPABASE_ANON_KEY | ✅ Set |
 | SUPABASE_SERVICE_ROLE_KEY | ✅ Set |
-| RESEND_API_KEY | ✅ Set |
+| GMAIL_APP_PASSWORD | ✅ Set |
 | STRIPE_SECRET_KEY | ✅ Set (LIVE mode) |
 | STRIPE_WEBHOOK_SECRET | ✅ Set (LIVE webhook) |
 | NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY | ✅ Set (LIVE mode) |
