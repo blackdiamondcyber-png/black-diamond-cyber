@@ -58,14 +58,22 @@ export default function AdminGeneratePage() {
   const [error, setError] = useState('');
 
   const handleAuth = useCallback(
-    (e: React.FormEvent) => {
+    async (e: React.FormEvent) => {
       e.preventDefault();
-      const adminPass = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'bdc-admin-2024';
-      if (password === adminPass) {
-        setAuthenticated(true);
-        setAuthError('');
-      } else {
-        setAuthError('Incorrect password');
+      setAuthError('');
+      try {
+        const res = await fetch('/api/admin/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password }),
+        });
+        if (res.ok) {
+          setAuthenticated(true);
+        } else {
+          setAuthError('Incorrect password');
+        }
+      } catch {
+        setAuthError('Failed to verify');
       }
     },
     [password],

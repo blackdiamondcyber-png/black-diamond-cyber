@@ -2,7 +2,11 @@ import { getSupabaseAdmin } from '@/lib/supabase';
 import { sendEmail, isEmailConfigured } from '@/lib/email';
 import { NextRequest, NextResponse } from 'next/server';
 
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'bdc-admin-2026';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+
+if (!ADMIN_PASSWORD) {
+  throw new Error('ADMIN_PASSWORD environment variable is required');
+}
 
 interface UpdateStatusBody {
   clientId: string;

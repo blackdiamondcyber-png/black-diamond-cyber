@@ -1,10 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getStripe } from '@/lib/stripe';
 import { checkoutSchema } from '@/lib/schemas';
+import { checkRateLimit, getRateLimitHeaders } from '@/lib/rate-limit';
 import { TIERS } from '@/types';
 
 export async function POST(request: NextRequest) {
   try {
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0] ?? 'unknown';
+    const rl = checkRateLimit(`checkout:${ip}`, { limit: 5, windowSeconds: 300 });
+    if (!rl.allowed) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again later.' },
+        { status: 429, headers: getRateLimitHeaders(rl) },
+      );
+    }
     const body: unknown = await request.json();
     const parsed = checkoutSchema.safeParse(body);
 
@@ -22,6 +31,7 @@ export async function POST(request: NextRequest) {
     const session = await stripe.checkout.sessions.create({
       mode: 'subscription',
       payment_method_types: ['card'],
+      automatic_tax: { enabled: true },
       line_items: [
         {
           price_data: {
@@ -31,6 +41,7 @@ export async function POST(request: NextRequest) {
               description: `One-time setup fee for ${config.name} tier website`,
             },
             unit_amount: config.setupFee * 100,
+            tax_behavior: 'exclusive',
           },
           quantity: 1,
         },
@@ -43,6 +54,7 @@ export async function POST(request: NextRequest) {
             },
             unit_amount: config.monthlyPrice * 100,
             recurring: { interval: 'month' },
+            tax_behavior: 'exclusive',
           },
           quantity: 1,
         },

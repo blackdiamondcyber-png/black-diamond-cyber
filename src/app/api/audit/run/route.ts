@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { checkRateLimit, getRateLimitHeaders } from '@/lib/rate-limit';
 import { z } from 'zod';
 import {
   hashScore,
@@ -357,6 +358,15 @@ async function checkDirectories(
 
 export async function POST(request: NextRequest) {
   try {
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0] ?? 'unknown';
+    const rl = checkRateLimit(`audit:${ip}`, { limit: 3, windowSeconds: 300 });
+    if (!rl.allowed) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again later.' },
+        { status: 429, headers: getRateLimitHeaders(rl) },
+      );
+    }
+
     const body: unknown = await request.json();
     const parsed = requestSchema.safeParse(body);
 

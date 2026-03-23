@@ -1,4 +1,4 @@
-# Session Handoff — 2026-03-23 (Session 4)
+# Session Handoff — 2026-03-23 (Session 5)
 
 ## Current Task
 Black Diamond Cyber (BDC) — AI-powered website design and hosting SaaS for local service businesses. Full Next.js 16 platform with live Stripe payments, Supabase backend, client portal, admin tools, and AI website generator.
@@ -6,51 +6,84 @@ Black Diamond Cyber (BDC) — AI-powered website design and hosting SaaS for loc
 ## Live URL
 **https://bd-cyber.com** (domain registered on Wix, DNS via Wix → Vercel)
 
-## What Was Done This Session (Session 4)
+## What Was Done This Session (Session 5)
 
-### Email Provider Switch — Resend → Gmail SMTP ✅
-- [x] Resend domain verification was blocked (Wix doesn't support subdomain MX records)
-- [x] Explored all Wix DNS options — confirmed MX on subdomains is impossible
-- [x] Investigated Cloudflare as alternative DNS — added bd-cyber.com to Cloudflare (Free plan)
-- [x] All 6 DNS records set up in Cloudflare (A, CNAME, 3x TXT, MX for send subdomain)
-- [x] Discovered Wix doesn't allow changing nameservers for Wix-registered domains
-- [x] **Switched email from Resend to Nodemailer + Gmail SMTP** — works immediately, no DNS needed
-- [x] Created shared `src/lib/email.ts` utility (sendEmail + isEmailConfigured)
-- [x] Updated all 3 email-sending routes: contact, audit/run, admin/update-status
-- [x] Installed nodemailer + @types/nodemailer
-- [x] Set GMAIL_APP_PASSWORD env var in Vercel
-- [x] Deployed and tested — emails arrive instantly from blackdiamondcyber@gmail.com ✅
+### Stripe Tax Registration — Texas ✅
+- [x] Registered Texas state sales tax via Stripe API (`taxreg_1TE8Q9QfsHdmRHJ5cKbMtcmN`)
+- [x] `automatic_tax: { enabled: true }` was already in checkout route (confirmed)
+- [x] Tax behavior set to `exclusive` on both setup fee and monthly line items
+- [x] Live and active — Texas addresses will now see sales tax at checkout
 
-### Domain Transfer — Started, Deferred
-- [x] Obtained EPP/authorization code from Wix (sent to person.6.611@gmail.com)
-- [x] EPP Code: `]E8Os{~mb@0t` (valid for 7 days from 2026-03-23)
-- [ ] Cloudflare requires domain to be "Active" before registrar transfer — chicken-and-egg with Wix
-- [ ] **Deferred**: Can transfer to Namecheap or Porkbun later (they don't require pre-activation)
-- [ ] Once transferred, point nameservers to Cloudflare → Resend MX record already configured there
+### Admin Password Security — Fixed ✅
+- [x] Removed hardcoded `bdc-admin-2026` fallback from all 3 files
+- [x] Fixed `bdc-admin-2024` mismatch in admin/generate page
+- [x] Created server-side `/api/admin/verify` endpoint for password validation
+- [x] Admin generate page now verifies password server-side (was client-side with NEXT_PUBLIC_ exposure)
+- [x] Set `ADMIN_PASSWORD` env var in Vercel (server-only)
+- [x] Removed `NEXT_PUBLIC_ADMIN_PASSWORD` from Vercel (was exposing password in JS bundle)
+- [x] Admin routes throw if `ADMIN_PASSWORD` env var is missing
 
-### Cloudflare Setup (Partial — Not Active)
-- bd-cyber.com added to Cloudflare Free plan
-- All DNS records imported + MX record added for Resend
-- Nameservers assigned: `javier.ns.cloudflare.com` / `sloan.ns.cloudflare.com`
-- Status: **Pending** (nameservers not pointed yet — Wix blocks this)
-- Account: blackdiamondcyber@gmail.com
+### Admin API Security — Hardened ✅
+- [x] Removed query parameter password fallback from `/api/admin/clients` (was logging password in URL)
+- [x] Admin clients page now uses Authorization header exclusively
+- [x] All admin API auth uses Bearer token only
+
+### Rate Limiting — Added ✅
+- [x] Created `src/lib/rate-limit.ts` — in-memory sliding window rate limiter
+- [x] Contact form: 5 requests per 5 minutes per IP
+- [x] Audit tool: 3 requests per 5 minutes per IP
+- [x] Checkout: 5 requests per 5 minutes per IP
+- [x] Returns proper 429 status with X-RateLimit headers
+
+### Security Headers — Enhanced ✅
+- [x] Added `Referrer-Policy: strict-origin-when-cross-origin`
+- [x] Added `Permissions-Policy: camera=(), microphone=(), geolocation=()`
+- [x] Existing: `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`
+
+### Cleanup ✅
+- [x] Removed unused `resend` package (switched to Nodemailer in Session 4)
+- [x] Added `images.unsplash.com` to Next.js remote patterns for future Image optimization
+
+### Webhook — Already Hardened ✅
+- [x] Confirmed: webhook already handles existing auth users (listUsers fallback)
+- [x] No changes needed
+
+### End-to-End Purchase Flow — Verified ✅
+- [x] Verified Stripe checkout → webhook → Supabase client creation → auth user → dashboard access
+- [x] Erik's premium purchase confirmed in `clients` table with all fields populated
+- [x] Auth user `7cb50104` created and linked, email confirmed
+- [x] Installed Stripe CLI via winget for future local testing
+
+### Google APIs — Set Up ✅
+- [x] Enabled Custom Search API on GCP project `midas-agent-489204`
+- [x] Places API was already enabled
+- [x] Created Programmable Search Engine "BDC Audit" (ID: `5111fb3b1ece64f27`)
+- [x] Enabled "Search the entire web" on the CSE
+- [x] Set `GOOGLE_CSE_API_KEY`, `GOOGLE_CSE_ID`, `GOOGLE_PLACES_API_KEY` in Vercel
+- [x] Audit tool now uses REAL Google data for ranking checks and Places ratings
+
+### PWA — Service Worker + Manifest ✅
+- [x] Created `public/sw.js` with SW_VERSION + CACHE_NAME (bump after each deploy)
+- [x] Cache-first for static assets, network-first for API/HTML
+- [x] Offline fallback page at `public/offline.html` (dark theme matching design system)
+- [x] Created `public/manifest.json` (name: Black Diamond Cyber, standalone, dark theme)
+- [x] Added manifest link to layout.tsx metadata
+- [x] Service worker registration already wired in layout.tsx
 
 ## What Was NOT Done (Carried Forward)
 
 ### High Priority — Next Session
-1. **Test full purchase end-to-end** — Buy Starter tier, verify: Stripe checkout → webhook → Supabase client creation → dashboard access
-2. **Stripe tax registration (Texas)** — Register in Stripe Dashboard → Settings → Tax → Registrations. Also add `automatic_tax: { enabled: true }` to checkout route (`src/app/api/checkout/route.ts`)
-3. **Domain transfer to Namecheap/Porkbun** — EPP code expires ~2026-03-30. Transfer from Wix, then point NS to Cloudflare for full DNS control + Resend @bd-cyber.com emails
+1. **Domain transfer to Namecheap/Porkbun** — EPP code: `]E8Os{~mb@0t` (expires ~2026-03-30). Transfer from Wix, then point NS to Cloudflare for full DNS control + Resend @bd-cyber.com emails
+2. **Logo redesign** — Erik wants something less "cartoony"
+3. **PWA icons** — Need 192x192 and 512x512 PNG icons for manifest (placeholder sizes referenced)
 
 ### Medium Priority
-4. **Real audit data** — Google CSE + Places API keys for live ranking/reputation checks
-5. **Logo redesign** — Erik wants something less "cartoony"
-6. **Admin password** — Move from hardcoded default (`bdc-admin-2026`) to env var
+4. **Lighthouse performance audit** — Run manually in Brave DevTools (F12 → Lighthouse). Target 90+ on all categories
+5. **Convert portfolio images to next/image** — Currently using CSS backgroundImage on Unsplash URLs. Remote patterns already configured.
 
 ### Lower Priority
-7. **Cold email system** — Instantly.ai API key + GitHub Actions cron
-8. **SEO reports dashboard** — AgencyAnalytics API integration
-9. **Lighthouse performance audit** — Target 90+ score
+6. **Cold email system** — Instantly.ai API key + GitHub Actions cron
+7. **SEO reports dashboard** — AgencyAnalytics API integration
 
 ## Vercel Environment Variables (Production)
 | Variable | Status |
@@ -64,7 +97,10 @@ Black Diamond Cyber (BDC) — AI-powered website design and hosting SaaS for loc
 | NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY | ✅ Set (LIVE mode) |
 | NEXT_PUBLIC_SITE_URL | ✅ Set (https://bd-cyber.com) |
 | ANTHROPIC_API_KEY | ✅ Set |
-| ADMIN_PASSWORD | ❌ Uses default: bdc-admin-2026 |
+| ADMIN_PASSWORD | ✅ Set (server-only, no NEXT_PUBLIC_ exposure) |
+| GOOGLE_CSE_API_KEY | ✅ Set (Custom Search API key) |
+| GOOGLE_CSE_ID | ✅ Set (`5111fb3b1ece64f27`) |
+| GOOGLE_PLACES_API_KEY | ✅ Set (Places API key) |
 
 ## Important: Vercel Env Var Gotcha
 **NEVER use `echo` or heredoc with `vercel env add`** — it injects trailing newlines that silently break API keys. Always use:
@@ -87,7 +123,7 @@ printf '%s' 'your-value-here' | vercel env add VAR_NAME production
 - **Webhook URL**: https://bd-cyber.com/api/webhooks/stripe
 - **Events**: checkout.session.completed, customer.subscription.deleted
 - **SDK**: stripe@17.7.0 (v20 has Vercel compatibility issues)
-- **Tax registration**: Pending (Texas) — next session priority
+- **Tax registration**: ✅ Texas active (`taxreg_1TE8Q9QfsHdmRHJ5cKbMtcmN`)
 
 ## Domain Details
 - **Domain**: bd-cyber.com (registered on Wix, renews Feb 3, 2027)
@@ -102,7 +138,7 @@ printf '%s' 'your-value-here' | vercel env add VAR_NAME production
 - **Provider**: Nodemailer + Gmail SMTP (switched from Resend in Session 4)
 - **Sends from**: blackdiamondcyber@gmail.com
 - **Utility**: `src/lib/email.ts` — sendEmail(), isEmailConfigured()
-- **Routes using email**: contact/route.ts, audit/run/route.ts, admin/update-status/route.ts
+- **Routes using email**: contact/route.ts, audit/run/route.ts, admin/update-status/route.ts, webhooks/stripe/route.ts
 - **Limit**: 500 emails/day (Gmail SMTP limit — more than enough)
 - **Future**: Once domain transfers to Cloudflare, can switch back to Resend for @bd-cyber.com sender
 
@@ -123,6 +159,9 @@ printf '%s' 'your-value-here' | vercel env add VAR_NAME production
 6. **`vercel --prod --force`** needed for deploys (free tier queue issues)
 7. **Supabase MCP tools can't access this project** — different org than gmail account
 8. **Cloudflare domain is "pending"** — not active until nameservers change (blocked by Wix)
+9. **Rate limiting is per-instance** — in-memory store resets on cold starts. Sufficient for abuse prevention.
+10. **Stripe CLI installed** — located at `C:\Users\NUCAgent\AppData\Local\Microsoft\WinGet\Packages\Stripe.StripeCli_Microsoft.Winget.Source_8wekyb3d8bbwe\stripe.exe`
+11. **Google CSE searches entire web** — was set to google.com/* initially, "Search the entire web" toggle enabled in settings
 
 ## How to Resume
 ```bash

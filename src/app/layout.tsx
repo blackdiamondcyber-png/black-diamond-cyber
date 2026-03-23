@@ -38,6 +38,9 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   other: {
     "theme-color": "#06080C",
+    "mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "black-translucent",
   },
 };
 
@@ -56,6 +59,13 @@ export default function RootLayout({
             var r=document.querySelectorAll('.rv');
             var o=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('v');o.unobserve(n.target);}})},{threshold:0.02,rootMargin:'0px 0px -20px 0px'});
             r.forEach(function(el){o.observe(el)});
+          `}
+        </Script>
+        <Script id="sw-register" strategy="afterInteractive">
+          {`
+            if ('serviceWorker' in navigator) {
+              navigator.serviceWorker.register('/sw.js').catch(function() {});
+            }
           `}
         </Script>
       </body>

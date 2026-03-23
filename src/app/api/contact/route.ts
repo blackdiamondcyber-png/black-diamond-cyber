@@ -1,9 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { contactFormSchema } from '@/lib/schemas';
 import { getSupabaseAdmin } from '@/lib/supabase';
+import { checkRateLimit, getRateLimitHeaders } from '@/lib/rate-limit';
 
 export async function POST(request: NextRequest) {
   try {
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0] ?? 'unknown';
+    const rl = checkRateLimit(`contact:${ip}`, { limit: 5, windowSeconds: 300 });
+    if (!rl.allowed) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again later.' },
+        { status: 429, headers: getRateLimitHeaders(rl) },
+      );
+    }
     const body: unknown = await request.json();
     const parsed = contactFormSchema.safeParse(body);
 

@@ -25,7 +25,9 @@ export default function AdminClientsPage() {
       setLoading(true);
 
       try {
-        const res = await fetch(`/api/admin/clients?password=${encodeURIComponent(password)}`);
+        const res = await fetch('/api/admin/clients', {
+          headers: { Authorization: `Bearer ${password}` },
+        });
         if (!res.ok) {
           setAuthError('Incorrect password');
           setLoading(false);
@@ -44,7 +46,9 @@ export default function AdminClientsPage() {
   );
 
   const fetchClients = useCallback(async () => {
-    const res = await fetch(`/api/admin/clients?password=${encodeURIComponent(password)}`);
+    const res = await fetch('/api/admin/clients', {
+      headers: { Authorization: `Bearer ${password}` },
+    });
     if (res.ok) {
       const data = await res.json();
       setClients(data.clients || []);
