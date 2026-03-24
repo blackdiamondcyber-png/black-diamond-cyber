@@ -37,6 +37,17 @@ export const generateSiteSchema = z.object({
 
 export type GenerateSiteInput = z.infer<typeof generateSiteSchema>;
 
+export const chatMessageSchema = z.object({
+  message: z.string().min(1, 'Message is required').max(2000),
+  conversationId: z.string().uuid().optional(),
+  visitorName: z.string().optional(),
+  visitorEmail: z.string().email().optional(),
+  businessType: z.string().optional(),
+  visitorPhone: z.string().optional(),
+});
+
+export type ChatMessageInput = z.infer<typeof chatMessageSchema>;
+
 export const INDUSTRIES = [
   'Dental',
   'HVAC',
