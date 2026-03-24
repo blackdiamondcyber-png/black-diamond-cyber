@@ -17,7 +17,6 @@ import { SuccessModal } from "@/components/SuccessModal";
 import { FAQ } from "@/components/FAQ";
 import { CostComparison } from "@/components/CostComparison";
 import { FeatureMatrix } from "@/components/FeatureMatrix";
-import { TrustBadges } from "@/components/TrustBadges";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -25,7 +24,7 @@ const jsonLd = {
   name: "Black Diamond Cyber",
   legalName: "Black Diamond Cybersecurity Consulting LLC",
   description:
-    "AI-powered website design and hosting for dental practices and local service businesses. Custom websites delivered in 3-7 days. No contracts. You own the code.",
+    "AI-powered website design and hosting for local service businesses. Custom websites delivered in 3-7 days. No contracts. You own the code.",
   url: "https://bd-cyber.com",
   email: "blackdiamondcyber@gmail.com",
   founder: {
@@ -103,8 +102,6 @@ export default function Home() {
         <FeatureMatrix />
         <div className="sep" />
         <FAQ />
-        <div className="sep" />
-        <TrustBadges />
         <CTA />
         <Footer />
       </div>

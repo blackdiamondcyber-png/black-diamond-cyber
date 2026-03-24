@@ -24,14 +24,25 @@ export function AnimatedCounter({
 }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
-  const motionValue = useMotionValue(0);
+  const motionValue = useMotionValue(value);
   const rounded = useTransform(motionValue, (v) =>
     decimals > 0 ? v.toFixed(decimals) : Math.round(v).toString()
   );
-  const [display, setDisplay] = useState('0');
+  // Initialize display to the real final value so SSR and initial paint show correct numbers
+  const [display, setDisplay] = useState(
+    decimals > 0 ? value.toFixed(decimals) : Math.round(value).toString()
+  );
+
+  // When value prop changes (e.g. billing toggle), update display immediately
+  useEffect(() => {
+    setDisplay(decimals > 0 ? value.toFixed(decimals) : Math.round(value).toString());
+    motionValue.set(value);
+  }, [value, decimals, motionValue]);
 
   useEffect(() => {
     if (!isInView) return;
+    // Animate from 0 to value when element enters view
+    motionValue.set(0);
     const controls = animate(motionValue, value, {
       duration,
       ease: [0.16, 1, 0.3, 1],
@@ -41,16 +52,14 @@ export function AnimatedCounter({
       controls.stop();
       unsubscribe();
     };
-  }, [isInView, value, duration, motionValue, rounded]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isInView]);
 
   return (
     <motion.span
       ref={ref}
       className={className}
       style={style}
-      initial={{ opacity: 0, filter: 'blur(4px)' }}
-      animate={isInView ? { opacity: 1, filter: 'blur(0px)' } : {}}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
       {prefix}{display}{suffix}
     </motion.span>

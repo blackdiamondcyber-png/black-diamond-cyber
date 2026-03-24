@@ -12,7 +12,7 @@ const STEPS = [
   {
     title: 'Free Site Audit',
     description:
-      'We audit your current site (or lack of one), analyze your top 10 local competitors, and show you exactly where you\'re losing patients online.',
+      'We audit your current site (or lack of one), analyze your top 10 local competitors, and show you exactly where you\'re losing customers online.',
   },
   {
     title: 'Design & Build',
@@ -54,7 +54,7 @@ export function HowItWorks() {
             How It Works
           </div>
           <h2 className="st">
-            From First Call to <em>More Patients</em>
+            From First Call to <em>More Customers</em>
           </h2>
           <p className="sd">
             Five steps. Your site is live in as little as 3 business days, then we optimize for 90 more.

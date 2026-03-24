@@ -173,7 +173,7 @@ export function Hero() {
             <motion.h1
               variants={fadeUp}
               style={{
-                fontSize: 'clamp(36px, 4.5vw, 62px)',
+                fontSize: 'clamp(28px, 4.5vw, 62px)',
                 fontFamily: "'Instrument Serif', Georgia, serif",
                 fontWeight: 400,
                 lineHeight: 1.06,
@@ -182,7 +182,7 @@ export function Hero() {
                 marginBottom: '8px',
               }}
             >
-              Your Patients Are Choosing
+              Your Customers Are Choosing
               <br />
               Your Competitors.
               <br />
@@ -209,17 +209,19 @@ export function Hero() {
             <motion.div
               variants={fadeUp}
               style={{
-                fontSize: 'clamp(15px, 1.6vw, 20px)',
+                fontSize: 'clamp(14px, 1.6vw, 20px)',
                 color: 'var(--t2)',
                 marginBottom: '20px',
                 height: '32px',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
+                flexWrap: 'nowrap',
+                overflow: 'hidden',
               }}
             >
-              <span>AI-powered websites for</span>
-              <span style={{ position: 'relative', minWidth: '200px', display: 'inline-block', overflow: 'hidden', height: '32px' }}>
+              <span style={{ whiteSpace: 'nowrap' }}>AI-powered websites for</span>
+              <span style={{ position: 'relative', minWidth: '180px', display: 'inline-block', overflow: 'hidden', height: '32px', flexShrink: 0 }}>
                 <AnimatePresence mode="wait">
                   <motion.em
                     key={HERO_WORDS[wordIndex]}
@@ -253,7 +255,7 @@ export function Hero() {
                 marginBottom: '36px',
               }}
             >
-              Built by a dental industry insider who manages <strong style={{ color: 'var(--text)' }}>400+ accounts</strong>. Premium websites delivered in days, not weeks. AI chatbots, review automation, and lead systems included. No contracts. You own the code.
+              Built by someone who&apos;s worked with <strong style={{ color: 'var(--text)' }}>400+ local businesses</strong>. Premium websites delivered in days, not weeks. AI chatbots, review automation, and lead systems included. No contracts. You own the code.
             </motion.p>
 
             {/* CTAs */}
@@ -261,10 +263,10 @@ export function Hero() {
               variants={fadeUp}
               style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginBottom: '52px' }}
             >
-              <MagneticButton href="#book" className="bp" strength={0.25}>
+              <MagneticButton href="#book" className="bp hero-cta-primary" strength={0.25}>
                 Book Free Strategy Call
               </MagneticButton>
-              <MagneticButton href="/free-audit" className="bs" strength={0.2}>
+              <MagneticButton href="/free-audit" className="bs hero-cta-secondary" strength={0.2}>
                 Run Your Free Site Audit
               </MagneticButton>
             </motion.div>
@@ -278,6 +280,7 @@ export function Hero() {
                 gap: '40px',
                 paddingTop: '32px',
                 borderTop: '1px solid var(--hr)',
+                flexWrap: 'wrap',
               }}
             >
               <div>
@@ -289,10 +292,10 @@ export function Hero() {
               </div>
               <div>
                 <div style={statStyle}>
-                  <AnimatedCounter value={8} style={statStyle} />
+                  <AnimatedCounter value={400} style={statStyle} />
                   <span style={{ color: 'var(--cyan)', fontSize: '28px' }}>+</span>
                 </div>
-                <div style={statLabelStyle}>Apps Shipped</div>
+                <div style={statLabelStyle}>Businesses Served</div>
               </div>
               <div>
                 <div style={statStyle}>
@@ -380,6 +383,10 @@ export function Hero() {
         }
         @media (max-width: 640px) {
           .hero-stats { flex-direction: column !important; gap: 20px !important; }
+          .hero-cta-primary, .hero-cta-secondary {
+            width: 100% !important;
+            justify-content: center !important;
+          }
         }
       `}} />
     </section>

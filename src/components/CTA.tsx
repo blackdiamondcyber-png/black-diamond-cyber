@@ -62,12 +62,12 @@ export function CTA() {
               </div>
 
               <h2 style={{ marginBottom: '16px' }}>
-                More Patients Start with
+                More Customers Start with
                 <br />
                 <em>a Better Website.</em>
               </h2>
               <p style={{ marginBottom: '16px' }}>
-                Your next patient is searching right now. If your website doesn&apos;t load fast, look professional, and make booking easy &mdash; they&apos;ll choose the practice that does. Let&apos;s make sure that&apos;s you.
+                Your next customer is searching right now. If your website doesn&apos;t load fast, look professional, and make booking easy &mdash; they&apos;ll choose the business that does. Let&apos;s make sure that&apos;s you.
               </p>
 
               {/* What you get free */}

@@ -56,9 +56,9 @@ export function Footer() {
             <ul className="fl">
               <li><a href="/dental">Dental Practices</a></li>
               <li><a href="/hvac">HVAC Companies</a></li>
-              <li><a href="/plumbing">Plumbing</a></li>
+              <li><a href="/plumbing">Plumbers</a></li>
               <li><a href="#">Electricians</a></li>
-              <li><a href="#">Roofing</a></li>
+              <li><a href="#">Roofers</a></li>
               <li><a href="#">Med Spas</a></li>
             </ul>
           </div>
@@ -68,10 +68,10 @@ export function Footer() {
             <ul className="fl">
               <li><a href="/vs-agencies">vs. Agencies</a></li>
               <li><a href="/vs-wix">vs. Wix &amp; DIY</a></li>
-              <li><a href="/vs-gargle">vs. Gargle</a></li>
-              <li><a href="/roi-calculator">ROI Calculator</a></li>
+              <li><a href="/vs-templates">vs. Templates</a></li>
               <li><a href="/free-audit">Free Audit</a></li>
               <li><a href="#work">Our Work</a></li>
+              <li><a href="#pricing">Pricing</a></li>
             </ul>
           </div>
 

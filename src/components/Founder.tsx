@@ -41,7 +41,7 @@ export function Founder() {
           {/* Identity */}
           <div className="fp-info">
             <h3>Erik Pearson</h3>
-            <p>Founder &amp; CEO</p>
+            <p>Founder</p>
           </div>
 
           {/* Stat row — real, verifiable stats */}
@@ -53,10 +53,10 @@ export function Founder() {
             margin: '8px 0',
           }}>
             {[
-              { value: '400+', label: 'Dental Accounts' },
-              { value: '8', label: 'Apps Shipped' },
-              { value: '3 day', label: 'Avg Delivery' },
+              { value: '400+', label: 'Local Business Accounts' },
+              { value: '3-7', label: 'Day Delivery' },
               { value: '95+', label: 'PageSpeed' },
+              { value: '$0', label: 'Contracts' },
             ].map((stat) => (
               <div key={stat.label} style={{
                 background: 'rgba(40,135,204,.06)',
@@ -69,14 +69,6 @@ export function Founder() {
                 <div style={{ fontSize: '8px', fontWeight: 700, letterSpacing: '1.2px', textTransform: 'uppercase', color: 'var(--t3)', marginTop: '3px' }}>{stat.label}</div>
               </div>
             ))}
-          </div>
-
-          {/* Credential badges */}
-          <div className="fp-badges">
-            <span className="fp-badge">Patterson Dental Sales</span>
-            <span className="fp-badge">Full-Stack Developer</span>
-            <span className="fp-badge">8 Production Apps</span>
-            <span className="fp-badge">Canyon Lake, TX</span>
           </div>
 
           {/* CTA row */}
@@ -97,36 +89,31 @@ export function Founder() {
               Meet the Founder
             </div>
             <h2 className="st">
-              I Know Dental. I Build&nbsp;
-              <em>Websites.</em>
+              Built by Someone Who&nbsp;
+              <em>Gets It.</em>
             </h2>
           </div>
 
           <p style={{ fontSize: '15px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '18px' }}>
-            I&rsquo;m a territory sales rep at Patterson Dental, covering <strong style={{ color: 'var(--text)' }}>400+ dental accounts</strong> across Austin and San Antonio. Every week I walk into practices and see the same problem:
-            <strong style={{ color: 'var(--text)' }}> incredible dentistry, invisible online.</strong>
+            I&rsquo;ve worked directly with <strong style={{ color: 'var(--text)' }}>400+ local service businesses</strong> across Texas. I know the problem intimately: <strong style={{ color: 'var(--text)' }}>great businesses, invisible online.</strong>
           </p>
 
           <p style={{ fontSize: '15px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '18px' }}>
-            I watched practices lose patients to competitors with worse reviews and worse care &mdash; purely because the other practice had
-            <strong style={{ color: 'var(--text)' }}> a faster, more trustworthy website</strong>. That&rsquo;s a problem I knew I could solve.
-          </p>
-
-          <p style={{ fontSize: '15px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '18px' }}>
-            I&rsquo;m also a self-taught full-stack developer with <strong style={{ color: 'var(--text)' }}>8 production applications shipped</strong>. I combined my dental industry knowledge with AI-powered development to build premium websites in days instead of weeks &mdash; at a price that actually makes sense for local practices.
+            I watched business after business lose customers to competitors with worse service &mdash; purely because the competitor had
+            <strong style={{ color: 'var(--text)' }}> a faster, more credible website</strong>. That&rsquo;s a solvable problem, and I built Black Diamond Cyber to solve it.
           </p>
 
           <p style={{ fontSize: '15px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '28px' }}>
-            When I say the code is yours, I mean it &mdash; I built it that way on purpose. No platform lock-in. No hostage situation. Just a better website that brings in more patients.
+            When I say the code is yours, I mean it &mdash; built that way on purpose. No platform lock-in. No hostage situation. Just a better website that brings in more customers.
           </p>
 
           {/* Differentiators */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '28px' }}>
             {[
-              { icon: '🦷', title: 'Dental Industry Insider', desc: '400+ accounts — I know what patients look for online' },
-              { icon: '⚡', title: 'AI-Powered Speed', desc: 'Ship premium sites in 3-7 days with AI + human polish' },
-              { icon: '💎', title: 'You Own Everything', desc: 'Your code, your domain, your Vercel account' },
-              { icon: '📈', title: 'Revenue-First Design', desc: 'Every element optimized to convert visitors into patients' },
+              { icon: '🏆', title: 'Local Business Expert', desc: 'I\'ve worked with 400+ service businesses. I know what your customers expect online.' },
+              { icon: '⚡', title: 'Built in Days, Not Months', desc: 'Most agencies take 6-8 weeks. We deliver in 3-7 business days.' },
+              { icon: '💎', title: 'You Own Everything', desc: 'Your website, your domain, your hosting account. No lock-in. Ever.' },
+              { icon: '📈', title: 'More Bookings, More Calls', desc: 'Every element designed to turn visitors into paying customers.' },
             ].map((item) => (
               <div key={item.title} style={{
                 background: 'var(--bg1)',
@@ -145,13 +132,10 @@ export function Founder() {
             ))}
           </div>
 
-          {/* Tech stack */}
-          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
-            <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--t3)' }}>Stack</span>
-            {['Next.js', 'React', 'TypeScript', 'Supabase', 'Vercel', 'Claude AI', 'Stripe'].map((tech) => (
-              <span key={tech} className="ptg hi">{tech}</span>
-            ))}
-          </div>
+          {/* Enterprise tech note */}
+          <p style={{ fontSize: '11px', color: 'var(--t3)', letterSpacing: '0.5px' }}>
+            Built with enterprise-grade technology — the same stack powering Fortune 500 sites.
+          </p>
         </motion.div>
       </div>
     </section>

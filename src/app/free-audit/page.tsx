@@ -569,7 +569,7 @@ export default function FreeAuditPage() {
                   Google Ranking
                 </h3>
                 <p style={{ fontSize: '14px', color: 'var(--t3)' }}>
-                  How you rank when patients search for &ldquo;{industry} in {cityState}&rdquo;
+                  How you rank when customers search for &ldquo;{industry} in {cityState}&rdquo;
                 </p>
               </div>
               <div style={{ textAlign: 'right' as const }}>

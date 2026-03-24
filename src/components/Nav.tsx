@@ -24,10 +24,8 @@ export function Nav() {
         BLACK DIAMOND <span>CYBER</span>
       </div>
       <div className="nl">
-        <a href="#work">Work</a>
         <a href="#services">Services</a>
         <a href="#pricing">Pricing</a>
-        <a href="#about">About</a>
         <a href="/free-audit">Free Audit</a>
       </div>
       <a href="#book" className="nc">

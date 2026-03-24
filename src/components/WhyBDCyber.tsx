@@ -13,7 +13,7 @@ const comparisons = [
     point: 'Their sites load in 6.8 seconds. Ours load in under 2. Google notices \u2014 and so do your customers.',
   },
   {
-    vs: 'vs. Dental Agencies',
+    vs: 'vs. Big-Box Agencies',
     statDisplay: { prefix: '$', value: 0, suffix: '', decimals: 0 },
     statAfter: '',
     statLabel: 'Contracts Required',
@@ -30,8 +30,8 @@ const comparisons = [
     vs: 'vs. Doing Nothing',
     statDisplay: { prefix: '', value: 15, suffix: '-30', decimals: 0 },
     statAfter: '',
-    statLabel: 'Patients Lost/Month',
-    point: 'Every month without a great website costs you 15-30 potential patients. At $800-$2,000 per patient, that adds up fast.',
+    statLabel: 'Customers Lost/Month',
+    point: 'Every month without a great website costs you 15-30 potential customers. At $300-$2,000 per job, that adds up fast.',
   },
 ];
 
@@ -56,7 +56,7 @@ export function WhyBDCyber() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
         >
           <div className="tag" style={{ display: 'inline-flex' }}>Why Switch</div>
-          <h2 className="st">Why Dental Practices Choose<br /><em>Black Diamond</em></h2>
+          <h2 className="st">Why Local Businesses Choose<br /><em>Black Diamond</em></h2>
           <p className="sd">We compared ourselves to every alternative so you don&apos;t have to.</p>
         </motion.div>
 

@@ -4,36 +4,52 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { MagneticButton } from '@/components/MagneticButton';
 
+// Each demo has a distinct visual identity, layout style, and color story
 const DEMO_SITES = [
   {
     name: 'Dental Practice',
     domain: 'yourpractice.com',
     bg: '#0B1820',
     accent: '#2A9AB5',
+    accentLight: 'rgba(42,154,181,.15)',
     headline: 'Your Smile,\nOur Passion',
     sub: 'Family & cosmetic dentistry. New patients welcome.',
     cta: 'Book Appointment',
     services: ['Cleanings', 'Implants', 'Whitening', 'Crowns'],
+    // Centered hero layout with trust badges
+    layout: 'centered',
+    badge: 'New Patient Special',
+    rating: '4.9★  ·  127 reviews',
   },
   {
     name: 'HVAC Company',
     domain: 'yourhvac.com',
-    bg: '#1A0E04',
+    bg: '#140A00',
     accent: '#D4893C',
-    headline: "Your City's Trusted\nHeating & Cooling",
-    sub: '24/7 emergency service. Licensed & insured.',
+    accentLight: 'rgba(212,137,60,.15)',
+    headline: "24/7 Heating\n& Cooling Experts",
+    sub: 'Licensed, insured & local. Same-day service.',
     cta: 'Get Free Estimate',
     services: ['AC Repair', 'Furnace', 'Tune-Up', 'Install'],
+    // Left-aligned split layout with urgency bar
+    layout: 'split',
+    badge: '🔥 Emergency Available',
+    rating: 'Serving since 2008',
   },
   {
     name: 'Plumbing Company',
     domain: 'yourplumber.com',
-    bg: '#061420',
+    bg: '#041018',
     accent: '#2887CC',
+    accentLight: 'rgba(40,135,204,.15)',
     headline: 'Fast. Reliable.\nGuaranteed.',
-    sub: 'Same-day plumbing repair. No trip fee.',
-    cta: 'Call Now - 24/7',
-    services: ['Leak Fix', 'Drains', 'Remodel', 'Emergency'],
+    sub: 'Same-day plumbing repair. No trip charge.',
+    cta: 'Call Now — 24/7',
+    services: ['Leak Repair', 'Drains', 'Water Heater', 'Emergency'],
+    // Card-forward layout with phone number prominent
+    layout: 'phone',
+    badge: 'No Trip Charge',
+    rating: '500+ jobs completed',
   },
 ];
 
@@ -78,36 +94,190 @@ export function Portfolio() {
             }}
           >
             <div className="pp">
-              <div className="mini-site" style={{ background: site.bg }}>
+              <div className="mini-site" style={{ background: site.bg, height: '100%', overflow: 'hidden' }}>
+                {/* Browser chrome */}
                 <div className="ms-chrome">
-                  <div className="ms-dot"></div>
-                  <div className="ms-dot"></div>
-                  <div className="ms-dot"></div>
+                  <div className="ms-dot" />
+                  <div className="ms-dot" />
+                  <div className="ms-dot" />
                   <div className="ms-addr">
                     <span>{site.domain}</span>
                   </div>
                 </div>
-                <div className="ms-nav">
-                  <span className="ms-logo">{site.name}</span>
-                  <span className="ms-links">Services &middot; About &middot; Contact</span>
+
+                {/* Nav bar */}
+                <div className="ms-nav" style={{ borderBottom: `1px solid ${site.accent}22` }}>
+                  <span className="ms-logo" style={{ color: site.accent }}>{site.name.split(' ')[0]}</span>
+                  <span className="ms-links" style={{ color: `${site.accent}99` }}>Services · About · Contact</span>
                 </div>
-                <div
-                  className="ms-hero"
-                  style={{ backgroundColor: site.accent, opacity: 0.85 }}
-                >
-                  <div className="ms-hero-txt">
-                    <div className="ms-h1" style={{ whiteSpace: 'pre-line' }}>{site.headline}</div>
-                    <div className="ms-sub">{site.sub}</div>
-                    <div className="ms-cta" style={{ background: site.accent }}>{site.cta}</div>
-                  </div>
+
+                {/* Urgent badge */}
+                <div style={{
+                  background: site.accentLight,
+                  borderBottom: `1px solid ${site.accent}33`,
+                  padding: '4px 10px',
+                  fontSize: '7px',
+                  fontWeight: 700,
+                  color: site.accent,
+                  letterSpacing: '0.8px',
+                  textAlign: 'center',
+                }}>
+                  {site.badge}
                 </div>
-                <div className="ms-services">
-                  {site.services.map((svc) => (
-                    <div className="ms-svc" key={svc}>
-                      <div className="ms-svc-name">{svc}</div>
+
+                {site.layout === 'centered' && (
+                  /* Centered layout — clean, trust-forward */
+                  <div style={{ padding: '12px 10px', textAlign: 'center' }}>
+                    <div style={{
+                      fontSize: '6px',
+                      color: site.accent,
+                      fontWeight: 700,
+                      letterSpacing: '1px',
+                      marginBottom: '5px',
+                      opacity: 0.8,
+                    }}>{site.rating}</div>
+                    <div style={{
+                      fontFamily: 'Georgia, serif',
+                      fontSize: '11px',
+                      color: '#DEE0E7',
+                      fontWeight: 400,
+                      lineHeight: 1.3,
+                      marginBottom: '5px',
+                      whiteSpace: 'pre-line',
+                    }}>{site.headline}</div>
+                    <div style={{ fontSize: '6.5px', color: '#7E8396', marginBottom: '8px' }}>{site.sub}</div>
+                    <div style={{
+                      display: 'inline-block',
+                      background: site.accent,
+                      color: '#fff',
+                      fontSize: '6px',
+                      fontWeight: 700,
+                      padding: '4px 12px',
+                      borderRadius: '40px',
+                      letterSpacing: '0.5px',
+                      marginBottom: '10px',
+                    }}>{site.cta}</div>
+                    <div style={{
+                      display: 'grid',
+                      gridTemplateColumns: '1fr 1fr',
+                      gap: '4px',
+                      marginTop: '4px',
+                    }}>
+                      {site.services.map((svc) => (
+                        <div key={svc} style={{
+                          background: site.accentLight,
+                          border: `1px solid ${site.accent}33`,
+                          borderRadius: '4px',
+                          padding: '4px 6px',
+                          fontSize: '6px',
+                          color: site.accent,
+                          fontWeight: 600,
+                          textAlign: 'center',
+                        }}>{svc}</div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                  </div>
+                )}
+
+                {site.layout === 'split' && (
+                  /* Split layout — urgency/utility focus */
+                  <div style={{ padding: '10px' }}>
+                    <div style={{
+                      background: site.accentLight,
+                      borderRadius: '6px',
+                      padding: '8px 10px',
+                      marginBottom: '8px',
+                    }}>
+                      <div style={{
+                        fontFamily: 'Georgia, serif',
+                        fontSize: '10px',
+                        color: '#DEE0E7',
+                        fontWeight: 400,
+                        lineHeight: 1.3,
+                        whiteSpace: 'pre-line',
+                        marginBottom: '4px',
+                      }}>{site.headline}</div>
+                      <div style={{ fontSize: '6px', color: '#7E8396', marginBottom: '6px' }}>{site.sub}</div>
+                      <div style={{
+                        background: site.accent,
+                        color: '#fff',
+                        fontSize: '6px',
+                        fontWeight: 700,
+                        padding: '4px 10px',
+                        borderRadius: '4px',
+                        display: 'inline-block',
+                        letterSpacing: '0.5px',
+                      }}>{site.cta}</div>
+                    </div>
+                    <div style={{ fontSize: '6px', color: `${site.accent}99`, fontWeight: 700, marginBottom: '5px', letterSpacing: '0.5px' }}>OUR SERVICES</div>
+                    {site.services.map((svc) => (
+                      <div key={svc} style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '5px',
+                        padding: '3px 0',
+                        borderBottom: `1px solid ${site.accent}11`,
+                        fontSize: '6.5px',
+                        color: '#7E8396',
+                      }}>
+                        <span style={{ color: site.accent, fontSize: '8px' }}>✓</span>
+                        {svc}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {site.layout === 'phone' && (
+                  /* Phone-forward layout — lead gen focus */
+                  <div style={{ padding: '10px' }}>
+                    <div style={{
+                      textAlign: 'center',
+                      background: site.accent,
+                      borderRadius: '6px',
+                      padding: '8px',
+                      marginBottom: '8px',
+                    }}>
+                      <div style={{ fontSize: '7px', color: 'rgba(255,255,255,.8)', marginBottom: '2px' }}>CALL US NOW — 24/7</div>
+                      <div style={{
+                        fontFamily: 'Georgia, serif',
+                        fontSize: '13px',
+                        color: '#fff',
+                        fontWeight: 400,
+                        letterSpacing: '0.5px',
+                      }}>(555) 000-0000</div>
+                    </div>
+                    <div style={{
+                      fontFamily: 'Georgia, serif',
+                      fontSize: '10px',
+                      color: '#DEE0E7',
+                      fontWeight: 400,
+                      lineHeight: 1.3,
+                      whiteSpace: 'pre-line',
+                      marginBottom: '4px',
+                    }}>{site.headline}</div>
+                    <div style={{ fontSize: '6px', color: '#7E8396', marginBottom: '8px' }}>{site.sub}</div>
+                    <div style={{
+                      display: 'grid',
+                      gridTemplateColumns: '1fr 1fr',
+                      gap: '4px',
+                    }}>
+                      {site.services.map((svc) => (
+                        <div key={svc} style={{
+                          background: site.accentLight,
+                          border: `1px solid ${site.accent}33`,
+                          borderRadius: '4px',
+                          padding: '4px 6px',
+                          fontSize: '6px',
+                          color: '#DEE0E7',
+                          fontWeight: 600,
+                        }}>
+                          <span style={{ color: site.accent }}>▸ </span>{svc}
+                        </div>
+                      ))}
+                    </div>
+                    <div style={{ fontSize: '6px', color: `${site.accent}99`, textAlign: 'center', marginTop: '7px', fontWeight: 600 }}>{site.rating}</div>
+                  </div>
+                )}
               </div>
             </div>
             <div className="pm">

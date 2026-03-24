@@ -34,7 +34,7 @@ const SERVICES: Service[] = [
     title: 'AI Chatbot & Booking',
     description:
       'Your website answers questions and books appointments 24/7. Never miss a lead at 2am again.',
-    tags: ['24/7 Booking', 'AI-Powered', 'HIPAA-Aware'],
+    tags: ['24/7 Booking', 'AI-Powered', 'Secure'],
     features: [
       'Instant response to visitors',
       'Books appointments automatically',
@@ -72,12 +72,12 @@ const SERVICES: Service[] = [
     icon: '🗺️',
     title: 'Local SEO & Google Maps',
     description:
-      'Dominate the Google Map Pack. Show up when patients search "dentist near me" or AI assistants recommend local businesses.',
-    tags: ['Google Maps', 'GBP', 'AI Search'],
+      'Dominate the Google Map Pack. Show up when customers search your service area or AI assistants recommend local businesses.',
+    tags: ['Google Maps', 'Google Business Profile', 'AI Search'],
     features: [
       'Google Business Profile optimization',
       'Local citation building',
-      'GEO for AI search engines (GPT, Perplexity)',
+      'AI search visibility (GPT, Perplexity, Gemini)',
       'Monthly ranking reports',
     ],
   },
@@ -85,10 +85,10 @@ const SERVICES: Service[] = [
     icon: '📊',
     title: 'Revenue Analytics',
     description:
-      'Know exactly where your patients come from and how much each marketing dollar earns. No more guessing.',
+      'Know exactly where your customers come from and how much each marketing dollar earns. No more guessing.',
     tags: ['Dashboard', 'ROI Tracking', 'Monthly'],
     features: [
-      'Patient acquisition tracking',
+      'Customer acquisition tracking',
       'Source attribution (Google, direct, referral)',
       'Monthly performance reports',
       'Revenue impact visibility',
