@@ -32,10 +32,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/erik-pearson-founder.png",
+        url: "/api/og",
         width: 1200,
         height: 630,
-        alt: "Black Diamond Cyber — AI-Powered Dental Practice Websites",
+        alt: "Black Diamond Cyber — Dental Practice Websites That Fill Chairs",
       },
     ],
   },
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dental Practice Websites That Fill Chairs | Black Diamond Cyber",
     description: "AI-powered dental practice websites. Fill chairs, dominate local search, own your code.",
-    images: ["/images/erik-pearson-founder.png"],
+    images: ["/api/og"],
   },
   alternates: {
     canonical: 'https://bd-cyber.com',

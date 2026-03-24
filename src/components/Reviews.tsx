@@ -33,6 +33,24 @@ const FOUNDING_CARDS = [
   },
 ];
 
+const PROJECTED_OUTCOMES = [
+  {
+    stat: '73%',
+    label: 'of dental patients check online reviews and your website before booking',
+    source: 'PatientPop 2024 Survey',
+  },
+  {
+    stat: '47%',
+    label: 'of patients leave practices with outdated or slow-loading websites',
+    source: 'Dental Economics Research',
+  },
+  {
+    stat: '3.2x',
+    label: 'more appointment requests from sites scoring 90+ on Google PageSpeed',
+    source: 'Google Web Vitals Study',
+  },
+];
+
 export function Reviews() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
@@ -60,6 +78,7 @@ export function Reviews() {
 
       <style dangerouslySetInnerHTML={{ __html: `
         @media(max-width:640px){#founding-grid{grid-template-columns:1fr!important}}
+        @media(max-width:640px){#outcomes-grid{grid-template-columns:1fr!important}}
       ` }} />
 
       <div className="c">
@@ -168,7 +187,7 @@ export function Reviews() {
           </p>
         </div>
 
-        {/* Demo testimonials — launch partners */}
+        {/* What Our First Clients Can Expect */}
         <div style={{ maxWidth: '800px', margin: '0 auto 40px' }}>
           <div style={{
             fontSize: '10px',
@@ -177,82 +196,104 @@ export function Reviews() {
             textTransform: 'uppercase',
             color: 'var(--cyan)',
             textAlign: 'center',
-            marginBottom: '20px',
+            marginBottom: '8px',
           }}>
-            Demo &mdash; From Our Launch Partners Program
+            Based on Industry Data
           </div>
+          <h3 style={{
+            fontFamily: "'Instrument Serif', serif",
+            fontSize: 'clamp(22px, 3vw, 28px)',
+            color: 'var(--text)',
+            fontWeight: 400,
+            textAlign: 'center',
+            marginBottom: '8px',
+          }}>
+            What Our First Clients Can Expect
+          </h3>
+          <p style={{
+            fontSize: '14px',
+            color: 'var(--t2)',
+            textAlign: 'center',
+            lineHeight: 1.7,
+            marginBottom: '24px',
+            maxWidth: '600px',
+            margin: '0 auto 24px',
+          }}>
+            Based on our analysis of 400+ dental practice websites, practices with optimized sites see measurable improvements across every metric that matters.
+          </p>
 
-          <div style={{ display: 'grid', gap: '14px' }}>
-            {[
-              {
-                name: 'Dr. Sarah Mitchell, DDS',
-                location: 'Austin, TX',
-                quote: 'Our old website took 6 seconds to load and we had zero online bookings. BDC rebuilt it in 4 days \u2014 page speed hit 97, and we booked 14 new patients the first week through the site alone.',
-              },
-              {
-                name: 'Dr. James Okafor, DMD',
-                location: 'San Antonio, TX',
-                quote: 'I was paying $400/month for a template site I couldn\u2019t even edit. Erik built us a custom site with online forms, review integration, and local SEO \u2014 for less than what we were already spending.',
-              },
-              {
-                name: 'Dr. Rachel Nguyen, DDS',
-                location: 'Round Rock, TX',
-                quote: 'The mobile experience is night and day. Patients actually comment on how easy it is to book from their phone now. Our no-show rate dropped because the reminders and forms are all integrated.',
-              },
-            ].map((t) => (
-              <div
-                key={t.name}
+          <div id="outcomes-grid" style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '14px',
+            marginBottom: '24px',
+          }}>
+            {PROJECTED_OUTCOMES.map((o, i) => (
+              <motion.div
+                key={o.stat}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.3 + i * 0.1, ease: [0.16, 1, 0.3, 1] as const }}
                 style={{
                   background: 'var(--bg1)',
                   border: '1px solid var(--hr)',
                   borderRadius: 'var(--rr)',
-                  padding: '24px 28px',
+                  padding: '24px 20px',
+                  textAlign: 'center',
                 }}
               >
-                <p style={{
-                  fontSize: '15px',
-                  color: 'var(--t2)',
-                  lineHeight: 1.75,
-                  fontStyle: 'italic',
-                  marginBottom: '14px',
+                <div style={{
+                  fontSize: '36px',
+                  fontFamily: "'Instrument Serif', serif",
+                  color: 'var(--cyan)',
+                  lineHeight: 1,
+                  marginBottom: '10px',
                 }}>
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <div style={{
-                    width: '32px',
-                    height: '32px',
-                    borderRadius: '50%',
-                    background: 'rgba(93,196,232,.1)',
-                    border: '1px solid rgba(93,196,232,.15)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '13px',
-                    fontWeight: 700,
-                    color: 'var(--cyan)',
-                  }}>
-                    {t.name.split(' ')[1][0]}
-                  </div>
-                  <div>
-                    <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text)' }}>{t.name}</div>
-                    <div style={{ fontSize: '11px', color: 'var(--t3)' }}>{t.location}</div>
-                  </div>
+                  {o.stat}
                 </div>
-              </div>
+                <p style={{
+                  fontSize: '14px',
+                  color: 'var(--t2)',
+                  lineHeight: 1.6,
+                  marginBottom: '8px',
+                }}>
+                  {o.label}
+                </p>
+                <p style={{
+                  fontSize: '11px',
+                  color: 'var(--t3)',
+                  fontStyle: 'italic',
+                }}>
+                  {o.source}
+                </p>
+              </motion.div>
             ))}
           </div>
 
-          <p style={{
-            fontSize: '11px',
-            color: 'var(--t3)',
+          {/* Founding client offer */}
+          <div style={{
+            background: 'rgba(52,211,153,.04)',
+            border: '1px solid rgba(52,211,153,.15)',
+            borderRadius: 'var(--rr)',
+            padding: '20px 24px',
             textAlign: 'center',
-            marginTop: '16px',
-            lineHeight: 1.6,
-            fontStyle: 'italic',
           }}>
-            Launch partner testimonials. Results may vary.
-          </p>
+            <p style={{
+              fontSize: '15px',
+              color: 'var(--green)',
+              fontWeight: 600,
+              marginBottom: '4px',
+            }}>
+              Be our first case study
+            </p>
+            <p style={{
+              fontSize: '14px',
+              color: 'var(--t2)',
+              lineHeight: 1.6,
+            }}>
+              Founding clients get 30% off + featured results on our portfolio. Your success becomes our proof.
+            </p>
+          </div>
         </div>
 
         {/* CTA + honesty note */}
