@@ -105,6 +105,8 @@ export function Footer() {
         }}>
           Black Diamond Cyber &middot; Canyon Lake, TX &middot;{' '}
           <a href="mailto:blackdiamondcyber@gmail.com" style={{ color: 'var(--t3)' }}>blackdiamondcyber@gmail.com</a>
+          {' '}&middot;{' '}
+          <a href="https://www.linkedin.com/in/erik-pearson-a1a2b2206/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--cyan)' }}>LinkedIn</a>
         </div>
 
         {/* Bottom bar */}

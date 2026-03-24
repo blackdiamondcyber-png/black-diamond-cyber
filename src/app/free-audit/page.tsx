@@ -317,7 +317,7 @@ export default function FreeAuditPage() {
                 lineHeight: 1.6,
               }}
             >
-              Takes 30 seconds. Results in your inbox in under 2 hours. No credit card. No sales pitch. Just data.
+              Takes 30 seconds. Results delivered within 24 hours. No credit card. No sales pitch. Just data.
             </p>
           </div>
 
@@ -426,7 +426,7 @@ export default function FreeAuditPage() {
               marginTop: '20px',
             }}
           >
-            No credit card required. Results delivered instantly.
+            No credit card required. Results delivered within 24 hours.
           </p>
 
           {/* Testimonial-style social proof */}

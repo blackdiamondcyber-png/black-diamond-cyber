@@ -110,6 +110,64 @@ export function Reviews() {
           ))}
         </div>
 
+        {/* Founding pricing */}
+        <div style={{
+          maxWidth: '640px',
+          margin: '0 auto 32px',
+          padding: '28px 32px',
+          background: 'var(--bg1)',
+          border: '1px solid var(--hr-b)',
+          borderRadius: 'var(--rr)',
+        }}>
+          <p style={{
+            fontSize: '15px',
+            color: 'var(--text)',
+            fontWeight: 500,
+            marginBottom: '16px',
+            textAlign: 'center',
+          }}>
+            Founding clients lock in 20% off launch pricing &mdash; the lowest rates we will ever offer.
+          </p>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '12px',
+            marginBottom: '16px',
+          }}>
+            {[
+              { tier: 'Starter', original: '$997', founding: '$797' },
+              { tier: 'Professional', original: '$1,997', founding: '$1,597' },
+              { tier: 'Premium', original: '$2,997', founding: '$2,397' },
+            ].map((p) => (
+              <div key={p.tier} style={{
+                textAlign: 'center',
+                padding: '14px 8px',
+                background: 'rgba(40,135,204,.04)',
+                border: '1px solid rgba(93,196,232,.08)',
+                borderRadius: 'var(--r)',
+              }}>
+                <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--t2)', marginBottom: '6px' }}>
+                  {p.tier}
+                </div>
+                <div style={{ fontSize: '14px', color: 'var(--t3)', textDecoration: 'line-through', marginBottom: '2px' }}>
+                  {p.original}
+                </div>
+                <div style={{ fontSize: '20px', fontFamily: "'Instrument Serif', serif", color: 'var(--cyan)' }}>
+                  {p.founding}
+                </div>
+              </div>
+            ))}
+          </div>
+          <p style={{
+            textAlign: 'center',
+            fontSize: '13px',
+            color: 'var(--green)',
+            fontWeight: 600,
+          }}>
+            Only 4 founding slots. 2 remaining.
+          </p>
+        </div>
+
         {/* CTA + honesty note */}
         <div style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
           <a

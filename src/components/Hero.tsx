@@ -403,6 +403,20 @@ export function Hero() {
               Most dental practices lose new patients to a competitor with a better website. We fix that in 7 days &mdash; guaranteed.
             </motion.p>
 
+            {/* Micro-proof credibility line */}
+            <motion.p
+              variants={fadeUp}
+              style={{
+                fontSize: '13px',
+                color: 'rgba(222,224,231,.7)',
+                marginBottom: '16px',
+                letterSpacing: '0.2px',
+              }}
+            >
+              <span style={{ color: 'var(--cyan)', marginRight: '6px', fontSize: '10px' }}>&#9670;</span>
+              Built by a Patterson Dental insider with 400+ practice accounts.
+            </motion.p>
+
             {/* Subheadline with typing cursor */}
             <motion.p
               variants={fadeUp}

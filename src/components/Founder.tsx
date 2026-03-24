@@ -76,6 +76,28 @@ export function Founder() {
                 fontWeight: 600,
                 letterSpacing: '0.5px',
               }}>Founder &amp; Developer</div>
+              <a
+                href="https://www.linkedin.com/in/erik-pearson-a1a2b2206/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  fontSize: '12px',
+                  color: 'var(--cyan)',
+                  marginTop: '6px',
+                  opacity: 0.8,
+                  transition: 'opacity .3s',
+                }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.opacity = '1'; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.opacity = '0.8'; }}
+              >
+                Verify on LinkedIn
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+              </a>
             </div>
           </motion.div>
 
