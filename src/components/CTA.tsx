@@ -41,7 +41,7 @@ export function CTA() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
               style={{ position: 'relative', zIndex: 1 }}
             >
-              {/* Founding client pill */}
+              {/* Urgency pill */}
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
                 <span style={{
                   display: 'inline-flex',
@@ -49,40 +49,49 @@ export function CTA() {
                   gap: '8px',
                   padding: '6px 18px',
                   borderRadius: '40px',
-                  background: 'rgba(52,211,153,.08)',
-                  border: '1px solid rgba(52,211,153,.2)',
+                  background: 'rgba(245,158,11,.08)',
+                  border: '1px solid rgba(245,158,11,.2)',
                   fontSize: '12px',
                   fontWeight: 700,
                   letterSpacing: '1px',
-                  color: 'var(--green)',
+                  color: '#F59E0B',
                 }}>
-                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--green)', display: 'inline-block', animation: 'p 1.5s infinite' }} />
-                  Founding Client Program — 5 Spots
+                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#F59E0B', display: 'inline-block', animation: 'p 1.5s infinite' }} />
+                  2 Build Slots Remaining This Month
                 </span>
               </div>
 
               <h2 style={{ marginBottom: '16px' }}>
-                Your Next Patient Is
+                Stop Losing Customers to
                 <br />
-                <em>Searching Right Now.</em>
+                <em>a Better Website.</em>
               </h2>
-              <p style={{ marginBottom: '16px' }}>
-                We&apos;re accepting <strong style={{ color: 'var(--text)' }}>5 founding dental clients</strong> at <strong style={{ color: 'var(--green)' }}>30% off</strong>. You get a premium, AI-powered website built by someone who knows your industry inside and out. We get a real case study to prove what we can do. Everybody wins.
+              <p style={{ marginBottom: '8px' }}>
+                Your next customer is searching right now. If your website doesn&apos;t load fast, look professional, and make booking easy &mdash; they&apos;ll choose the business that does. Let&apos;s make sure that&apos;s you.
+              </p>
+              <p style={{
+                marginBottom: '16px',
+                fontSize: '14px',
+                fontWeight: 600,
+                color: '#F59E0B',
+                textAlign: 'center',
+              }}>
+                Most clients launch within 7 days. Reserve your build slot today.
               </p>
 
-              {/* What founding clients get */}
+              {/* What you get free */}
               <div style={{
                 display: 'inline-flex',
                 gap: '24px',
                 flexWrap: 'wrap',
                 justifyContent: 'center',
-                marginBottom: '16px',
+                marginBottom: '32px',
                 padding: '16px 24px',
                 background: 'rgba(255,255,255,.02)',
                 border: '1px solid var(--hr)',
                 borderRadius: '12px',
               }}>
-                {['Free dental website audit', 'Free competitor analysis', '30% off any tier', 'Priority 3-day delivery'].map((item) => (
+                {['Free competitor analysis', 'Free website audit', 'Free content strategy', 'No sales pressure'].map((item) => (
                   <span key={item} style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -96,10 +105,6 @@ export function CTA() {
                   </span>
                 ))}
               </div>
-
-              <p style={{ fontSize: '13px', color: 'var(--t3)', marginBottom: '24px', textAlign: 'center' }}>
-                No commitment to apply. The audit alone is worth the 30-minute call &mdash; you&apos;ll see exactly what&apos;s costing your practice new patients.
-              </p>
             </motion.div>
 
             <motion.div
@@ -110,7 +115,7 @@ export function CTA() {
               style={{ position: 'relative', zIndex: 1 }}
             >
               <MagneticButton href="#book" className="bp" strength={0.25}>
-                Apply for a Founding Client Spot
+                Book a Strategy Call
               </MagneticButton>
               <MagneticButton href="/free-audit" className="bs" strength={0.2}>
                 Run Your Free Site Audit
@@ -131,7 +136,7 @@ export function CTA() {
                 textAlign: 'center',
               }}
             >
-              No contracts. You own the code. Cancel anytime.
+              No commitment required. 30 minutes. We&apos;ll show you exactly what&apos;s holding your online presence back.
             </motion.p>
           </div>
         </div>

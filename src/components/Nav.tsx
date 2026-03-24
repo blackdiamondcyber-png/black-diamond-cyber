@@ -30,7 +30,7 @@ export function Nav() {
         <a href="/free-audit">Free Audit</a>
       </div>
       <a href="#book" className="nc">
-        Free Strategy Call
+        Book a Call
       </a>
     </nav>
   );

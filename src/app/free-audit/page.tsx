@@ -259,19 +259,55 @@ export default function FreeAuditPage() {
                 marginBottom: '10px',
               }}
             >
-              Free Website <em style={{ color: 'var(--cyan)', fontStyle: 'italic' }}>Audit</em>
+              See What Your Patients See.{' '}
+              <em style={{ color: 'var(--cyan)', fontStyle: 'italic' }}>It Might Surprise You.</em>
             </h1>
             <p
               style={{
                 fontSize: '14px',
                 color: 'var(--t2)',
                 lineHeight: 1.85,
-                maxWidth: '380px',
-                margin: '0 auto',
+                maxWidth: '420px',
+                margin: '0 auto 20px',
               }}
             >
-              See how your practice stacks up against competitors. Takes 30
-              seconds.
+              In 24 hours, you will get:
+            </p>
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '8px',
+              alignItems: 'flex-start',
+              maxWidth: '400px',
+              margin: '0 auto 20px',
+              textAlign: 'left',
+            }}>
+              {[
+                'Your PageSpeed score vs. your top 3 local competitors',
+                'The #1 SEO gap costing you new patients right now',
+                'A custom action plan to fix it — whether you hire us or not',
+              ].map((item) => (
+                <div key={item} style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '8px',
+                  fontSize: '14px',
+                  color: 'var(--t2)',
+                  lineHeight: 1.6,
+                }}>
+                  <span style={{ color: 'var(--green)', fontSize: '14px', marginTop: '2px', flexShrink: 0 }}>✓</span>
+                  {item}
+                </div>
+              ))}
+            </div>
+            <p
+              style={{
+                fontSize: '13px',
+                color: 'var(--t3)',
+                lineHeight: 1.6,
+              }}
+            >
+              Takes 30 seconds. No credit card. No sales pitch.
             </p>
           </div>
 

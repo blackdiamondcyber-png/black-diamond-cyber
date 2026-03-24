@@ -25,6 +25,36 @@ export function Pricing() {
   return (
     <section id="pricing">
       <div className="c">
+        {/* Urgency banner */}
+        <div className="rv" style={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginBottom: '24px',
+        }}>
+          <span style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '8px 20px',
+            borderRadius: '40px',
+            background: 'rgba(245,158,11,.08)',
+            border: '1px solid rgba(245,158,11,.2)',
+            fontSize: '13px',
+            fontWeight: 600,
+            color: '#F59E0B',
+          }}>
+            <span style={{
+              width: '7px',
+              height: '7px',
+              borderRadius: '50%',
+              background: '#F59E0B',
+              display: 'inline-block',
+              animation: 'p 2s infinite',
+            }} />
+            Currently accepting 4 new clients this month. 2 spots remaining.
+          </span>
+        </div>
+
         <div className="sh sc rv">
           <div className="tag" style={{ display: 'inline-flex' }}>Transparent Pricing</div>
           <h2 className="st">Premium Sites &amp; Growth Systems,<br /><em>Honest Prices</em></h2>

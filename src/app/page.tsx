@@ -3,7 +3,6 @@ import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
 import { Marquee } from "@/components/Marquee";
 import { TrustBar } from "@/components/TrustBar";
-import { Portfolio } from "@/components/Portfolio";
 import { Services } from "@/components/Services";
 import { HowItWorks } from "@/components/HowItWorks";
 import { Pricing } from "@/components/Pricing";
@@ -15,9 +14,7 @@ import { Footer } from "@/components/Footer";
 import { BookingHandler } from "@/components/BookingHandler";
 import { SuccessModal } from "@/components/SuccessModal";
 import { FAQ } from "@/components/FAQ";
-import { CostComparison } from "@/components/CostComparison";
-import { FeatureMatrix } from "@/components/FeatureMatrix";
-import { DentalROICalculator } from "@/components/DentalROICalculator";
+import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -25,7 +22,7 @@ const jsonLd = {
   name: "Black Diamond Cyber",
   legalName: "Black Diamond Cybersecurity Consulting LLC",
   description:
-    "AI-powered website design for dental practices. Custom websites delivered in 3-7 days. Built by a former Patterson Dental sales professional. No contracts. You own the code.",
+    "AI-powered website design for local service businesses. Custom websites delivered in 7 days. No contracts. You own the code.",
   url: "https://bd-cyber.com",
   email: "blackdiamondcyber@gmail.com",
   founder: {
@@ -42,8 +39,8 @@ const jsonLd = {
   areaServed: "US",
   priceRange: "$997 - $4,997",
   serviceType: [
-    "Dental Website Design",
-    "Dental Practice Marketing",
+    "Website Design",
+    "Website Hosting",
     "SEO",
     "AI Website Generation",
     "AI Automation",
@@ -78,36 +75,31 @@ export default function Home() {
       </div>
       {/* Grain texture overlay */}
       <div className="grain"></div>
-      {/* Page content — optimized for dental conversion flow */}
+      {/* Page content — restructured for conversion */}
       <div className="pg">
         <Nav />
         <Hero />
         <Marquee />
         <TrustBar />
-        <Founder />
-        <div className="sep" />
-        <DentalROICalculator />
         <div className="sep" />
         <Services />
         <div className="sep" />
         <WhyBDCyber />
         <div className="sep" />
-        <Portfolio />
-        <div className="sep" />
         <HowItWorks />
+        <div className="sep" />
+        <Founder />
         <div className="sep" />
         <Reviews />
         <div className="sep" />
         <Pricing />
         <div className="sep" />
-        <CostComparison />
-        <div className="sep" />
-        <FeatureMatrix />
-        <div className="sep" />
         <FAQ />
         <CTA />
         <Footer />
       </div>
+      {/* Sticky mobile CTA */}
+      <StickyMobileCTA />
     </>
   );
 }
