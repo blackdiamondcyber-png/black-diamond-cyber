@@ -164,7 +164,7 @@ export function Pricing() {
               <ul className="pf">
                 <li>5-7 page website</li>
                 <li>Template-based design</li>
-                <li>AI-generated copy</li>
+                <li>Conversion-optimized content</li>
                 <li>Mobile responsive</li>
                 <li>SSL &amp; CDN</li>
                 <li>Basic SEO</li>
@@ -174,7 +174,8 @@ export function Pricing() {
             </div>
 
             {/* Professional */}
-            <div className="pri ft rv d1">
+            <div className="pri ft rv d1" style={{ position: 'relative' }}>
+              <div style={{ position: 'absolute', top: '-11px', left: '50%', transform: 'translateX(-50%)', background: 'var(--blue)', color: '#fff', fontSize: '9px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', padding: '3px 13px', borderRadius: '40px', whiteSpace: 'nowrap' }}>Most Popular</div>
               <div className="pt">Professional</div>
               <div className="pa">$1,997</div>
               <div className="pmm">then <b>$<AnimatedCounter value={wp.professional} duration={0.6} />/mo</b></div>

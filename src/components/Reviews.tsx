@@ -65,7 +65,7 @@ export function Reviews() {
   const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
 
   return (
-    <section id="reviews" ref={sectionRef}>
+    <section id="guarantees" ref={sectionRef}>
       <div className="c">
         <motion.div
           className="sh rv"

@@ -98,8 +98,8 @@ export function Footer() {
         <div className="fb">
           <span>&copy; 2026 Black Diamond Cybersecurity Consulting LLC. All rights reserved.</span>
           <div style={{ display: 'flex', gap: '0', alignItems: 'center' }}>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Service</a>
           </div>
         </div>
       </div>

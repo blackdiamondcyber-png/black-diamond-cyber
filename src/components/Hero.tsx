@@ -295,7 +295,7 @@ export function Hero() {
                   <AnimatedCounter value={400} style={statStyle} />
                   <span style={{ color: 'var(--cyan)', fontSize: '28px' }}>+</span>
                 </div>
-                <div style={statLabelStyle}>Businesses Served</div>
+                <div style={statLabelStyle}>Businesses Analyzed</div>
               </div>
               <div>
                 <div style={statStyle}>
