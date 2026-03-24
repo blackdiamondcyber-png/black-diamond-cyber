@@ -37,19 +37,19 @@ const DEMO_SITES = [
     glowColor: 'rgba(212,137,60,0.18)',
   },
   {
-    name: 'Plumbing Company',
-    domain: 'yourplumber.com',
-    bg: '#041018',
-    accent: '#2887CC',
-    accentLight: 'rgba(40,135,204,.15)',
-    headline: 'Fast. Reliable.\nGuaranteed.',
-    sub: 'Same-day plumbing repair. No trip charge.',
-    cta: 'Call Now — 24/7',
-    services: ['Leak Repair', 'Drains', 'Water Heater', 'Emergency'],
+    name: 'Restaurant',
+    domain: 'yourbistro.com',
+    bg: '#0E0806',
+    accent: '#C4442A',
+    accentLight: 'rgba(196,68,42,.15)',
+    headline: 'Farm to Table.\nSoul to Plate.',
+    sub: 'Seasonal menu. Craft cocktails. Reservations open.',
+    cta: 'Reserve a Table',
+    services: ['Dinner', 'Brunch', 'Private Events', 'Catering'],
     layout: 'phone',
-    badge: 'No Trip Charge',
-    rating: '500+ jobs completed',
-    glowColor: 'rgba(40,135,204,0.18)',
+    badge: 'Open for Reservations',
+    rating: '4.8★  ·  312 reviews',
+    glowColor: 'rgba(196,68,42,0.18)',
   },
 ];
 
@@ -289,9 +289,9 @@ function DemoCard({
                 padding: '8px',
                 marginBottom: '8px',
               }}>
-                <div style={{ fontSize: '7px', color: 'rgba(255,255,255,.8)', marginBottom: '2px' }}>CALL US NOW — 24/7</div>
-                <div style={{ fontFamily: 'Georgia, serif', fontSize: '13px', color: '#fff', fontWeight: 400, letterSpacing: '0.5px' }}>
-                  (555) 000-0000
+                <div style={{ fontSize: '7px', color: 'rgba(255,255,255,.8)', marginBottom: '2px' }}>{site.cta.toUpperCase()}</div>
+                <div style={{ fontFamily: 'Georgia, serif', fontSize: '11px', color: '#fff', fontWeight: 400, letterSpacing: '0.3px' }}>
+                  {site.rating}
                 </div>
               </div>
               <div style={{ fontFamily: 'Georgia, serif', fontSize: '10px', color: '#DEE0E7', fontWeight: 400, lineHeight: 1.3, whiteSpace: 'pre-line', marginBottom: '4px' }}>
@@ -313,8 +313,20 @@ function DemoCard({
                   </div>
                 ))}
               </div>
-              <div style={{ fontSize: '6px', color: `${site.accent}99`, textAlign: 'center', marginTop: '7px', fontWeight: 600 }}>
-                {site.rating}
+              <div style={{
+                display: 'inline-block',
+                background: site.accent,
+                color: '#fff',
+                fontSize: '6px',
+                fontWeight: 700,
+                padding: '4px 12px',
+                borderRadius: '40px',
+                letterSpacing: '0.5px',
+                marginTop: '8px',
+                width: '100%',
+                textAlign: 'center',
+              }}>
+                {site.cta}
               </div>
             </div>
           )}
@@ -423,6 +435,162 @@ export function Portfolio() {
             isInView={isInView}
           />
         ))}
+      </div>
+
+      {/* OG-style preview cards — what your site looks like when shared */}
+      <div className="c" style={{ marginTop: '48px' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] as const }}
+          style={{ marginBottom: '24px' }}
+        >
+          <div className="tag" style={{ marginBottom: '14px' }}>
+            Social Preview
+          </div>
+          <h3 style={{
+            fontFamily: "'Instrument Serif', serif",
+            fontSize: 'clamp(22px, 2.8vw, 32px)',
+            color: 'var(--text)',
+            fontWeight: 400,
+            lineHeight: 1.2,
+            marginBottom: '8px',
+          }}>
+            Looks Great <em>Everywhere</em>
+          </h3>
+          <p className="sd">
+            When patients share your site or you post it on social — it shows up like this.
+          </p>
+        </motion.div>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: '20px',
+        }}>
+          {[
+            {
+              title: 'Bright Smile Dental — Family & Cosmetic Dentistry',
+              desc: 'New patient specials available. Book your appointment online. Serving Austin families since 2012.',
+              domain: 'brightsmile-dental.com',
+              gradient: 'linear-gradient(135deg, #0B1820 0%, #1B4D5C 40%, #2A9AB5 100%)',
+              icon: '🦷',
+              iconBg: 'rgba(42,154,181,.2)',
+            },
+            {
+              title: 'Summit HVAC — 24/7 Heating & Cooling',
+              desc: 'Licensed, insured & local. Same-day AC repair, furnace installation, and maintenance plans.',
+              domain: 'summit-hvac.com',
+              gradient: 'linear-gradient(135deg, #140A00 0%, #5C3A1A 40%, #D4893C 100%)',
+              icon: '❄️',
+              iconBg: 'rgba(212,137,60,.2)',
+            },
+            {
+              title: 'Ember & Oak — Farm to Table Dining',
+              desc: 'Seasonal menu. Craft cocktails. Private events available. Reserve your table tonight.',
+              domain: 'ember-and-oak.com',
+              gradient: 'linear-gradient(135deg, #0E0806 0%, #4A1A10 40%, #C4442A 100%)',
+              icon: '🍽️',
+              iconBg: 'rgba(196,68,42,.2)',
+            },
+          ].map((card, i) => (
+            <motion.div
+              key={card.domain}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.5 + i * 0.12, ease: [0.16, 1, 0.3, 1] as const }}
+              style={{
+                background: 'var(--bg1)',
+                border: '1px solid rgba(255,255,255,.06)',
+                borderRadius: '16px',
+                overflow: 'hidden',
+                transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
+              }}
+              whileHover={{
+                borderColor: 'rgba(93,196,232,.15)',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+              }}
+            >
+              {/* OG image area — CSS gradient + SVG art */}
+              <div style={{
+                height: '160px',
+                background: card.gradient,
+                position: 'relative',
+                overflow: 'hidden',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+                {/* Abstract SVG pattern */}
+                <svg width="100%" height="100%" viewBox="0 0 400 160" fill="none" style={{ position: 'absolute', inset: 0, opacity: 0.12 }}>
+                  <circle cx="320" cy="20" r="80" fill="white" />
+                  <circle cx="60" cy="140" r="60" fill="white" />
+                  <rect x="150" y="40" width="120" height="80" rx="8" fill="white" opacity="0.5" />
+                </svg>
+                {/* Icon badge */}
+                <div style={{
+                  width: '56px',
+                  height: '56px',
+                  borderRadius: '16px',
+                  background: card.iconBg,
+                  backdropFilter: 'blur(12px)',
+                  border: '1px solid rgba(255,255,255,.15)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '28px',
+                  position: 'relative',
+                  zIndex: 1,
+                }}>
+                  {card.icon}
+                </div>
+                {/* "Built by BDC" watermark */}
+                <div style={{
+                  position: 'absolute',
+                  bottom: '8px',
+                  right: '10px',
+                  fontSize: '7px',
+                  fontWeight: 700,
+                  letterSpacing: '1px',
+                  color: 'rgba(255,255,255,.25)',
+                  textTransform: 'uppercase',
+                }}>
+                  Built by Black Diamond Cyber
+                </div>
+              </div>
+
+              {/* OG text content */}
+              <div style={{ padding: '16px 18px 18px' }}>
+                <div style={{
+                  fontSize: '10px',
+                  color: 'var(--t3)',
+                  fontWeight: 500,
+                  marginBottom: '6px',
+                  letterSpacing: '0.2px',
+                }}>
+                  {card.domain}
+                </div>
+                <h4 style={{
+                  fontFamily: "'Outfit', sans-serif",
+                  fontSize: '14px',
+                  fontWeight: 700,
+                  color: 'var(--text)',
+                  lineHeight: 1.3,
+                  marginBottom: '6px',
+                }}>
+                  {card.title}
+                </h4>
+                <p style={{
+                  fontSize: '12px',
+                  color: 'var(--t2)',
+                  lineHeight: 1.6,
+                }}>
+                  {card.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
 
       {/* Founding client CTA */}
