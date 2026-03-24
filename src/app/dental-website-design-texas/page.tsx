@@ -490,7 +490,7 @@ export default function DentalWebsiteDesignTexasPage() {
               >
                 Setup fee · No contracts · You own the code
               </p>
-              <a href="/pricing" className="bp">
+              <a href="/#pricing" className="bp">
                 See All Pricing Tiers →
               </a>
             </div>
@@ -571,7 +571,7 @@ export default function DentalWebsiteDesignTexasPage() {
                 Free Website Audit
               </a>
               {' · '}
-              <a href="/pricing" style={{ color: 'var(--t3)', textDecoration: 'underline' }}>
+              <a href="/#pricing" style={{ color: 'var(--t3)', textDecoration: 'underline' }}>
                 Pricing
               </a>
               {' · '}
