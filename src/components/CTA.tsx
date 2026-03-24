@@ -51,7 +51,7 @@ export function CTA() {
                   borderRadius: '40px',
                   background: 'rgba(52,211,153,.08)',
                   border: '1px solid rgba(52,211,153,.2)',
-                  fontSize: '11px',
+                  fontSize: '12px',
                   fontWeight: 700,
                   letterSpacing: '1px',
                   color: 'var(--green)',
@@ -87,11 +87,11 @@ export function CTA() {
                     display: 'flex',
                     alignItems: 'center',
                     gap: '6px',
-                    fontSize: '12px',
+                    fontSize: '14px',
                     color: 'var(--t2)',
                     fontWeight: 500,
                   }}>
-                    <span style={{ color: 'var(--green)', fontSize: '14px' }}>✓</span>
+                    <span style={{ color: 'var(--green)', fontSize: '15px' }}>✓</span>
                     {item}
                   </span>
                 ))}
@@ -121,7 +121,7 @@ export function CTA() {
               style={{
                 position: 'relative',
                 zIndex: 1,
-                fontSize: '11px',
+                fontSize: '13px',
                 color: 'var(--t3)',
                 marginTop: '20px',
                 textAlign: 'center',

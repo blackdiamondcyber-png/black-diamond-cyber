@@ -140,7 +140,7 @@ export function HowItWorks() {
                   {step.title}
                 </h3>
                 <p style={{
-                  fontSize: '14px',
+                  fontSize: '15px',
                   color: 'var(--t2)',
                   lineHeight: 1.75,
                 }}>

@@ -17,7 +17,7 @@ export function Footer() {
                 <span
                   key={badge}
                   style={{
-                    fontSize: '8px',
+                    fontSize: '10px',
                     fontWeight: 700,
                     letterSpacing: '1.2px',
                     textTransform: 'uppercase',
@@ -33,7 +33,7 @@ export function Footer() {
               ))}
             </div>
             {/* Live badge */}
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '9px', color: 'var(--green)', fontWeight: 700, letterSpacing: '1px' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '11px', color: 'var(--green)', fontWeight: 700, letterSpacing: '1px' }}>
               <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--green)', display: 'inline-block', animation: 'p 2s infinite' }} />
               Taking New Clients
             </div>
@@ -88,8 +88,8 @@ export function Footer() {
                   Book a Strategy Call →
                 </a>
               </li>
-              <li style={{ color: 'var(--t3)', fontSize: '10px', marginTop: '4px' }}>Canyon Lake, TX</li>
-              <li style={{ color: 'var(--t3)', fontSize: '10px' }}>Serving all 50 states</li>
+              <li style={{ color: 'var(--t3)', fontSize: '12px', marginTop: '4px' }}>Canyon Lake, TX</li>
+              <li style={{ color: 'var(--t3)', fontSize: '12px' }}>Serving all 50 states</li>
             </ul>
           </div>
         </div>

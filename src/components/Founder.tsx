@@ -34,7 +34,7 @@ export function Founder() {
               alt="Erik Pearson - Founder of Black Diamond Cyber"
               width={160}
               height={160}
-              style={{ objectFit: 'cover', objectPosition: 'center 20%', width: '100%', height: '100%' }}
+              style={{ objectFit: 'cover', objectPosition: 'center 15%', width: '100%', height: '100%' }}
               priority
             />
           </div>
@@ -67,14 +67,14 @@ export function Founder() {
                 textAlign: 'center',
               }}>
                 <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: '20px', color: 'var(--text)', lineHeight: 1 }}>{stat.value}</div>
-                <div style={{ fontSize: '8px', fontWeight: 700, letterSpacing: '1.2px', textTransform: 'uppercase', color: 'var(--t3)', marginTop: '3px' }}>{stat.label}</div>
+                <div style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '1.2px', textTransform: 'uppercase', color: 'var(--t2)', marginTop: '4px' }}>{stat.label}</div>
               </div>
             ))}
           </div>
 
           {/* CTA row */}
           <a href="#book" className="fcr" style={{ width: '100%', justifyContent: 'center', textDecoration: 'none' }}>
-            <span style={{ color: 'var(--green)', fontSize: '9px' }}>●</span>
+            <span style={{ color: 'var(--green)', fontSize: '10px' }}>●</span>
             Book a Free Call with Erik
           </a>
         </motion.div>
@@ -124,8 +124,8 @@ export function Founder() {
                 <div style={{ marginBottom: '8px' }}>
                   <item.Icon size={20} />
                 </div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text)', marginBottom: '4px' }}>{item.title}</div>
-                <div style={{ fontSize: '11px', color: 'var(--t3)', lineHeight: 1.6 }}>{item.desc}</div>
+                <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--text)', marginBottom: '4px' }}>{item.title}</div>
+                <div style={{ fontSize: '13px', color: 'var(--t2)', lineHeight: 1.65 }}>{item.desc}</div>
               </div>
             ))}
           </div>

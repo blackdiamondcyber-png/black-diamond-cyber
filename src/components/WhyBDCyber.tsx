@@ -88,7 +88,7 @@ export function WhyBDCyber() {
               }}
             >
               <div style={{
-                fontSize: '9px',
+                fontSize: '11px',
                 fontWeight: 700,
                 letterSpacing: '1.5px',
                 textTransform: 'uppercase',
@@ -113,7 +113,7 @@ export function WhyBDCyber() {
                 )}
               </div>
               <div style={{
-                fontSize: '9px',
+                fontSize: '11px',
                 fontWeight: 700,
                 letterSpacing: '1.5px',
                 textTransform: 'uppercase',
@@ -123,7 +123,7 @@ export function WhyBDCyber() {
                 {c.statLabel}
               </div>
               <p style={{
-                fontSize: '12px',
+                fontSize: '14px',
                 color: 'var(--t2)',
                 lineHeight: 1.7,
               }}>

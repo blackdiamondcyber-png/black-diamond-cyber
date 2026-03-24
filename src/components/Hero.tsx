@@ -34,7 +34,7 @@ const statStyle: React.CSSProperties = {
 };
 
 const statLabelStyle: React.CSSProperties = {
-  fontSize: '9px',
+  fontSize: '12px',
   fontWeight: 700,
   letterSpacing: '2px',
   textTransform: 'uppercase',
@@ -344,7 +344,7 @@ export function Hero() {
         }}
       >
         <span style={{
-          fontSize: '9px',
+          fontSize: '11px',
           fontWeight: 700,
           letterSpacing: '2px',
           textTransform: 'uppercase',

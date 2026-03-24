@@ -218,25 +218,28 @@ export function Services() {
         >
           {SERVICES.map((svc, i) => (
             <TiltCard key={svc.title} index={i} highlight={svc.highlight}>
-              {svc.highlight && (
-                <div style={{
-                  position: 'absolute',
-                  top: '-1px',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  background: 'var(--blue)',
-                  color: '#fff',
-                  fontSize: '8px',
-                  fontWeight: 700,
-                  letterSpacing: '1.5px',
-                  textTransform: 'uppercase',
-                  padding: '3px 12px',
-                  borderRadius: '0 0 8px 8px',
-                  whiteSpace: 'nowrap',
-                }}>
-                  {svc.badge}
-                </div>
-              )}
+              {/* Badge area — fixed height so titles align across cards */}
+              <div style={{ minHeight: '24px', marginBottom: '4px' }}>
+                {svc.highlight && (
+                  <div style={{
+                    position: 'absolute',
+                    top: '-1px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    background: 'var(--blue)',
+                    color: '#fff',
+                    fontSize: '10px',
+                    fontWeight: 700,
+                    letterSpacing: '1.5px',
+                    textTransform: 'uppercase',
+                    padding: '4px 14px',
+                    borderRadius: '0 0 8px 8px',
+                    whiteSpace: 'nowrap',
+                  }}>
+                    {svc.badge}
+                  </div>
+                )}
+              </div>
               <span className="svc-icon"><svc.Icon size={28} /></span>
               <h3>{svc.title}</h3>
               <p>{svc.description}</p>
@@ -244,25 +247,25 @@ export function Services() {
                 style={{
                   listStyle: 'none',
                   padding: 0,
-                  margin: '10px 0 0',
+                  margin: '12px 0 0',
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '5px',
+                  gap: '8px',
                 }}
               >
                 {svc.features.map((f) => (
                   <li
                     key={f}
                     style={{
-                      fontSize: '11px',
+                      fontSize: '14px',
                       color: 'var(--t2)',
                       display: 'flex',
                       alignItems: 'flex-start',
-                      gap: '6px',
-                      lineHeight: 1.5,
+                      gap: '8px',
+                      lineHeight: 1.55,
                     }}
                   >
-                    <span style={{ color: 'var(--green)', fontSize: '11px', marginTop: '1px', flexShrink: 0 }}>
+                    <span style={{ color: 'var(--green)', fontSize: '14px', marginTop: '1px', flexShrink: 0 }}>
                       ✓
                     </span>
                     {f}
@@ -305,7 +308,7 @@ export function Services() {
             <div style={{ fontSize: '16px', fontWeight: 700, color: 'var(--text)', marginBottom: '4px' }}>
               Not sure which service you need?
             </div>
-            <div style={{ fontSize: '13px', color: 'var(--t2)' }}>
+            <div style={{ fontSize: '14px', color: 'var(--t2)' }}>
               Book a free 30-min call. We&apos;ll audit your current site and tell you exactly what to fix.
             </div>
           </div>
