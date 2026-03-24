@@ -18,6 +18,9 @@ import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { Showcase } from "@/components/Showcase";
 import { DentalROICalculator } from "@/components/DentalROICalculator";
+import { ProcessTimeline } from "@/components/ProcessTimeline";
+import { ExitIntent } from "@/components/ExitIntent";
+import { SocialProofToast } from "@/components/SocialProofToast";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -59,6 +62,77 @@ const jsonLd = {
   },
 };
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Why should I trust a new agency?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Black Diamond Cyber is new, but its founder is not. Erik Pearson is a Patterson Dental territory sales rep who has worked inside 400+ dental practices across Austin and San Antonio. He is also a self-taught developer who has shipped 8 production web applications.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What if I'm not happy with the website?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "If your site does not score 90+ on Google PageSpeed within 30 days, we rebuild it at no charge. We also offer unlimited revisions during the build process. No contracts means you can walk away anytime.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How long does it take to build my website?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Most websites are delivered in 3-7 business days depending on the tier. Starter sites are ready in 3-5 days, Premium and Cinematic sites take 10-14 days.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Do I own my website if I cancel?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes, 100%. You own all the code, content, and design. We hand over everything — no hostage situations, no proprietary lock-in.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Are there any contracts?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No contracts, ever. Pay month-to-month for hosting and maintenance. Cancel anytime with 30 days notice. Your site is yours.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How is this different from Wix or Squarespace?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "We build with Next.js — the same framework used by Nike, Hulu, and TikTok. Your site loads in under 2 seconds (Wix averages 6-8s), ranks better on Google, and you own the code.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What are Growth Systems?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Growth Systems bundle your website with business automation: AI review requests, missed call text-back, appointment reminders, lead nurture sequences, and Google Business Profile optimization.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What industries do you specialize in?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "We work with dental practices, HVAC companies, plumbing contractors, electricians, roofing companies, med spas, and other local service businesses. Each industry gets tailored design and messaging.",
+      },
+    },
+  ],
+};
+
 const localBusinessJsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -93,6 +167,10 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       {/* Contact modal handler - intercepts #book links */}
       <BookingHandler />
       {/* Purchase success modal */}
@@ -119,6 +197,8 @@ export default function Home() {
         <div className="sep" />
         <HowItWorks />
         <div className="sep" />
+        <ProcessTimeline />
+        <div className="sep" />
         <BeforeAfter />
         <div className="sep" />
         <Founder />
@@ -137,6 +217,10 @@ export default function Home() {
       </div>
       {/* Sticky mobile CTA */}
       <StickyMobileCTA />
+      {/* Exit intent banner (desktop only, once per session) */}
+      <ExitIntent />
+      {/* Social proof toast (once per session) */}
+      <SocialProofToast />
     </>
   );
 }

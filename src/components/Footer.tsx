@@ -71,7 +71,7 @@ export function Footer() {
               <li><a href="/vs-wix">vs. Wix &amp; DIY</a></li>
               <li><a href="/vs-templates">vs. Templates</a></li>
               <li><a href="/free-audit">Free Audit</a></li>
-              <li><a href="#work">Our Work</a></li>
+              <li><a href="/case-studies">Our Work</a></li>
               <li><a href="#pricing">Pricing</a></li>
             </ul>
           </div>
@@ -108,6 +108,11 @@ export function Footer() {
           <a href="mailto:blackdiamondcyber@gmail.com" style={{ color: 'var(--t3)' }}>blackdiamondcyber@gmail.com</a>
           {' '}&middot;{' '}
           <a href="https://www.linkedin.com/in/erik-pearson-a1a2b2206/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--cyan)' }}>LinkedIn</a>
+        </div>
+
+        {/* Backlink note */}
+        <div style={{ textAlign: 'center', padding: '12px 0 0', fontSize: '11px', color: 'var(--t3)' }}>
+          All client websites include a subtle &ldquo;Powered by Black Diamond Cyber&rdquo; backlink &mdash; great for your SEO and ours.
         </div>
 
         {/* Bottom bar */}

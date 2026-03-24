@@ -4,66 +4,109 @@ import { Footer } from '@/components/Footer';
 import { BookingHandler } from '@/components/BookingHandler';
 
 export const metadata: Metadata = {
-  title: 'Case Studies | Black Diamond Cyber',
+  title: 'Our Work — Demo Sites Built by Black Diamond Cyber',
   description:
-    'See how local service businesses grew their leads, revenue, and online presence with Black Diamond Cyber websites and growth systems.',
+    'See real, functional demo sites built by Black Diamond Cyber for dental, HVAC, and plumbing businesses. Not mockups — real Next.js websites with 95+ PageSpeed scores.',
   openGraph: {
-    title: 'Case Studies | Black Diamond Cyber',
-    description: 'Real results from local businesses using Black Diamond Cyber.',
+    title: 'Our Work — Demo Sites Built by Black Diamond Cyber',
+    description: 'Real demo sites showcasing what BDC builds for local service businesses.',
     url: 'https://bd-cyber.com/case-studies',
     siteName: 'Black Diamond Cyber',
     type: 'website',
+    images: [
+      {
+        url: '/images/erik-pearson-founder.png',
+        width: 1200,
+        height: 630,
+        alt: 'Black Diamond Cyber — Demo Sites Portfolio',
+      },
+    ],
   },
   alternates: {
     canonical: 'https://bd-cyber.com/case-studies',
   },
 };
 
-const caseStudies = [
+const demos = [
   {
-    name: 'Sunny Smiles Dental',
-    industry: 'Dental',
+    name: 'Canyon Lake Family Dentistry',
+    type: 'Dental Practice',
+    gradient: 'linear-gradient(135deg, #1B4D5C, #2A8A9F)',
     color: '#5DC4E8',
-    challenge:
-      'Outdated WordPress site with 4-second load times, zero review automation, and declining new patient bookings.',
-    results: [
-      { label: 'Page Speed', before: '42/100', after: '97/100' },
-      { label: 'New Patients/Mo', before: '18', after: '47' },
-      { label: 'Google Reviews', before: '23', after: '112' },
-      { label: 'Revenue Growth', before: '', after: '+161%' },
+    stack: ['Next.js', 'AI Chatbot', 'Online Booking', 'Local SEO'],
+    features: [
+      '95+ PageSpeed score on mobile and desktop',
+      'HIPAA-compliant contact and appointment forms',
+      'Automated review request system',
+      'Google Business Profile schema markup',
+      'Service area pages for 12 surrounding cities',
     ],
+    note: 'This is a demo site showcasing what we build for dental practices.',
+    href: '/dental',
+    pageSpeed: 97,
   },
   {
-    name: 'Summit HVAC',
-    industry: 'HVAC',
-    color: '#E8792F',
-    challenge:
-      'No web presence beyond a basic Wix page. Relied entirely on word-of-mouth and Angi leads at $80+ per lead.',
-    results: [
-      { label: 'Page Speed', before: '38/100', after: '95/100' },
-      { label: 'Monthly Leads', before: '12', after: '54' },
-      { label: 'Cost per Lead', before: '$82', after: '$14' },
-      { label: 'Revenue Growth', before: '', after: '+220%' },
+    name: 'Hill Country HVAC',
+    type: 'HVAC Company',
+    gradient: 'linear-gradient(135deg, #8B4513, #D4893C)',
+    color: '#F59E0B',
+    stack: ['Next.js', 'Lead Capture', 'Service Area Pages', 'Analytics'],
+    features: [
+      'Emergency CTA sticky on every page',
+      '24/7 online booking with confirmation emails',
+      'Seasonal promotion system with countdown timers',
+      'Before/after project gallery',
+      'Automated follow-up sequences for quotes',
     ],
+    note: 'This is a demo site showcasing what we build for HVAC companies.',
+    href: '/hvac',
+    pageSpeed: 96,
   },
   {
-    name: 'Cascade Plumbing',
-    industry: 'Plumbing',
+    name: 'Clearwater Plumbing',
+    type: 'Plumbing Contractor',
+    gradient: 'linear-gradient(135deg, #1A6B3F, #4CAF60)',
     color: '#34D399',
-    challenge:
-      'Paying an agency $1,800/mo for a WordPress site with no automation, no review requests, and mediocre SEO rankings.',
-    results: [
-      { label: 'Page Speed', before: '51/100', after: '96/100' },
-      { label: 'Monthly Calls', before: '30', after: '78' },
-      { label: 'Monthly Cost', before: '$1,800', after: '$497' },
-      { label: 'Revenue Growth', before: '', after: '+185%' },
+    stack: ['Next.js', 'Before/After Gallery', 'Review Widget', 'SEO'],
+    features: [
+      'Service area targeting for 15+ zip codes',
+      'Instant quote calculator for common jobs',
+      'Google Reviews widget with live feed',
+      'Emergency plumber page ranking for "plumber near me"',
+      'Mobile-first design with 48px+ touch targets',
     ],
+    note: 'This is a demo site showcasing what we build for plumbing contractors.',
+    href: '/plumbing',
+    pageSpeed: 95,
   },
 ];
 
-export default function CaseStudiesPage() {
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: 'https://bd-cyber.com',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Our Work',
+      item: 'https://bd-cyber.com/case-studies',
+    },
+  ],
+};
+
+export default function OurWorkPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <BookingHandler />
       <div className="amb">
         <div className="orb"></div>
@@ -77,7 +120,7 @@ export default function CaseStudiesPage() {
         <section style={{ padding: '140px 0 80px', textAlign: 'center' }}>
           <div className="c">
             <div className="tag" style={{ display: 'inline-flex', marginBottom: '16px' }}>
-              Case Studies
+              Our Work
             </div>
             <h1
               style={{
@@ -89,41 +132,32 @@ export default function CaseStudiesPage() {
                 marginBottom: '20px',
               }}
             >
-              Real Results for <em>Real Businesses</em>
+              Demo Sites Built by <em style={{ color: 'var(--cyan)', fontStyle: 'italic' }}>Black Diamond Cyber</em>
             </h1>
             <p
               style={{
                 fontSize: '18px',
                 color: 'var(--t2)',
-                maxWidth: '560px',
+                maxWidth: '620px',
                 margin: '0 auto',
                 lineHeight: 1.7,
               }}
             >
-              See how local service businesses transformed their online presence and grew revenue with Black Diamond Cyber.
-            </p>
-            <p
-              style={{
-                fontSize: '12px',
-                color: 'var(--t3)',
-                marginTop: '16px',
-                fontStyle: 'italic',
-              }}
-            >
-              * Fictional case studies for illustration purposes. Results reflect typical outcomes based on industry benchmarks.
+              We build demo sites for every industry we serve. These are real, functional websites &mdash; not mockups. Each one is built with the same stack, speed, and attention we bring to every client project.
             </p>
           </div>
         </section>
 
         <div className="sep"></div>
 
-        {/* Case study cards */}
+        {/* Demo cards */}
         <section style={{ padding: '80px 0' }}>
           <div className="c">
             <div style={{ display: 'flex', flexDirection: 'column', gap: '32px', maxWidth: '900px', margin: '0 auto' }}>
-              {caseStudies.map((study) => (
+              {demos.map((demo) => (
                 <div
-                  key={study.name}
+                  key={demo.name}
+                  className="rv"
                   style={{
                     background: 'var(--bg1)',
                     border: '1px solid var(--hr)',
@@ -131,140 +165,144 @@ export default function CaseStudiesPage() {
                     overflow: 'hidden',
                   }}
                 >
-                  {/* Header */}
+                  {/* Gradient header with name */}
                   <div
                     style={{
-                      padding: '28px 32px',
-                      borderBottom: '1px solid var(--hr)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '16px',
-                      flexWrap: 'wrap',
+                      background: demo.gradient,
+                      padding: '40px 32px',
+                      position: 'relative',
                     }}
                   >
-                    <div
-                      style={{
-                        width: '48px',
-                        height: '48px',
-                        borderRadius: '12px',
-                        background: `${study.color}15`,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0,
-                      }}
-                    >
-                      <span style={{ fontSize: '20px', fontWeight: 700, color: study.color }}>
-                        {study.name.charAt(0)}
-                      </span>
-                    </div>
-                    <div style={{ flex: 1 }}>
-                      <h3 style={{ fontSize: '20px', fontWeight: 600, color: 'var(--text)', marginBottom: '4px' }}>
-                        {study.name}
-                      </h3>
-                      <span
-                        style={{
-                          fontSize: '10px',
-                          fontWeight: 700,
-                          letterSpacing: '1.2px',
-                          textTransform: 'uppercase',
-                          color: study.color,
-                          background: `${study.color}12`,
-                          padding: '3px 10px',
-                          borderRadius: '40px',
-                        }}
-                      >
-                        {study.industry}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Challenge */}
-                  <div style={{ padding: '24px 32px', borderBottom: '1px solid var(--hr)' }}>
-                    <div
-                      style={{
-                        fontSize: '11px',
-                        fontWeight: 700,
-                        letterSpacing: '1.2px',
-                        textTransform: 'uppercase',
-                        color: 'var(--t3)',
-                        marginBottom: '8px',
-                      }}
-                    >
-                      The Challenge
-                    </div>
-                    <p style={{ fontSize: '14px', color: 'var(--t2)', lineHeight: 1.6 }}>
-                      {study.challenge}
-                    </p>
-                  </div>
-
-                  {/* Results grid */}
-                  <div
-                    id={`results-${study.industry.toLowerCase()}`}
-                    style={{
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(4, 1fr)',
-                      gap: '0',
-                    }}
-                  >
-                    {study.results.map((r, i) => (
-                      <div
-                        key={r.label}
-                        style={{
-                          padding: '24px 20px',
-                          textAlign: 'center',
-                          borderRight: i < study.results.length - 1 ? '1px solid var(--hr)' : 'none',
-                        }}
-                      >
-                        <div
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
+                      <div>
+                        <span
                           style={{
-                            fontSize: '10px',
-                            fontWeight: 600,
-                            letterSpacing: '1px',
+                            fontSize: '9px',
+                            fontWeight: 700,
+                            letterSpacing: '2px',
                             textTransform: 'uppercase',
-                            color: 'var(--t3)',
+                            color: 'rgba(255,255,255,.9)',
+                            background: 'rgba(0,0,0,.3)',
+                            padding: '4px 12px',
+                            borderRadius: '40px',
+                            display: 'inline-block',
                             marginBottom: '12px',
                           }}
                         >
-                          {r.label}
-                        </div>
-                        {r.before && (
-                          <div
-                            style={{
-                              fontSize: '14px',
-                              color: 'var(--t3)',
-                              textDecoration: 'line-through',
-                              marginBottom: '4px',
-                            }}
-                          >
-                            {r.before}
-                          </div>
-                        )}
-                        <div
+                          DEMO SITE
+                        </span>
+                        <h2
                           style={{
                             fontFamily: "'Instrument Serif', serif",
-                            fontSize: '24px',
-                            color: 'var(--green)',
-                            lineHeight: 1.1,
+                            fontSize: 'clamp(24px, 4vw, 36px)',
+                            color: '#fff',
+                            fontWeight: 400,
+                            lineHeight: 1.15,
                           }}
                         >
-                          {r.after}
-                        </div>
+                          {demo.name}
+                        </h2>
+                        <p style={{ fontSize: '13px', color: 'rgba(255,255,255,.7)', marginTop: '4px' }}>
+                          {demo.type}
+                        </p>
                       </div>
+                      {/* PageSpeed badge */}
+                      <div
+                        style={{
+                          width: '64px',
+                          height: '64px',
+                          borderRadius: '50%',
+                          background: 'rgba(0,0,0,.3)',
+                          border: '2px solid var(--green)',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0,
+                        }}
+                      >
+                        <span style={{ fontFamily: "'Instrument Serif', serif", fontSize: '22px', color: 'var(--green)', lineHeight: 1 }}>
+                          {demo.pageSpeed}
+                        </span>
+                        <span style={{ fontSize: '6px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', color: 'rgba(255,255,255,.5)' }}>
+                          PageSpeed
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Stack tags */}
+                  <div style={{ padding: '16px 32px', borderBottom: '1px solid var(--hr)', display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                    {demo.stack.map((tag) => (
+                      <span
+                        key={tag}
+                        style={{
+                          fontSize: '11px',
+                          fontWeight: 600,
+                          padding: '4px 12px',
+                          borderRadius: '40px',
+                          border: '1px solid var(--hr-b)',
+                          color: 'var(--cyan)',
+                          background: 'var(--blue-d)',
+                        }}
+                      >
+                        {tag}
+                      </span>
                     ))}
                   </div>
 
-                  {/* Responsive override */}
-                  <style>{`
-                    @media (max-width: 640px) {
-                      #results-${study.industry.toLowerCase()} {
-                        grid-template-columns: repeat(2, 1fr) !important;
-                      }
-                      #results-${study.industry.toLowerCase()} > div {
-                        border-bottom: 1px solid var(--hr);
-                      }
-                    }
-                  `}</style>
+                  {/* Features */}
+                  <div style={{ padding: '24px 32px' }}>
+                    <div
+                      style={{
+                        fontSize: '10px',
+                        fontWeight: 700,
+                        letterSpacing: '1.5px',
+                        textTransform: 'uppercase',
+                        color: 'var(--t3)',
+                        marginBottom: '12px',
+                      }}
+                    >
+                      Key Features
+                    </div>
+                    <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                      {demo.features.map((f) => (
+                        <li key={f} style={{ fontSize: '14px', color: 'var(--t2)', display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: 1.5 }}>
+                          <span style={{ color: 'var(--green)', flexShrink: 0, marginTop: '2px' }}>&#10003;</span>
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                    <p style={{ fontSize: '12px', color: 'var(--t3)', fontStyle: 'italic', marginTop: '16px' }}>
+                      {demo.note}
+                    </p>
+                  </div>
+
+                  {/* View Demo CTA */}
+                  <div style={{ padding: '0 32px 24px' }}>
+                    <a
+                      href={demo.href}
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        padding: '12px 28px',
+                        background: 'var(--blue-d)',
+                        border: '1px solid var(--hr-b)',
+                        borderRadius: '40px',
+                        color: 'var(--cyan)',
+                        fontSize: '12px',
+                        fontWeight: 700,
+                        letterSpacing: '1.2px',
+                        textTransform: 'uppercase',
+                        textDecoration: 'none',
+                        transition: '.4s var(--ease)',
+                      }}
+                    >
+                      View Demo
+                      <span style={{ fontSize: '14px' }}>&rarr;</span>
+                    </a>
+                  </div>
                 </div>
               ))}
             </div>
@@ -273,9 +311,20 @@ export default function CaseStudiesPage() {
 
         <div className="sep"></div>
 
-        {/* CTA */}
+        {/* Bottom explanation + CTA */}
         <section style={{ padding: '80px 0', textAlign: 'center' }}>
-          <div className="c">
+          <div className="c" style={{ maxWidth: '680px' }}>
+            <p
+              style={{
+                fontSize: '16px',
+                color: 'var(--t2)',
+                lineHeight: 1.8,
+                marginBottom: '32px',
+              }}
+            >
+              These demos represent the quality, speed, and features every BDC client receives.
+              Your site will be custom-built for your practice &mdash; these show our baseline.
+            </p>
             <h2
               style={{
                 fontFamily: "'Instrument Serif', serif",
@@ -286,22 +335,22 @@ export default function CaseStudiesPage() {
                 marginBottom: '16px',
               }}
             >
-              Want Results Like <em>These?</em>
+              See What We Would Build <em style={{ color: 'var(--cyan)', fontStyle: 'italic' }}>for You</em>
             </h2>
             <p
               style={{
-                fontSize: '16px',
+                fontSize: '15px',
                 color: 'var(--t2)',
                 maxWidth: '500px',
                 margin: '0 auto 32px',
-                lineHeight: 1.6,
+                lineHeight: 1.7,
               }}
             >
-              Book a free strategy call and we will show you exactly what we can do for your business.
+              Get a free competitive analysis of your current website. Takes 30 seconds.
             </p>
             <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <a href="#book" className="bp">Book Free Strategy Call</a>
-              <a href="/free-audit" className="bs">Get Free Site Audit</a>
+              <a href="/free-audit" className="bp">Get Your Free Audit</a>
+              <a href="#book" className="bs">Book Free Strategy Call</a>
             </div>
           </div>
         </section>

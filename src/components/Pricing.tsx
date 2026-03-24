@@ -341,7 +341,7 @@ export function Pricing() {
         {/* Growth Systems tab */}
         {tab === 'growth' && (
           <div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', maxWidth: '800px', margin: '0 auto' }}>
+            <div className="growth-grid">
               <PricingCard featured tierGlow="rgba(52,211,153,.12)">
                 <div style={{ position: 'absolute', top: '-11px', left: '50%', transform: 'translateX(-50%)', background: 'var(--green)', color: '#fff', fontSize: '9px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', padding: '3px 13px', borderRadius: '40px', zIndex: 2 }}>Most Popular</div>
                 <div className="pt">Growth</div>

@@ -134,6 +134,7 @@ export function FAQ() {
                   justifyContent: 'space-between',
                   gap: '16px',
                   padding: '20px 24px',
+                  minHeight: '48px',
                   background: 'none',
                   border: 'none',
                   cursor: 'pointer',
