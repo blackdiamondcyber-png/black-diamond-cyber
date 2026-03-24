@@ -21,6 +21,8 @@ import { DentalROICalculator } from "@/components/DentalROICalculator";
 import { ProcessTimeline } from "@/components/ProcessTimeline";
 import { ExitIntent } from "@/components/ExitIntent";
 import { SocialProofToast } from "@/components/SocialProofToast";
+import { DiamondAccent } from "@/components/DiamondAccent";
+import { IndustryValidation } from "@/components/IndustryValidation";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -190,27 +192,29 @@ export default function Home() {
         <Hero />
         <Marquee />
         <TrustBar />
-        <div className="sep" />
+        <DiamondAccent />
         <Services />
-        <div className="sep" />
+        <DiamondAccent />
         <WhyBDCyber />
-        <div className="sep" />
+        <DiamondAccent />
         <HowItWorks />
-        <div className="sep" />
+        <DiamondAccent />
         <ProcessTimeline />
-        <div className="sep" />
+        <DiamondAccent />
         <BeforeAfter />
-        <div className="sep" />
+        <DiamondAccent />
         <Founder />
-        <div className="sep" />
+        <DiamondAccent />
+        <IndustryValidation />
+        <DiamondAccent />
         <Reviews />
-        <div className="sep" />
+        <DiamondAccent />
         <DentalROICalculator />
-        <div className="sep" />
+        <DiamondAccent />
         <Showcase />
-        <div className="sep" />
+        <DiamondAccent />
         <Pricing />
-        <div className="sep" />
+        <DiamondAccent />
         <FAQ />
         <CTA />
         <Footer />

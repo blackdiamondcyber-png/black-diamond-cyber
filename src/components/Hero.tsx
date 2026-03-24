@@ -4,6 +4,7 @@ import { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { VideoBackground } from '@/components/VideoBackground';
 import { MagneticButton } from '@/components/MagneticButton';
+import { HeroBrowserMockup } from '@/components/HeroBrowserMockup';
 
 const HERO_WORDS = ['General Dentists', 'Orthodontists', 'Pediatric Dentists', 'Oral Surgeons', 'Cosmetic Dentists', 'Periodontists'] as const;
 
@@ -110,6 +111,29 @@ function FloatingShapes({ scrollProgress }: { scrollProgress: ReturnType<typeof 
           transform: 'rotate(45deg)',
         }}
       />
+      {/* Large decorative diamond — brand signature */}
+      <motion.div
+        animate={{
+          rotate: [0, 360],
+        }}
+        transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+        style={{
+          position: 'absolute',
+          top: '15%',
+          right: '8%',
+          opacity: 0.04,
+          pointerEvents: 'none',
+        }}
+      >
+        <svg width="80" height="80" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 2 L32 16 L20 20 Z" fill="#5DC4E8" opacity="0.6" />
+          <path d="M32 16 L38 20 L20 20 Z" fill="#2887CC" opacity="0.5" />
+          <path d="M20 20 L38 20 L20 38 Z" fill="#5DC4E8" opacity="0.35" />
+          <path d="M2 20 L20 2 L20 20 Z" fill="#2887CC" opacity="0.45" />
+          <path d="M2 20 L20 20 L20 38 Z" fill="#5DC4E8" opacity="0.25" />
+          <path d="M20 2 L38 20 L32 16 Z" fill="#A8E0F6" opacity="0.3" />
+        </svg>
+      </motion.div>
     </motion.div>
   );
 }
@@ -512,6 +536,9 @@ export function Hero() {
                 </motion.div>
               ))}
             </motion.div>
+
+            {/* Browser mockup — visual proof */}
+            <HeroBrowserMockup />
 
             {/* Geo subtext — local SEO signal */}
             <motion.p

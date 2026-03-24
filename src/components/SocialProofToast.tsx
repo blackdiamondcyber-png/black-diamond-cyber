@@ -29,6 +29,7 @@ export function SocialProofToast() {
           exit={{ x: -80, opacity: 0 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           onClick={() => setShow(false)}
+          className="social-proof-toast"
           style={{
             position: 'fixed',
             bottom: '90px',
@@ -59,6 +60,17 @@ export function SocialProofToast() {
           <p style={{ fontSize: '13px', color: 'var(--text)', margin: 0, lineHeight: 1.5 }}>
             Erik just completed a free audit for a practice in San Antonio
           </p>
+          <style dangerouslySetInnerHTML={{ __html: `
+            @media (max-width: 640px) {
+              .social-proof-toast {
+                bottom: 100px !important;
+                left: 8px !important;
+                right: 8px !important;
+                max-width: none !important;
+                font-size: 12px !important;
+              }
+            }
+          `}} />
         </motion.div>
       )}
     </AnimatePresence>
