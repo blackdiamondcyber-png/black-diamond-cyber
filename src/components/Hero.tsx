@@ -520,6 +520,26 @@ export function Hero() {
                 </motion.div>
               ))}
             </motion.div>
+
+            {/* Geo subtext — local SEO signal */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2.2, duration: 0.8 }}
+              style={{
+                fontSize: '12px',
+                color: 'rgba(222,224,231,.45)',
+                marginTop: '24px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '5px',
+              }}
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0, opacity: 0.6 }}>
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" fill="rgba(222,224,231,.5)"/>
+              </svg>
+              Serving dental practices in Austin, San Antonio &amp; the Texas Hill Country
+            </motion.p>
           </motion.div>
 
           {/* RIGHT — Product Demo Reel */}

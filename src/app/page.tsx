@@ -15,6 +15,7 @@ import { BookingHandler } from "@/components/BookingHandler";
 import { SuccessModal } from "@/components/SuccessModal";
 import { FAQ } from "@/components/FAQ";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
+import { BeforeAfter } from "@/components/BeforeAfter";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -115,6 +116,8 @@ export default function Home() {
         <WhyBDCyber />
         <div className="sep" />
         <HowItWorks />
+        <div className="sep" />
+        <BeforeAfter />
         <div className="sep" />
         <Founder />
         <div className="sep" />

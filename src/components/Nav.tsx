@@ -36,9 +36,20 @@ export function Nav() {
         <a href="/blog">Blog</a>
         <a href="/free-audit">Free Audit</a>
       </div>
-      <a href="#book" className="nc">
+      <a href="/free-audit" className="nc nav-cta-audit">
+        Free Audit
+      </a>
+      <a href="#book" className="nc nav-cta-book">
         Book a Call
       </a>
+      <style dangerouslySetInnerHTML={{ __html: `
+        @media (max-width: 767px) {
+          .nav-cta-book { display: none !important; }
+        }
+        @media (min-width: 768px) {
+          .nav-cta-audit { display: none !important; }
+        }
+      `}} />
     </motion.nav>
   );
 }
