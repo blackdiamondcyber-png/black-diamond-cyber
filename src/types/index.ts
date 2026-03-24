@@ -170,3 +170,68 @@ export interface ContactSubmission {
   source: string;
   status: string;
 }
+
+/* -------------------------------------------------- */
+/* Proposals & Contracts                               */
+/* -------------------------------------------------- */
+
+export type ProposalProjectType = 'website' | 'growth' | 'dominate';
+export type ProposalStatus = 'draft' | 'sent' | 'viewed' | 'accepted' | 'declined' | 'expired';
+export type ContractStatus = 'draft' | 'sent' | 'signed' | 'active' | 'cancelled' | 'expired';
+
+export interface ScopeItem {
+  title: string;
+  description: string;
+  included: boolean;
+}
+
+export interface SignatureData {
+  image: string;
+  name: string;
+  date: string;
+  ip?: string;
+}
+
+export interface Proposal {
+  id: string;
+  client_name: string;
+  client_email: string;
+  client_business: string;
+  project_type: ProposalProjectType;
+  scope_items: ScopeItem[];
+  total_setup: number;
+  monthly_recurring: number;
+  timeline: string | null;
+  status: ProposalStatus;
+  sent_at: string | null;
+  viewed_at: string | null;
+  accepted_at: string | null;
+  signature_data: SignatureData | null;
+  notes: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ContractTerms {
+  description: string;
+  paymentTerms: string;
+  cancellationPolicy: string;
+  deliverables: string[];
+  additionalTerms?: string;
+}
+
+export interface Contract {
+  id: string;
+  proposal_id: string | null;
+  client_name: string;
+  client_email: string;
+  contract_type: string;
+  terms: ContractTerms;
+  start_date: string | null;
+  end_date: string | null;
+  status: ContractStatus;
+  signature_data: SignatureData | null;
+  signed_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
