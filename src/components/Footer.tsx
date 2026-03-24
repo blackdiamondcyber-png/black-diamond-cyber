@@ -55,6 +55,7 @@ export function Footer() {
             <h4>Industries</h4>
             <ul className="fl">
               <li><a href="/dental">Dental Practices</a></li>
+              <li><a href="/dental-website-design-texas">Dental — Texas</a></li>
               <li><a href="/hvac">HVAC Companies</a></li>
               <li><a href="/plumbing">Plumbers</a></li>
               <li><a href="#">Electricians</a></li>
