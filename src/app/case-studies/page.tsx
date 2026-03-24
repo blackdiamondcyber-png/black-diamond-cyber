@@ -42,7 +42,7 @@ const demos = [
       'Service area pages for 12 surrounding cities',
     ],
     note: 'This is a demo site showcasing what we build for dental practices.',
-    href: '/dental',
+    href: '/demo/dental',
     pageSpeed: 97,
   },
   {
