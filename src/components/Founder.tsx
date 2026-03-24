@@ -95,16 +95,11 @@ export function Founder() {
           </div>
 
           <p style={{ fontSize: '15px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '18px' }}>
-            I&rsquo;ve worked directly with <strong style={{ color: 'var(--text)' }}>400+ local service businesses</strong> across Texas. I know the problem intimately: <strong style={{ color: 'var(--text)' }}>great businesses, invisible online.</strong>
-          </p>
-
-          <p style={{ fontSize: '15px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '18px' }}>
-            I watched business after business lose customers to competitors with worse service &mdash; purely because the competitor had
-            <strong style={{ color: 'var(--text)' }}> a faster, more credible website</strong>. That&rsquo;s a solvable problem, and I built Black Diamond Cyber to solve it.
+            I&rsquo;ve worked with <strong style={{ color: 'var(--text)' }}>400+ local service businesses</strong> across Texas. The pattern is always the same: <strong style={{ color: 'var(--text)' }}>great service, invisible online.</strong> Customers choosing competitors with worse work &mdash; because the competitor had a better website.
           </p>
 
           <p style={{ fontSize: '15px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '28px' }}>
-            When I say the code is yours, I mean it &mdash; built that way on purpose. No platform lock-in. No hostage situation. Just a better website that brings in more customers.
+            I built Black Diamond Cyber to fix that. Premium sites delivered in days. You own the code. No contracts, no lock-in.
           </p>
 
           {/* Differentiators */}
@@ -132,10 +127,7 @@ export function Founder() {
             ))}
           </div>
 
-          {/* Enterprise tech note */}
-          <p style={{ fontSize: '11px', color: 'var(--t3)', letterSpacing: '0.5px' }}>
-            Built with enterprise-grade technology — the same stack powering Fortune 500 sites.
-          </p>
+
         </motion.div>
       </div>
     </section>
