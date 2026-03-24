@@ -23,7 +23,7 @@ const SERVICES: Service[] = [
     badge: 'Most Popular',
     description:
       'A website that makes patients feel confident before they ever walk in. Online booking, insurance info, emergency CTAs — all loading in under 2 seconds.',
-    tags: ['Online Booking', '3-Day Delivery', 'PageSpeed 95+'],
+    tags: ['Online Booking', '7-Day Delivery', 'PageSpeed 95+'],
     features: [
       'Rank in the top 3 when patients search "dentist near me"',
       'Let patients book online 24/7 — even when your front desk is closed',

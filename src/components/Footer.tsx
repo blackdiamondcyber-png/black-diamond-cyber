@@ -9,11 +9,11 @@ export function Footer() {
             </div>
             <p style={{ marginBottom: '12px' }}>
               AI-powered websites for dental practices. Built by a Patterson
-              Dental insider. 3-day delivery. No contracts. Own your code.
+              Dental insider. 7-day delivery. No contracts. Own your code.
             </p>
             {/* Trust pills */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '16px' }}>
-              {['No Contracts', 'Own Your Site', '3-Day Delivery'].map((badge) => (
+              {['No Contracts', 'Own Your Site', '7-Day Delivery'].map((badge) => (
                 <span
                   key={badge}
                   style={{
