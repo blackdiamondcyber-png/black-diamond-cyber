@@ -6,6 +6,7 @@ import { AIBuildDemo } from '@/components/demos/AIBuildDemo';
 import { DashboardDemo } from '@/components/demos/DashboardDemo';
 import { ChatbotDemo } from '@/components/demos/ChatbotDemo';
 import { BeforeAfterDemo } from '@/components/demos/BeforeAfterDemo';
+import { IconBolt, IconBarChart, IconMessageSquare, IconLayers } from '@/components/Icons';
 
 type DemoId = 'ai-build' | 'dashboard' | 'chatbot' | 'before-after';
 
@@ -14,7 +15,7 @@ interface Demo {
   label: string;
   title: string;
   desc: string;
-  icon: string;
+  Icon: React.FC<{ size?: number; color?: string }>;
   duration: number; // ms before auto-advancing
 }
 
@@ -24,7 +25,7 @@ const DEMOS: Demo[] = [
     label: 'AI Builder',
     title: 'Prompt to live site',
     desc: 'Describe your business. Watch your site appear.',
-    icon: '⚡',
+    Icon: IconBolt,
     duration: 12000,
   },
   {
@@ -32,7 +33,7 @@ const DEMOS: Demo[] = [
     label: 'Analytics',
     title: 'Real-time growth dashboard',
     desc: 'Track visitors, leads, and reviews live.',
-    icon: '📊',
+    Icon: IconBarChart,
     duration: 10000,
   },
   {
@@ -40,7 +41,7 @@ const DEMOS: Demo[] = [
     label: 'AI Chat',
     title: 'AI books appointments for you',
     desc: 'Answers questions and schedules — 24/7.',
-    icon: '💬',
+    Icon: IconMessageSquare,
     duration: 11000,
   },
   {
@@ -48,10 +49,43 @@ const DEMOS: Demo[] = [
     label: 'Transformation',
     title: 'Before & after',
     desc: 'See the difference a BDC rebuild makes.',
-    icon: '✦',
+    Icon: IconLayers,
     duration: 9000,
   },
 ];
+
+// Smooth fade+blur cross-fade variants (~400ms ease-in-out)
+const demoVariants = {
+  enter: {
+    opacity: 0,
+    filter: 'blur(8px)',
+    scale: 0.98,
+  },
+  center: {
+    opacity: 1,
+    filter: 'blur(0px)',
+    scale: 1,
+    transition: {
+      duration: 0.4,
+      ease: [0.4, 0, 0.2, 1] as const,
+    },
+  },
+  exit: {
+    opacity: 0,
+    filter: 'blur(8px)',
+    scale: 0.98,
+    transition: {
+      duration: 0.35,
+      ease: [0.4, 0, 1, 1] as const,
+    },
+  },
+};
+
+const titleVariants = {
+  enter: { opacity: 0, y: -6 },
+  center: { opacity: 1, y: 0, transition: { duration: 0.25 } },
+  exit: { opacity: 0, y: 6, transition: { duration: 0.2 } },
+};
 
 export function ProductDemoReel() {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -85,15 +119,11 @@ export function ProductDemoReel() {
 
   return (
     <div
-      style={{
-        position: 'relative',
-        width: '100%',
-        height: '100%',
-      }}
+      style={{ position: 'relative', width: '100%', height: '100%' }}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* Demo container with glass effect */}
+      {/* Demo container */}
       <div style={{
         height: '440px',
         background: 'rgba(12,15,22,0.7)',
@@ -114,27 +144,36 @@ export function ProductDemoReel() {
           background: 'rgba(0,0,0,0.3)',
           flexShrink: 0,
         }}>
+          {/* macOS traffic lights */}
           <div style={{ display: 'flex', gap: 5 }}>
             <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'rgba(239,68,68,0.6)' }} />
             <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'rgba(245,158,11,0.6)' }} />
             <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'rgba(52,211,153,0.6)' }} />
           </div>
+
+          {/* Active demo title — fades between demos */}
           <AnimatePresence mode="wait">
             <motion.div
               key={activeDemo.id}
-              initial={{ opacity: 0, y: -6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 6 }}
-              transition={{ duration: 0.25 }}
+              variants={titleVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
               style={{ display: 'flex', alignItems: 'center', gap: 6 }}
             >
-              <span style={{ fontSize: 11 }}>{activeDemo.icon}</span>
-              <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.5)', fontWeight: 600 }}>{activeDemo.title}</span>
+              <activeDemo.Icon size={12} color="rgba(255,255,255,0.45)" />
+              <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.5)', fontWeight: 600 }}>
+                {activeDemo.title}
+              </span>
             </motion.div>
           </AnimatePresence>
+
           <div style={{
-            fontSize: 8, color: 'rgba(255,255,255,0.2)',
-            display: 'flex', alignItems: 'center', gap: 4,
+            fontSize: 8,
+            color: 'rgba(255,255,255,0.2)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 4,
           }}>
             <span>{activeIdx + 1}</span>
             <span>/</span>
@@ -142,15 +181,15 @@ export function ProductDemoReel() {
           </div>
         </div>
 
-        {/* Demo content area */}
+        {/* Demo content area — smooth fade+blur cross-fade */}
         <div style={{ padding: '16px', height: 'calc(100% - 38px)', position: 'relative' }}>
           <AnimatePresence mode="wait">
             <motion.div
               key={activeDemo.id}
-              initial={{ opacity: 0, x: 20, filter: 'blur(8px)' }}
-              animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, x: -20, filter: 'blur(8px)' }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              variants={demoVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
               style={{ height: '100%' }}
             >
               {activeDemo.id === 'ai-build' && <AIBuildDemo active={activeIdx === 0} />}
@@ -162,29 +201,29 @@ export function ProductDemoReel() {
         </div>
 
         {/* Ambient glow matching active demo */}
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          background: activeDemo.id === 'dashboard'
-            ? 'radial-gradient(ellipse at 80% 20%, rgba(52,211,153,0.04), transparent 60%)'
-            : activeDemo.id === 'chatbot'
-            ? 'radial-gradient(ellipse at 20% 80%, rgba(40,135,204,0.05), transparent 60%)'
-            : activeDemo.id === 'before-after'
-            ? 'radial-gradient(ellipse at 50% 100%, rgba(93,196,232,0.04), transparent 60%)'
-            : 'radial-gradient(ellipse at 80% 0%, rgba(93,196,232,0.04), transparent 60%)',
-          pointerEvents: 'none',
-          zIndex: 0,
-          transition: 'background 0.8s ease',
-        }} />
+        <motion.div
+          key={activeDemo.id + '-glow'}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, ease: 'easeInOut' }}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: activeDemo.id === 'dashboard'
+              ? 'radial-gradient(ellipse at 80% 20%, rgba(52,211,153,0.04), transparent 60%)'
+              : activeDemo.id === 'chatbot'
+              ? 'radial-gradient(ellipse at 20% 80%, rgba(40,135,204,0.05), transparent 60%)'
+              : activeDemo.id === 'before-after'
+              ? 'radial-gradient(ellipse at 50% 100%, rgba(93,196,232,0.04), transparent 60%)'
+              : 'radial-gradient(ellipse at 80% 0%, rgba(93,196,232,0.04), transparent 60%)',
+            pointerEvents: 'none',
+            zIndex: 0,
+          }}
+        />
       </div>
 
-      {/* Tab nav below */}
-      <div style={{
-        display: 'flex',
-        gap: 6,
-        marginTop: 12,
-        padding: '0 2px',
-      }}>
+      {/* Tab nav below — with smooth progress indicator */}
+      <div style={{ display: 'flex', gap: 6, marginTop: 12, padding: '0 2px' }}>
         {DEMOS.map((demo, i) => {
           const isActive = i === activeIdx;
           return (
@@ -204,15 +243,16 @@ export function ProductDemoReel() {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                gap: 3,
+                gap: 4,
               }}
             >
-              {/* Progress fill on active tab */}
+              {/* Progress fill bar at bottom of active tab */}
               {isActive && (
                 <motion.div
                   style={{
                     position: 'absolute',
-                    left: 0, bottom: 0,
+                    left: 0,
+                    bottom: 0,
                     height: '2px',
                     background: 'linear-gradient(90deg, #2887CC, #5DC4E8)',
                     width: `${progress}%`,
@@ -220,13 +260,20 @@ export function ProductDemoReel() {
                   }}
                 />
               )}
-              <span style={{ fontSize: 12 }}>{demo.icon}</span>
+
+              {/* SVG icon */}
+              <demo.Icon
+                size={14}
+                color={isActive ? '#5DC4E8' : 'rgba(255,255,255,0.25)'}
+              />
+
               <span style={{
                 fontSize: 8,
                 fontWeight: 700,
                 letterSpacing: 0.8,
                 textTransform: 'uppercase',
                 color: isActive ? '#5DC4E8' : 'rgba(255,255,255,0.25)',
+                transition: 'color 0.3s ease',
               }}>
                 {demo.label}
               </span>

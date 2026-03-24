@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { IconTrophy, IconBolt, IconDiamond, IconTrendingUp } from '@/components/Icons';
 
 export function Founder() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -20,8 +21,8 @@ export function Founder() {
         >
           {/* Photo */}
           <div style={{
-            width: '120px',
-            height: '120px',
+            width: '160px',
+            height: '160px',
             borderRadius: '50%',
             overflow: 'hidden',
             boxShadow: '0 8px 32px rgba(40,135,204,.3)',
@@ -31,9 +32,9 @@ export function Founder() {
             <Image
               src="/images/erik-pearson-founder.png"
               alt="Erik Pearson - Founder of Black Diamond Cyber"
-              width={120}
-              height={120}
-              style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+              width={160}
+              height={160}
+              style={{ objectFit: 'cover', objectPosition: 'center 20%', width: '100%', height: '100%' }}
               priority
             />
           </div>
@@ -105,10 +106,10 @@ export function Founder() {
           {/* Differentiators */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '28px' }}>
             {[
-              { icon: '🏆', title: 'Local Business Expert', desc: 'I\'ve worked with 400+ service businesses. I know what your customers expect online.' },
-              { icon: '⚡', title: 'Built in Days, Not Months', desc: 'Most agencies take 6-8 weeks. We deliver in 3-7 business days.' },
-              { icon: '💎', title: 'You Own Everything', desc: 'Your website, your domain, your hosting account. No lock-in. Ever.' },
-              { icon: '📈', title: 'More Bookings, More Calls', desc: 'Every element designed to turn visitors into paying customers.' },
+              { Icon: IconTrophy, title: 'Local Business Expert', desc: 'I\'ve worked with 400+ service businesses. I know what your customers expect online.' },
+              { Icon: IconBolt, title: 'Built in Days, Not Months', desc: 'Most agencies take 6-8 weeks. We deliver in 3-7 business days.' },
+              { Icon: IconDiamond, title: 'You Own Everything', desc: 'Your website, your domain, your hosting account. No lock-in. Ever.' },
+              { Icon: IconTrendingUp, title: 'More Bookings, More Calls', desc: 'Every element designed to turn visitors into paying customers.' },
             ].map((item) => (
               <div key={item.title} style={{
                 background: 'var(--bg1)',
@@ -120,7 +121,9 @@ export function Founder() {
                 onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--hr-b)'; }}
                 onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--hr)'; }}
               >
-                <div style={{ fontSize: '20px', marginBottom: '6px' }}>{item.icon}</div>
+                <div style={{ marginBottom: '8px' }}>
+                  <item.Icon size={20} />
+                </div>
                 <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text)', marginBottom: '4px' }}>{item.title}</div>
                 <div style={{ fontSize: '11px', color: 'var(--t3)', lineHeight: 1.6 }}>{item.desc}</div>
               </div>

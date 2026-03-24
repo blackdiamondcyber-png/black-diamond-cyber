@@ -2,9 +2,12 @@
 
 import { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, useInView } from 'framer-motion';
+import { IconBolt, IconBot, IconStar, IconPhone, IconMapPin, IconBarChart } from '@/components/Icons';
+
+type ServiceIconComponent = React.FC<{ size?: number; color?: string }>;
 
 type Service = {
-  icon: string;
+  Icon: ServiceIconComponent;
   title: string;
   badge?: string;
   description: string;
@@ -15,7 +18,7 @@ type Service = {
 
 const SERVICES: Service[] = [
   {
-    icon: '⚡',
+    Icon: IconBolt,
     title: 'AI-Powered Websites',
     badge: 'Most Popular',
     description:
@@ -30,7 +33,7 @@ const SERVICES: Service[] = [
     highlight: true,
   },
   {
-    icon: '🤖',
+    Icon: IconBot,
     title: 'AI Chatbot & Booking',
     description:
       'Your website answers questions and books appointments 24/7. Never miss a lead at 2am again.',
@@ -43,7 +46,7 @@ const SERVICES: Service[] = [
     ],
   },
   {
-    icon: '⭐',
+    Icon: IconStar,
     title: 'Review Automation',
     description:
       'Auto-request reviews after every appointment. Go from 12 Google reviews to 200+ in 90 days.',
@@ -56,7 +59,7 @@ const SERVICES: Service[] = [
     ],
   },
   {
-    icon: '📱',
+    Icon: IconPhone,
     title: 'Missed Call Text-Back',
     description:
       'Every missed call gets an instant text. Recover 40%+ of leads that would have called your competitor instead.',
@@ -69,7 +72,7 @@ const SERVICES: Service[] = [
     ],
   },
   {
-    icon: '🗺️',
+    Icon: IconMapPin,
     title: 'Local SEO & Google Maps',
     description:
       'Dominate the Google Map Pack. Show up when customers search your service area or AI assistants recommend local businesses.',
@@ -82,7 +85,7 @@ const SERVICES: Service[] = [
     ],
   },
   {
-    icon: '📊',
+    Icon: IconBarChart,
     title: 'Revenue Analytics',
     description:
       'Know exactly where your customers come from and how much each marketing dollar earns. No more guessing.',
@@ -234,7 +237,7 @@ export function Services() {
                   {svc.badge}
                 </div>
               )}
-              <span className="svc-icon">{svc.icon}</span>
+              <span className="svc-icon"><svc.Icon size={28} /></span>
               <h3>{svc.title}</h3>
               <p>{svc.description}</p>
               <ul
