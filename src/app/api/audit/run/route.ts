@@ -447,7 +447,7 @@ export async function POST(request: NextRequest) {
             .map((c) => `<li style="margin-bottom:8px;color:#DEE0E7;">${c.name} (${c.score}/100): ${c.detail}</li>`)
             .join('');
 
-          const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://black-diamond-cyber.vercel.app';
+          const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bd-cyber.com';
 
           // Email to the lead
           await sendEmail({
