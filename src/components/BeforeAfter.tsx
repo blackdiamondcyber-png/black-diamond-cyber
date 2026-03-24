@@ -233,7 +233,7 @@ export function BeforeAfter() {
                 marginTop: '4px',
               }}
             >
-              What we see in 80% of dental practice websites
+              Based on industry averages — not actual BDC client data
             </p>
           </motion.div>
 
@@ -299,7 +299,7 @@ export function BeforeAfter() {
                 marginTop: '4px',
               }}
             >
-              What every BDC client site delivers
+              What a BDC-built site targets
             </p>
           </motion.div>
         </div>
@@ -317,7 +317,7 @@ export function BeforeAfter() {
             marginTop: '36px',
           }}
         >
-          Based on our audit of 400+ dental practice websites across Austin and San Antonio.
+          Scores represent industry averages from our analysis of dental practice websites — not actual BDC client results.
         </motion.p>
       </div>
 
