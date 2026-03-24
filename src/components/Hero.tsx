@@ -388,20 +388,37 @@ export function Hero() {
               />
             </motion.h1>
 
-            {/* Answer line */}
+            {/* Subheadline with typing cursor */}
             <motion.p
               variants={fadeUp}
               style={{
                 fontSize: 'clamp(15px, 1.6vw, 18px)',
                 color: 'var(--text)',
-                maxWidth: '600px',
+                maxWidth: '620px',
                 lineHeight: 1.7,
                 marginBottom: '12px',
                 fontWeight: 500,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '2px',
                 textAlign: 'center',
               }}
             >
-              Most dental practices lose new patients to a competitor with a better website. We fix that in 7 days &mdash; guaranteed.
+              <span>We build AI-powered websites that turn Google searches into booked appointments &mdash; in 7 days, guaranteed. No contracts. You own the code.</span>
+              <motion.span
+                animate={{ opacity: [1, 0] }}
+                transition={{ duration: 0.8, repeat: Infinity, ease: 'linear', repeatType: 'reverse' as const }}
+                style={{
+                  display: 'inline-block',
+                  width: '2px',
+                  height: '18px',
+                  background: 'var(--cyan)',
+                  marginLeft: '4px',
+                  borderRadius: '1px',
+                  flexShrink: 0,
+                }}
+              />
             </motion.p>
 
             {/* Micro-proof credibility line */}
@@ -417,37 +434,6 @@ export function Hero() {
             >
               <span style={{ color: 'var(--cyan)', marginRight: '6px', fontSize: '10px' }}>&#9670;</span>
               Built by a Patterson Dental insider with 400+ practice accounts.
-            </motion.p>
-
-            {/* Subheadline with typing cursor */}
-            <motion.p
-              variants={fadeUp}
-              style={{
-                fontSize: '15px',
-                color: 'var(--t2)',
-                maxWidth: '600px',
-                lineHeight: 1.85,
-                marginBottom: '36px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '2px',
-                textAlign: 'center',
-              }}
-            >
-              <span>AI-powered websites that turn Google searches into booked appointments. No contracts. You own everything.</span>
-              <motion.span
-                animate={{ opacity: [1, 0] }}
-                transition={{ duration: 0.8, repeat: Infinity, ease: 'linear', repeatType: 'reverse' as const }}
-                style={{
-                  display: 'inline-block',
-                  width: '2px',
-                  height: '18px',
-                  background: 'var(--cyan)',
-                  marginLeft: '4px',
-                  flexShrink: 0,
-                }}
-              />
             </motion.p>
 
             {/* CTAs — tiered with scale entrance */}
@@ -604,7 +590,8 @@ export function Hero() {
         }
         @media (max-width: 640px) {
           .hero-content { padding-top: 88px !important; }
-          .hero-stats { flex-direction: column !important; gap: 10px !important; align-items: center !important; }
+          .hero-stats { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px !important; justify-items: center !important; }
+          .hero-stats > div { font-size: 11px !important; padding: 6px 10px !important; }
           .hero-cta-primary, .hero-cta-secondary {
             width: 100% !important;
             justify-content: center !important;
