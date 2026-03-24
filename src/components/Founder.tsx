@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { AnimatedCounter } from '@/components/AnimatedCounter';
 
 export function Founder() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -100,7 +101,7 @@ export function Founder() {
               <strong style={{ color: 'var(--text)' }}>8 production apps later</strong>, Black Diamond Cyber was born. Every site I build is informed by real conversations with real practice owners about what actually drives patients through the door.
             </p>
 
-            {/* Stats row */}
+            {/* Stats row with animated counters */}
             <div id="founder-stats" style={{
               display: 'flex',
               gap: '12px',
@@ -108,12 +109,35 @@ export function Founder() {
               marginBottom: '32px',
             }}>
               {[
-                '400+ Dental Accounts',
-                '8 Apps Shipped',
-                '7-Day Avg Delivery',
-                'Zero Long-Term Contracts',
-              ].map((stat) => (
-                <span key={stat} style={{
+                { num: 400, suffix: '+', label: 'Dental Accounts' },
+                { num: 8, suffix: '', label: 'Apps Shipped' },
+                { num: 7, suffix: '-Day', label: 'Avg Delivery' },
+              ].map((stat, i) => (
+                <motion.span
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.3 + i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  style={{
+                    padding: '8px 18px',
+                    background: 'rgba(40,135,204,.06)',
+                    border: '1px solid rgba(93,196,232,.1)',
+                    borderRadius: '40px',
+                    fontSize: '12px',
+                    fontWeight: 700,
+                    letterSpacing: '0.5px',
+                    color: 'var(--text)',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  <AnimatedCounter value={stat.num} duration={2} suffix={stat.suffix} /> {stat.label}
+                </motion.span>
+              ))}
+              <motion.span
+                initial={{ opacity: 0, y: 16 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.6, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                style={{
                   padding: '8px 18px',
                   background: 'rgba(40,135,204,.06)',
                   border: '1px solid rgba(93,196,232,.1)',
@@ -123,10 +147,10 @@ export function Founder() {
                   letterSpacing: '0.5px',
                   color: 'var(--text)',
                   whiteSpace: 'nowrap',
-                }}>
-                  {stat}
-                </span>
-              ))}
+                }}
+              >
+                Zero Long-Term Contracts
+              </motion.span>
             </div>
 
             {/* CTA */}

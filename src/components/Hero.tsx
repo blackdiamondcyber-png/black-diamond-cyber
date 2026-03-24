@@ -1,12 +1,15 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { VideoBackground } from '@/components/VideoBackground';
 import { MagneticButton } from '@/components/MagneticButton';
 import { ProductDemoReel } from '@/components/ProductDemoReel';
 
 const HERO_WORDS = ['Dental Practices', 'HVAC Companies', 'Plumbing Services', 'Med Spas', 'Chiropractors', 'Roofing Contractors'] as const;
+
+const HEADLINE_WORDS = ['Your', 'Patients', 'Are', 'Googling', 'You', 'Right', 'Now.'];
+const HEADLINE_LINE2 = ['What', 'Do', 'They', 'Find?'];
 
 const stagger = {
   hidden: {},
@@ -25,9 +28,103 @@ const fadeUp = {
   },
 };
 
+// Floating geometric shapes for parallax depth
+function FloatingShapes({ scrollProgress }: { scrollProgress: ReturnType<typeof useTransform<number, string>> }) {
+  return (
+    <motion.div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        zIndex: 1,
+        pointerEvents: 'none',
+        overflow: 'hidden',
+        y: scrollProgress,
+      }}
+    >
+      {/* Diamond shape 1 */}
+      <motion.div
+        animate={{
+          y: [0, -20, 0],
+          x: [0, 10, 0],
+          rotate: [0, 45, 0],
+        }}
+        transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+        style={{
+          position: 'absolute',
+          width: '40px',
+          height: '40px',
+          border: '1px solid rgba(93,196,232,.08)',
+          top: '20%',
+          left: '15%',
+          transform: 'rotate(45deg)',
+        }}
+      />
+      {/* Hexagon shape */}
+      <motion.div
+        animate={{
+          y: [0, 15, 0],
+          x: [0, -8, 0],
+        }}
+        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
+        style={{
+          position: 'absolute',
+          width: '30px',
+          height: '30px',
+          border: '1px solid rgba(40,135,204,.06)',
+          borderRadius: '6px',
+          top: '60%',
+          right: '12%',
+          transform: 'rotate(30deg)',
+        }}
+      />
+      {/* Circle */}
+      <motion.div
+        animate={{
+          y: [0, -12, 0],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{ duration: 24, repeat: Infinity, ease: 'easeInOut' }}
+        style={{
+          position: 'absolute',
+          width: '20px',
+          height: '20px',
+          border: '1px solid rgba(93,196,232,.06)',
+          borderRadius: '50%',
+          top: '35%',
+          right: '30%',
+        }}
+      />
+      {/* Diamond shape 2 */}
+      <motion.div
+        animate={{
+          y: [0, 18, 0],
+          rotate: [45, 90, 45],
+        }}
+        transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
+        style={{
+          position: 'absolute',
+          width: '24px',
+          height: '24px',
+          border: '1px solid rgba(40,135,204,.05)',
+          top: '75%',
+          left: '25%',
+          transform: 'rotate(45deg)',
+        }}
+      />
+    </motion.div>
+  );
+}
+
 export function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [wordIndex, setWordIndex] = useState(0);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isTouch, setIsTouch] = useState(false);
+
+  useEffect(() => {
+    // Detect touch device
+    setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -35,6 +132,19 @@ export function Hero() {
     }, 2800);
     return () => clearInterval(interval);
   }, []);
+
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent) => {
+      if (isTouch) return;
+      const rect = sectionRef.current?.getBoundingClientRect();
+      if (!rect) return;
+      setMousePos({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+    },
+    [isTouch]
+  );
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -46,10 +156,12 @@ export function Hero() {
   const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
   const overlayOpacity = useTransform(scrollYProgress, [0, 0.8], [0.55, 0.85]);
   const reelY = useTransform(scrollYProgress, [0, 1], ['0%', '-6%']);
+  const shapesY = useTransform(scrollYProgress, [0, 1], ['0%', '10%']);
 
   return (
     <section
       ref={sectionRef}
+      onMouseMove={handleMouseMove}
       style={{
         position: 'relative',
         minHeight: '100dvh',
@@ -85,6 +197,37 @@ export function Hero() {
           zIndex: 1,
         }}
       />
+
+      {/* Cursor-reactive gradient orb (desktop only) */}
+      {!isTouch && (
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 1,
+            pointerEvents: 'none',
+            overflow: 'hidden',
+          }}
+        >
+          <div
+            style={{
+              position: 'absolute',
+              width: '600px',
+              height: '600px',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(93,196,232,.09), rgba(40,135,204,.04) 40%, transparent 70%)',
+              left: mousePos.x - 300,
+              top: mousePos.y - 300,
+              transition: 'left 0.3s ease-out, top 0.3s ease-out',
+              filter: 'blur(40px)',
+              willChange: 'left, top',
+            }}
+          />
+        </div>
+      )}
+
+      {/* Floating geometric shapes (parallax layer) */}
+      <FloatingShapes scrollProgress={shapesY} />
 
       {/* Ambient glow orbs */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none', overflow: 'hidden' }}>
@@ -163,9 +306,9 @@ export function Hero() {
                 <AnimatePresence mode="wait">
                   <motion.em
                     key={HERO_WORDS[wordIndex]}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
+                    initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
+                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, y: -20, filter: 'blur(4px)' }}
                     transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] as const }}
                     style={{
                       color: 'var(--cyan)',
@@ -182,7 +325,7 @@ export function Hero() {
               </span>
             </motion.div>
 
-            {/* Headline — outcome-focused */}
+            {/* Kinetic headline — word-by-word stagger */}
             <motion.h1
               variants={fadeUp}
               style={{
@@ -195,30 +338,57 @@ export function Hero() {
                 marginBottom: '20px',
               }}
             >
-              Your Patients Are
-              <br />
-              Googling You Right Now.
-              <br />
-              <span style={{ position: 'relative', display: 'inline-block' }}>
-                <em style={{ color: 'var(--cyan)', fontStyle: 'italic' }}>What Do They Find?</em>
+              {HEADLINE_WORDS.map((word, i) => (
                 <motion.span
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ delay: 1.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
-                  style={{
-                    position: 'absolute',
-                    bottom: '-2px',
-                    left: 0,
-                    right: 0,
-                    height: '2px',
-                    background: 'linear-gradient(90deg, var(--cyan), transparent)',
-                    transformOrigin: 'left',
+                  key={word + i}
+                  initial={{ opacity: 0, y: 20, filter: 'blur(6px)' }}
+                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  transition={{
+                    duration: 0.6,
+                    delay: 0.3 + i * 0.08,
+                    ease: [0.16, 1, 0.3, 1],
                   }}
-                />
-              </span>
+                  style={{ display: 'inline-block', marginRight: '0.25em' }}
+                >
+                  {word}
+                </motion.span>
+              ))}
+              <br />
+              {HEADLINE_LINE2.map((word, i) => (
+                <motion.span
+                  key={'l2' + word + i}
+                  initial={{ opacity: 0, y: 20, filter: 'blur(6px)' }}
+                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  transition={{
+                    duration: 0.6,
+                    delay: 0.3 + (HEADLINE_WORDS.length + i) * 0.08,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  style={{
+                    display: 'inline-block',
+                    marginRight: '0.25em',
+                    ...(i >= 0 ? { color: 'var(--cyan)', fontStyle: 'italic' as const } : {}),
+                  }}
+                >
+                  {word}
+                </motion.span>
+              ))}
+              <motion.span
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ delay: 1.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
+                style={{
+                  display: 'block',
+                  height: '2px',
+                  background: 'linear-gradient(90deg, var(--cyan), transparent)',
+                  transformOrigin: 'left',
+                  marginTop: '4px',
+                  maxWidth: '280px',
+                }}
+              />
             </motion.h1>
 
-            {/* Answer line — completes fear→solution→proof arc */}
+            {/* Answer line */}
             <motion.p
               variants={fadeUp}
               style={{
@@ -233,7 +403,7 @@ export function Hero() {
               Most dental practices lose new patients to a competitor with a better website. We fix that in 7 days &mdash; guaranteed.
             </motion.p>
 
-            {/* Subheadline */}
+            {/* Subheadline with typing cursor */}
             <motion.p
               variants={fadeUp}
               style={{
@@ -242,27 +412,53 @@ export function Hero() {
                 maxWidth: '520px',
                 lineHeight: 1.85,
                 marginBottom: '36px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '2px',
               }}
             >
-              AI-powered websites that turn Google searches into booked appointments. No contracts. You own everything.
+              <span>AI-powered websites that turn Google searches into booked appointments. No contracts. You own everything.</span>
+              <motion.span
+                animate={{ opacity: [1, 0] }}
+                transition={{ duration: 0.8, repeat: Infinity, ease: 'linear', repeatType: 'reverse' as const }}
+                style={{
+                  display: 'inline-block',
+                  width: '2px',
+                  height: '18px',
+                  background: 'var(--cyan)',
+                  marginLeft: '4px',
+                  flexShrink: 0,
+                }}
+              />
             </motion.p>
 
-            {/* CTAs — tiered */}
+            {/* CTAs — tiered with scale entrance */}
             <motion.div
               variants={fadeUp}
               style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginBottom: '52px' }}
             >
-              <MagneticButton href="/free-audit" className="bp hero-cta-primary" strength={0.25}>
-                Get Your Free Website Audit
-              </MagneticButton>
-              <MagneticButton href="#pricing" className="bs hero-cta-secondary" strength={0.2}>
-                See Pricing ↓
-              </MagneticButton>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.2, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <MagneticButton href="/free-audit" className="bp hero-cta-primary" strength={0.25}>
+                  Get Your Free Website Audit
+                </MagneticButton>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.35, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <MagneticButton href="#pricing" className="bs hero-cta-secondary" strength={0.2}>
+                  See Pricing ↓
+                </MagneticButton>
+              </motion.div>
             </motion.div>
 
-            {/* Stats bar — outcome-focused */}
+            {/* Stats bar — staggered entrance */}
             <motion.div
-              variants={fadeUp}
               className="hero-stats"
               style={{
                 display: 'flex',
@@ -277,16 +473,26 @@ export function Hero() {
                 { label: '2x More Bookings', icon: '📈' },
                 { label: '100% Code Ownership', icon: '🔓' },
                 { label: '$0 Lock-In Contracts', icon: '🛡️' },
-              ].map((stat) => (
-                <div key={stat.label} style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '8px 16px',
-                  background: 'rgba(40,135,204,.06)',
-                  border: '1px solid rgba(93,196,232,.1)',
-                  borderRadius: '40px',
-                }}>
+              ].map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    delay: 1.5 + i * 0.15,
+                    duration: 0.5,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '8px 16px',
+                    background: 'rgba(40,135,204,.06)',
+                    border: '1px solid rgba(93,196,232,.1)',
+                    borderRadius: '40px',
+                  }}
+                >
                   <span style={{ fontSize: '16px' }}>{stat.icon}</span>
                   <span style={{
                     fontSize: '12px',
@@ -297,7 +503,7 @@ export function Hero() {
                   }}>
                     {stat.label}
                   </span>
-                </div>
+                </motion.div>
               ))}
             </motion.div>
           </motion.div>

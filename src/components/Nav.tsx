@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -12,14 +13,20 @@ export function Nav() {
   }, []);
 
   return (
-    <nav className="nav" style={{
-      boxShadow: scrolled
-        ? '0 8px 40px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.04)'
-        : '0 8px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.03)',
-      background: scrolled
-        ? 'rgba(6,8,12,.85)'
-        : 'rgba(11,14,22,.65)',
-    }}>
+    <motion.nav
+      className="nav"
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+      style={{
+        boxShadow: scrolled
+          ? '0 8px 40px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.04)'
+          : '0 8px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.03)',
+        background: scrolled
+          ? 'rgba(6,8,12,.85)'
+          : 'rgba(11,14,22,.65)',
+      }}
+    >
       <div className="nw">
         BLACK DIAMOND <span>CYBER</span>
       </div>
@@ -32,6 +39,6 @@ export function Nav() {
       <a href="#book" className="nc">
         Book a Call
       </a>
-    </nav>
+    </motion.nav>
   );
 }

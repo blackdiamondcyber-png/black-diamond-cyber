@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { PricingButton } from '@/components/PricingButton';
 import { AnimatedCounter } from '@/components/AnimatedCounter';
 
@@ -15,22 +15,97 @@ const growthPrices = {
   yearly: { growth: 422, dominate: 1273 },
 } as const;
 
+// Glow colors for each pricing tier
+const TIER_GLOWS = {
+  starter: 'rgba(222,224,231,.12)',
+  professional: 'rgba(40,135,204,.15)',
+  premium: 'rgba(93,196,232,.12)',
+  cinematic: 'rgba(245,158,11,.12)',
+} as const;
+
+function PricingCard({
+  children,
+  featured,
+  tierGlow,
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  featured?: boolean;
+  tierGlow: string;
+  delay?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  return (
+    <motion.div
+      ref={ref}
+      className={`pri rv${featured ? ' ft' : ''}`}
+      initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
+      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{
+        duration: 0.7,
+        delay,
+        ease: [0.16, 1, 0.3, 1] as const,
+      }}
+      whileHover={{
+        y: -6,
+        scale: 1.02,
+        boxShadow: `0 0 30px ${tierGlow}, 0 20px 56px rgba(0,0,0,.3)`,
+        transition: { type: 'spring', stiffness: 300, damping: 20 },
+      }}
+      style={{
+        position: 'relative',
+        ...(featured ? { boxShadow: `0 0 20px ${tierGlow}, 0 20px 56px rgba(40,135,204,.08)` } : {}),
+      }}
+    >
+      {/* Animated gradient border for featured card */}
+      {featured && (
+        <div
+          style={{
+            position: 'absolute',
+            inset: '-1px',
+            borderRadius: 'var(--rr)',
+            padding: '1px',
+            background: 'conic-gradient(from var(--border-angle, 0deg), var(--cyan), var(--blue), #8B5CF6, var(--cyan))',
+            mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+            maskComposite: 'exclude',
+            WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+            WebkitMaskComposite: 'xor',
+            animation: 'rotateBorder 4s linear infinite',
+            zIndex: 0,
+            pointerEvents: 'none',
+          }}
+        />
+      )}
+      <div style={{ position: 'relative', zIndex: 1 }}>{children}</div>
+    </motion.div>
+  );
+}
+
 export function Pricing() {
   const [tab, setTab] = useState<'websites' | 'growth'>('websites');
   const [billing, setBilling] = useState<'monthly' | 'yearly'>('monthly');
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
 
   const wp = websitePrices[billing];
   const gp = growthPrices[billing];
 
   return (
-    <section id="pricing">
+    <section id="pricing" ref={sectionRef}>
       <div className="c">
         {/* Urgency banner */}
-        <div className="rv" style={{
-          display: 'flex',
-          justifyContent: 'center',
-          marginBottom: '24px',
-        }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginBottom: '24px',
+          }}
+        >
           <span style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -53,24 +128,34 @@ export function Pricing() {
             }} />
             Currently accepting 4 new clients this month. 2 spots remaining.
           </span>
-        </div>
+        </motion.div>
 
-        <div className="sh sc rv">
+        <motion.div
+          className="sh sc"
+          initial={{ opacity: 0, y: 28, filter: 'blur(5px)' }}
+          animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
+        >
           <div className="tag" style={{ display: 'inline-flex' }}>Transparent Pricing</div>
           <h2 className="st">Premium Sites &amp; Growth Systems,<br /><em>Honest Prices</em></h2>
           <p className="sd">No hidden fees. No contracts. Cancel anytime.</p>
-        </div>
+        </motion.div>
 
         {/* Performance Guarantee */}
-        <div className="rv" style={{
-          maxWidth: '720px',
-          margin: '0 auto 32px',
-          padding: '28px 32px',
-          background: 'rgba(245,158,11,.04)',
-          border: '1px solid rgba(245,158,11,.2)',
-          borderRadius: 'var(--rr)',
-          textAlign: 'center',
-        }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            maxWidth: '720px',
+            margin: '0 auto 32px',
+            padding: '28px 32px',
+            background: 'rgba(245,158,11,.04)',
+            border: '1px solid rgba(245,158,11,.2)',
+            borderRadius: 'var(--rr)',
+            textAlign: 'center',
+          }}
+        >
           <div style={{
             fontSize: '20px',
             fontWeight: 700,
@@ -96,7 +181,7 @@ export function Pricing() {
           }}>
             We ship 95+ PageSpeed on every build. This guarantee costs us nothing &mdash; but it means everything for your confidence.
           </p>
-        </div>
+        </motion.div>
 
         {/* Billing toggle */}
         <div className="rv" style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
@@ -220,11 +305,10 @@ export function Pricing() {
           </div>
         </div>
 
-        {/* Websites tab - same 4 tiers as before */}
+        {/* Websites tab */}
         {tab === 'websites' && (
           <div className="pgrid">
-            {/* Starter */}
-            <div className="pri rv">
+            <PricingCard tierGlow={TIER_GLOWS.starter} delay={0}>
               <div className="pt">Starter</div>
               <div className="pa">$997</div>
               <div className="pmm" title="Hosting + SSL + CDN, monthly performance monitoring, content updates (up to 2/mo), priority support">then <b>$<AnimatedCounter value={wp.starter} duration={0.6} />/mo</b> <span style={{ fontSize: '10px', color: 'var(--t3)', fontWeight: 400 }}>Growth Maintenance</span></div>
@@ -238,11 +322,10 @@ export function Pricing() {
                 <li>3-5 day delivery</li>
               </ul>
               <PricingButton tier="starter" />
-            </div>
+            </PricingCard>
 
-            {/* Professional */}
-            <div className="pri ft rv d1" style={{ position: 'relative' }}>
-              <div style={{ position: 'absolute', top: '-11px', left: '50%', transform: 'translateX(-50%)', background: 'var(--blue)', color: '#fff', fontSize: '9px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', padding: '3px 13px', borderRadius: '40px', whiteSpace: 'nowrap' }}>Most Popular</div>
+            <PricingCard featured tierGlow={TIER_GLOWS.professional} delay={0.08}>
+              <div style={{ position: 'absolute', top: '-11px', left: '50%', transform: 'translateX(-50%)', background: 'var(--blue)', color: '#fff', fontSize: '9px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', padding: '3px 13px', borderRadius: '40px', whiteSpace: 'nowrap', zIndex: 2 }}>Most Popular</div>
               <div className="pt">Professional</div>
               <div className="pa">$1,997</div>
               <div className="pmm" title="Hosting + SSL + CDN, monthly performance monitoring, content updates (up to 2/mo), priority support">then <b>$<AnimatedCounter value={wp.professional} duration={0.6} />/mo</b> <span style={{ fontSize: '10px', color: 'var(--t3)', fontWeight: 400 }}>Growth Maintenance</span></div>
@@ -256,10 +339,9 @@ export function Pricing() {
                 <li>5-7 day delivery</li>
               </ul>
               <PricingButton tier="professional" featured />
-            </div>
+            </PricingCard>
 
-            {/* Premium */}
-            <div className="pri rv d2">
+            <PricingCard tierGlow={TIER_GLOWS.premium} delay={0.16}>
               <div className="pt">Premium</div>
               <div className="pa">$2,997</div>
               <div className="pmm" title="Hosting + SSL + CDN, monthly performance monitoring, unlimited content updates, priority support">then <b>$<AnimatedCounter value={wp.premium} duration={0.6} />/mo</b> <span style={{ fontSize: '10px', color: 'var(--t3)', fontWeight: 400 }}>Growth Maintenance</span></div>
@@ -273,10 +355,9 @@ export function Pricing() {
                 <li>10-14 day delivery</li>
               </ul>
               <PricingButton tier="premium" />
-            </div>
+            </PricingCard>
 
-            {/* Cinematic */}
-            <div className="pri rv d3">
+            <PricingCard tierGlow={TIER_GLOWS.cinematic} delay={0.24}>
               <div className="pt">Cinematic</div>
               <div className="pa">$4,997</div>
               <div className="pmm" title="Hosting + SSL + CDN, monthly performance monitoring, unlimited content updates, priority support, quarterly strategy call">then <b>$<AnimatedCounter value={wp.cinematic} duration={0.6} />/mo</b> <span style={{ fontSize: '10px', color: 'var(--t3)', fontWeight: 400 }}>Growth Maintenance</span></div>
@@ -289,7 +370,7 @@ export function Pricing() {
                 <li>Quarterly strategy call</li>
               </ul>
               <PricingButton tier="cinematic" />
-            </div>
+            </PricingCard>
           </div>
         )}
 
@@ -297,9 +378,8 @@ export function Pricing() {
         {tab === 'growth' && (
           <div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', maxWidth: '800px', margin: '0 auto' }}>
-              {/* Growth tier */}
-              <div className="pri ft rv">
-                <div style={{ position: 'absolute', top: '-11px', left: '50%', transform: 'translateX(-50%)', background: 'var(--green)', color: '#fff', fontSize: '9px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', padding: '3px 13px', borderRadius: '40px' }}>Most Popular</div>
+              <PricingCard featured tierGlow="rgba(52,211,153,.12)">
+                <div style={{ position: 'absolute', top: '-11px', left: '50%', transform: 'translateX(-50%)', background: 'var(--green)', color: '#fff', fontSize: '9px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', padding: '3px 13px', borderRadius: '40px', zIndex: 2 }}>Most Popular</div>
                 <div className="pt">Growth</div>
                 <div className="pa">$2,997</div>
                 <div className="pmm">setup, then <b>$<AnimatedCounter value={gp.growth} duration={0.6} />/mo</b></div>
@@ -315,10 +395,9 @@ export function Pricing() {
                   <li>No contracts — cancel anytime</li>
                 </ul>
                 <a href="#book" className="pb" style={{ display: 'block', textAlign: 'center', width: '100%', background: 'var(--blue)', color: '#fff', borderColor: 'var(--blue)' }}>Book Strategy Call</a>
-              </div>
+              </PricingCard>
 
-              {/* Dominate tier */}
-              <div className="pri rv d1">
+              <PricingCard tierGlow="rgba(40,135,204,.1)" delay={0.08}>
                 <div className="pt">Dominate</div>
                 <div className="pa">$4,997</div>
                 <div className="pmm">setup, then <b>$<AnimatedCounter value={gp.dominate} duration={0.6} />/mo</b></div>
@@ -334,7 +413,7 @@ export function Pricing() {
                   <li>Priority support — same-day response</li>
                 </ul>
                 <a href="#book" className="pb" style={{ display: 'block', textAlign: 'center', width: '100%' }}>Book Strategy Call</a>
-              </div>
+              </PricingCard>
             </div>
 
             {/* CTA below growth tiers */}
@@ -360,6 +439,18 @@ export function Pricing() {
           </div>
         )}
       </div>
+
+      {/* Animated border rotation keyframe */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @property --border-angle {
+          syntax: '<angle>';
+          initial-value: 0deg;
+          inherits: false;
+        }
+        @keyframes rotateBorder {
+          to { --border-angle: 360deg; }
+        }
+      `}} />
     </section>
   );
 }
