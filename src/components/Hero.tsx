@@ -4,9 +4,8 @@ import { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { VideoBackground } from '@/components/VideoBackground';
 import { MagneticButton } from '@/components/MagneticButton';
-import { ProductDemoReel } from '@/components/ProductDemoReel';
 
-const HERO_WORDS = ['Dental Practices', 'HVAC Companies', 'Plumbing Services', 'Med Spas', 'Chiropractors', 'Roofing Contractors'] as const;
+const HERO_WORDS = ['General Dentists', 'Orthodontists', 'Pediatric Dentists', 'Oral Surgeons', 'Cosmetic Dentists', 'Periodontists'] as const;
 
 const HEADLINE_WORDS = ['Your', 'Patients', 'Are', 'Googling', 'You', 'Right', 'Now.'];
 const HEADLINE_LINE2 = ['What', 'Do', 'They', 'Find?'];
@@ -155,7 +154,6 @@ export function Hero() {
   const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '-10%']);
   const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
   const overlayOpacity = useTransform(scrollYProgress, [0, 0.8], [0.55, 0.85]);
-  const reelY = useTransform(scrollYProgress, [0, 1], ['0%', '-6%']);
   const shapesY = useTransform(scrollYProgress, [0, 1], ['0%', '10%']);
 
   return (
@@ -271,20 +269,20 @@ export function Hero() {
         style={{ y: contentY, position: 'relative', zIndex: 2, width: '100%' }}
       >
         <div
-          className="c"
+          className="c hero-content"
           style={{
             padding: '140px 24px 80px',
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '56px',
+            display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
+            textAlign: 'center',
           }}
         >
-          {/* LEFT — headline, CTAs, stats */}
           <motion.div
             variants={stagger}
             initial="hidden"
             animate="show"
+            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
           >
             {/* Rotating industries */}
             <motion.div
@@ -301,7 +299,7 @@ export function Hero() {
                 overflow: 'hidden',
               }}
             >
-              <span style={{ whiteSpace: 'nowrap' }}>Purpose-built for</span>
+              <span style={{ whiteSpace: 'nowrap' }}>Built for</span>
               <span style={{ position: 'relative', minWidth: '200px', display: 'inline-block', overflow: 'hidden', height: '28px', flexShrink: 0 }}>
                 <AnimatePresence mode="wait">
                   <motion.em
@@ -380,10 +378,12 @@ export function Hero() {
                 style={{
                   display: 'block',
                   height: '2px',
-                  background: 'linear-gradient(90deg, var(--cyan), transparent)',
-                  transformOrigin: 'left',
+                  background: 'linear-gradient(90deg, transparent, var(--cyan), transparent)',
+                  transformOrigin: 'center',
                   marginTop: '4px',
                   maxWidth: '280px',
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
                 }}
               />
             </motion.h1>
@@ -394,10 +394,11 @@ export function Hero() {
               style={{
                 fontSize: 'clamp(15px, 1.6vw, 18px)',
                 color: 'var(--text)',
-                maxWidth: '520px',
+                maxWidth: '600px',
                 lineHeight: 1.7,
                 marginBottom: '12px',
                 fontWeight: 500,
+                textAlign: 'center',
               }}
             >
               Most dental practices lose new patients to a competitor with a better website. We fix that in 7 days &mdash; guaranteed.
@@ -411,6 +412,7 @@ export function Hero() {
                 color: 'rgba(222,224,231,.7)',
                 marginBottom: '16px',
                 letterSpacing: '0.2px',
+                textAlign: 'center',
               }}
             >
               <span style={{ color: 'var(--cyan)', marginRight: '6px', fontSize: '10px' }}>&#9670;</span>
@@ -423,12 +425,14 @@ export function Hero() {
               style={{
                 fontSize: '15px',
                 color: 'var(--t2)',
-                maxWidth: '520px',
+                maxWidth: '600px',
                 lineHeight: 1.85,
                 marginBottom: '36px',
                 display: 'flex',
                 alignItems: 'center',
+                justifyContent: 'center',
                 gap: '2px',
+                textAlign: 'center',
               }}
             >
               <span>AI-powered websites that turn Google searches into booked appointments. No contracts. You own everything.</span>
@@ -449,7 +453,7 @@ export function Hero() {
             {/* CTAs — tiered with scale entrance */}
             <motion.div
               variants={fadeUp}
-              style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginBottom: '52px' }}
+              style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginBottom: '52px', justifyContent: 'center' }}
             >
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -480,6 +484,8 @@ export function Hero() {
                 paddingTop: '32px',
                 borderTop: '1px solid var(--hr)',
                 flexWrap: 'wrap',
+                justifyContent: 'center',
+                width: '100%',
               }}
             >
               {[
@@ -532,6 +538,7 @@ export function Hero() {
                 marginTop: '24px',
                 display: 'flex',
                 alignItems: 'center',
+                justifyContent: 'center',
                 gap: '5px',
               }}
             >
@@ -542,16 +549,6 @@ export function Hero() {
             </motion.p>
           </motion.div>
 
-          {/* RIGHT — Product Demo Reel */}
-          <motion.div
-            style={{ y: reelY }}
-            initial={{ opacity: 0, x: 40, filter: 'blur(12px)' }}
-            animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-            transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="hero-demo-reel"
-          >
-            <ProductDemoReel />
-          </motion.div>
         </div>
       </motion.div>
 
@@ -602,16 +599,12 @@ export function Hero() {
           0%, 100% { transform: translate(0, 0); }
           50% { transform: translate(50px, -40px); }
         }
-        @media (max-width: 1024px) {
-          .hero-demo-reel {
-            display: none !important;
-          }
-          .c[style*="grid-template-columns"] {
-            display: block !important;
-          }
+        @media (max-width: 768px) {
+          .hero-content { padding-top: 100px !important; padding-bottom: 60px !important; }
         }
         @media (max-width: 640px) {
-          .hero-stats { flex-direction: column !important; gap: 10px !important; align-items: flex-start !important; }
+          .hero-content { padding-top: 88px !important; }
+          .hero-stats { flex-direction: column !important; gap: 10px !important; align-items: center !important; }
           .hero-cta-primary, .hero-cta-secondary {
             width: 100% !important;
             justify-content: center !important;
