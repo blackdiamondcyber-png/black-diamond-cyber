@@ -23,8 +23,9 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: "Black Diamond Cyber",
+  legalName: "Black Diamond Cybersecurity Consulting LLC",
   description:
-    "AI-powered website design and hosting for local service businesses. Custom websites for dental practices, HVAC, plumbing, electrical, roofing and more.",
+    "AI-powered website design and hosting for local service businesses. Custom websites for dental practices, HVAC, plumbing, electrical, roofing and more. Delivered in 3 days. No contracts.",
   url: "https://bd-cyber.com",
   email: "blackdiamondcyber@gmail.com",
   founder: {
@@ -83,25 +84,25 @@ export default function Home() {
         <Marquee />
         <TrustBar />
         <Portfolio />
-        <div className="sep"></div>
+        <div className="sep" />
         <Services />
-        <div className="sep"></div>
+        <div className="sep" />
         <WhyBDCyber />
-        <div className="sep"></div>
+        <div className="sep" />
         <HowItWorks />
-        <div className="sep"></div>
+        <div className="sep" />
         <Pricing />
-        <div className="sep"></div>
+        <div className="sep" />
         <CostComparison />
-        <div className="sep"></div>
+        <div className="sep" />
         <FeatureMatrix />
-        <div className="sep"></div>
+        <div className="sep" />
         <FAQ />
-        <div className="sep"></div>
+        <div className="sep" />
         <TrustBadges />
-        <div className="sep"></div>
+        <div className="sep" />
         <Founder />
-        <div className="sep"></div>
+        <div className="sep" />
         <Reviews />
         <CTA />
         <Footer />

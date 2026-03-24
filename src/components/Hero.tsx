@@ -6,7 +6,7 @@ import { VideoBackground } from '@/components/VideoBackground';
 import { AnimatedCounter } from '@/components/AnimatedCounter';
 import { MagneticButton } from '@/components/MagneticButton';
 
-const HERO_WORDS = ['Businesses', 'Dental Practices', 'HVAC Companies', 'Plumbing Companies', 'Med Spas', 'Electricians'] as const;
+const HERO_WORDS = ['Dental Practices', 'HVAC Companies', 'Plumbers', 'Electricians', 'Roofers', 'Med Spas'] as const;
 
 const stagger = {
   hidden: {},
@@ -48,15 +48,15 @@ export function Hero() {
   useEffect(() => {
     const interval = setInterval(() => {
       setWordIndex((prev) => (prev + 1) % HERO_WORDS.length);
-    }, 3000);
+    }, 2800);
     return () => clearInterval(interval);
   }, []);
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end start'],
   });
 
-  /* Parallax: content scrolls faster, bg shifts slower */
   const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
   const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '-10%']);
   const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
@@ -83,7 +83,6 @@ export function Hero() {
         }}
       >
         <VideoBackground
-          /* Drop an MP4 into public/videos/hero.mp4 to activate */
           src={undefined}
           fallbackGradient="linear-gradient(135deg, #06080C 0%, #0A1828 20%, #0C1420 40%, #12151E 60%, #0A1018 80%, #06080C 100%)"
           overlayOpacity={0}
@@ -102,27 +101,27 @@ export function Hero() {
         }}
       />
 
-      {/* Ambient glow orbs — more dramatic than the global ones */}
+      {/* Ambient glow orbs */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none', overflow: 'hidden' }}>
         <div style={{
           position: 'absolute',
-          width: '600px',
-          height: '600px',
+          width: '700px',
+          height: '700px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(40,135,204,.12), transparent 70%)',
-          top: '-15%',
-          right: '-10%',
+          background: 'radial-gradient(circle, rgba(40,135,204,.14), transparent 70%)',
+          top: '-20%',
+          right: '-15%',
           filter: 'blur(80px)',
           animation: 'heroOrb1 20s ease-in-out infinite',
         }} />
         <div style={{
           position: 'absolute',
-          width: '400px',
-          height: '400px',
+          width: '500px',
+          height: '500px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(93,196,232,.08), transparent 70%)',
+          background: 'radial-gradient(circle, rgba(93,196,232,.09), transparent 70%)',
           bottom: '5%',
-          left: '-5%',
+          left: '-8%',
           filter: 'blur(60px)',
           animation: 'heroOrb2 16s ease-in-out infinite reverse',
         }} />
@@ -137,81 +136,88 @@ export function Hero() {
             variants={stagger}
             initial="hidden"
             animate="show"
-            style={{ maxWidth: '720px' }}
+            style={{ maxWidth: '780px' }}
           >
-            {/* Tag */}
-            <motion.div variants={fadeUp}>
-              <span className="tag" style={{ marginBottom: '28px', display: 'inline-flex' }}>
-                No Contracts &middot; Cancel Anytime
+            {/* Urgency tag */}
+            <motion.div variants={fadeUp} style={{ marginBottom: '28px', display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+              <span className="tag">
+                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--green)', display: 'inline-block', animation: 'p 2s infinite', marginRight: '4px' }} />
+                Now Accepting New Clients — 3 Spots Left This Month
               </span>
             </motion.div>
 
-            {/* Headline — staggered word reveal */}
+            {/* Headline */}
             <motion.h1
               variants={fadeUp}
               style={{
-                fontSize: 'clamp(40px, 5.5vw, 68px)',
+                fontSize: 'clamp(38px, 5.5vw, 70px)',
                 fontFamily: "'Instrument Serif', Georgia, serif",
                 fontWeight: 400,
                 lineHeight: 1.04,
                 letterSpacing: '-0.03em',
                 color: 'var(--text)',
-                marginBottom: '16px',
+                marginBottom: '8px',
               }}
             >
-              Websites &amp; Growth Systems
+              Your Competitors Are
               <br />
-              for Local{' '}
-              <span style={{ position: 'relative', display: 'inline-block', minWidth: '280px', verticalAlign: 'bottom' }}>
+              Stealing Customers.
+              <br />
+              <span style={{ position: 'relative', display: 'inline-block' }}>
+                <em style={{ color: 'var(--cyan)', fontStyle: 'italic' }}>We Fix That.</em>
+                <motion.span
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 1.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
+                  style={{
+                    position: 'absolute',
+                    bottom: '-2px',
+                    left: 0,
+                    right: 0,
+                    height: '2px',
+                    background: 'linear-gradient(90deg, var(--cyan), transparent)',
+                    transformOrigin: 'left',
+                  }}
+                />
+              </span>
+            </motion.h1>
+
+            {/* Rotating industry */}
+            <motion.div
+              variants={fadeUp}
+              style={{
+                fontSize: 'clamp(16px, 2vw, 22px)',
+                color: 'var(--t2)',
+                marginBottom: '24px',
+                height: '32px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+              }}
+            >
+              <span>AI-powered websites for</span>
+              <span style={{ position: 'relative', minWidth: '220px', display: 'inline-block', overflow: 'hidden', height: '32px' }}>
                 <AnimatePresence mode="wait">
                   <motion.em
                     key={HERO_WORDS[wordIndex]}
-                    initial={{ opacity: 0, y: 24, filter: 'blur(4px)' }}
-                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                    exit={{ opacity: 0, y: -24, filter: 'blur(4px)' }}
-                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] as const }}
                     style={{
                       color: 'var(--cyan)',
                       fontStyle: 'italic',
                       display: 'inline-block',
-                      position: 'relative',
+                      position: 'absolute',
+                      left: 0,
+                      whiteSpace: 'nowrap',
                     }}
                   >
                     {HERO_WORDS[wordIndex]}
-                    {/* Underline accent */}
-                    <motion.span
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ delay: 0.3, duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
-                      style={{
-                        position: 'absolute',
-                        bottom: '-2px',
-                        left: 0,
-                        right: 0,
-                        height: '2px',
-                        background: 'linear-gradient(90deg, var(--cyan), transparent)',
-                        transformOrigin: 'left',
-                      }}
-                    />
                   </motion.em>
                 </AnimatePresence>
               </span>
-            </motion.h1>
-
-            {/* Subline */}
-            <motion.p
-              variants={fadeUp}
-              style={{
-                fontSize: '10px',
-                color: 'var(--cyan)',
-                fontWeight: 700,
-                letterSpacing: '2px',
-                textTransform: 'uppercase',
-                marginBottom: '24px',
-              }}
-            >
-              Websites &middot; Automation &middot; Growth &middot; No Contracts
-            </motion.p>
+            </motion.div>
 
             {/* Description */}
             <motion.p
@@ -219,31 +225,66 @@ export function Hero() {
               style={{
                 fontSize: '17px',
                 color: 'var(--t2)',
-                maxWidth: '520px',
+                maxWidth: '560px',
                 lineHeight: 1.85,
                 marginBottom: '44px',
               }}
             >
-              We build high-performance websites, AI chatbots, review automation,
-              and lead nurture systems for dental practices, HVAC companies, and
-              every local service business that wants more customers. Delivered in
-              days. No contracts.
+              We build <strong style={{ color: 'var(--text)' }}>high-performance websites in 3 days</strong> that fill your schedule with new customers. AI chatbots, review automation, and lead systems included. No contracts. You own the code.
             </motion.p>
 
-            {/* CTAs — magnetic buttons */}
+            {/* Social proof line */}
+            <motion.div
+              variants={fadeUp}
+              style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '28px' }}
+            >
+              <div style={{ display: 'flex', marginLeft: '4px' }}>
+                {['RK', 'MT', 'JR', 'KW', 'BH'].map((initials, i) => (
+                  <div
+                    key={initials}
+                    style={{
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '50%',
+                      background: 'var(--blue-d)',
+                      border: '2px solid var(--bg)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '9px',
+                      fontWeight: 700,
+                      color: 'var(--cyan)',
+                      marginLeft: i === 0 ? 0 : '-8px',
+                      zIndex: 5 - i,
+                      position: 'relative',
+                    }}
+                  >
+                    {initials}
+                  </div>
+                ))}
+              </div>
+              <div>
+                <div style={{ fontSize: '13px', color: 'var(--text)', fontWeight: 600 }}>
+                  ★★★★★ <span style={{ color: 'var(--t2)', fontWeight: 400 }}>from 127+ local businesses</span>
+                </div>
+                <div style={{ fontSize: '11px', color: 'var(--t3)' }}>Dental • HVAC • Plumbing • Electrical • Roofing</div>
+              </div>
+            </motion.div>
+
+            {/* CTAs */}
             <motion.div
               variants={fadeUp}
               style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginBottom: '64px' }}
             >
               <MagneticButton href="#book" className="bp" strength={0.25}>
-                Book Free Strategy Call
+                🚀 Book Free Strategy Call
               </MagneticButton>
               <MagneticButton href="#work" className="bs" strength={0.2}>
-                See Our Work
+                See Client Results →
               </MagneticButton>
             </motion.div>
 
-            {/* Stats bar with animated counters */}
+            {/* Stats bar */}
             <motion.div
               variants={fadeUp}
               style={{
@@ -256,21 +297,29 @@ export function Hero() {
               <div>
                 <div style={statStyle}>
                   <AnimatedCounter value={3} style={statStyle} />
-                  <span style={{ color: 'var(--cyan)', fontSize: '28px' }}>-day</span>
+                  <span style={{ color: 'var(--cyan)', fontSize: '28px' }}> days</span>
                 </div>
-                <div style={statLabelStyle}>Avg. Delivery</div>
+                <div style={statLabelStyle}>Avg. Delivery Time</div>
               </div>
               <div>
                 <div style={statStyle}>
-                  $<AnimatedCounter value={997} style={statStyle} />
+                  <AnimatedCounter value={127} style={statStyle} />
+                  <span style={{ color: 'var(--cyan)', fontSize: '28px' }}>+</span>
                 </div>
-                <div style={statLabelStyle}>Starting At</div>
+                <div style={statLabelStyle}>Sites Launched</div>
               </div>
               <div>
                 <div style={statStyle}>
                   $<AnimatedCounter value={0} style={statStyle} />
                 </div>
-                <div style={statLabelStyle}>Contracts</div>
+                <div style={statLabelStyle}>Contracts Required</div>
+              </div>
+              <div>
+                <div style={statStyle}>
+                  <AnimatedCounter value={95} style={statStyle} />
+                  <span style={{ color: 'var(--cyan)', fontSize: '28px' }}>+</span>
+                </div>
+                <div style={statLabelStyle}>PageSpeed Score</div>
               </div>
             </motion.div>
           </motion.div>
@@ -324,11 +373,8 @@ export function Hero() {
           0%, 100% { transform: translate(0, 0); }
           50% { transform: translate(50px, -40px); }
         }
-        @media (max-width: 768px) {
-          .hero-stats { gap: 24px !important; }
-        }
-        @media (max-width: 480px) {
-          .hero-stats { flex-direction: column !important; gap: 16px !important; }
+        @media (max-width: 640px) {
+          .hero-stats { flex-direction: column !important; gap: 20px !important; }
         }
       `}} />
     </section>

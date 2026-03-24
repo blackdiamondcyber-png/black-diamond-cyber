@@ -42,8 +42,8 @@ a{text-decoration:none;color:inherit}
 .st{font-size:clamp(28px,3.6vw,46px);color:var(--text);margin-bottom:12px}.st em{color:var(--cyan);font-style:italic}
 .sd{font-size:14px;color:var(--t2);max-width:440px;line-height:1.85}
 .sh{margin-bottom:60px}.sc{text-align:center}.sc .sd{margin:0 auto}
-.sep{height:1px;background:linear-gradient(90deg,transparent,var(--hr),transparent)}
-section{padding:100px 0;scroll-margin-top:80px}
+.sep{height:1px;background:linear-gradient(90deg,transparent,var(--hr),transparent);margin:0}
+section{padding:80px 0;scroll-margin-top:80px}
 
 /* Buttons with ripple */
 .bp{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;border-radius:40px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border:none;cursor:pointer;font-family:inherit;transition:.5s var(--ease);background:var(--blue);color:#fff;box-shadow:0 4px 20px rgba(40,135,204,.2);position:relative;overflow:hidden}
@@ -157,7 +157,7 @@ section{padding:100px 0;scroll-margin-top:80px}
 .pri.ft .pb{background:var(--blue);color:#fff;border-color:var(--blue)}.pri.ft .pb:hover{background:var(--cyan);color:var(--bg)}
 
 /* Founder */
-.fdr .c{display:grid;grid-template-columns:.3fr .7fr;gap:64px;align-items:center}
+.fdr .c{display:grid;grid-template-columns:.32fr .68fr;gap:64px;align-items:start}
 .fp{background:var(--bg1);border:1px solid var(--hr);border-radius:var(--rr);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:32px 20px;gap:14px}
 .fp img{width:80px;height:auto;filter:drop-shadow(0 0 20px rgba(40,135,204,.12))}
 .fp-info{text-align:center}
@@ -191,7 +191,7 @@ section{padding:100px 0;scroll-margin-top:80px}
 
 /* Footer */
 .foot{padding:48px 0 24px;border-top:1px solid var(--hr)}
-.fg{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px}
+.fg{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px}
 .foot h4{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
 .foot p{font-size:11px;color:var(--t2);line-height:1.8}
 .fl{list-style:none;display:flex;flex-direction:column;gap:7px}.fl a{font-size:11px;color:var(--t2);transition:.3s}.fl a:hover{color:var(--cyan)}
@@ -258,8 +258,8 @@ section{padding:100px 0;scroll-margin-top:80px}
 
 /* Responsive */
 @media(max-width:1024px){.hero .c,.fdr .c{grid-template-columns:1fr;gap:36px}.steps,.pgrid{grid-template-columns:1fr 1fr}.svcs{grid-template-columns:1fr 1fr}.why-grid{grid-template-columns:1fr 1fr}.fg{grid-template-columns:1fr 1fr}.nl a:nth-child(n+5){display:none}.hero-vis{display:none}}
-@media(max-width:768px){.pc{flex:0 0 280px}.rc{flex:0 0 300px}.audit-grid{grid-template-columns:1fr}.hbar{flex-wrap:wrap;gap:20px}.audit-results-row{flex-direction:column;text-align:center}.audit-card{padding:24px 20px !important}}
-@media(max-width:640px){.nav{left:10px;right:10px;transform:none;padding:8px 8px 8px 14px;gap:8px}.nl{display:none}.steps,.pgrid,.svcs,.why-grid,.growth-grid{grid-template-columns:1fr}.fg{grid-template-columns:1fr}section{padding:70px 0}.hero{padding:100px 0 60px;min-height:auto}.hbar{gap:16px;flex-wrap:wrap}.hv{font-size:28px}.cta-i{padding:40px 20px}.pc{flex:0 0 85vw}.rc{flex:0 0 85vw}.ti{gap:16px}.tp{display:none}.audit-grid{grid-template-columns:1fr}}
+@media(max-width:768px){.pc{flex:0 0 280px}.rc{flex:0 0 300px}.audit-grid{grid-template-columns:1fr}.hbar{flex-wrap:wrap;gap:20px}.audit-results-row{flex-direction:column;text-align:center}.audit-card{padding:24px 20px !important}.fg{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.nav{left:10px;right:10px;transform:none;padding:8px 8px 8px 14px;gap:8px}.nl{display:none}.steps,.pgrid,.svcs,.why-grid,.growth-grid{grid-template-columns:1fr}.fg{grid-template-columns:1fr}section{padding:60px 0}.hero{padding:100px 0 60px;min-height:auto}.hbar{gap:16px;flex-wrap:wrap}.hv{font-size:28px}.cta-i{padding:40px 20px}.pc{flex:0 0 85vw}.rc{flex:0 0 85vw}.ti{gap:16px}.tp{display:none}.audit-grid{grid-template-columns:1fr}}
 
 /* Fallback: ensure sections visible even if IntersectionObserver misses */
 @keyframes revealFallback{to{opacity:1;transform:none;filter:none}}
