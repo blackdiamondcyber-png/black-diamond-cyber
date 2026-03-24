@@ -26,6 +26,7 @@ export function Nav() {
       <div className="nl">
         <a href="#services">Services</a>
         <a href="#pricing">Pricing</a>
+        <a href="/blog">Blog</a>
         <a href="/free-audit">Free Audit</a>
       </div>
       <a href="#book" className="nc">
