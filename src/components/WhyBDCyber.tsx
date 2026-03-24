@@ -52,6 +52,38 @@ export function WhyBDCyber() {
           <p className="sd">See how we stack up against every alternative &mdash; and why practices choose us.</p>
         </motion.div>
 
+        {/* Villain framing */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            maxWidth: '700px',
+            margin: '0 auto 40px',
+            padding: '24px 32px',
+            background: 'rgba(239,68,68,.04)',
+            border: '1px solid rgba(239,68,68,.12)',
+            borderRadius: 'var(--rr)',
+            textAlign: 'center',
+          }}
+        >
+          <p style={{
+            fontSize: '15px',
+            color: 'var(--t2)',
+            lineHeight: 1.8,
+            marginBottom: '12px',
+          }}>
+            Most web agencies have never stepped inside a dental practice. They build beautiful sites that rank for nothing and convert nobody. They charge $10K+, take 8 weeks, and lock you into a contract. Then they disappear.
+          </p>
+          <p style={{
+            fontSize: '16px',
+            color: 'var(--text)',
+            fontWeight: 600,
+          }}>
+            We are the opposite.
+          </p>
+        </motion.div>
+
         <style dangerouslySetInnerHTML={{ __html: `
           @media(max-width:1024px){#why-grid{grid-template-columns:repeat(2,1fr)!important}}
           @media(max-width:640px){#why-grid{grid-template-columns:1fr!important}}

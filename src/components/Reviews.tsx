@@ -3,60 +3,33 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
-const GUARANTEES = [
+const FOUNDING_CARDS = [
   {
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M16 18l6-6-6-6" /><path d="M8 6l-6 6 6 6" />
+        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
       </svg>
     ),
-    title: 'You Own Every Line of Code',
-    description: 'Your website is built on Next.js and deployed to your own Vercel account. No proprietary platforms, no lock-in. If you leave, you take everything with you.',
+    title: 'Launch Pricing',
+    description: 'Lock in our lowest rates before they increase. First 4 clients only.',
   },
   {
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" /><circle cx="12" cy="7" r="4" />
       </svg>
     ),
-    title: 'No Contracts. Ever.',
-    description: 'Month-to-month hosting and support. Cancel anytime with zero penalties. We keep your business by earning it, not by trapping you.',
+    title: 'Personal Attention',
+    description: 'Work directly with Erik \u2014 not a junior designer or AI bot.',
   },
   {
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
+        <path d="M12 20h9" /><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
       </svg>
     ),
-    title: '3-7 Day Delivery',
-    description: 'Your site goes live in days, not weeks. AI-powered generation plus human polish means agency-quality work on a startup timeline.',
-  },
-  {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-      </svg>
-    ),
-    title: '95+ PageSpeed Guaranteed',
-    description: 'Every site is built on Next.js with server-side rendering, image optimization, and global CDN. Sub-2-second load times, every time.',
-  },
-  {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" /><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" />
-      </svg>
-    ),
-    title: 'Competitor Research Included',
-    description: 'Before we build, we analyze your top 10 local competitors. Your site is designed to outrank and outconvert every one of them.',
-  },
-  {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22 11.08V12a10 10 0 11-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />
-      </svg>
-    ),
-    title: '90-Day Optimization',
-    description: 'After launch, we monitor performance, tweak SEO, and optimize conversions for 90 days. Your site gets better every month.',
+    title: 'Shape the Product',
+    description: 'Your feedback directly influences what we build next.',
   },
 ];
 
@@ -65,38 +38,38 @@ export function Reviews() {
   const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
 
   return (
-    <section id="guarantees" ref={sectionRef}>
+    <section id="founding" ref={sectionRef}>
       <div className="c">
         <motion.div
-          className="sh rv"
+          className="sh sc"
           initial={{ opacity: 0, y: 28, filter: 'blur(5px)' }}
           animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
         >
           <div className="tag" style={{ marginBottom: '12px' }}>
-            Our Promise
+            Limited Availability
           </div>
           <h2 className="st">
-            What We <em>Guarantee</em>
+            Be One of Our <em>First 4 Clients</em>
           </h2>
           <p className="sd">
-            We&apos;re a new agency building our reputation one client at a time. These aren&apos;t vague promises &mdash; they&apos;re commitments we back with action.
+            We are building something special &mdash; and the first clients in get the best deal.
           </p>
         </motion.div>
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
-        @media(max-width:1024px){#guarantee-grid{grid-template-columns:repeat(2,1fr)!important}}
-        @media(max-width:640px){#guarantee-grid{grid-template-columns:1fr!important}}
+        @media(max-width:640px){#founding-grid{grid-template-columns:1fr!important}}
       ` }} />
 
       <div className="c">
-        <div id="guarantee-grid" style={{
+        <div id="founding-grid" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(3, 1fr)',
           gap: '14px',
+          marginBottom: '32px',
         }}>
-          {GUARANTEES.map((g, i) => (
+          {FOUNDING_CARDS.map((g, i) => (
             <motion.div
               key={g.title}
               className="svc"
@@ -135,6 +108,25 @@ export function Reviews() {
               </p>
             </motion.div>
           ))}
+        </div>
+
+        {/* CTA + honesty note */}
+        <div style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
+          <a
+            href="/free-audit"
+            className="bp"
+            style={{ display: 'inline-flex', marginBottom: '24px' }}
+          >
+            Apply for Founding Client Pricing
+            <span style={{ fontSize: '14px' }}>&rarr;</span>
+          </a>
+          <p style={{
+            fontSize: '13px',
+            color: 'var(--t3)',
+            lineHeight: 1.7,
+          }}>
+            Honest truth: We are new. But our founder has worked inside 400+ dental practices and shipped 8 production apps. Your project gets our full attention and best work.
+          </p>
         </div>
       </div>
     </section>

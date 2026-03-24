@@ -94,6 +94,19 @@ export function Footer() {
           </div>
         </div>
 
+        {/* NAP line */}
+        <div style={{
+          textAlign: 'center',
+          padding: '16px 0',
+          borderTop: '1px solid var(--hr)',
+          marginTop: '24px',
+          fontSize: '13px',
+          color: 'var(--t3)',
+        }}>
+          Black Diamond Cyber &middot; Canyon Lake, TX &middot;{' '}
+          <a href="mailto:blackdiamondcyber@gmail.com" style={{ color: 'var(--t3)' }}>blackdiamondcyber@gmail.com</a>
+        </div>
+
         {/* Bottom bar */}
         <div className="fb">
           <span>&copy; 2026 Black Diamond Cybersecurity Consulting LLC. All rights reserved.</span>

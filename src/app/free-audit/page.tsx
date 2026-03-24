@@ -259,8 +259,8 @@ export default function FreeAuditPage() {
                 marginBottom: '10px',
               }}
             >
-              See What Your Patients See.{' '}
-              <em style={{ color: 'var(--cyan)', fontStyle: 'italic' }}>It Might Surprise You.</em>
+              Your Practice Is Losing Patients Right Now.{' '}
+              <em style={{ color: 'var(--cyan)', fontStyle: 'italic' }}>We Will Show You Why.</em>
             </h1>
             <p
               style={{
@@ -268,24 +268,34 @@ export default function FreeAuditPage() {
                 color: 'var(--t2)',
                 lineHeight: 1.85,
                 maxWidth: '420px',
+                margin: '0 auto 8px',
+              }}
+            >
+              A free, no-strings audit built specifically for dental and healthcare practices.
+            </p>
+            <p
+              style={{
+                fontSize: '13px',
+                color: 'var(--cyan)',
+                fontWeight: 600,
                 margin: '0 auto 20px',
               }}
             >
-              In 24 hours, you will get:
+              What You Get in 24 Hours:
             </p>
             <div style={{
               display: 'flex',
               flexDirection: 'column',
               gap: '8px',
               alignItems: 'flex-start',
-              maxWidth: '400px',
+              maxWidth: '440px',
               margin: '0 auto 20px',
               textAlign: 'left',
             }}>
               {[
-                'Your PageSpeed score vs. your top 3 local competitors',
-                'The #1 SEO gap costing you new patients right now',
-                'A custom action plan to fix it — whether you hire us or not',
+                'Your Google ranking vs. your top 3 local competitors',
+                'Your site\u2019s PageSpeed score — and what it\u2019s costing you in patients',
+                '3 specific fixes you can make this week to rank higher — free, whether you hire us or not',
               ].map((item) => (
                 <div key={item} style={{
                   display: 'flex',
@@ -295,7 +305,7 @@ export default function FreeAuditPage() {
                   color: 'var(--t2)',
                   lineHeight: 1.6,
                 }}>
-                  <span style={{ color: 'var(--green)', fontSize: '14px', marginTop: '2px', flexShrink: 0 }}>✓</span>
+                  <span style={{ color: 'var(--green)', fontSize: '14px', marginTop: '2px', flexShrink: 0 }}>&#10003;</span>
                   {item}
                 </div>
               ))}
@@ -307,7 +317,7 @@ export default function FreeAuditPage() {
                 lineHeight: 1.6,
               }}
             >
-              Takes 30 seconds. No credit card. No sales pitch.
+              Takes 30 seconds. Results in your inbox in under 2 hours. No credit card. No sales pitch. Just data.
             </p>
           </div>
 
@@ -418,6 +428,31 @@ export default function FreeAuditPage() {
           >
             No credit card required. Results delivered instantly.
           </p>
+
+          {/* Testimonial-style social proof */}
+          <div style={{
+            marginTop: '24px',
+            padding: '16px 20px',
+            background: 'rgba(40,135,204,.04)',
+            border: '1px solid rgba(93,196,232,.1)',
+            borderRadius: 'var(--r)',
+          }}>
+            <p style={{
+              fontSize: '13px',
+              color: 'var(--t2)',
+              lineHeight: 1.7,
+              fontStyle: 'italic',
+              marginBottom: '6px',
+            }}>
+              &ldquo;I had no idea we were invisible on Google Maps. The audit showed us exactly what to fix.&rdquo;
+            </p>
+            <p style={{
+              fontSize: '11px',
+              color: 'var(--t3)',
+            }}>
+              &mdash; From our founding client program
+            </p>
+          </div>
         </div>
       </div>
     );

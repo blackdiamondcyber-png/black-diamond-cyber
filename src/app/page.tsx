@@ -34,10 +34,11 @@ const jsonLd = {
     "@type": "PostalAddress",
     addressLocality: "Canyon Lake",
     addressRegion: "TX",
+    postalCode: "78133",
     addressCountry: "US",
   },
-  areaServed: "US",
-  priceRange: "$997 - $4,997",
+  areaServed: ["Austin", "San Antonio", "Texas"],
+  priceRange: "$997-$4997",
   serviceType: [
     "Website Design",
     "Website Hosting",
@@ -55,12 +56,39 @@ const jsonLd = {
   },
 };
 
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Black Diamond Cyber",
+  description:
+    "AI-powered website design and growth systems for dental practices and local businesses",
+  url: "https://bd-cyber.com",
+  email: "blackdiamondcyber@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Canyon Lake",
+    addressRegion: "TX",
+    postalCode: "78133",
+    addressCountry: "US",
+  },
+  founder: {
+    "@type": "Person",
+    name: "Erik Pearson",
+  },
+  areaServed: ["Austin", "San Antonio", "Texas"],
+  priceRange: "$997-$4997",
+};
+
 export default function Home() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
       />
       {/* Contact modal handler - intercepts #book links */}
       <BookingHandler />

@@ -61,6 +61,43 @@ export function Pricing() {
           <p className="sd">No hidden fees. No contracts. Cancel anytime.</p>
         </div>
 
+        {/* Performance Guarantee */}
+        <div className="rv" style={{
+          maxWidth: '720px',
+          margin: '0 auto 32px',
+          padding: '28px 32px',
+          background: 'rgba(245,158,11,.04)',
+          border: '1px solid rgba(245,158,11,.2)',
+          borderRadius: 'var(--rr)',
+          textAlign: 'center',
+        }}>
+          <div style={{
+            fontSize: '20px',
+            fontWeight: 700,
+            color: '#F59E0B',
+            marginBottom: '10px',
+            fontFamily: "'Instrument Serif', serif",
+            letterSpacing: '-0.01em',
+          }}>
+            The BDC Performance Guarantee
+          </div>
+          <p style={{
+            fontSize: '15px',
+            color: 'var(--text)',
+            lineHeight: 1.7,
+            marginBottom: '10px',
+          }}>
+            If your new site does not score 90+ on Google PageSpeed and rank for your primary service keyword within 60 days &mdash; we rebuild it free. Zero arguments.
+          </p>
+          <p style={{
+            fontSize: '12px',
+            color: 'var(--t3)',
+            lineHeight: 1.6,
+          }}>
+            We ship 95+ PageSpeed on every build. This guarantee costs us nothing &mdash; but it means everything for your confidence.
+          </p>
+        </div>
+
         {/* Billing toggle */}
         <div className="rv" style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '12px' }}>
@@ -190,7 +227,7 @@ export function Pricing() {
             <div className="pri rv">
               <div className="pt">Starter</div>
               <div className="pa">$997</div>
-              <div className="pmm">then <b>$<AnimatedCounter value={wp.starter} duration={0.6} />/mo</b></div>
+              <div className="pmm" title="Hosting + SSL + CDN, monthly performance monitoring, content updates (up to 2/mo), priority support">then <b>$<AnimatedCounter value={wp.starter} duration={0.6} />/mo</b> <span style={{ fontSize: '10px', color: 'var(--t3)', fontWeight: 400 }}>Growth Maintenance</span></div>
               <ul className="pf">
                 <li>5-7 page website</li>
                 <li>Template-based design</li>
@@ -208,14 +245,14 @@ export function Pricing() {
               <div style={{ position: 'absolute', top: '-11px', left: '50%', transform: 'translateX(-50%)', background: 'var(--blue)', color: '#fff', fontSize: '9px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', padding: '3px 13px', borderRadius: '40px', whiteSpace: 'nowrap' }}>Most Popular</div>
               <div className="pt">Professional</div>
               <div className="pa">$1,997</div>
-              <div className="pmm">then <b>$<AnimatedCounter value={wp.professional} duration={0.6} />/mo</b></div>
+              <div className="pmm" title="Hosting + SSL + CDN, monthly performance monitoring, content updates (up to 2/mo), priority support">then <b>$<AnimatedCounter value={wp.professional} duration={0.6} />/mo</b> <span style={{ fontSize: '10px', color: 'var(--t3)', fontWeight: 400 }}>Growth Maintenance</span></div>
               <ul className="pf">
                 <li>8-15 pages</li>
                 <li>Semi-custom design</li>
                 <li>Competitor analysis</li>
-                <li>Local SEO setup</li>
-                <li>Booking integration</li>
-                <li>Monthly analytics</li>
+                <li>Rank for &ldquo;dentist near me&rdquo; searches</li>
+                <li>Let patients book online 24/7</li>
+                <li>Know exactly how many new patients come in each month</li>
                 <li>5-7 day delivery</li>
               </ul>
               <PricingButton tier="professional" featured />
@@ -225,7 +262,7 @@ export function Pricing() {
             <div className="pri rv d2">
               <div className="pt">Premium</div>
               <div className="pa">$2,997</div>
-              <div className="pmm">then <b>$<AnimatedCounter value={wp.premium} duration={0.6} />/mo</b></div>
+              <div className="pmm" title="Hosting + SSL + CDN, monthly performance monitoring, unlimited content updates, priority support">then <b>$<AnimatedCounter value={wp.premium} duration={0.6} />/mo</b> <span style={{ fontSize: '10px', color: 'var(--t3)', fontWeight: 400 }}>Growth Maintenance</span></div>
               <ul className="pf">
                 <li>15-25+ pages</li>
                 <li>Fully custom design</li>
@@ -242,7 +279,7 @@ export function Pricing() {
             <div className="pri rv d3">
               <div className="pt">Cinematic</div>
               <div className="pa">$4,997</div>
-              <div className="pmm">then <b>$<AnimatedCounter value={wp.cinematic} duration={0.6} />/mo</b></div>
+              <div className="pmm" title="Hosting + SSL + CDN, monthly performance monitoring, unlimited content updates, priority support, quarterly strategy call">then <b>$<AnimatedCounter value={wp.cinematic} duration={0.6} />/mo</b> <span style={{ fontSize: '10px', color: 'var(--t3)', fontWeight: 400 }}>Growth Maintenance</span></div>
               <ul className="pf">
                 <li>Everything in Premium</li>
                 <li>AI 3D animated hero</li>

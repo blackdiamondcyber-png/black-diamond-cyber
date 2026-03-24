@@ -5,6 +5,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const faqItems = [
   {
+    q: 'Why should I trust a new agency?',
+    a: 'Fair question. Black Diamond Cyber is new, but its founder is not. Erik Pearson is a Patterson Dental territory sales rep who has worked inside 400+ dental practices across Austin and San Antonio. He is also a self-taught developer who has shipped 8 production web applications. The first 4 clients get founding pricing and Erik\u2019s personal attention on every detail. We succeed by delivering results \u2014 not by running ads.',
+  },
+  {
+    q: 'What if I\u2019m not happy with the website?',
+    a: 'If your site does not score 90+ on Google PageSpeed within 30 days, we rebuild it at no charge. We also offer unlimited revisions during the build process. No contracts means you can walk away anytime \u2014 but our clients don\u2019t.',
+  },
+  {
     q: 'How long does it take to build my website?',
     a: 'Most websites are delivered in 3-7 business days depending on the tier. Starter sites are ready in 3-5 days, Premium and Cinematic sites take 10-14 days.',
   },

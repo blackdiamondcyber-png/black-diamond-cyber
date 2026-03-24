@@ -218,18 +218,33 @@ export function Hero() {
               </span>
             </motion.h1>
 
+            {/* Answer line — completes fear→solution→proof arc */}
+            <motion.p
+              variants={fadeUp}
+              style={{
+                fontSize: 'clamp(15px, 1.6vw, 18px)',
+                color: 'var(--text)',
+                maxWidth: '520px',
+                lineHeight: 1.7,
+                marginBottom: '12px',
+                fontWeight: 500,
+              }}
+            >
+              Most dental practices lose new patients to a competitor with a better website. We fix that in 7 days &mdash; guaranteed.
+            </motion.p>
+
             {/* Subheadline */}
             <motion.p
               variants={fadeUp}
               style={{
-                fontSize: '16px',
+                fontSize: '15px',
                 color: 'var(--t2)',
                 maxWidth: '520px',
                 lineHeight: 1.85,
                 marginBottom: '36px',
               }}
             >
-              We build AI-powered websites that turn Google searches into booked appointments &mdash; in 7 days or less. No contracts. You own everything.
+              AI-powered websites that turn Google searches into booked appointments. No contracts. You own everything.
             </motion.p>
 
             {/* CTAs — tiered */}
