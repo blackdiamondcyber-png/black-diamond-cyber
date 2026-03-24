@@ -8,29 +8,27 @@ export function CTA() {
               className="tag"
               style={{ display: 'inline-flex', marginBottom: '18px' }}
             >
-              Free &mdash; No Obligation
+              Limited Availability This Month
             </div>
             <h2>
-              See Your New Site
+              Ready to Stop Losing Customers
               <br />
-              Before You <em>Spend a Dime</em>
+              to <em>Competitors?</em>
             </h2>
             <p>
-              Book a free 30-minute call with Erik. We&#39;ll learn about your
-              business and deliver a live preview within 48 hours &mdash;
-              completely free.
+              Book a free strategy call with Erik. We&apos;ll audit your current
+              web presence and show you exactly how AI-powered websites and
+              automation can fill your schedule.
             </p>
             <div className="cb">
               <a
-                href="https://calendly.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#book"
                 className="bp"
               >
-                Book Free 30-Min Call
+                Book Free Strategy Call
               </a>
-              <a href="mailto:blackdiamondcyber@gmail.com" className="bs">
-                Email Erik Directly
+              <a href="/free-audit" className="bs">
+                Run Free Audit
               </a>
             </div>
           </div>

@@ -7,19 +7,20 @@ export function Hero() {
             No Contracts &middot; Cancel Anytime
           </div>
           <h1>
-            Premium Websites
+            Websites &amp; Growth Systems
             <br />
             for Local <em>Businesses</em>
           </h1>
+          <p style={{ fontSize: '14px', color: 'var(--cyan)', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '12px' }}>Websites &middot; Automation &middot; Growth &middot; No Contracts</p>
           <p className="hero-p">
-            We build high-performance websites for dental practices, HVAC
-            companies, plumbers, electricians, roofers, and every local service
-            business that needs more customers. AI-powered. Delivered in days.
-            Hosted and optimized monthly.
+            We build high-performance websites, AI chatbots, review automation,
+            and lead nurture systems for dental practices, HVAC companies, and
+            every local service business that wants more customers. Delivered in
+            days. No contracts.
           </p>
           <div className="ha">
             <a href="#book" className="bp">
-              Book Free Consultation
+              Book Free Strategy Call
             </a>
             <a href="#work" className="bs">
               See Our Work

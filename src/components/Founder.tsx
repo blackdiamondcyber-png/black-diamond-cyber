@@ -26,9 +26,9 @@ export function Founder() {
             <p>Founder &amp; CEO</p>
           </div>
           <div className="fp-badges">
-            <span className="fp-badge">Industry Veteran</span>
-            <span className="fp-badge">AI-Powered</span>
-            <span className="fp-badge">127+ Sites</span>
+            <span className="fp-badge">15+ Years Local Business</span>
+            <span className="fp-badge">AI-Certified</span>
+            <span className="fp-badge">127+ Sites Built</span>
           </div>
         </div>
         <div className="rv d1">
@@ -78,6 +78,12 @@ export function Founder() {
           >
             The savings go directly to you. The results speak for themselves.
           </p>
+          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '24px', alignItems: 'center' }}>
+            <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--t3)' }}>Built With</span>
+            {['Next.js', 'React', 'Supabase', 'Vercel', 'n8n', 'Claude AI'].map((tech) => (
+              <span key={tech} className="ptg hi">{tech}</span>
+            ))}
+          </div>
         </div>
       </div>
     </section>

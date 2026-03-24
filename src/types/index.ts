@@ -1,4 +1,49 @@
 export type SubscriptionTier = 'starter' | 'professional' | 'premium' | 'cinematic';
+export type ServiceTier = 'growth' | 'dominate';
+export type AllTiers = SubscriptionTier | ServiceTier;
+
+export interface ServiceTierConfig {
+  name: string;
+  setupFee: number;
+  monthlyPrice: number;
+  includes: string;
+  features: string[];
+}
+
+export const SERVICE_TIERS: Record<ServiceTier, ServiceTierConfig> = {
+  growth: {
+    name: 'Growth',
+    setupFee: 2997,
+    monthlyPrice: 497,
+    includes: 'Everything in Professional website tier',
+    features: [
+      'Professional website (8-15 pages)',
+      'AI review request system',
+      'Missed call text-back',
+      'Appointment reminder sequences',
+      'Monthly performance dashboard',
+      'Google Business Profile optimization',
+      'Hosting, SSL, CDN included',
+      'No contracts — cancel anytime',
+    ],
+  },
+  dominate: {
+    name: 'Dominate',
+    setupFee: 4997,
+    monthlyPrice: 1497,
+    includes: 'Everything in Growth',
+    features: [
+      'Everything in Growth tier',
+      'AI chatbot — books appointments 24/7',
+      'AI-powered lead nurture (email + SMS)',
+      'Reputation management dashboard',
+      'Google Ads management with AI optimization',
+      'Competitor monitoring alerts',
+      'Dedicated Slack channel with Erik',
+      'Priority support — same-day response',
+    ],
+  },
+};
 
 export interface TierConfig {
   name: string;

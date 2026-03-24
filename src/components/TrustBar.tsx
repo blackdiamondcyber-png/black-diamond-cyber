@@ -32,6 +32,8 @@ export function TrustBar() {
             </div>
             <div className="tl">Avg. Lead Increase</div>
           </div>
+          <div className="tp"></div>
+          <div className="nc2" style={{ borderColor: 'var(--cyan)', color: 'var(--cyan)', background: 'rgba(93,196,232,.04)' }}>Own Your Website Code</div>
         </div>
       </div>
     </div>

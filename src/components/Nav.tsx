@@ -8,11 +8,12 @@ export function Nav() {
         <a href="#work">Work</a>
         <a href="#services">Services</a>
         <a href="#pricing">Pricing</a>
+        <a href="#why">Growth</a>
         <a href="/free-audit">Audit</a>
         <a href="#about">About</a>
       </div>
       <a href="#book" className="nc">
-        Free Consultation
+        Free Strategy Call
       </a>
     </nav>
   );

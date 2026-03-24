@@ -8,8 +8,8 @@ export function Footer() {
               BLACK DIAMOND <span>CYBER</span>
             </div>
             <p>
-              Premium websites for local service businesses. AI-powered.
-              Delivered in days. No contracts.
+              AI-powered websites and growth systems for local service
+              businesses. No contracts. Own your code.
             </p>
           </div>
           <div>
@@ -25,7 +25,24 @@ export function Footer() {
                 <a href="#">SEO &amp; Analytics</a>
               </li>
               <li>
-                <a href="#">Cinematic Animations</a>
+                <a href="#">AI Automation</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4>Growth Systems</h4>
+            <ul className="fl">
+              <li>
+                <a href="#">AI Chatbots</a>
+              </li>
+              <li>
+                <a href="#">Review Automation</a>
+              </li>
+              <li>
+                <a href="#">Lead Nurture</a>
+              </li>
+              <li>
+                <a href="#">Analytics</a>
               </li>
             </ul>
           </div>
@@ -63,8 +80,29 @@ export function Footer() {
             </ul>
           </div>
         </div>
+        {/* Trust badges */}
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', marginBottom: '24px', flexWrap: 'wrap' }}>
+          {['No Contracts', 'Own Your Website', 'Cancel Anytime'].map((badge) => (
+            <span
+              key={badge}
+              style={{
+                fontSize: '9px',
+                fontWeight: 700,
+                letterSpacing: '1.5px',
+                textTransform: 'uppercase',
+                color: 'var(--cyan)',
+                border: '1px solid var(--hr)',
+                borderRadius: '40px',
+                padding: '6px 16px',
+                background: 'var(--bg1)',
+              }}
+            >
+              {badge}
+            </span>
+          ))}
+        </div>
         <div className="fb">
-          <span>&copy; 2026 Black Diamond Cyber LLC</span>
+          <span>&copy; 2026 Black Diamond Cybersecurity Consulting LLC</span>
           <div>
             <a href="#">Privacy</a>
             <a href="#">Terms</a>

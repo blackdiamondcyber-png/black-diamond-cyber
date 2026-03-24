@@ -60,9 +60,15 @@ export default function RootLayout({
         <Script id="scroll-reveal" strategy="afterInteractive">
           {`
             document.documentElement.classList.add('js');
-            var r=document.querySelectorAll('.rv');
-            var o=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('v');o.unobserve(n.target);}})},{threshold:0.02,rootMargin:'0px 0px -20px 0px'});
-            r.forEach(function(el){o.observe(el)});
+            function initReveal(){
+              var r=document.querySelectorAll('.rv:not(.v)');
+              if(!r.length)return;
+              var o=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('v');o.unobserve(n.target);}})},{threshold:0.02,rootMargin:'0px 0px -20px 0px'});
+              r.forEach(function(el){o.observe(el)});
+            }
+            initReveal();
+            new MutationObserver(function(){initReveal()}).observe(document.body,{childList:true,subtree:true});
+            window.addEventListener('load',function(){setTimeout(initReveal,100);setTimeout(initReveal,500);});
           `}
         </Script>
         <Script id="sw-register" strategy="afterInteractive">

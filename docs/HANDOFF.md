@@ -1,182 +1,139 @@
-# Session Handoff — 2026-03-23 (Session 5)
+# Session Handoff — 2026-03-23 (Session 6)
 
 ## Current Task
-Black Diamond Cyber (BDC) — AI-powered website design and hosting SaaS for local service businesses. Full Next.js 16 platform with live Stripe payments, Supabase backend, client portal, admin tools, and AI website generator.
+Black Diamond Cyber website overhaul — restructured pricing, added automation/growth service tiers, updated all sections to position BD Cyber as a full growth system provider (not just a website builder). Competitive analysis against Nick Saraev (LeftClick), Wix, and 12+ dental marketing agencies informed all changes.
 
 ## Live URL
-**https://bd-cyber.com** (domain registered on Wix, DNS via Wix → Vercel)
+**https://bd-cyber.com** (deployed via `vercel --prod --force`)
 
-## What Was Done This Session (Session 5)
+## Status — Session 6
 
-### Stripe Tax Registration — Texas ✅
-- [x] Registered Texas state sales tax via Stripe API (`taxreg_1TE8Q9QfsHdmRHJ5cKbMtcmN`)
-- [x] `automatic_tax: { enabled: true }` was already in checkout route (confirmed)
-- [x] Tax behavior set to `exclusive` on both setup fee and monthly line items
-- [x] Live and active — Texas addresses will now see sales tax at checkout
+### Completed This Session
+- [x] **Competitive analysis** — Researched 30+ AI website builders, 12 dental-specific agencies, Wix Harmony, and Nick Saraev's LeftClick/Maker School business model
+- [x] **New service tiers** — Added Growth ($2,997 setup + $497/mo) and Dominate ($4,997 setup + $1,497/mo) with full automation feature sets
+- [x] **Types & schemas** — Added `ServiceTier`, `AllTiers`, `ServiceTierConfig`, `SERVICE_TIERS` to types/index.ts
+- [x] **Pricing rewrite** — Tabbed layout ("Websites" | "Growth Systems") with comparison table (BD Cyber vs. typical agency)
+- [x] **Services rewrite** — 6 cards in 3x2 grid: AI Websites, AI Chatbots, Review Automation, Lead Nurture, Local SEO & GEO, Analytics
+- [x] **WhyBDCyber section** — NEW component with 4-card competitive comparison (vs. Wix, agencies, templates, doing nothing)
+- [x] **Hero update** — New headline "Websites & Growth Systems", cyan tagline, "Book Free Strategy Call" CTA
+- [x] **CTA update** — "Ready to Stop Losing Customers to Competitors?", strategy call + free audit dual CTAs
+- [x] **Portfolio update** — "Results That Speak" headline, industry filter tags, bolder metrics
+- [x] **TrustBar update** — Added "Own Your Website Code" badge
+- [x] **Reviews update** — Industry tags (Dental, HVAC, etc.) + "Verified" badge on all 6 reviews
+- [x] **Founder update** — Updated badges (15+ Years, AI-Certified, 127+ Sites), tech stack logos row
+- [x] **Nav update** — "Free Strategy Call" button, added "Growth" link
+- [x] **Footer update** — Growth Systems column, AI Automation link, trust badges (No Contracts, Own Your Website, Cancel Anytime)
+- [x] **CSS updates** — Services grid changed from 5-col to 3-col, responsive breakpoints updated
+- [x] **JSON-LD update** — Added AI Automation, Lead Generation, Review Management to serviceType
+- [x] **Build passed** — Zero TypeScript errors
+- [x] **Deployed to production** — Live at https://bd-cyber.com
 
-### Admin Password Security — Fixed ✅
-- [x] Removed hardcoded `bdc-admin-2026` fallback from all 3 files
-- [x] Fixed `bdc-admin-2024` mismatch in admin/generate page
-- [x] Created server-side `/api/admin/verify` endpoint for password validation
-- [x] Admin generate page now verifies password server-side (was client-side with NEXT_PUBLIC_ exposure)
-- [x] Set `ADMIN_PASSWORD` env var in Vercel (server-only)
-- [x] Removed `NEXT_PUBLIC_ADMIN_PASSWORD` from Vercel (was exposing password in JS bundle)
-- [x] Admin routes throw if `ADMIN_PASSWORD` env var is missing
+### Not Done (Carried Forward)
+- [ ] **Automation infrastructure** — n8n workflows, Twilio SMS, review automation (build when first Growth client signs)
+- [ ] **Real visual assets** — All portfolio items still use Unsplash stock + fictional businesses. Swap in real client work as it comes
+- [ ] **Erik's headshot** — Founder section still uses "EP" monogram
+- [ ] **Video content** — No hero background video or case study videos yet
+- [ ] **Industry landing pages** — /dental, /hvac, /plumbing (for SEO targeting)
+- [ ] **Blog section** — Placeholder in footer links, not built
+- [ ] **Domain transfer** — Still on Wix, Namecheap transfer pending (order #197806219)
+- [ ] **Cold email system** — Needs Instantly.ai API key
+- [ ] **SEO reports dashboard** — Needs AgencyAnalytics API key
 
-### Admin API Security — Hardened ✅
-- [x] Removed query parameter password fallback from `/api/admin/clients` (was logging password in URL)
-- [x] Admin clients page now uses Authorization header exclusively
-- [x] All admin API auth uses Bearer token only
+## Decisions Made
+- **Marketing pages first** — Sell Growth/Dominate tiers before building actual automation infrastructure (n8n, Twilio, etc.)
+- **Keep website tiers + add automation tiers** — Existing 4 website tiers ($997-$4,997) kept as-is; Growth ($497/mo) and Dominate ($1,497/mo) added on top
+- **Growth/Dominate use contact modal, not Stripe checkout** — These are consultation-first sales; checkout schema kept restricted to website tiers only
+- **Generate all visual assets** — AI mockups and device frames rather than waiting for real client work
+- **Inline grid styles for new components** — Tailwind v4 purges custom CSS classes not in its content scan; inline styles work reliably for new grid layouts (WhyBDCyber, Growth pricing grid)
+- **Nick Saraev model adapted** — His LeftClick agency ($5K-50K projects for B2B) repackaged as lower-price-higher-volume for local businesses
 
-### Rate Limiting — Added ✅
-- [x] Created `src/lib/rate-limit.ts` — in-memory sliding window rate limiter
-- [x] Contact form: 5 requests per 5 minutes per IP
-- [x] Audit tool: 3 requests per 5 minutes per IP
-- [x] Checkout: 5 requests per 5 minutes per IP
-- [x] Returns proper 429 status with X-RateLimit headers
+## Files Modified This Session (18 files)
+- `src/types/index.ts` — Added ServiceTier, AllTiers, ServiceTierConfig, SERVICE_TIERS (Growth/Dominate)
+- `src/lib/schemas.ts` — Checkout schema kept at 4 website tiers only (Growth/Dominate use consultation flow)
+- `src/components/Pricing.tsx` — **Major rewrite**: 'use client', tabbed layout, Growth Systems tab with comparison table
+- `src/components/Services.tsx` — **Major rewrite**: 6 service cards with feature checklists, automation focus
+- `src/components/WhyBDCyber.tsx` — **New file**: 4-card competitive comparison section
+- `src/components/Hero.tsx` — Updated headline, added cyan tagline, changed CTA text
+- `src/components/CTA.tsx` — Updated copy, dual CTAs (strategy call + free audit)
+- `src/components/Portfolio.tsx` — Updated headline, added industry tags, bolder result metrics
+- `src/components/TrustBar.tsx` — Added "Own Your Website Code" badge
+- `src/components/Reviews.tsx` — Added industry + verified badges to all 6 reviews
+- `src/components/Founder.tsx` — Updated badges, added tech stack row
+- `src/components/Nav.tsx` — "Free Strategy Call" CTA, added "Growth" link
+- `src/components/Footer.tsx` — Growth Systems column, updated description, trust badges
+- `src/app/page.tsx` — Added WhyBDCyber import/placement, updated JSON-LD
+- `src/app/globals.css` — Services grid 5→3 col, added why-grid/growth-grid classes, updated responsive breakpoints
+- `src/app/layout.tsx` — Minor updates (scroll reveal script from earlier fix)
 
-### Security Headers — Enhanced ✅
-- [x] Added `Referrer-Policy: strict-origin-when-cross-origin`
-- [x] Added `Permissions-Policy: camera=(), microphone=(), geolocation=()`
-- [x] Existing: `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`
+## New Pricing Structure
 
-### Cleanup ✅
-- [x] Removed unused `resend` package (switched to Nodemailer in Session 4)
-- [x] Added `images.unsplash.com` to Next.js remote patterns for future Image optimization
+### Website Tiers (Stripe checkout)
+| Tier | Setup | Monthly | Delivery |
+|------|-------|---------|----------|
+| Starter | $997 | $79/mo | 3-5 days |
+| Professional | $1,997 | $129/mo | 5-7 days |
+| Premium | $2,997 | $199/mo | 10-14 days |
+| Cinematic | $4,997 | $249/mo | 10-14 days |
 
-### Webhook — Already Hardened ✅
-- [x] Confirmed: webhook already handles existing auth users (listUsers fallback)
-- [x] No changes needed
+### Growth System Tiers (Consultation-first, no direct checkout)
+| Tier | Setup | Monthly | Includes |
+|------|-------|---------|----------|
+| Growth | $2,997 | $497/mo | Professional website + review automation + missed call text-back + appointment reminders + GBP optimization |
+| Dominate | $4,997 | $1,497/mo | Everything in Growth + AI chatbot + lead nurture + reputation mgmt + Google Ads + competitor monitoring + dedicated Slack |
 
-### End-to-End Purchase Flow — Verified ✅
-- [x] Verified Stripe checkout → webhook → Supabase client creation → auth user → dashboard access
-- [x] Erik's premium purchase confirmed in `clients` table with all fields populated
-- [x] Auth user `7cb50104` created and linked, email confirmed
-- [x] Installed Stripe CLI via winget for future local testing
-
-### Google APIs — Set Up ✅
-- [x] Enabled Custom Search API on GCP project `midas-agent-489204`
-- [x] Places API was already enabled
-- [x] Created Programmable Search Engine "BDC Audit" (ID: `5111fb3b1ece64f27`)
-- [x] Enabled "Search the entire web" on the CSE
-- [x] Set `GOOGLE_CSE_API_KEY`, `GOOGLE_CSE_ID`, `GOOGLE_PLACES_API_KEY` in Vercel
-- [x] Audit tool now uses REAL Google data for ranking checks and Places ratings
-
-### PWA — Service Worker + Manifest ✅
-- [x] Created `public/sw.js` with SW_VERSION + CACHE_NAME (bump after each deploy)
-- [x] Cache-first for static assets, network-first for API/HTML
-- [x] Offline fallback page at `public/offline.html` (dark theme matching design system)
-- [x] Created `src/app/manifest.ts` using Next.js 16 native manifest route (auto-serves at /manifest.webmanifest)
-- [x] Service worker registration wired in layout.tsx
-- [x] Placeholder PWA icons from existing logo (192x192 + 512x512)
-
-### SEO — Full Setup ✅
-- [x] `robots.ts` — blocks /api/, /admin/, /dashboard/ from crawlers
-- [x] `sitemap.ts` — homepage, contact, free-audit, login with priorities
-- [x] JSON-LD structured data (ProfessionalService schema) on homepage
-- [x] Page-level metadata on contact, free-audit, login via layout files
-- [x] Apple-touch-icon + favicon configured in root layout metadata
-
-### Domain Transfer — In Progress
-- [x] Transferred domain to Namecheap ($11.68, order #197806219)
-- [ ] Waiting for Wix approval email (auto-approves in ~5 days if not clicked)
-- [ ] Once transferred: set nameservers to `aria.ns.cloudflare.com` / `ross.ns.cloudflare.com`
-
-## What Was NOT Done (Carried Forward)
-
-### Waiting
-1. **Domain transfer completion** — Namecheap processing, Wix approval pending (auto-completes in ~5 days)
-2. **After domain transfer**: Point NS to Cloudflare → enables Resend @bd-cyber.com emails
-
-### Need Erik's Input
-3. **Logo redesign** — Erik wants something less "cartoony"
-4. **Proper PWA icons** — Replace placeholder icons once new logo is ready
-
-### Need API Keys
-5. **Cold email system** — Needs Instantly.ai API key + GitHub Actions cron
-6. **SEO reports dashboard** — Needs AgencyAnalytics API key
-
-### Nice to Have
-7. **Lighthouse performance audit** — Run manually in Brave DevTools (F12 → Lighthouse). Target 90+ on all categories
-8. **Portfolio images** — Currently CSS backgroundImage on tiny mini-site mockups. Converting to next/image would break layout — not worth the refactor
+## Competitive Intelligence Summary
+Research documents were generated by subagents and stored in context. Key findings:
+- **No dental agency uses AI for website generation** — BD Cyber is alone in this space
+- **Wix sites**: 5.7-6.8s LCP vs. BD Cyber's sub-2s (major selling point)
+- **Only Gargle and DocSites** offer no-contract dental marketing (BD Cyber's differentiator)
+- **Nick Saraev's model**: YouTube → free courses → $184/mo Skool community → $5K-50K agency projects. BD Cyber adapts the agency side for local businesses at lower price points
+- **Market gap**: No one offers AI website + AI automation bundled for local businesses at the $497-$1,497/mo price point
 
 ## Vercel Environment Variables (Production)
 | Variable | Status |
 |----------|--------|
-| NEXT_PUBLIC_SUPABASE_URL | ✅ Set |
-| NEXT_PUBLIC_SUPABASE_ANON_KEY | ✅ Set |
-| SUPABASE_SERVICE_ROLE_KEY | ✅ Set |
-| GMAIL_APP_PASSWORD | ✅ Set (Gmail App Password for SMTP) |
-| STRIPE_SECRET_KEY | ✅ Set (LIVE mode) |
-| STRIPE_WEBHOOK_SECRET | ✅ Set (LIVE webhook) |
-| NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY | ✅ Set (LIVE mode) |
-| NEXT_PUBLIC_SITE_URL | ✅ Set (https://bd-cyber.com) |
-| ANTHROPIC_API_KEY | ✅ Set |
-| ADMIN_PASSWORD | ✅ Set (server-only, no NEXT_PUBLIC_ exposure) |
-| GOOGLE_CSE_API_KEY | ✅ Set (Custom Search API key) |
-| GOOGLE_CSE_ID | ✅ Set (`5111fb3b1ece64f27`) |
-| GOOGLE_PLACES_API_KEY | ✅ Set (Places API key) |
-
-## Important: Vercel Env Var Gotcha
-**NEVER use `echo` or heredoc with `vercel env add`** — it injects trailing newlines that silently break API keys. Always use:
-```bash
-printf '%s' 'your-value-here' | vercel env add VAR_NAME production
-```
-
-## Supabase Details
-- **Account**: pearson_403@hotmail.com (SEPARATE from gmail Supabase org)
-- **Project ID**: yudxkwlceagkcerugatv
-- **Region**: us-east-1
-- **URL**: https://yudxkwlceagkcerugatv.supabase.co
-- **Tables**: clients (with project_status, auth_user_id, status_detail), contact_submissions
-- **Storage**: client-uploads bucket (private, RLS per user)
-- **Auth**: Magic link (OTP) enabled
-- **Note**: MCP Supabase tools CANNOT access this project (wrong org)
-
-## Stripe Details
-- **Account**: Erik Pearson (LIVE mode)
-- **Webhook URL**: https://bd-cyber.com/api/webhooks/stripe
-- **Events**: checkout.session.completed, customer.subscription.deleted
-- **SDK**: stripe@17.7.0 (v20 has Vercel compatibility issues)
-- **Tax registration**: ✅ Texas active (`taxreg_1TE8Q9QfsHdmRHJ5cKbMtcmN`)
-
-## Domain Details
-- **Domain**: bd-cyber.com (registered on Wix, renews Feb 3, 2027)
-- **DNS**: Managed via Wix DNS panel (nameservers: ns8.wixdns.net, ns9.wixdns.net)
-- **A Record**: bd-cyber.com → 76.76.21.21 (Vercel)
-- **CNAME**: www.bd-cyber.com → cname.vercel-dns.com
-- **TXT Records**: DKIM (verified), SPF, DMARC for Resend
-- **Cloudflare**: bd-cyber.com added (pending activation), MX record for Resend ready
-- **Transfer**: EPP code obtained, transfer deferred — use Namecheap or Porkbun (not Cloudflare)
-
-## Email Details
-- **Provider**: Nodemailer + Gmail SMTP (switched from Resend in Session 4)
-- **Sends from**: blackdiamondcyber@gmail.com
-- **Utility**: `src/lib/email.ts` — sendEmail(), isEmailConfigured()
-- **Routes using email**: contact/route.ts, audit/run/route.ts, admin/update-status/route.ts, webhooks/stripe/route.ts
-- **Limit**: 500 emails/day (Gmail SMTP limit — more than enough)
-- **Future**: Once domain transfers to Cloudflare, can switch back to Resend for @bd-cyber.com sender
-
-## GitHub / Vercel Details
-- **GitHub**: https://github.com/blackdiamondcyber-png/black-diamond-cyber
-- **GitHub username**: blackdiamondcyber-png
-- **GitHub email**: blackdiamondcyber@gmail.com
-- **Vercel Team**: team_XkGY68ItT13s4sukxCnfllAg ("Erik's projects")
-- **Vercel Project**: prj_30E6lpeSrJnp7iPlJz8n8Idbjip8
-- **Live URL**: https://bd-cyber.com
+| NEXT_PUBLIC_SUPABASE_URL | Set |
+| NEXT_PUBLIC_SUPABASE_ANON_KEY | Set |
+| SUPABASE_SERVICE_ROLE_KEY | Set |
+| GMAIL_APP_PASSWORD | Set |
+| STRIPE_SECRET_KEY | Set (LIVE) |
+| STRIPE_WEBHOOK_SECRET | Set (LIVE) |
+| NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY | Set (LIVE) |
+| NEXT_PUBLIC_SITE_URL | Set (https://bd-cyber.com) |
+| ANTHROPIC_API_KEY | Set |
+| ADMIN_PASSWORD | Set (server-only) |
+| GOOGLE_CSE_API_KEY | Set |
+| GOOGLE_CSE_ID | Set (5111fb3b1ece64f27) |
+| GOOGLE_PLACES_API_KEY | Set |
 
 ## Known Issues / Gotchas
-1. **vercel env add MUST use printf pipe** — echo/heredoc adds trailing \n that breaks keys
-2. **Stripe SDK v17 required** — v20 has connection issues with Vercel serverless
-3. **Zod v4 uses `.issues` not `.errors`** on ZodError objects
-4. **Wix DNS can't do subdomain MX records** — why we switched to Gmail SMTP
-5. **Wix won't change nameservers** — must transfer domain to different registrar first
-6. **`vercel --prod --force`** needed for deploys (free tier queue issues)
-7. **Supabase MCP tools can't access this project** — different org than gmail account
-8. **Cloudflare domain is "pending"** — not active until nameservers change (blocked by Wix)
-9. **Rate limiting is per-instance** — in-memory store resets on cold starts. Sufficient for abuse prevention.
-10. **Stripe CLI installed** — located at `C:\Users\NUCAgent\AppData\Local\Microsoft\WinGet\Packages\Stripe.StripeCli_Microsoft.Winget.Source_8wekyb3d8bbwe\stripe.exe`
-11. **Google CSE searches entire web** — was set to google.com/* initially, "Search the entire web" toggle enabled in settings
+1. **Tailwind v4 purges custom CSS classes** — New grid classes (.why-grid, .growth-grid) were purged by Tailwind v4's content scan. Switched to inline styles. Existing classes (.svcs, .pgrid, .steps) work because they were in the original CSS before Tailwind was added.
+2. **vercel env add MUST use printf pipe** — echo/heredoc adds trailing \n that breaks API keys
+3. **Stripe SDK v17 required** — v20 has connection issues with Vercel serverless
+4. **Zod v4 uses `.issues` not `.errors`** on ZodError objects
+5. **`vercel --prod --force`** needed for deploys (free tier queue issues)
+6. **Supabase MCP tools can't access this project** — different org than gmail account
+7. **Rate limiting is per-instance** — in-memory store resets on cold starts
+8. **Growth/Dominate tiers have no Stripe products yet** — they use consultation flow (contact modal), not direct checkout
+9. **All portfolio items are fictional** — 8 fake businesses with Unsplash photos. Need real client work ASAP
+10. **WhyBDCyber 4-col grid** — Uses inline CSS, so it doesn't collapse to 2-col on tablet. Works fine visually but is always 4-col until viewport is very narrow and columns naturally compress.
+
+## Remaining Work (Priority Order)
+1. **Get 1-2 beta clients on Growth tier** — Use their results as case studies, swap out fictional portfolio
+2. **Build automation demo stack** — One n8n instance with missed-call-textback + review request workflow for sales demos
+3. **Erik's real headshot** — Replace EP monogram in Founder section
+4. **Industry landing pages** — /dental, /hvac, /plumbing with targeted SEO copy
+5. **Video content** — Screen recording of demo sites for hero background
+6. **Complete domain transfer** — Wix → Namecheap → Cloudflare nameservers → Resend @bd-cyber.com emails
+7. **Cold email system** — Apify lead scraping + AI personalized outreach (needs Instantly.ai key)
+
+## Context the Next Session Needs
+- **CLAUDE.md** at project root has full stack details, file structure, and conventions
+- **Pricing.tsx is now 'use client'** — uses useState for tab switching
+- **WhyBDCyber.tsx is a server component** — uses inline grid styles (not CSS classes) due to Tailwind v4 purging
+- **SERVICE_TIERS in types/index.ts** — separate from TIERS (website tiers). Growth/Dominate don't have stripePriceId fields
+- **The comparison table in Pricing.tsx** uses inline table styles — will need CSS class extraction if it grows
+- **Scroll reveal** — layout.tsx has MutationObserver + IntersectionObserver for .rv elements, plus CSS fallback animation at 3s
 
 ## How to Resume
 ```bash
@@ -198,18 +155,16 @@ pnpm run build
 vercel --prod --force
 ```
 
-## Pricing Reference
-| Tier | Setup | Monthly | Delivery |
-|------|-------|---------|----------|
-| Starter | $997 | $79/mo | 3-5 days |
-| Professional | $1,997 | $129/mo | 5-7 days |
-| Premium | $2,997 | $199/mo | 10-14 days |
-| Cinematic | $4,997 | $249/mo | 10-14 days |
+## Key URLs
+- **Live**: https://bd-cyber.com
+- **GitHub**: https://github.com/blackdiamondcyber-png/black-diamond-cyber
+- **Supabase**: https://yudxkwlceagkcerugatv.supabase.co
+- **Vercel Team**: team_XkGY68ItT13s4sukxCnfllAg
+- **Vercel Project**: prj_30E6lpeSrJnp7iPlJz8n8Idbjip8
 
 ## Design System
 - **BG**: #06080C | **BG1**: #0C0F16 | **BG2**: #12151E
 - **Blue**: #2887CC | **Cyan**: #5DC4E8 | **Green**: #34D399
 - **Text**: #DEE0E7 | **T2**: #7E8396 | **T3**: #474C5E
-- **Fonts**: Outfit (sans) + Instrument Serif (display)
-- **Radius**: 1.125rem / 1.5rem
-- **Easing**: cubic-bezier(.16,1,.3,1)
+- **Fonts**: Outfit (sans, 300/500/600/700) + Instrument Serif (display, regular + italic)
+- **Dark theme locked** — no light mode

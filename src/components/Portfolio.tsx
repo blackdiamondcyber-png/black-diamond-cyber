@@ -7,12 +7,22 @@ export function Portfolio() {
             Our Work
           </div>
           <h2 className="st">
-            Recent Client <em>Launches</em>
+            Results That <em>Speak</em>
           </h2>
           <p className="sd">
             Every site custom-built from competitor research. Every result
-            tracked and measured.
+            tracked and measured. Here&apos;s what AI-powered websites deliver.
           </p>
+          <div style={{ display: 'flex', gap: '8px', marginTop: '16px', flexWrap: 'wrap' }}>
+            <span className="ptg hi">Dental</span>
+            <span className="ptg hi">HVAC</span>
+            <span className="ptg hi">Plumbing</span>
+            <span className="ptg hi">Electrical</span>
+            <span className="ptg hi">Roofing</span>
+            <span className="ptg hi">Med Spa</span>
+            <span className="ptg hi">Veterinary</span>
+            <span className="ptg hi">Landscaping</span>
+          </div>
         </div>
       </div>
       <div className="ps rv d1">
@@ -99,7 +109,7 @@ export function Portfolio() {
           <div className="pm">
             <h3>Bright Smile Dental</h3>
             <p>General &amp; Cosmetic &middot; Austin, TX</p>
-            <div className="res">+47 new patients/mo since launch</div>
+            <div className="res" style={{ fontSize: '13px', fontWeight: 700 }}>+47 new patients/mo since launch</div>
             <div className="ptags">
               <span className="ptg hi">Dental</span>
               <span className="ptg">Custom</span>
@@ -190,7 +200,7 @@ export function Portfolio() {
           <div className="pm">
             <h3>Summit HVAC Services</h3>
             <p>Heating &amp; Cooling &middot; Denver, CO</p>
-            <div className="res">312% increase in web leads</div>
+            <div className="res" style={{ fontSize: '13px', fontWeight: 700 }}>312% increase in web leads</div>
             <div className="ptags">
               <span className="ptg hi">HVAC</span>
               <span className="ptg">Premium</span>
@@ -281,7 +291,7 @@ export function Portfolio() {
           <div className="pm">
             <h3>Apex Plumbing Co.</h3>
             <p>Residential &amp; Commercial &middot; Phoenix, AZ</p>
-            <div className="res">
+            <div className="res" style={{ fontSize: '13px', fontWeight: 700 }}>
               Ranking #1 for &quot;plumber near me&quot;
             </div>
             <div className="ptags">
@@ -375,7 +385,7 @@ export function Portfolio() {
           <div className="pm">
             <h3>Greenline Electrical</h3>
             <p>Licensed Electricians &middot; Charlotte, NC</p>
-            <div className="res">84 booked jobs from website in Q1</div>
+            <div className="res" style={{ fontSize: '13px', fontWeight: 700 }}>84 booked jobs from website in Q1</div>
             <div className="ptags">
               <span className="ptg hi">Electrical</span>
               <span className="ptg">Cinematic</span>
@@ -466,7 +476,7 @@ export function Portfolio() {
           <div className="pm">
             <h3>RedShield Roofing</h3>
             <p>Storm Damage &middot; Nashville, TN</p>
-            <div className="res">$340K in attributed revenue</div>
+            <div className="res" style={{ fontSize: '13px', fontWeight: 700 }}>$340K in attributed revenue</div>
             <div className="ptags">
               <span className="ptg hi">Roofing</span>
               <span className="ptg">Premium</span>
@@ -556,7 +566,7 @@ export function Portfolio() {
           <div className="pm">
             <h3>Luxe Aesthetics Med Spa</h3>
             <p>Cosmetic Treatments &middot; Scottsdale, AZ</p>
-            <div className="res">22 consults/week from organic search</div>
+            <div className="res" style={{ fontSize: '13px', fontWeight: 700 }}>22 consults/week from organic search</div>
             <div className="ptags">
               <span className="ptg hi">Med Spa</span>
               <span className="ptg">3D Hero</span>
@@ -646,7 +656,7 @@ export function Portfolio() {
           <div className="pm">
             <h3>Crestwood Veterinary</h3>
             <p>Small Animal &amp; Emergency &middot; Portland, OR</p>
-            <div className="res">2.8x more appointment requests</div>
+            <div className="res" style={{ fontSize: '13px', fontWeight: 700 }}>2.8x more appointment requests</div>
             <div className="ptags">
               <span className="ptg hi">Veterinary</span>
               <span className="ptg">Booking</span>
@@ -736,7 +746,7 @@ export function Portfolio() {
           <div className="pm">
             <h3>Precision Lawn &amp; Landscape</h3>
             <p>Full-Service Landscaping &middot; Austin, TX</p>
-            <div className="res">First page Google in 6 weeks</div>
+            <div className="res" style={{ fontSize: '13px', fontWeight: 700 }}>First page Google in 6 weeks</div>
             <div className="ptags">
               <span className="ptg hi">Landscaping</span>
               <span className="ptg">SEO</span>

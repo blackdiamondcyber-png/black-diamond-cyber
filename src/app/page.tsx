@@ -7,6 +7,7 @@ import { Portfolio } from "@/components/Portfolio";
 import { Services } from "@/components/Services";
 import { HowItWorks } from "@/components/HowItWorks";
 import { Pricing } from "@/components/Pricing";
+import { WhyBDCyber } from "@/components/WhyBDCyber";
 import { Founder } from "@/components/Founder";
 import { Reviews } from "@/components/Reviews";
 import { CTA } from "@/components/CTA";
@@ -28,17 +29,20 @@ const jsonLd = {
   },
   address: {
     "@type": "PostalAddress",
-    addressLocality: "The Woodlands",
+    addressLocality: "Canyon Lake",
     addressRegion: "TX",
     addressCountry: "US",
   },
   areaServed: "US",
-  priceRange: "$997 - $4997",
+  priceRange: "$997 - $14,997",
   serviceType: [
     "Website Design",
     "Website Hosting",
     "SEO",
     "AI Website Generation",
+    "AI Automation",
+    "Lead Generation",
+    "Review Management",
   ],
   offers: {
     "@type": "AggregateOffer",
@@ -77,6 +81,8 @@ export default function Home() {
         <Portfolio />
         <div className="sep"></div>
         <Services />
+        <div className="sep"></div>
+        <WhyBDCyber />
         <div className="sep"></div>
         <HowItWorks />
         <div className="sep"></div>

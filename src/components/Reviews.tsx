@@ -17,6 +17,7 @@ export function Reviews() {
         {/* Review 1 */}
         <div className="rc">
           <div className="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div style={{ display: 'flex', gap: '4px', marginBottom: '8px' }}><span className="ptg hi">Dental</span><span className="ptg" style={{ borderColor: 'rgba(52,211,153,.2)', color: 'var(--green)' }}>Verified</span></div>
           <blockquote>
             &ldquo;We had zero web presence before Erik stepped in. Four days
             later we had a site that looks like we spent $15K on it. Within 30
@@ -35,6 +36,7 @@ export function Reviews() {
         {/* Review 2 */}
         <div className="rc">
           <div className="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div style={{ display: 'flex', gap: '4px', marginBottom: '8px' }}><span className="ptg hi">HVAC</span><span className="ptg" style={{ borderColor: 'rgba(52,211,153,.2)', color: 'var(--green)' }}>Verified</span></div>
           <blockquote>
             &ldquo;Our old GoDaddy site was embarrassing. BDC rebuilt it in 5
             days and within 6 weeks we were on page 1 of Google for &#39;HVAC
@@ -54,6 +56,7 @@ export function Reviews() {
         {/* Review 3 */}
         <div className="rc">
           <div className="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div style={{ display: 'flex', gap: '4px', marginBottom: '8px' }}><span className="ptg hi">Plumbing</span><span className="ptg" style={{ borderColor: 'rgba(52,211,153,.2)', color: 'var(--green)' }}>Verified</span></div>
           <blockquote>
             &ldquo;The monthly reports show exactly how many people visited,
             where they came from, and how many clicked &#39;Request
@@ -73,6 +76,7 @@ export function Reviews() {
         {/* Review 4 */}
         <div className="rc">
           <div className="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div style={{ display: 'flex', gap: '4px', marginBottom: '8px' }}><span className="ptg hi">Electrical</span><span className="ptg" style={{ borderColor: 'rgba(52,211,153,.2)', color: 'var(--green)' }}>Verified</span></div>
           <blockquote>
             &ldquo;I was paying another company $350/month and my site looked
             like 2016. Erik rebuilt it for less than one month of my old
@@ -91,6 +95,7 @@ export function Reviews() {
         {/* Review 5 */}
         <div className="rc">
           <div className="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div style={{ display: 'flex', gap: '4px', marginBottom: '8px' }}><span className="ptg hi">Roofing</span><span className="ptg" style={{ borderColor: 'rgba(52,211,153,.2)', color: 'var(--green)' }}>Verified</span></div>
           <blockquote>
             &ldquo;We run a 4-location roofing company and needed proper SEO for
             each service area. BDC nailed it. We&#39;re ranking in 3 cities and
@@ -110,6 +115,7 @@ export function Reviews() {
         {/* Review 6 */}
         <div className="rc">
           <div className="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div style={{ display: 'flex', gap: '4px', marginBottom: '8px' }}><span className="ptg hi">Med Spa</span><span className="ptg" style={{ borderColor: 'rgba(52,211,153,.2)', color: 'var(--green)' }}>Verified</span></div>
           <blockquote>
             &ldquo;The Cinematic tier with the animated hero is absolutely
             stunning. Patients tell us they chose us specifically because of how
