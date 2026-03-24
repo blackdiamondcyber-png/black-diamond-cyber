@@ -1,7 +1,12 @@
 'use client';
 
 import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const comparisons = [
   {
@@ -14,9 +19,9 @@ const comparisons = [
   {
     vs: 'vs. Agencies ($10K+)',
     verdict: 'You Pay 5x for the Same Result',
-    point: 'Traditional agencies charge $10K-$30K and take 8-12 weeks. Then they lock you into proprietary platforms so you can never leave. We deliver agency-quality work in days, not months — and you own every line of code.',
-    them: ['$10K-$30K setup', '8-12 week timeline', 'Proprietary lock-in'],
-    us: ['$997-$4,997 setup', '7-day delivery', 'You own everything'],
+    point: 'Traditional agencies charge $10K-$30K and take 8-12 weeks. Many outsource to overseas contractors or operate from different time zones. We are US-based in Texas, deliver agency-quality work in days, and you own every line of code.',
+    them: ['$10K-$30K setup', '8-12 week timeline', 'Overseas contractors, different timezone'],
+    us: ['$997-$4,997 setup', '7-day delivery', 'US-based team, Central Time support'],
   },
   {
     vs: 'vs. Your Nephew\'s Website',
@@ -30,33 +35,80 @@ const comparisons = [
     verdict: 'Your Competitors Thank You',
     point: 'Every day without a strong online presence, potential patients find your competitors instead. 77% of patients research online before booking. If your site is slow, outdated, or invisible on Google — they are already gone.',
     them: ['Losing patients daily', 'Invisible on Google', 'Competitors grow instead'],
-    us: ['Patients find you first', 'Rank for "near me" searches', '2x more bookings'],
+    us: ['Patients find you first', 'Rank for "near me" searches', 'Local Texas market expertise'],
   },
 ];
 
 export function WhyBDCyber() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
+  const headerRef = useRef<HTMLDivElement>(null);
+  const villainRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (headerRef.current) {
+        gsap.from(headerRef.current, {
+          opacity: 0,
+          y: 40,
+          filter: 'blur(6px)',
+          duration: 0.9,
+          ease: 'power4.out',
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: 'top 85%',
+            once: true,
+          },
+        });
+      }
+
+      if (villainRef.current) {
+        gsap.from(villainRef.current, {
+          opacity: 0,
+          y: 24,
+          duration: 0.7,
+          delay: 0.15,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: villainRef.current,
+            start: 'top 85%',
+            once: true,
+          },
+        });
+      }
+
+      if (gridRef.current) {
+        const cards = gridRef.current.querySelectorAll('.why-card');
+        gsap.from(cards, {
+          opacity: 0,
+          y: 50,
+          filter: 'blur(6px)',
+          duration: 0.8,
+          stagger: 0.12,
+          ease: 'power4.out',
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: 'top 80%',
+            once: true,
+          },
+        });
+      }
+    },
+    { scope: sectionRef }
+  );
 
   return (
     <section id="why" ref={sectionRef}>
       <div className="c">
-        <motion.div
-          className="sh sc"
-          initial={{ opacity: 0, y: 28, filter: 'blur(5px)' }}
-          animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
-        >
+        <div className="sh sc" ref={headerRef}>
           <div className="tag" style={{ display: 'inline-flex' }}>Why Black Diamond Cyber</div>
           <h2 className="st">You Have Options.<br /><em>Here is Why We Win.</em></h2>
           <p className="sd">See how we stack up against every alternative &mdash; and why practices choose us.</p>
-        </motion.div>
+        </div>
 
         {/* Villain framing */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        <div
+          ref={villainRef}
           style={{
             maxWidth: '700px',
             margin: '0 auto 40px',
@@ -80,35 +132,29 @@ export function WhyBDCyber() {
             color: 'var(--text)',
             fontWeight: 600,
           }}>
-            We are the opposite.
+            We are the opposite — US-based, same timezone, and we know the Texas market.
           </p>
-        </motion.div>
+        </div>
 
         <style dangerouslySetInnerHTML={{ __html: `
           @media(max-width:1024px){#why-grid{grid-template-columns:repeat(2,1fr)!important}}
           @media(max-width:640px){#why-grid{grid-template-columns:1fr!important}}
         ` }} />
 
-        <div id="why-grid" style={{
+        <div ref={gridRef} id="why-grid" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(2, 1fr)',
           gap: '16px',
         }}>
-          {comparisons.map((c, i) => (
+          {comparisons.map((c) => (
             <motion.div
               key={c.vs}
-              className="svc"
-              initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
-              animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
-              transition={{
-                duration: 0.7,
-                delay: i * 0.1,
-                ease: [0.16, 1, 0.3, 1] as const,
-              }}
+              className="svc why-card"
               whileHover={{
-                y: -4,
-                boxShadow: '0 8px 32px rgba(93,196,232,.08), inset 0 1px 0 rgba(255,255,255,.03)',
-                borderColor: 'rgba(93,196,232,.12)',
+                y: -6,
+                boxShadow: '0 12px 40px rgba(93,196,232,.1), inset 0 1px 0 rgba(255,255,255,.04)',
+                borderColor: 'rgba(93,196,232,.15)',
+                transition: { type: 'spring', stiffness: 300, damping: 20 },
               }}
             >
               <div style={{

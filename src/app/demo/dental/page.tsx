@@ -333,22 +333,46 @@ export default function DentalDemoPage() {
       <Section>
         <section
           style={{
-            background: `linear-gradient(135deg, ${C.navy} 0%, ${C.navyDark} 100%)`,
+            background: `linear-gradient(135deg, ${C.navy} 0%, #1A4A5A 50%, ${C.navyDark} 100%)`,
             padding: "100px 0 80px",
             marginTop: "0",
             position: "relative",
             overflow: "hidden",
           }}
         >
+          {/* Subtle tooth pattern background */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              opacity: 0.04,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2C9.5 2 7 3.5 7 6c0 2 .5 4 0 7-.3 2-1 5-1 5s2 2 3.5 0c1-1.5 1.5-3 2.5-3s1.5 1.5 2.5 3c1.5 2 3.5 0 3.5 0s-.7-3-1-5c-.5-3 0-5 0-7 0-2.5-2.5-4-5-4z' fill='%23fff' fill-opacity='1'/%3E%3C/svg%3E")`,
+              backgroundSize: "80px 80px",
+            }}
+          />
+          {/* Decorative blob */}
           <div
             style={{
               position: "absolute",
               top: "-50%",
               right: "-20%",
-              width: "600px",
-              height: "600px",
+              width: "700px",
+              height: "700px",
               borderRadius: "50%",
-              background: `radial-gradient(circle, ${C.teal}15, transparent 70%)`,
+              background: `radial-gradient(circle, ${C.teal}20, transparent 70%)`,
+              filter: "blur(40px)",
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              bottom: "-30%",
+              left: "-10%",
+              width: "500px",
+              height: "500px",
+              borderRadius: "50%",
+              background: `radial-gradient(circle, ${C.teal}10, transparent 70%)`,
+              filter: "blur(60px)",
             }}
           />
           <div style={{ ...container, position: "relative", zIndex: 1 }}>
@@ -373,9 +397,25 @@ export default function DentalDemoPage() {
                 Welcome to <br />
                 <span style={{ color: C.teal }}>Canyon Lake</span> Family Dentistry
               </h1>
-              <p style={{ fontSize: "18px", color: "rgba(255,255,255,.75)", lineHeight: 1.7, marginBottom: "32px", maxWidth: "520px" }}>
+              <p style={{ fontSize: "18px", color: "rgba(255,255,255,.75)", lineHeight: 1.7, marginBottom: "24px", maxWidth: "520px" }}>
                 Gentle, modern dentistry for your whole family. From routine cleanings to cosmetic transformations — we make every visit comfortable.
               </p>
+              {/* Stat badges */}
+              <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginBottom: "32px" }}>
+                {[
+                  { icon: "⭐", text: "4.9 Google Rating" },
+                  { icon: "🦷", text: "12 Years Trusted" },
+                  { icon: "📱", text: "Online Booking" },
+                ].map((s) => (
+                  <span key={s.text} style={{
+                    display: "inline-flex", alignItems: "center", gap: "6px",
+                    background: "rgba(255,255,255,.08)", border: "1px solid rgba(255,255,255,.12)",
+                    borderRadius: "40px", padding: "6px 14px", fontSize: "13px", color: "rgba(255,255,255,.85)", fontWeight: 500,
+                  }}>
+                    <span>{s.icon}</span> {s.text}
+                  </span>
+                ))}
+              </div>
               <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
                 <a href="#book" style={btn}>
                   Book Your Appointment

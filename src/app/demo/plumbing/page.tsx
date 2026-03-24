@@ -436,21 +436,45 @@ export default function PlumbingDemoPage() {
       <Section>
         <section
           style={{
-            background: `linear-gradient(135deg, ${C.navy} 0%, ${C.navyDark} 100%)`,
+            background: `linear-gradient(135deg, ${C.navy} 0%, #1A3A5D 50%, #1E4D6E 100%)`,
             padding: "100px 0 80px",
             position: "relative",
             overflow: "hidden",
           }}
         >
+          {/* Subtle water drop pattern */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              opacity: 0.04,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2.69l5.66 5.66a8 8 0 11-11.31 0z' fill='%23fff' fill-opacity='1'/%3E%3C/svg%3E")`,
+              backgroundSize: "80px 80px",
+            }}
+          />
+          {/* Decorative blobs */}
           <div
             style={{
               position: "absolute",
               top: "-50%",
               right: "-20%",
-              width: "600px",
-              height: "600px",
+              width: "700px",
+              height: "700px",
               borderRadius: "50%",
-              background: `radial-gradient(circle, ${C.blue}15, transparent 70%)`,
+              background: `radial-gradient(circle, ${C.blue}20, transparent 70%)`,
+              filter: "blur(40px)",
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              bottom: "-30%",
+              left: "-10%",
+              width: "500px",
+              height: "500px",
+              borderRadius: "50%",
+              background: `radial-gradient(circle, rgba(99,179,237,.1), transparent 70%)`,
+              filter: "blur(60px)",
             }}
           />
           <div style={{ ...container, position: "relative", zIndex: 1 }}>
@@ -478,6 +502,22 @@ export default function PlumbingDemoPage() {
               <p style={{ fontSize: "18px", color: "rgba(255,255,255,.75)", lineHeight: 1.7, marginBottom: "16px", maxWidth: "520px" }}>
                 From clogged drains to full repiping — Clearwater Plumbing Co. has been the Hill Country&apos;s most trusted plumber for over 15 years. Licensed, bonded, and always transparent.
               </p>
+              {/* Stat badges */}
+              <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginBottom: "16px" }}>
+                {[
+                  { icon: "⭐", text: "4.8 Google Rating" },
+                  { icon: "💧", text: "Licensed & Bonded" },
+                  { icon: "🚨", text: "24/7 Emergency" },
+                ].map((s) => (
+                  <span key={s.text} style={{
+                    display: "inline-flex", alignItems: "center", gap: "6px",
+                    background: "rgba(255,255,255,.08)", border: "1px solid rgba(255,255,255,.12)",
+                    borderRadius: "40px", padding: "6px 14px", fontSize: "13px", color: "rgba(255,255,255,.85)", fontWeight: 500,
+                  }}>
+                    <span>{s.icon}</span> {s.text}
+                  </span>
+                ))}
+              </div>
               <div
                 style={{
                   display: "inline-flex",

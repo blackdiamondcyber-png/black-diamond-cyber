@@ -356,21 +356,45 @@ export default function HvacDemoPage() {
       <Section>
         <section
           style={{
-            background: `linear-gradient(135deg, ${C.navy} 0%, ${C.navyDark} 100%)`,
+            background: `linear-gradient(135deg, ${C.navy} 0%, #3A2010 50%, ${C.navyDark} 100%)`,
             padding: "100px 0 80px",
             position: "relative",
             overflow: "hidden",
           }}
         >
+          {/* Subtle snowflake/flame pattern */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              opacity: 0.04,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07' stroke='%23fff' stroke-width='1' fill='none'/%3E%3C/svg%3E")`,
+              backgroundSize: "80px 80px",
+            }}
+          />
+          {/* Decorative blobs */}
           <div
             style={{
               position: "absolute",
               top: "-50%",
               right: "-20%",
-              width: "600px",
-              height: "600px",
+              width: "700px",
+              height: "700px",
               borderRadius: "50%",
-              background: `radial-gradient(circle, ${C.orange}15, transparent 70%)`,
+              background: `radial-gradient(circle, ${C.orange}20, transparent 70%)`,
+              filter: "blur(40px)",
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              bottom: "-30%",
+              left: "-10%",
+              width: "500px",
+              height: "500px",
+              borderRadius: "50%",
+              background: `radial-gradient(circle, rgba(59,130,246,.1), transparent 70%)`,
+              filter: "blur(60px)",
             }}
           />
           <div style={{ ...container, position: "relative", zIndex: 1 }}>
@@ -396,9 +420,25 @@ export default function HvacDemoPage() {
                 <span style={{ color: C.orange }}>Comfortable</span>{" "}
                 Year-Round
               </h1>
-              <p style={{ fontSize: "18px", color: "rgba(255,255,255,.75)", lineHeight: 1.7, marginBottom: "32px", maxWidth: "520px" }}>
+              <p style={{ fontSize: "18px", color: "rgba(255,255,255,.75)", lineHeight: 1.7, marginBottom: "24px", maxWidth: "520px" }}>
                 From AC repairs to furnace installations — Hill Country Heating &amp; Air has been keeping Texas families comfortable for over 20 years. Licensed, insured, and always on time.
               </p>
+              {/* Stat badges */}
+              <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginBottom: "32px" }}>
+                {[
+                  { icon: "⭐", text: "4.8 Google Rating" },
+                  { icon: "❄️", text: "20+ Years" },
+                  { icon: "🔧", text: "Same-Day Service" },
+                ].map((s) => (
+                  <span key={s.text} style={{
+                    display: "inline-flex", alignItems: "center", gap: "6px",
+                    background: "rgba(255,255,255,.08)", border: "1px solid rgba(255,255,255,.12)",
+                    borderRadius: "40px", padding: "6px 14px", fontSize: "13px", color: "rgba(255,255,255,.85)", fontWeight: 500,
+                  }}>
+                    <span>{s.icon}</span> {s.text}
+                  </span>
+                ))}
+              </div>
               <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
                 <a href="#schedule" style={btn}>
                   Schedule Service

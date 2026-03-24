@@ -2,150 +2,43 @@
 
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { VideoBackground } from '@/components/VideoBackground';
 import { MagneticButton } from '@/components/MagneticButton';
 import { HeroBrowserMockup } from '@/components/HeroBrowserMockup';
+import dynamic from 'next/dynamic';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+
+const ThreeHeroBackground = dynamic(
+  () => import('@/components/ThreeHeroBackground').then((m) => ({ default: m.ThreeHeroBackground })),
+  {
+    ssr: false,
+    loading: () => (
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background:
+            'linear-gradient(135deg, #06080C 0%, #0A1828 20%, #0C1420 40%, #12151E 60%, #0A1018 80%, #06080C 100%)',
+        }}
+      />
+    ),
+  }
+);
 
 const HERO_WORDS = ['General Dentists', 'HVAC Companies', 'Plumbing Services', 'Med Spas', 'Orthodontists', 'Chiropractors'] as const;
 
 const HEADLINE_WORDS = ['Your', 'Patients', 'Are', 'Googling', 'You', 'Right', 'Now.'];
 const HEADLINE_LINE2 = ['What', 'Do', 'They', 'Find?'];
 
-const stagger = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.2 },
-  },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 32, filter: 'blur(6px)' },
-  show: {
-    opacity: 1,
-    y: 0,
-    filter: 'blur(0px)',
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
-  },
-};
-
-// Floating geometric shapes for parallax depth
-function FloatingShapes({ scrollProgress }: { scrollProgress: ReturnType<typeof useTransform<number, string>> }) {
-  return (
-    <motion.div
-      style={{
-        position: 'absolute',
-        inset: 0,
-        zIndex: 1,
-        pointerEvents: 'none',
-        overflow: 'hidden',
-        y: scrollProgress,
-      }}
-    >
-      {/* Diamond shape 1 */}
-      <motion.div
-        animate={{
-          y: [0, -20, 0],
-          x: [0, 10, 0],
-          rotate: [0, 45, 0],
-        }}
-        transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
-        style={{
-          position: 'absolute',
-          width: '40px',
-          height: '40px',
-          border: '1px solid rgba(93,196,232,.08)',
-          top: '20%',
-          left: '15%',
-          transform: 'rotate(45deg)',
-        }}
-      />
-      {/* Hexagon shape */}
-      <motion.div
-        animate={{
-          y: [0, 15, 0],
-          x: [0, -8, 0],
-        }}
-        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
-        style={{
-          position: 'absolute',
-          width: '30px',
-          height: '30px',
-          border: '1px solid rgba(40,135,204,.06)',
-          borderRadius: '6px',
-          top: '60%',
-          right: '12%',
-          transform: 'rotate(30deg)',
-        }}
-      />
-      {/* Circle */}
-      <motion.div
-        animate={{
-          y: [0, -12, 0],
-          scale: [1, 1.1, 1],
-        }}
-        transition={{ duration: 24, repeat: Infinity, ease: 'easeInOut' }}
-        style={{
-          position: 'absolute',
-          width: '20px',
-          height: '20px',
-          border: '1px solid rgba(93,196,232,.06)',
-          borderRadius: '50%',
-          top: '35%',
-          right: '30%',
-        }}
-      />
-      {/* Diamond shape 2 */}
-      <motion.div
-        animate={{
-          y: [0, 18, 0],
-          rotate: [45, 90, 45],
-        }}
-        transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
-        style={{
-          position: 'absolute',
-          width: '24px',
-          height: '24px',
-          border: '1px solid rgba(40,135,204,.05)',
-          top: '75%',
-          left: '25%',
-          transform: 'rotate(45deg)',
-        }}
-      />
-      {/* Large decorative diamond — brand signature */}
-      <motion.div
-        animate={{
-          rotate: [0, 360],
-        }}
-        transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-        style={{
-          position: 'absolute',
-          top: '15%',
-          right: '8%',
-          opacity: 0.04,
-          pointerEvents: 'none',
-        }}
-      >
-        <svg width="80" height="80" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20 2 L32 16 L20 20 Z" fill="#5DC4E8" opacity="0.6" />
-          <path d="M32 16 L38 20 L20 20 Z" fill="#2887CC" opacity="0.5" />
-          <path d="M20 20 L38 20 L20 38 Z" fill="#5DC4E8" opacity="0.35" />
-          <path d="M2 20 L20 2 L20 20 Z" fill="#2887CC" opacity="0.45" />
-          <path d="M2 20 L20 20 L20 38 Z" fill="#5DC4E8" opacity="0.25" />
-          <path d="M20 2 L38 20 L32 16 Z" fill="#A8E0F6" opacity="0.3" />
-        </svg>
-      </motion.div>
-    </motion.div>
-  );
-}
-
 export function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const headlineRef = useRef<HTMLHeadingElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
   const [wordIndex, setWordIndex] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isTouch, setIsTouch] = useState(false);
 
   useEffect(() => {
-    // Detect touch device
     setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0);
   }, []);
 
@@ -169,16 +62,48 @@ export function Hero() {
     [isTouch]
   );
 
+  // GSAP headline animation
+  useGSAP(
+    () => {
+      if (!headlineRef.current) return;
+      const words = headlineRef.current.querySelectorAll('.hero-word');
+      gsap.from(words, {
+        opacity: 0,
+        y: 40,
+        filter: 'blur(8px)',
+        duration: 0.8,
+        stagger: 0.07,
+        delay: 0.3,
+        ease: 'power4.out',
+      });
+    },
+    { scope: sectionRef }
+  );
+
+  // GSAP stats stagger
+  useGSAP(
+    () => {
+      if (!statsRef.current) return;
+      const items = statsRef.current.querySelectorAll('.hero-stat');
+      gsap.from(items, {
+        opacity: 0,
+        y: 20,
+        duration: 0.6,
+        stagger: 0.12,
+        delay: 1.4,
+        ease: 'power3.out',
+      });
+    },
+    { scope: sectionRef }
+  );
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end start'],
   });
 
-  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
   const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '-10%']);
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
-  const overlayOpacity = useTransform(scrollYProgress, [0, 0.8], [0.55, 0.85]);
-  const shapesY = useTransform(scrollYProgress, [0, 1], ['0%', '10%']);
+  const overlayOpacity = useTransform(scrollYProgress, [0, 0.8], [0.45, 0.85]);
 
   return (
     <section
@@ -188,26 +113,22 @@ export function Hero() {
         position: 'relative',
         minHeight: '100dvh',
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         overflow: 'hidden',
       }}
     >
-      {/* Video / animated gradient background with parallax */}
-      <motion.div
+      {/* Three.js particle background */}
+      <ThreeHeroBackground />
+
+      {/* Dark overlay gradient */}
+      <div
         style={{
           position: 'absolute',
-          inset: '-10% 0',
-          y: bgY,
-          scale: bgScale,
+          inset: 0,
+          background: 'linear-gradient(180deg, rgba(6,8,12,.4) 0%, rgba(6,8,12,.7) 60%, var(--bg) 100%)',
+          zIndex: 1,
         }}
-      >
-        <VideoBackground
-          src={undefined}
-          fallbackGradient="linear-gradient(135deg, #06080C 0%, #0A1828 20%, #0C1420 40%, #12151E 60%, #0A1018 80%, #06080C 100%)"
-          overlayOpacity={0}
-          style={{ width: '100%', height: '100%' }}
-        />
-      </motion.div>
+      />
 
       {/* Dynamic overlay that darkens on scroll */}
       <motion.div
@@ -226,7 +147,7 @@ export function Hero() {
           style={{
             position: 'absolute',
             inset: 0,
-            zIndex: 1,
+            zIndex: 2,
             pointerEvents: 'none',
             overflow: 'hidden',
           }}
@@ -247,9 +168,6 @@ export function Hero() {
           />
         </div>
       )}
-
-      {/* Floating geometric shapes (parallax layer) */}
-      <FloatingShapes scrollProgress={shapesY} />
 
       {/* Ambient glow orbs */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none', overflow: 'hidden' }}>
@@ -275,22 +193,11 @@ export function Hero() {
           filter: 'blur(60px)',
           animation: 'heroOrb2 16s ease-in-out infinite reverse',
         }} />
-        <div style={{
-          position: 'absolute',
-          width: '600px',
-          height: '600px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(93,196,232,.06), transparent 70%)',
-          top: '10%',
-          right: '5%',
-          filter: 'blur(100px)',
-          animation: 'heroOrb1 25s ease-in-out infinite reverse',
-        }} />
       </div>
 
       {/* Content with parallax offset */}
       <motion.div
-        style={{ y: contentY, position: 'relative', zIndex: 2, width: '100%' }}
+        style={{ y: contentY, position: 'relative', zIndex: 3, width: '100%' }}
       >
         <div
           className="c hero-content"
@@ -302,15 +209,12 @@ export function Hero() {
             textAlign: 'center',
           }}
         >
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            animate="show"
-            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-          >
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {/* Rotating industries */}
             <motion.div
-              variants={fadeUp}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               style={{
                 fontSize: 'clamp(13px, 1.4vw, 16px)',
                 color: 'var(--t2)',
@@ -347,9 +251,9 @@ export function Hero() {
               </span>
             </motion.div>
 
-            {/* Kinetic headline — word-by-word stagger */}
-            <motion.h1
-              variants={fadeUp}
+            {/* Kinetic headline — GSAP word-by-word stagger */}
+            <h1
+              ref={headlineRef}
               style={{
                 fontSize: 'clamp(28px, 4.5vw, 62px)',
                 fontFamily: "'Instrument Serif', Georgia, serif",
@@ -361,39 +265,28 @@ export function Hero() {
               }}
             >
               {HEADLINE_WORDS.map((word, i) => (
-                <motion.span
+                <span
                   key={word + i}
-                  initial={{ opacity: 0, y: 20, filter: 'blur(6px)' }}
-                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  transition={{
-                    duration: 0.6,
-                    delay: 0.3 + i * 0.08,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
+                  className="hero-word"
                   style={{ display: 'inline-block', marginRight: '0.25em' }}
                 >
                   {word}
-                </motion.span>
+                </span>
               ))}
               <br />
               {HEADLINE_LINE2.map((word, i) => (
-                <motion.span
+                <span
                   key={'l2' + word + i}
-                  initial={{ opacity: 0, y: 20, filter: 'blur(6px)' }}
-                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  transition={{
-                    duration: 0.6,
-                    delay: 0.3 + (HEADLINE_WORDS.length + i) * 0.08,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
+                  className="hero-word"
                   style={{
                     display: 'inline-block',
                     marginRight: '0.25em',
-                    ...(i >= 0 ? { color: 'var(--cyan)', fontStyle: 'italic' as const } : {}),
+                    color: 'var(--cyan)',
+                    fontStyle: 'italic',
                   }}
                 >
                   {word}
-                </motion.span>
+                </span>
               ))}
               <motion.span
                 initial={{ scaleX: 0 }}
@@ -410,11 +303,13 @@ export function Hero() {
                   marginRight: 'auto',
                 }}
               />
-            </motion.h1>
+            </h1>
 
-            {/* Subheadline with typing cursor */}
+            {/* Subheadline */}
             <motion.p
-              variants={fadeUp}
+              initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              transition={{ duration: 0.8, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
               style={{
                 fontSize: 'clamp(15px, 1.6vw, 18px)',
                 color: 'var(--text)',
@@ -447,7 +342,9 @@ export function Hero() {
 
             {/* Micro-proof credibility line */}
             <motion.p
-              variants={fadeUp}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.1, duration: 0.6 }}
               style={{
                 fontSize: '13px',
                 color: 'rgba(222,224,231,.7)',
@@ -462,38 +359,29 @@ export function Hero() {
 
             {/* CTAs — tiered with scale entrance */}
             <motion.div
-              variants={fadeUp}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginBottom: '52px', justifyContent: 'center' }}
             >
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.2, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <MagneticButton href="/free-audit" className="bp hero-cta-primary" strength={0.25}>
-                  Get Your Free Website Audit
-                </MagneticButton>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.35, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <MagneticButton href="#pricing" className="bs hero-cta-secondary" strength={0.2}>
-                  See Pricing ↓
-                </MagneticButton>
-              </motion.div>
+              <MagneticButton href="/free-audit" className="bp hero-cta-primary" strength={0.25}>
+                Get Your Free Website Audit
+              </MagneticButton>
+              <MagneticButton href="#pricing" className="bs hero-cta-secondary" strength={0.2}>
+                See Pricing ↓
+              </MagneticButton>
             </motion.div>
 
-            {/* Stats bar — staggered entrance */}
-            <motion.div
+            {/* Stats bar — GSAP staggered entrance */}
+            <div
+              ref={statsRef}
               className="hero-stats"
               style={{
                 display: 'flex',
-                gap: '32px',
+                gap: '12px',
                 paddingTop: '32px',
                 borderTop: '1px solid var(--hr)',
-                flexWrap: 'wrap',
+                flexWrap: 'nowrap',
                 justifyContent: 'center',
                 width: '100%',
               }}
@@ -503,16 +391,10 @@ export function Hero() {
                 { label: '2x More Bookings', icon: '📈' },
                 { label: '100% Code Ownership', icon: '🔓' },
                 { label: '$0 Lock-In Contracts', icon: '🛡️' },
-              ].map((stat, i) => (
-                <motion.div
+              ].map((stat) => (
+                <div
                   key={stat.label}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    delay: 1.5 + i * 0.15,
-                    duration: 0.5,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
+                  className="hero-stat"
                   style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -533,9 +415,9 @@ export function Hero() {
                   }}>
                     {stat.label}
                   </span>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
 
             {/* Browser mockup — visual proof */}
             <HeroBrowserMockup />
@@ -555,12 +437,15 @@ export function Hero() {
                 gap: '5px',
               }}
             >
+              <span style={{ fontSize: '13px', flexShrink: 0 }}>🇺🇸</span>
+              US-Based · Texas · Canyon Lake
+              <span style={{ opacity: 0.3, margin: '0 4px' }}>|</span>
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0, opacity: 0.6 }}>
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" fill="rgba(222,224,231,.5)"/>
               </svg>
-              Serving local businesses in Austin, San Antonio &amp; the Texas Hill Country
+              Serving Austin, San Antonio &amp; the Hill Country
             </motion.p>
-          </motion.div>
+          </div>
 
         </div>
       </motion.div>
@@ -614,6 +499,9 @@ export function Hero() {
         }
         @media (max-width: 768px) {
           .hero-content { padding-top: 100px !important; padding-bottom: 60px !important; }
+        }
+        @media (max-width: 768px) {
+          .hero-stats { flex-wrap: wrap !important; }
         }
         @media (max-width: 640px) {
           .hero-content { padding-top: 88px !important; }

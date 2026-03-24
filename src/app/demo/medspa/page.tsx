@@ -379,21 +379,33 @@ export default function MedSpaDemoPage() {
       <Section>
         <section
           style={{
-            background: `linear-gradient(135deg, ${C.charcoal} 0%, ${C.charcoalDark} 100%)`,
+            background: `linear-gradient(135deg, ${C.charcoal} 0%, #3D2B1E 50%, ${C.charcoalDark} 100%)`,
             padding: "120px 0 100px",
             position: "relative",
             overflow: "hidden",
           }}
         >
+          {/* Subtle leaf/star pattern */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              opacity: 0.03,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z' fill='%23fff' fill-opacity='1'/%3E%3C/svg%3E")`,
+              backgroundSize: "80px 80px",
+            }}
+          />
+          {/* Decorative blobs */}
           <div
             style={{
               position: "absolute",
               top: "-30%",
               right: "-15%",
-              width: "600px",
-              height: "600px",
+              width: "700px",
+              height: "700px",
               borderRadius: "50%",
-              background: `radial-gradient(circle, ${C.rose}15, transparent 70%)`,
+              background: `radial-gradient(circle, ${C.rose}20, transparent 70%)`,
+              filter: "blur(40px)",
             }}
           />
           <div
@@ -401,10 +413,11 @@ export default function MedSpaDemoPage() {
               position: "absolute",
               bottom: "-20%",
               left: "-10%",
-              width: "400px",
-              height: "400px",
+              width: "500px",
+              height: "500px",
               borderRadius: "50%",
-              background: `radial-gradient(circle, ${C.sage}08, transparent 70%)`,
+              background: `radial-gradient(circle, ${C.sage}10, transparent 70%)`,
+              filter: "blur(60px)",
             }}
           />
           <div style={{ ...container, position: "relative", zIndex: 1, textAlign: "center" }}>
@@ -425,9 +438,25 @@ export default function MedSpaDemoPage() {
                 Reveal Your Natural{" "}
                 <span style={{ color: C.rose }}>Radiance</span>
               </h1>
-              <p style={{ fontSize: "18px", color: "rgba(255,255,255,.7)", lineHeight: 1.8, marginBottom: "40px", maxWidth: "560px", margin: "0 auto 40px" }}>
+              <p style={{ fontSize: "18px", color: "rgba(255,255,255,.7)", lineHeight: 1.8, maxWidth: "560px", margin: "0 auto 24px" }}>
                 Expert aesthetics and wellness treatments in a luxurious, tranquil setting. Board-certified providers. Natural-looking results. Your journey to confidence starts here.
               </p>
+              {/* Stat badges */}
+              <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", justifyContent: "center", marginBottom: "40px" }}>
+                {[
+                  { icon: "⭐", text: "5.0 Google Rating" },
+                  { icon: "✨", text: "Board Certified" },
+                  { icon: "💆", text: "1000+ Treatments" },
+                ].map((s) => (
+                  <span key={s.text} style={{
+                    display: "inline-flex", alignItems: "center", gap: "6px",
+                    background: "rgba(255,255,255,.08)", border: "1px solid rgba(255,255,255,.12)",
+                    borderRadius: "40px", padding: "6px 14px", fontSize: "13px", color: "rgba(255,255,255,.85)", fontWeight: 500,
+                  }}>
+                    <span>{s.icon}</span> {s.text}
+                  </span>
+                ))}
+              </div>
               <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", justifyContent: "center" }}>
                 <a href="#book" style={btn}>
                   Book Your Consultation

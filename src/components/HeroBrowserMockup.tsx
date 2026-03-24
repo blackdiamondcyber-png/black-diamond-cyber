@@ -12,6 +12,7 @@ export function HeroBrowserMockup() {
       style={{
         marginTop: '48px',
         position: 'relative',
+        paddingBottom: '20px',
       }}
     >
       {/* Glow behind the mockup */}
@@ -375,11 +376,25 @@ export function HeroBrowserMockup() {
             </div>
           </div>
 
+          {/* Bottom gradient fade — makes crop look intentional */}
+          <div
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: '80px',
+              background: 'linear-gradient(180deg, transparent 0%, #0E1218 100%)',
+              pointerEvents: 'none',
+              zIndex: 2,
+            }}
+          />
+
           {/* PageSpeed badge overlay */}
           <div
             style={{
               position: 'absolute',
-              bottom: '16px',
+              top: '52px',
               right: '16px',
               width: '56px',
               height: '56px',
@@ -391,6 +406,7 @@ export function HeroBrowserMockup() {
               alignItems: 'center',
               justifyContent: 'center',
               boxShadow: '0 4px 24px rgba(52,211,153,.3)',
+              zIndex: 3,
             }}
           >
             <span
@@ -420,7 +436,7 @@ export function HeroBrowserMockup() {
           <div
             style={{
               position: 'absolute',
-              bottom: '16px',
+              top: '58px',
               left: '16px',
               display: 'flex',
               alignItems: 'center',
@@ -429,6 +445,7 @@ export function HeroBrowserMockup() {
               borderRadius: '6px',
               background: 'rgba(6,8,12,.85)',
               border: '1px solid rgba(93,196,232,.12)',
+              zIndex: 3,
             }}
           >
             <span
