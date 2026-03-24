@@ -131,7 +131,12 @@ export default async function BlogPostPage({ params }: PageProps) {
       "@type": "Organization",
       name: "Black Diamond Cyber",
       url: "https://bd-cyber.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://bd-cyber.com/apple-touch-icon.png",
+      },
     },
+    image: `https://bd-cyber.com/api/og?title=${encodeURIComponent(post.title)}`,
     mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
   };
 

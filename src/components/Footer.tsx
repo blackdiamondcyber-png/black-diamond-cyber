@@ -42,37 +42,37 @@ export function Footer() {
           <div>
             <h4>Services</h4>
             <ul className="fl">
-              <li><a href="#services">Website Design</a></li>
-              <li><a href="#services">Hosting &amp; CDN</a></li>
-              <li><a href="#services">SEO &amp; Analytics</a></li>
-              <li><a href="#services">AI Automation</a></li>
+              <li><a href="/dental">Dental Websites</a></li>
+              <li><a href="/dental-website-design-texas">Dental Design — Texas</a></li>
+              <li><a href="/hvac">HVAC Websites</a></li>
+              <li><a href="/plumbing">Plumber Websites</a></li>
+              <li><a href="/demo/dental">Live Demo</a></li>
               <li><a href="#services">AI Chatbots</a></li>
               <li><a href="#services">Review Automation</a></li>
             </ul>
           </div>
 
           <div>
-            <h4>Industries</h4>
+            <h4>Resources</h4>
             <ul className="fl">
-              <li><a href="/dental">Dental Practices</a></li>
-              <li><a href="/dental-website-design-texas">Dental — Texas</a></li>
-              <li><a href="/hvac">HVAC Companies</a></li>
-              <li><a href="/plumbing">Plumbers</a></li>
-              <li><a href="#">Electricians</a></li>
-              <li><a href="#">Roofers</a></li>
-              <li><a href="#">Med Spas</a></li>
+              <li><a href="/blog">Blog</a></li>
+              <li><a href="/free-audit">Free Website Audit</a></li>
+              <li><a href="/roi-calculator">ROI Calculator</a></li>
+              <li><a href="/case-studies">Our Work</a></li>
+              <li><a href="/vs-agencies">vs. Agencies</a></li>
+              <li><a href="/vs-wix">vs. Wix &amp; DIY</a></li>
+              <li><a href="/vs-gargle">vs. Gargle</a></li>
             </ul>
           </div>
 
           <div>
-            <h4>Compare</h4>
+            <h4>Company</h4>
             <ul className="fl">
-              <li><a href="/vs-agencies">vs. Agencies</a></li>
-              <li><a href="/vs-wix">vs. Wix &amp; DIY</a></li>
-              <li><a href="/vs-templates">vs. Templates</a></li>
-              <li><a href="/free-audit">Free Audit</a></li>
-              <li><a href="/case-studies">Our Work</a></li>
+              <li><a href="#about">About Erik</a></li>
               <li><a href="#pricing">Pricing</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/privacy">Privacy Policy</a></li>
+              <li><a href="/terms">Terms of Service</a></li>
             </ul>
           </div>
 

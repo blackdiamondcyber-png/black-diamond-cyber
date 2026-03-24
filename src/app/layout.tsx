@@ -68,6 +68,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${outfit.variable} ${instrumentSerif.variable}`}>
+      <head>
+        <meta name="google-site-verification" content="REPLACE_WITH_VERIFICATION_CODE" />
+        <meta name="msvalidate.01" content="REPLACE_WITH_BING_CODE" />
+      </head>
       <body>
         {children}
         <Chatbot />
