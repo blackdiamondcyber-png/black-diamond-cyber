@@ -21,23 +21,11 @@ export function Marquee() {
         <span className="md"></span>
         <span className="mi">Plumbing Services</span>
         <span className="md"></span>
-        <span className="mi">Electricians</span>
-        <span className="md"></span>
-        <span className="mi">Roofing Contractors</span>
-        <span className="md"></span>
-        <span className="mi">Landscaping</span>
-        <span className="md"></span>
-        <span className="mi">Auto Repair</span>
-        <span className="md"></span>
-        <span className="mi">Veterinary Clinics</span>
-        <span className="md"></span>
         <span className="mi">Med Spas</span>
         <span className="md"></span>
-        <span className="mi">Chiropractic</span>
+        <span className="mi">Chiropractors</span>
         <span className="md"></span>
-        <span className="mi">Law Firms</span>
-        <span className="md"></span>
-        <span className="mi">Real Estate</span>
+        <span className="mi">Roofing Contractors</span>
         <span className="md"></span>
       </div>
     </div>

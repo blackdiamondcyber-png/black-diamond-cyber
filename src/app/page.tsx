@@ -17,6 +17,7 @@ import { SuccessModal } from "@/components/SuccessModal";
 import { FAQ } from "@/components/FAQ";
 import { CostComparison } from "@/components/CostComparison";
 import { FeatureMatrix } from "@/components/FeatureMatrix";
+import { DentalROICalculator } from "@/components/DentalROICalculator";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -24,7 +25,7 @@ const jsonLd = {
   name: "Black Diamond Cyber",
   legalName: "Black Diamond Cybersecurity Consulting LLC",
   description:
-    "AI-powered website design and hosting for local service businesses. Custom websites delivered in 3-7 days. No contracts. You own the code.",
+    "AI-powered website design for dental practices. Custom websites delivered in 3-7 days. Built by a former Patterson Dental sales professional. No contracts. You own the code.",
   url: "https://bd-cyber.com",
   email: "blackdiamondcyber@gmail.com",
   founder: {
@@ -41,8 +42,8 @@ const jsonLd = {
   areaServed: "US",
   priceRange: "$997 - $4,997",
   serviceType: [
-    "Website Design",
-    "Website Hosting",
+    "Dental Website Design",
+    "Dental Practice Marketing",
     "SEO",
     "AI Website Generation",
     "AI Automation",
@@ -77,7 +78,7 @@ export default function Home() {
       </div>
       {/* Grain texture overlay */}
       <div className="grain"></div>
-      {/* Page content */}
+      {/* Page content — optimized for dental conversion flow */}
       <div className="pg">
         <Nav />
         <Hero />
@@ -85,11 +86,13 @@ export default function Home() {
         <TrustBar />
         <Founder />
         <div className="sep" />
-        <Portfolio />
+        <DentalROICalculator />
         <div className="sep" />
         <Services />
         <div className="sep" />
         <WhyBDCyber />
+        <div className="sep" />
+        <Portfolio />
         <div className="sep" />
         <HowItWorks />
         <div className="sep" />

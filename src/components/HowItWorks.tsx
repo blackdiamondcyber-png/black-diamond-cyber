@@ -5,29 +5,28 @@ import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 
 const STEPS = [
   {
-    title: 'Discovery Call',
+    title: 'Free Website Audit',
     description:
-      'Free 30-minute call. We learn your practice, your goals, and your market. No pressure, no pitch — just a conversation about what\'s possible.',
+      'We audit your current online presence: website speed, mobile experience, Google rankings, and how you compare to every competitor within 10 miles. You get the report whether you hire us or not.',
+    detail: 'Takes 30 seconds to start. Results in 24 hours.',
   },
   {
-    title: 'Free Site Audit',
+    title: 'Custom Proposal',
     description:
-      'We audit your current site (or lack of one), analyze your top 10 local competitors, and show you exactly where you\'re losing customers online.',
+      'Based on your audit, we build a custom proposal showing exactly what your new site will look like, what it will cost, and how it will outperform your current setup. No generic decks — this is built for your business.',
+    detail: 'You see the plan before you spend a dollar.',
   },
   {
-    title: 'Design & Build',
+    title: 'AI-Powered Build',
     description:
-      'AI-powered generation plus human polish. We build your custom site with competitor-informed copy, SEO foundations, and conversion-optimized layouts.',
+      'We generate your site with AI, then hand-polish every detail. Industry-specific copy that speaks to patients, not dentists. Online booking, click-to-call, insurance info — all built in and conversion-optimized.',
+    detail: 'Every page is designed to turn a visitor into a booked appointment.',
   },
   {
-    title: 'Launch',
+    title: 'Launch & Grow',
     description:
-      'Domain connected, deployed on global CDN, analytics installed, Google Business Profile linked. You\'re live and getting found in 3-7 business days.',
-  },
-  {
-    title: '90-Day Optimization',
-    description:
-      'After launch, we monitor traffic, refine SEO, and optimize conversions for 90 days. Monthly reports show exactly what\'s working and what we\'re improving.',
+      'Domain connected, deployed on a global CDN, Google Analytics installed, schema markup live. You are ranking within 7 days. Then we optimize for 90 more — tracking new patient inquiries, not vanity metrics.',
+    detail: 'Your business shows up when customers search "near me."',
   },
 ];
 
@@ -54,10 +53,10 @@ export function HowItWorks() {
             How It Works
           </div>
           <h2 className="st">
-            From First Call to <em>More Customers</em>
+            Audit. Proposal. Build. <em>Launch.</em>
           </h2>
           <p className="sd">
-            Five steps. Your site is live in as little as 3 business days, then we optimize for 90 more.
+            Four steps. Your website is live in as little as 7 business days.
           </p>
         </motion.div>
 
@@ -87,10 +86,11 @@ export function HowItWorks() {
             <motion.div
               key={step.title}
               initial={{ opacity: 0, x: -20, filter: 'blur(4px)' }}
-              animate={isInView ? { opacity: 1, x: 0, filter: 'blur(0px)' } : {}}
+              whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+              viewport={{ once: true, margin: '-40px' }}
               transition={{
                 duration: 0.7,
-                delay: 0.2 + i * 0.15,
+                delay: 0.1 + i * 0.12,
                 ease: [0.16, 1, 0.3, 1] as const,
               }}
               style={{
@@ -143,8 +143,17 @@ export function HowItWorks() {
                   fontSize: '15px',
                   color: 'var(--t2)',
                   lineHeight: 1.75,
+                  marginBottom: '8px',
                 }}>
                   {step.description}
+                </p>
+                <p style={{
+                  fontSize: '13px',
+                  color: 'var(--cyan)',
+                  fontWeight: 600,
+                  lineHeight: 1.6,
+                }}>
+                  {step.detail}
                 </p>
               </div>
             </motion.div>

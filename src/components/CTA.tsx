@@ -57,32 +57,32 @@ export function CTA() {
                   color: 'var(--green)',
                 }}>
                   <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--green)', display: 'inline-block', animation: 'p 1.5s infinite' }} />
-                  Now Accepting Founding Clients
+                  Founding Client Program — 5 Spots
                 </span>
               </div>
 
               <h2 style={{ marginBottom: '16px' }}>
-                More Customers Start with
+                Your Next Patient Is
                 <br />
-                <em>a Better Website.</em>
+                <em>Searching Right Now.</em>
               </h2>
               <p style={{ marginBottom: '16px' }}>
-                Your next customer is searching right now. If your website doesn&apos;t load fast, look professional, and make booking easy &mdash; they&apos;ll choose the business that does. Let&apos;s make sure that&apos;s you.
+                We&apos;re accepting <strong style={{ color: 'var(--text)' }}>5 founding dental clients</strong> at <strong style={{ color: 'var(--green)' }}>30% off</strong>. You get a premium, AI-powered website built by someone who knows your industry inside and out. We get a real case study to prove what we can do. Everybody wins.
               </p>
 
-              {/* What you get free */}
+              {/* What founding clients get */}
               <div style={{
                 display: 'inline-flex',
                 gap: '24px',
                 flexWrap: 'wrap',
                 justifyContent: 'center',
-                marginBottom: '32px',
+                marginBottom: '16px',
                 padding: '16px 24px',
                 background: 'rgba(255,255,255,.02)',
                 border: '1px solid var(--hr)',
                 borderRadius: '12px',
               }}>
-                {['Free competitor analysis', 'Free website audit', 'Free content strategy', 'No sales pressure'].map((item) => (
+                {['Free dental website audit', 'Free competitor analysis', '30% off any tier', 'Priority 3-day delivery'].map((item) => (
                   <span key={item} style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -96,6 +96,10 @@ export function CTA() {
                   </span>
                 ))}
               </div>
+
+              <p style={{ fontSize: '13px', color: 'var(--t3)', marginBottom: '24px', textAlign: 'center' }}>
+                No commitment to apply. The audit alone is worth the 30-minute call &mdash; you&apos;ll see exactly what&apos;s costing your practice new patients.
+              </p>
             </motion.div>
 
             <motion.div
@@ -106,7 +110,7 @@ export function CTA() {
               style={{ position: 'relative', zIndex: 1 }}
             >
               <MagneticButton href="#book" className="bp" strength={0.25}>
-                Book Free Strategy Call
+                Apply for a Founding Client Spot
               </MagneticButton>
               <MagneticButton href="/free-audit" className="bs" strength={0.2}>
                 Run Your Free Site Audit
@@ -127,7 +131,7 @@ export function CTA() {
                 textAlign: 'center',
               }}
             >
-              No commitment required. 30 minutes. We&apos;ll show you exactly what&apos;s holding your online presence back.
+              No contracts. You own the code. Cancel anytime.
             </motion.p>
           </div>
         </div>

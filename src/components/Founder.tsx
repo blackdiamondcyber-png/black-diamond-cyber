@@ -3,135 +3,151 @@
 import Image from "next/image";
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { IconTrophy, IconBolt, IconDiamond, IconTrendingUp } from '@/components/Icons';
 
 export function Founder() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
 
   return (
-    <section className="fdr" id="about" ref={sectionRef}>
+    <section id="about" ref={sectionRef} style={{ scrollMarginTop: '80px' }}>
       <div className="c">
-        {/* Left: Founder card */}
         <motion.div
-          className="fp"
-          initial={{ opacity: 0, x: -32, filter: 'blur(6px)' }}
-          animate={isInView ? { opacity: 1, x: 0, filter: 'blur(0px)' } : {}}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="sh sc"
+          initial={{ opacity: 0, y: 28, filter: 'blur(5px)' }}
+          animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
         >
-          {/* Photo */}
-          <div style={{
-            width: '160px',
-            height: '160px',
-            borderRadius: '50%',
-            overflow: 'hidden',
-            boxShadow: '0 8px 32px rgba(40,135,204,.3)',
-            border: '2px solid rgba(93,196,232,.2)',
-            position: 'relative',
-          }}>
-            <Image
-              src="/images/erik-pearson-founder.png"
-              alt="Erik Pearson - Founder of Black Diamond Cyber"
-              width={160}
-              height={160}
-              style={{ objectFit: 'cover', objectPosition: 'center 15%', width: '100%', height: '100%' }}
-              priority
-            />
-          </div>
-
-          {/* Identity */}
-          <div className="fp-info">
-            <h3>Erik Pearson</h3>
-            <p>Founder</p>
-          </div>
-
-          {/* Stat row — real, verifiable stats */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '10px',
-            width: '100%',
-            margin: '8px 0',
-          }}>
-            {[
-              { value: '400+', label: 'Local Business Accounts' },
-              { value: '3-7', label: 'Day Delivery' },
-              { value: '95+', label: 'PageSpeed' },
-              { value: '$0', label: 'Contracts' },
-            ].map((stat) => (
-              <div key={stat.label} style={{
-                background: 'rgba(40,135,204,.06)',
-                border: '1px solid rgba(93,196,232,.1)',
-                borderRadius: '8px',
-                padding: '10px 8px',
-                textAlign: 'center',
-              }}>
-                <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: '20px', color: 'var(--text)', lineHeight: 1 }}>{stat.value}</div>
-                <div style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '1.2px', textTransform: 'uppercase', color: 'var(--t2)', marginTop: '4px' }}>{stat.label}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* CTA row */}
-          <a href="#book" className="fcr" style={{ width: '100%', justifyContent: 'center', textDecoration: 'none' }}>
-            <span style={{ color: 'var(--green)', fontSize: '10px' }}>●</span>
-            Book a Free Call with Erik
-          </a>
+          <div className="tag" style={{ display: 'inline-flex' }}>Meet the Founder</div>
+          <h2 className="st">
+            Built by Someone Who Actually<br /><em>Knows Your Industry.</em>
+          </h2>
         </motion.div>
 
-        {/* Right: Story */}
-        <motion.div
-          initial={{ opacity: 0, x: 32, filter: 'blur(6px)' }}
-          animate={isInView ? { opacity: 1, x: 0, filter: 'blur(0px)' } : {}}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <div className="sh">
-            <div className="tag" style={{ marginBottom: '16px', display: 'inline-flex' }}>
-              Meet the Founder
+        <style dangerouslySetInnerHTML={{ __html: `
+          @media(max-width:768px){
+            #founder-grid{grid-template-columns:1fr!important;text-align:center}
+            #founder-photo{margin:0 auto}
+            #founder-stats{justify-content:center!important}
+          }
+        ` }} />
+
+        <div id="founder-grid" style={{
+          display: 'grid',
+          gridTemplateColumns: '320px 1fr',
+          gap: '48px',
+          alignItems: 'start',
+          marginTop: '16px',
+        }}>
+          {/* Left: Photo */}
+          <motion.div
+            initial={{ opacity: 0, x: -32, filter: 'blur(6px)' }}
+            animate={isInView ? { opacity: 1, x: 0, filter: 'blur(0px)' } : {}}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div id="founder-photo" style={{
+              width: '300px',
+              height: '400px',
+              borderRadius: '16px',
+              overflow: 'hidden',
+              boxShadow: '0 12px 48px rgba(40,135,204,.2)',
+              border: '2px solid rgba(93,196,232,.15)',
+              position: 'relative',
+            }}>
+              <Image
+                src="/images/erik-pearson-founder.png"
+                alt="Erik Pearson - Founder of Black Diamond Cyber"
+                width={300}
+                height={400}
+                style={{ objectFit: 'cover', objectPosition: 'center 15%', width: '100%', height: '100%' }}
+                priority
+              />
             </div>
-            <h2 className="st">
-              Built by Someone Who&nbsp;
-              <em>Gets It.</em>
-            </h2>
-          </div>
+            <div style={{ marginTop: '16px', textAlign: 'center' }}>
+              <div style={{
+                fontFamily: "'Instrument Serif', serif",
+                fontSize: '24px',
+                color: 'var(--text)',
+                fontWeight: 400,
+              }}>Erik Pearson</div>
+              <div style={{
+                fontSize: '13px',
+                color: 'var(--cyan)',
+                fontWeight: 600,
+                letterSpacing: '0.5px',
+              }}>Founder &amp; Developer</div>
+            </div>
+          </motion.div>
 
-          <p style={{ fontSize: '15px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '18px' }}>
-            I&rsquo;ve worked with <strong style={{ color: 'var(--text)' }}>400+ local service businesses</strong> across Texas. The pattern is always the same: <strong style={{ color: 'var(--text)' }}>great service, invisible online.</strong> Customers choosing competitors with worse work &mdash; because the competitor had a better website.
-          </p>
+          {/* Right: Story */}
+          <motion.div
+            initial={{ opacity: 0, x: 32, filter: 'blur(6px)' }}
+            animate={isInView ? { opacity: 1, x: 0, filter: 'blur(0px)' } : {}}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <p style={{ fontSize: '16px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '20px' }}>
+              I am Erik Pearson. By day, I manage <strong style={{ color: 'var(--text)' }}>400+ dental practice accounts</strong> across Austin and San Antonio as a territory sales rep at <strong style={{ color: 'var(--text)' }}>Patterson Dental</strong> &mdash; the largest dental supply company in the US.
+            </p>
 
-          <p style={{ fontSize: '15px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '28px' }}>
-            I built Black Diamond Cyber to fix that. Premium sites delivered in days. You own the code. No contracts, no lock-in.
-          </p>
+            <p style={{ fontSize: '16px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '20px' }}>
+              I have walked into hundreds of dental offices. I have seen the websites that bring in new patients, and the ones that silently bleed them to competitors down the street.
+            </p>
 
-          {/* Differentiators */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '28px' }}>
-            {[
-              { Icon: IconTrophy, title: 'Local Business Expert', desc: 'I\'ve worked with 400+ service businesses. I know what your customers expect online.' },
-              { Icon: IconBolt, title: 'Built in Days, Not Months', desc: 'Most agencies take 6-8 weeks. We deliver in 3-7 business days.' },
-              { Icon: IconDiamond, title: 'You Own Everything', desc: 'Your website, your domain, your hosting account. No lock-in. Ever.' },
-              { Icon: IconTrendingUp, title: 'More Bookings, More Calls', desc: 'Every element designed to turn visitors into paying customers.' },
-            ].map((item) => (
-              <div key={item.title} style={{
-                background: 'var(--bg1)',
-                border: '1px solid var(--hr)',
-                borderRadius: '12px',
-                padding: '16px',
-                transition: '.4s',
-              }}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--hr-b)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--hr)'; }}
-              >
-                <div style={{ marginBottom: '8px' }}>
-                  <item.Icon size={20} />
-                </div>
-                <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--text)', marginBottom: '4px' }}>{item.title}</div>
-                <div style={{ fontSize: '13px', color: 'var(--t2)', lineHeight: 1.65 }}>{item.desc}</div>
-              </div>
-            ))}
-          </div>
+            <p style={{ fontSize: '16px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '20px' }}>
+              After years of watching practices struggle with overpriced agencies, cookie-cutter templates, and websites that load like it is 2005 &mdash; I taught myself to code and built something better.
+            </p>
 
+            <p style={{ fontSize: '16px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '32px' }}>
+              <strong style={{ color: 'var(--text)' }}>8 production apps later</strong>, Black Diamond Cyber was born. Every site I build is informed by real conversations with real practice owners about what actually drives patients through the door.
+            </p>
 
-        </motion.div>
+            {/* Stats row */}
+            <div id="founder-stats" style={{
+              display: 'flex',
+              gap: '12px',
+              flexWrap: 'wrap',
+              marginBottom: '32px',
+            }}>
+              {[
+                '400+ Dental Accounts',
+                '8 Apps Shipped',
+                '7-Day Avg Delivery',
+                'Zero Long-Term Contracts',
+              ].map((stat) => (
+                <span key={stat} style={{
+                  padding: '8px 18px',
+                  background: 'rgba(40,135,204,.06)',
+                  border: '1px solid rgba(93,196,232,.1)',
+                  borderRadius: '40px',
+                  fontSize: '12px',
+                  fontWeight: 700,
+                  letterSpacing: '0.5px',
+                  color: 'var(--text)',
+                  whiteSpace: 'nowrap',
+                }}>
+                  {stat}
+                </span>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <a href="#book" style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '14px 32px',
+              background: 'var(--blue)',
+              color: '#fff',
+              borderRadius: '40px',
+              fontSize: '14px',
+              fontWeight: 600,
+              textDecoration: 'none',
+              transition: 'transform .2s, box-shadow .2s',
+            }}>
+              <span style={{ color: 'var(--green)', fontSize: '10px' }}>●</span>
+              Book a Free Call with Erik →
+            </a>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

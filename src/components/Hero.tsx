@@ -3,11 +3,10 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { VideoBackground } from '@/components/VideoBackground';
-import { AnimatedCounter } from '@/components/AnimatedCounter';
 import { MagneticButton } from '@/components/MagneticButton';
 import { ProductDemoReel } from '@/components/ProductDemoReel';
 
-const HERO_WORDS = ['Dental Practices', 'HVAC Companies', 'Plumbers', 'Electricians', 'Roofers', 'Med Spas'] as const;
+const HERO_WORDS = ['Dental Practices', 'HVAC Companies', 'Plumbing Services', 'Med Spas', 'Chiropractors', 'Roofing Contractors'] as const;
 
 const stagger = {
   hidden: {},
@@ -24,22 +23,6 @@ const fadeUp = {
     filter: 'blur(0px)',
     transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
   },
-};
-
-const statStyle: React.CSSProperties = {
-  fontFamily: "'Instrument Serif', Georgia, serif",
-  fontSize: '42px',
-  color: 'var(--text)',
-  lineHeight: 1,
-};
-
-const statLabelStyle: React.CSSProperties = {
-  fontSize: '12px',
-  fontWeight: 700,
-  letterSpacing: '2px',
-  textTransform: 'uppercase',
-  color: 'var(--t3)',
-  marginTop: '6px',
 };
 
 export function Hero() {
@@ -127,7 +110,6 @@ export function Hero() {
           filter: 'blur(60px)',
           animation: 'heroOrb2 16s ease-in-out infinite reverse',
         }} />
-        {/* Extra glow behind the demo reel */}
         <div style={{
           position: 'absolute',
           width: '600px',
@@ -161,58 +143,14 @@ export function Hero() {
             initial="hidden"
             animate="show"
           >
-            {/* Urgency tag */}
-            <motion.div variants={fadeUp} style={{ marginBottom: '28px', display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-              <span className="tag">
-                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--green)', display: 'inline-block', animation: 'p 2s infinite', marginRight: '4px' }} />
-                Now Accepting Founding Clients
-              </span>
-            </motion.div>
-
-            {/* Headline */}
-            <motion.h1
-              variants={fadeUp}
-              style={{
-                fontSize: 'clamp(28px, 4.5vw, 62px)',
-                fontFamily: "'Instrument Serif', Georgia, serif",
-                fontWeight: 400,
-                lineHeight: 1.06,
-                letterSpacing: '-0.03em',
-                color: 'var(--text)',
-                marginBottom: '8px',
-              }}
-            >
-              Your Customers Are Choosing
-              <br />
-              Your Competitors.
-              <br />
-              <span style={{ position: 'relative', display: 'inline-block' }}>
-                <em style={{ color: 'var(--cyan)', fontStyle: 'italic' }}>We Fix That.</em>
-                <motion.span
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ delay: 1.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
-                  style={{
-                    position: 'absolute',
-                    bottom: '-2px',
-                    left: 0,
-                    right: 0,
-                    height: '2px',
-                    background: 'linear-gradient(90deg, var(--cyan), transparent)',
-                    transformOrigin: 'left',
-                  }}
-                />
-              </span>
-            </motion.h1>
-
-            {/* Rotating industry */}
+            {/* Rotating industries */}
             <motion.div
               variants={fadeUp}
               style={{
-                fontSize: 'clamp(14px, 1.6vw, 20px)',
+                fontSize: 'clamp(13px, 1.4vw, 16px)',
                 color: 'var(--t2)',
                 marginBottom: '20px',
-                height: '32px',
+                height: '28px',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
@@ -220,8 +158,8 @@ export function Hero() {
                 overflow: 'hidden',
               }}
             >
-              <span style={{ whiteSpace: 'nowrap' }}>AI-powered websites for</span>
-              <span style={{ position: 'relative', minWidth: '180px', display: 'inline-block', overflow: 'hidden', height: '32px', flexShrink: 0 }}>
+              <span style={{ whiteSpace: 'nowrap' }}>Purpose-built for</span>
+              <span style={{ position: 'relative', minWidth: '200px', display: 'inline-block', overflow: 'hidden', height: '28px', flexShrink: 0 }}>
                 <AnimatePresence mode="wait">
                   <motion.em
                     key={HERO_WORDS[wordIndex]}
@@ -244,72 +182,108 @@ export function Hero() {
               </span>
             </motion.div>
 
-            {/* Description */}
+            {/* Headline — outcome-focused */}
+            <motion.h1
+              variants={fadeUp}
+              style={{
+                fontSize: 'clamp(28px, 4.5vw, 62px)',
+                fontFamily: "'Instrument Serif', Georgia, serif",
+                fontWeight: 400,
+                lineHeight: 1.06,
+                letterSpacing: '-0.03em',
+                color: 'var(--text)',
+                marginBottom: '20px',
+              }}
+            >
+              Your Patients Are
+              <br />
+              Googling You Right Now.
+              <br />
+              <span style={{ position: 'relative', display: 'inline-block' }}>
+                <em style={{ color: 'var(--cyan)', fontStyle: 'italic' }}>What Do They Find?</em>
+                <motion.span
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 1.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
+                  style={{
+                    position: 'absolute',
+                    bottom: '-2px',
+                    left: 0,
+                    right: 0,
+                    height: '2px',
+                    background: 'linear-gradient(90deg, var(--cyan), transparent)',
+                    transformOrigin: 'left',
+                  }}
+                />
+              </span>
+            </motion.h1>
+
+            {/* Subheadline */}
             <motion.p
               variants={fadeUp}
               style={{
                 fontSize: '16px',
                 color: 'var(--t2)',
-                maxWidth: '480px',
+                maxWidth: '520px',
                 lineHeight: 1.85,
                 marginBottom: '36px',
               }}
             >
-              Built by someone who&apos;s worked with <strong style={{ color: 'var(--text)' }}>400+ local businesses</strong>. Premium websites delivered in days, not weeks. AI chatbots, review automation, and lead systems included. No contracts. You own the code.
+              We build AI-powered websites that turn Google searches into booked appointments &mdash; in 7 days or less. No contracts. You own everything.
             </motion.p>
 
-            {/* CTAs */}
+            {/* CTAs — tiered */}
             <motion.div
               variants={fadeUp}
               style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginBottom: '52px' }}
             >
-              <MagneticButton href="#book" className="bp hero-cta-primary" strength={0.25}>
-                Book Free Strategy Call
+              <MagneticButton href="/free-audit" className="bp hero-cta-primary" strength={0.25}>
+                Get Your Free Website Audit
               </MagneticButton>
-              <MagneticButton href="/free-audit" className="bs hero-cta-secondary" strength={0.2}>
-                Run Your Free Site Audit
+              <MagneticButton href="#pricing" className="bs hero-cta-secondary" strength={0.2}>
+                See Pricing ↓
               </MagneticButton>
             </motion.div>
 
-            {/* Stats bar — honest, verifiable stats only */}
+            {/* Stats bar — outcome-focused */}
             <motion.div
               variants={fadeUp}
               className="hero-stats"
               style={{
                 display: 'flex',
-                gap: '40px',
+                gap: '32px',
                 paddingTop: '32px',
                 borderTop: '1px solid var(--hr)',
                 flexWrap: 'wrap',
               }}
             >
-              <div>
-                <div style={statStyle}>
-                  <AnimatedCounter value={3} style={statStyle} />
-                  <span style={{ color: 'var(--cyan)', fontSize: '28px' }}> days</span>
+              {[
+                { label: '7-Day Delivery', icon: '⚡' },
+                { label: '2x More Bookings', icon: '📈' },
+                { label: '100% Code Ownership', icon: '🔓' },
+                { label: '$0 Lock-In Contracts', icon: '🛡️' },
+              ].map((stat) => (
+                <div key={stat.label} style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '8px 16px',
+                  background: 'rgba(40,135,204,.06)',
+                  border: '1px solid rgba(93,196,232,.1)',
+                  borderRadius: '40px',
+                }}>
+                  <span style={{ fontSize: '16px' }}>{stat.icon}</span>
+                  <span style={{
+                    fontSize: '12px',
+                    fontWeight: 700,
+                    letterSpacing: '0.5px',
+                    color: 'var(--text)',
+                    whiteSpace: 'nowrap',
+                  }}>
+                    {stat.label}
+                  </span>
                 </div>
-                <div style={statLabelStyle}>Avg. Delivery Time</div>
-              </div>
-              <div>
-                <div style={statStyle}>
-                  <AnimatedCounter value={400} style={statStyle} />
-                  <span style={{ color: 'var(--cyan)', fontSize: '28px' }}>+</span>
-                </div>
-                <div style={statLabelStyle}>Businesses Analyzed</div>
-              </div>
-              <div>
-                <div style={statStyle}>
-                  $<AnimatedCounter value={0} style={statStyle} />
-                </div>
-                <div style={statLabelStyle}>Contracts Required</div>
-              </div>
-              <div>
-                <div style={statStyle}>
-                  <AnimatedCounter value={95} style={statStyle} />
-                  <span style={{ color: 'var(--cyan)', fontSize: '28px' }}>+</span>
-                </div>
-                <div style={statLabelStyle}>PageSpeed Score</div>
-              </div>
+              ))}
             </motion.div>
           </motion.div>
 
@@ -382,7 +356,7 @@ export function Hero() {
           }
         }
         @media (max-width: 640px) {
-          .hero-stats { flex-direction: column !important; gap: 20px !important; }
+          .hero-stats { flex-direction: column !important; gap: 10px !important; align-items: flex-start !important; }
           .hero-cta-primary, .hero-cta-secondary {
             width: 100% !important;
             justify-content: center !important;

@@ -19,53 +19,53 @@ type Service = {
 const SERVICES: Service[] = [
   {
     Icon: IconBolt,
-    title: 'AI-Powered Websites',
+    title: 'Dental Practice Websites',
     badge: 'Most Popular',
     description:
-      'Custom Next.js websites that load in under 2 seconds. PageSpeed 95+. Built in 3 days. You own the code forever.',
-    tags: ['Next.js', '3-Day Delivery', 'PageSpeed 95+'],
+      'A website that makes patients feel confident before they ever walk in. Online booking, insurance info, emergency CTAs — all loading in under 2 seconds.',
+    tags: ['Online Booking', '3-Day Delivery', 'PageSpeed 95+'],
     features: [
-      'Fully custom design — zero templates',
-      'Mobile-first, lightning fast',
-      'Built-in SEO from day one',
+      'Custom design that matches your practice personality',
+      'Mobile-first — 60%+ of patients search on phones',
+      'Built-in SEO so you rank for "dentist near me"',
       'Hosting, SSL & global CDN included',
     ],
     highlight: true,
   },
   {
     Icon: IconBot,
-    title: 'AI Chatbot & Booking',
+    title: 'AI Patient Concierge',
     description:
-      'Your website answers questions and books appointments 24/7. Never miss a lead at 2am again.',
-    tags: ['24/7 Booking', 'AI-Powered', 'Secure'],
+      'Your website answers patient questions and books appointments 24/7. When a nervous patient visits at 11pm, they get instant answers — not a voicemail.',
+    tags: ['24/7 Booking', 'AI-Powered', 'HIPAA-Aware'],
     features: [
-      'Instant response to visitors',
+      'Answers insurance, hours, and procedure questions',
       'Books appointments automatically',
-      'Answers your top 20 FAQs',
-      'Escalates to your team when needed',
+      'Handles new patient intake questions',
+      'Escalates emergencies to your team',
     ],
   },
   {
     Icon: IconStar,
-    title: 'Review Automation',
+    title: 'Review Generation Engine',
     description:
-      'Auto-request reviews after every appointment. Go from 12 Google reviews to 200+ in 90 days.',
-    tags: ['Google Reviews', 'Automated', 'Multi-platform'],
+      'After every appointment, patients get a friendly text asking for a Google review. Go from a handful of reviews to the most-reviewed practice in your zip code.',
+    tags: ['Google Reviews', 'Automated', 'Post-Visit SMS'],
     features: [
-      'Post-appointment SMS requests',
-      'Monitor Google, Yelp, Facebook',
-      'AI-generated response drafts',
-      'Review analytics dashboard',
+      'Automated post-appointment review requests',
+      'Monitor Google, Yelp, and Healthgrades',
+      'AI-drafted responses to every review',
+      'Review analytics showing growth over time',
     ],
   },
   {
     Icon: IconPhone,
-    title: 'Missed Call Text-Back',
+    title: 'Missed Call Recovery',
     description:
-      'Every missed call gets an instant text. Recover 40%+ of leads that would have called your competitor instead.',
-    tags: ['SMS Automation', '< 30sec', 'Lead Recovery'],
+      'Every missed call gets an instant text back: "Sorry we missed you! Book online or we\'ll call you back in 10 minutes." Recover patients who would\'ve called the next practice on Google.',
+    tags: ['SMS Automation', '< 30sec', 'Patient Recovery'],
     features: [
-      'Instant SMS when you miss a call',
+      'Instant SMS when your front desk misses a call',
       'AI follows up until they book',
       'Appointment reminder sequences',
       'No-show recovery campaigns',
@@ -73,28 +73,28 @@ const SERVICES: Service[] = [
   },
   {
     Icon: IconMapPin,
-    title: 'Local SEO & Google Maps',
+    title: 'Local Dental SEO',
     description:
-      'Dominate the Google Map Pack. Show up when customers search your service area or AI assistants recommend local businesses.',
+      'Dominate the Google Map Pack when patients search "dentist near me" or "emergency dentist [your city]." Show up first — not your competitor across the street.',
     tags: ['Google Maps', 'Google Business Profile', 'AI Search'],
     features: [
       'Google Business Profile optimization',
-      'Local citation building',
-      'AI search visibility (GPT, Perplexity, Gemini)',
-      'Monthly ranking reports',
+      'Dental-specific citation building',
+      'AI search visibility (ChatGPT, Perplexity, Gemini)',
+      'Monthly ranking reports by keyword',
     ],
   },
   {
     Icon: IconBarChart,
-    title: 'Revenue Analytics',
+    title: 'New Patient Analytics',
     description:
-      'Know exactly where your customers come from and how much each marketing dollar earns. No more guessing.',
-    tags: ['Dashboard', 'ROI Tracking', 'Monthly'],
+      'Know exactly how many new patients your website generates each month. See which channels drive bookings and which marketing dollars are wasted.',
+    tags: ['Dashboard', 'ROI Tracking', 'Monthly Reports'],
     features: [
-      'Customer acquisition tracking',
+      'New patient inquiry tracking',
       'Source attribution (Google, direct, referral)',
       'Monthly performance reports',
-      'Revenue impact visibility',
+      'Cost-per-acquisition visibility',
     ],
   },
 ];
@@ -200,13 +200,13 @@ export function Services() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
         >
           <div className="tag" style={{ display: 'inline-flex' }}>
-            What We Build
+            What Your Practice Gets
           </div>
           <h2 className="st">
-            Not Just a Website. A <em>Revenue Machine.</em>
+            Not Just a Website. A <em>Patient Booking Machine.</em>
           </h2>
           <p className="sd" style={{ maxWidth: '520px' }}>
-            We build the complete AI-powered system that fills your schedule, grows your reviews, and recovers lost leads — automatically.
+            Everything a dental practice needs to fill chairs, grow reviews, and stop losing patients to the practice down the street.
           </p>
         </motion.div>
 
@@ -306,10 +306,10 @@ export function Services() {
         >
           <div>
             <div style={{ fontSize: '16px', fontWeight: 700, color: 'var(--text)', marginBottom: '4px' }}>
-              Not sure which service you need?
+              Not sure what your practice needs?
             </div>
             <div style={{ fontSize: '14px', color: 'var(--t2)' }}>
-              Book a free 30-min call. We&apos;ll audit your current site and tell you exactly what to fix.
+              Book a free 30-min call. We&apos;ll audit your current online presence and show you exactly where you&apos;re losing patients.
             </div>
           </div>
           <a
@@ -317,7 +317,7 @@ export function Services() {
             className="bp"
             style={{ whiteSpace: 'nowrap', flexShrink: 0 }}
           >
-            Get Free Audit →
+            Get Free Dental Audit →
           </a>
         </motion.div>
       </div>
