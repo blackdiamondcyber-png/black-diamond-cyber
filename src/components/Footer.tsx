@@ -112,7 +112,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="fb">
-          <span>&copy; 2026 Black Diamond Cybersecurity Consulting LLC. All rights reserved.</span>
+          <span>&copy; 2026 Black Diamond Cyber LLC. All rights reserved.</span>
           <div style={{ display: 'flex', gap: '0', alignItems: 'center' }}>
             <a href="/privacy">Privacy Policy</a>
             <a href="/terms">Terms of Service</a>

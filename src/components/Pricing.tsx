@@ -95,41 +95,6 @@ export function Pricing() {
   return (
     <section id="pricing" ref={sectionRef}>
       <div className="c">
-        {/* Urgency banner */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            marginBottom: '24px',
-          }}
-        >
-          <span style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            padding: '8px 20px',
-            borderRadius: '40px',
-            background: 'rgba(245,158,11,.08)',
-            border: '1px solid rgba(245,158,11,.2)',
-            fontSize: '13px',
-            fontWeight: 600,
-            color: '#F59E0B',
-          }}>
-            <span style={{
-              width: '7px',
-              height: '7px',
-              borderRadius: '50%',
-              background: '#F59E0B',
-              display: 'inline-block',
-              animation: 'p 2s infinite',
-            }} />
-            Currently accepting 4 new clients this month. 2 spots remaining.
-          </span>
-        </motion.div>
-
         <motion.div
           className="sh sc"
           initial={{ opacity: 0, y: 28, filter: 'blur(5px)' }}
@@ -313,13 +278,12 @@ export function Pricing() {
               <div className="pa">$997</div>
               <div className="pmm" title="Hosting + SSL + CDN, monthly performance monitoring, content updates (up to 2/mo), priority support">then <b>$<AnimatedCounter value={wp.starter} duration={0.6} />/mo</b> <span style={{ fontSize: '10px', color: 'var(--t3)', fontWeight: 400 }}>Growth Maintenance</span></div>
               <ul className="pf">
-                <li>5-7 page website</li>
-                <li>Template-based design</li>
-                <li>Conversion-optimized content</li>
-                <li>Mobile responsive</li>
-                <li>SSL &amp; CDN</li>
-                <li>Basic SEO</li>
-                <li>3-5 day delivery</li>
+                <li>Professional 5-7 page website</li>
+                <li>Turn visitors into booked appointments</li>
+                <li>Look great on every device</li>
+                <li>Fast loading with SSL &amp; CDN</li>
+                <li>Show up in &ldquo;dentist near me&rdquo; searches</li>
+                <li>Live in 3-5 business days</li>
               </ul>
               <PricingButton tier="starter" />
             </PricingCard>

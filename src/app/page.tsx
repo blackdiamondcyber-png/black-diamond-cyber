@@ -16,12 +16,14 @@ import { SuccessModal } from "@/components/SuccessModal";
 import { FAQ } from "@/components/FAQ";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import { BeforeAfter } from "@/components/BeforeAfter";
+import { Showcase } from "@/components/Showcase";
+import { DentalROICalculator } from "@/components/DentalROICalculator";
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: "Black Diamond Cyber",
-  legalName: "Black Diamond Cybersecurity Consulting LLC",
+  legalName: "Black Diamond Cyber LLC",
   description:
     "AI-powered website design for local service businesses. Custom websites delivered in 7 days. No contracts. You own the code.",
   url: "https://bd-cyber.com",
@@ -122,6 +124,10 @@ export default function Home() {
         <Founder />
         <div className="sep" />
         <Reviews />
+        <div className="sep" />
+        <DentalROICalculator />
+        <div className="sep" />
+        <Showcase />
         <div className="sep" />
         <Pricing />
         <div className="sep" />

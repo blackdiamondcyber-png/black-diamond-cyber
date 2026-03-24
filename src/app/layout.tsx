@@ -22,7 +22,7 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   title: "Black Diamond Cyber — Premium Websites for Local Businesses",
   description:
-    "AI-powered websites for dental practices, HVAC, plumbing, electrical, roofing and more. Delivered in days. Starting at $997.",
+    "AI-powered websites for dental practices. Delivered in days. Starting at $997. No contracts. You own the code.",
   metadataBase: new URL("https://bd-cyber.com"),
   openGraph: {
     title: "Black Diamond Cyber",
