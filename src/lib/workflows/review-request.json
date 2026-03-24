@@ -1,0 +1,93 @@
+{
+  "name": "Review Request Automation",
+  "description": "Sends a review request SMS + email 2 hours after appointment completion. Follows up on Day 3 if no review detected.",
+  "tier": "growth",
+  "nodes": [
+    {
+      "id": "trigger",
+      "type": "n8n-nodes-base.webhook",
+      "name": "Appointment Completed Webhook",
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "appointment-complete",
+        "responseMode": "onReceived"
+      },
+      "position": [240, 300]
+    },
+    {
+      "id": "wait-2h",
+      "type": "n8n-nodes-base.wait",
+      "name": "Wait 2 Hours",
+      "parameters": {
+        "amount": 2,
+        "unit": "hours"
+      },
+      "position": [460, 300]
+    },
+    {
+      "id": "send-sms",
+      "type": "n8n-nodes-base.twilio",
+      "name": "Send Review SMS",
+      "parameters": {
+        "operation": "send",
+        "from": "={{$env.TWILIO_PHONE_NUMBER}}",
+        "to": "={{$json.patient_phone}}",
+        "message": "Hi {{$json.patient_name}}! Thanks for visiting {{$env.BUSINESS_NAME}} today. We'd love your feedback — leave a quick Google review here: {{$env.GOOGLE_REVIEW_URL}} 🙏"
+      },
+      "position": [680, 200]
+    },
+    {
+      "id": "send-email",
+      "type": "n8n-nodes-base.emailSend",
+      "name": "Send Review Email",
+      "parameters": {
+        "to": "={{$json.patient_email}}",
+        "subject": "How was your visit to {{$env.BUSINESS_NAME}}?",
+        "html": "<p>Hi {{$json.patient_name}},</p><p>Thanks for visiting us today! Your feedback helps us serve you better.</p><p><a href='{{$env.GOOGLE_REVIEW_URL}}'>Leave a Google Review</a></p><p>Thank you!<br/>The {{$env.BUSINESS_NAME}} Team</p>"
+      },
+      "position": [680, 400]
+    },
+    {
+      "id": "wait-3d",
+      "type": "n8n-nodes-base.wait",
+      "name": "Wait 3 Days",
+      "parameters": {
+        "amount": 3,
+        "unit": "days"
+      },
+      "position": [900, 300]
+    },
+    {
+      "id": "check-review",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "Check If Reviewed",
+      "parameters": {
+        "method": "GET",
+        "url": "={{$env.SUPABASE_URL}}/rest/v1/review_requests?patient_id=eq.{{$json.patient_id}}&reviewed=eq.true",
+        "headers": {
+          "apikey": "={{$env.SUPABASE_ANON_KEY}}"
+        }
+      },
+      "position": [1120, 300]
+    },
+    {
+      "id": "followup-sms",
+      "type": "n8n-nodes-base.twilio",
+      "name": "Follow-Up SMS",
+      "parameters": {
+        "operation": "send",
+        "from": "={{$env.TWILIO_PHONE_NUMBER}}",
+        "to": "={{$json.patient_phone}}",
+        "message": "Hi {{$json.patient_name}}, just a friendly reminder — your feedback means the world to us! Leave a quick Google review here: {{$env.GOOGLE_REVIEW_URL}} ⭐"
+      },
+      "position": [1340, 300]
+    }
+  ],
+  "connections": {
+    "trigger": { "main": [["wait-2h"]] },
+    "wait-2h": { "main": [["send-sms", "send-email"]] },
+    "send-sms": { "main": [["wait-3d"]] },
+    "wait-3d": { "main": [["check-review"]] },
+    "check-review": { "main": [["followup-sms"]] }
+  }
+}

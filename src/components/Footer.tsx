@@ -50,13 +50,13 @@ export function Footer() {
             <h4>Industries</h4>
             <ul className="fl">
               <li>
-                <a href="#">Dental</a>
+                <a href="/dental">Dental</a>
               </li>
               <li>
-                <a href="#">HVAC</a>
+                <a href="/hvac">HVAC</a>
               </li>
               <li>
-                <a href="#">Plumbing</a>
+                <a href="/plumbing">Plumbing</a>
               </li>
               <li>
                 <a href="#">Electrical</a>

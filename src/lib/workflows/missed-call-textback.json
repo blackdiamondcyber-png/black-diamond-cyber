@@ -1,0 +1,76 @@
+{
+  "name": "Missed Call Text-Back",
+  "description": "Sends an automated SMS via Twilio when a call is missed. Logs lead to Supabase and notifies owner via Slack.",
+  "tier": "growth",
+  "nodes": [
+    {
+      "id": "trigger",
+      "type": "n8n-nodes-base.webhook",
+      "name": "Twilio Missed Call Webhook",
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "missed-call",
+        "responseMode": "onReceived"
+      },
+      "position": [240, 300]
+    },
+    {
+      "id": "wait",
+      "type": "n8n-nodes-base.wait",
+      "name": "Wait 30 Seconds",
+      "parameters": {
+        "amount": 30,
+        "unit": "seconds"
+      },
+      "position": [460, 300]
+    },
+    {
+      "id": "send-sms",
+      "type": "n8n-nodes-base.twilio",
+      "name": "Send Text-Back SMS",
+      "parameters": {
+        "operation": "send",
+        "from": "={{$env.TWILIO_PHONE_NUMBER}}",
+        "to": "={{$json.From}}",
+        "message": "Sorry we missed your call! Reply here or book online at {{$env.BOOKING_URL}}. - {{$env.BUSINESS_NAME}}"
+      },
+      "position": [680, 300]
+    },
+    {
+      "id": "log-lead",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "Log to Supabase",
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.SUPABASE_URL}}/rest/v1/missed_calls",
+        "headers": {
+          "apikey": "={{$env.SUPABASE_ANON_KEY}}",
+          "Authorization": "Bearer ={{$env.SUPABASE_ANON_KEY}}",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "phone": "={{$json.From}}",
+          "status": "texted",
+          "created_at": "={{new Date().toISOString()}}"
+        }
+      },
+      "position": [900, 200]
+    },
+    {
+      "id": "notify",
+      "type": "n8n-nodes-base.slack",
+      "name": "Notify Owner",
+      "parameters": {
+        "channel": "={{$env.SLACK_CHANNEL}}",
+        "text": "📱 Missed call from {{$json.From}} — auto-text sent. Follow up when you can.",
+        "attachments": []
+      },
+      "position": [900, 400]
+    }
+  ],
+  "connections": {
+    "trigger": { "main": [["wait"]] },
+    "wait": { "main": [["send-sms"]] },
+    "send-sms": { "main": [["log-lead", "notify"]] }
+  }
+}
