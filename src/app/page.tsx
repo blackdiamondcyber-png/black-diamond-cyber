@@ -14,6 +14,10 @@ import { CTA } from "@/components/CTA";
 import { Footer } from "@/components/Footer";
 import { BookingHandler } from "@/components/BookingHandler";
 import { SuccessModal } from "@/components/SuccessModal";
+import { FAQ } from "@/components/FAQ";
+import { CostComparison } from "@/components/CostComparison";
+import { FeatureMatrix } from "@/components/FeatureMatrix";
+import { TrustBadges } from "@/components/TrustBadges";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -87,6 +91,14 @@ export default function Home() {
         <HowItWorks />
         <div className="sep"></div>
         <Pricing />
+        <div className="sep"></div>
+        <CostComparison />
+        <div className="sep"></div>
+        <FeatureMatrix />
+        <div className="sep"></div>
+        <FAQ />
+        <div className="sep"></div>
+        <TrustBadges />
         <div className="sep"></div>
         <Founder />
         <div className="sep"></div>

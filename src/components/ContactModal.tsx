@@ -326,6 +326,7 @@ export function ContactModal({ open, onClose }: ContactModalProps) {
               <input
                 ref={firstInputRef}
                 type="text"
+                name="name"
                 value={form.name}
                 onChange={(e) => updateField('name', e.target.value)}
                 placeholder="John Smith"
@@ -342,6 +343,7 @@ export function ContactModal({ open, onClose }: ContactModalProps) {
             >
               <input
                 type="email"
+                name="email"
                 value={form.email}
                 onChange={(e) => updateField('email', e.target.value)}
                 placeholder="john@business.com"
@@ -354,6 +356,7 @@ export function ContactModal({ open, onClose }: ContactModalProps) {
             <FieldGroup label="Phone" error={fieldErrors.phone}>
               <input
                 type="tel"
+                name="phone"
                 value={form.phone}
                 onChange={(e) => updateField('phone', e.target.value)}
                 placeholder="(555) 123-4567"
@@ -368,6 +371,7 @@ export function ContactModal({ open, onClose }: ContactModalProps) {
             >
               <input
                 type="text"
+                name="businessName"
                 value={form.businessName}
                 onChange={(e) =>
                   updateField('businessName', e.target.value)

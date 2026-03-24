@@ -35,6 +35,9 @@ export const metadata: Metadata = {
     title: "Black Diamond Cyber",
     description: "Premium AI-powered websites for local businesses",
   },
+  alternates: {
+    canonical: 'https://bd-cyber.com',
+  },
   robots: { index: true, follow: true },
   icons: {
     icon: "/favicon.ico",

@@ -162,7 +162,7 @@ export function IndustryPage({ data }: { data: IndustryData }) {
             <div className="rv" style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
               <div className="tag" style={{ display: 'inline-flex', marginBottom: '22px' }}>Pricing</div>
               <h2 className="st" style={{ marginBottom: '16px' }}>
-                Ready to Grow Your <em>{data.name.replace(/s$/, '')}?</em>
+                Ready to Grow Your <em>{data.name.replace(/ies$/, 'y').replace(/s$/, '')}?</em>
               </h2>
               <p style={{ fontSize: '14px', color: 'var(--t2)', lineHeight: 1.85, marginBottom: '32px' }}>
                 Websites starting at $997. Growth systems starting at $497/mo. No contracts, no surprises, own your code.

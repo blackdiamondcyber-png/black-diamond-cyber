@@ -1,10 +1,12 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { VideoBackground } from '@/components/VideoBackground';
 import { AnimatedCounter } from '@/components/AnimatedCounter';
 import { MagneticButton } from '@/components/MagneticButton';
+
+const HERO_WORDS = ['Businesses', 'Dental Practices', 'HVAC Companies', 'Plumbing Companies', 'Med Spas', 'Electricians'] as const;
 
 const stagger = {
   hidden: {},
@@ -41,6 +43,14 @@ const statLabelStyle: React.CSSProperties = {
 
 export function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [wordIndex, setWordIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % HERO_WORDS.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end start'],
@@ -152,28 +162,40 @@ export function Hero() {
               Websites &amp; Growth Systems
               <br />
               for Local{' '}
-              <em style={{
-                color: 'var(--cyan)',
-                fontStyle: 'italic',
-                position: 'relative',
-              }}>
-                Businesses
-                {/* Underline accent */}
-                <motion.span
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ delay: 1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                  style={{
-                    position: 'absolute',
-                    bottom: '-2px',
-                    left: 0,
-                    right: 0,
-                    height: '2px',
-                    background: 'linear-gradient(90deg, var(--cyan), transparent)',
-                    transformOrigin: 'left',
-                  }}
-                />
-              </em>
+              <span style={{ position: 'relative', display: 'inline-block', minWidth: '280px', verticalAlign: 'bottom' }}>
+                <AnimatePresence mode="wait">
+                  <motion.em
+                    key={HERO_WORDS[wordIndex]}
+                    initial={{ opacity: 0, y: 24, filter: 'blur(4px)' }}
+                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, y: -24, filter: 'blur(4px)' }}
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
+                    style={{
+                      color: 'var(--cyan)',
+                      fontStyle: 'italic',
+                      display: 'inline-block',
+                      position: 'relative',
+                    }}
+                  >
+                    {HERO_WORDS[wordIndex]}
+                    {/* Underline accent */}
+                    <motion.span
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ delay: 0.3, duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
+                      style={{
+                        position: 'absolute',
+                        bottom: '-2px',
+                        left: 0,
+                        right: 0,
+                        height: '2px',
+                        background: 'linear-gradient(90deg, var(--cyan), transparent)',
+                        transformOrigin: 'left',
+                      }}
+                    />
+                  </motion.em>
+                </AnimatePresence>
+              </span>
             </motion.h1>
 
             {/* Subline */}
