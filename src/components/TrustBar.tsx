@@ -7,30 +7,30 @@ export function TrustBar() {
           <div className="tp"></div>
           <div className="ts">
             <div className="tn">
-              127<span>+</span>
+              3<span>-7</span>
             </div>
-            <div className="tl">Sites Launched</div>
+            <div className="tl">Day Delivery</div>
           </div>
           <div className="tp"></div>
           <div className="ts">
             <div className="tn">
-              99.9<span>%</span>
+              95<span>+</span>
             </div>
-            <div className="tl">Uptime</div>
+            <div className="tl">PageSpeed</div>
           </div>
           <div className="tp"></div>
           <div className="ts">
             <div className="tn">
-              4.9<span>/5</span>
+              100<span>%</span>
             </div>
-            <div className="tl">Client Rating</div>
+            <div className="tl">Code Ownership</div>
           </div>
           <div className="tp"></div>
           <div className="ts">
             <div className="tn">
-              3.2<span>x</span>
+              $0<span></span>
             </div>
-            <div className="tl">Avg. Lead Increase</div>
+            <div className="tl">Contracts</div>
           </div>
           <div className="tp"></div>
           <div className="nc2" style={{ borderColor: 'var(--cyan)', color: 'var(--cyan)', background: 'rgba(93,196,232,.04)' }}>Own Your Website Code</div>

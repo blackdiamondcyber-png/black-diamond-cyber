@@ -71,7 +71,7 @@ export function Footer() {
               <li><a href="/vs-gargle">vs. Gargle</a></li>
               <li><a href="/roi-calculator">ROI Calculator</a></li>
               <li><a href="/free-audit">Free Audit</a></li>
-              <li><a href="/case-studies">Case Studies</a></li>
+              <li><a href="#work">Our Work</a></li>
             </ul>
           </div>
 

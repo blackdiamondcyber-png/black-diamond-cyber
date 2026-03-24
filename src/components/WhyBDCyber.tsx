@@ -56,7 +56,7 @@ export function WhyBDCyber() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
         >
           <div className="tag" style={{ display: 'inline-flex' }}>Why Switch</div>
-          <h2 className="st">Why Local Businesses Switch to<br /><em>Black Diamond</em></h2>
+          <h2 className="st">Why Dental Practices Choose<br /><em>Black Diamond</em></h2>
           <p className="sd">We compared ourselves to every alternative so you don&apos;t have to.</p>
         </motion.div>
 

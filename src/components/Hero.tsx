@@ -142,7 +142,7 @@ export function Hero() {
             <motion.div variants={fadeUp} style={{ marginBottom: '28px', display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
               <span className="tag">
                 <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--green)', display: 'inline-block', animation: 'p 2s infinite', marginRight: '4px' }} />
-                Now Accepting New Clients — 3 Spots Left This Month
+                Now Accepting Founding Clients
               </span>
             </motion.div>
 
@@ -159,9 +159,9 @@ export function Hero() {
                 marginBottom: '8px',
               }}
             >
-              Your Competitors Are
+              Your Patients Are Choosing
               <br />
-              Stealing Customers.
+              Your Competitors.
               <br />
               <span style={{ position: 'relative', display: 'inline-block' }}>
                 <em style={{ color: 'var(--cyan)', fontStyle: 'italic' }}>We Fix That.</em>
@@ -230,46 +230,8 @@ export function Hero() {
                 marginBottom: '44px',
               }}
             >
-              We build <strong style={{ color: 'var(--text)' }}>high-performance websites in 3 days</strong> that fill your schedule with new customers. AI chatbots, review automation, and lead systems included. No contracts. You own the code.
+              Built by a dental industry insider who manages <strong style={{ color: 'var(--text)' }}>400+ accounts</strong>. Premium websites delivered in days, not weeks. AI chatbots, review automation, and lead systems included. No contracts. You own the code.
             </motion.p>
-
-            {/* Social proof line */}
-            <motion.div
-              variants={fadeUp}
-              style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '28px' }}
-            >
-              <div style={{ display: 'flex', marginLeft: '4px' }}>
-                {['RK', 'MT', 'JR', 'KW', 'BH'].map((initials, i) => (
-                  <div
-                    key={initials}
-                    style={{
-                      width: '32px',
-                      height: '32px',
-                      borderRadius: '50%',
-                      background: 'var(--blue-d)',
-                      border: '2px solid var(--bg)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '9px',
-                      fontWeight: 700,
-                      color: 'var(--cyan)',
-                      marginLeft: i === 0 ? 0 : '-8px',
-                      zIndex: 5 - i,
-                      position: 'relative',
-                    }}
-                  >
-                    {initials}
-                  </div>
-                ))}
-              </div>
-              <div>
-                <div style={{ fontSize: '13px', color: 'var(--text)', fontWeight: 600 }}>
-                  ★★★★★ <span style={{ color: 'var(--t2)', fontWeight: 400 }}>from 127+ local businesses</span>
-                </div>
-                <div style={{ fontSize: '11px', color: 'var(--t3)' }}>Dental • HVAC • Plumbing • Electrical • Roofing</div>
-              </div>
-            </motion.div>
 
             {/* CTAs */}
             <motion.div
@@ -277,14 +239,14 @@ export function Hero() {
               style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginBottom: '64px' }}
             >
               <MagneticButton href="#book" className="bp" strength={0.25}>
-                🚀 Book Free Strategy Call
+                Book Free Strategy Call
               </MagneticButton>
-              <MagneticButton href="#work" className="bs" strength={0.2}>
-                See Client Results →
+              <MagneticButton href="/free-audit" className="bs" strength={0.2}>
+                Run Your Free Site Audit
               </MagneticButton>
             </motion.div>
 
-            {/* Stats bar */}
+            {/* Stats bar — honest, verifiable stats only */}
             <motion.div
               variants={fadeUp}
               style={{
@@ -303,10 +265,10 @@ export function Hero() {
               </div>
               <div>
                 <div style={statStyle}>
-                  <AnimatedCounter value={127} style={statStyle} />
+                  <AnimatedCounter value={8} style={statStyle} />
                   <span style={{ color: 'var(--cyan)', fontSize: '28px' }}>+</span>
                 </div>
-                <div style={statLabelStyle}>Sites Launched</div>
+                <div style={statLabelStyle}>Apps Shipped</div>
               </div>
               <div>
                 <div style={statStyle}>

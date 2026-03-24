@@ -20,8 +20,8 @@ export function Founder() {
         >
           {/* Photo */}
           <div style={{
-            width: '100px',
-            height: '100px',
+            width: '120px',
+            height: '120px',
             borderRadius: '50%',
             overflow: 'hidden',
             boxShadow: '0 8px 32px rgba(40,135,204,.3)',
@@ -30,9 +30,9 @@ export function Founder() {
           }}>
             <Image
               src="/images/erik-pearson-founder.png"
-              alt="Erik Pearson - Founder & CEO of Black Diamond Cyber"
-              width={100}
-              height={100}
+              alt="Erik Pearson - Founder of Black Diamond Cyber"
+              width={120}
+              height={120}
               style={{ objectFit: 'cover', width: '100%', height: '100%' }}
               priority
             />
@@ -44,7 +44,7 @@ export function Founder() {
             <p>Founder &amp; CEO</p>
           </div>
 
-          {/* Stat row */}
+          {/* Stat row — real, verifiable stats */}
           <div style={{
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
@@ -53,9 +53,9 @@ export function Founder() {
             margin: '8px 0',
           }}>
             {[
-              { value: '127+', label: 'Sites Built' },
-              { value: '3 days', label: 'Avg Delivery' },
-              { value: '$0', label: 'Contracts' },
+              { value: '400+', label: 'Dental Accounts' },
+              { value: '8', label: 'Apps Shipped' },
+              { value: '3 day', label: 'Avg Delivery' },
               { value: '95+', label: 'PageSpeed' },
             ].map((stat) => (
               <div key={stat.label} style={{
@@ -73,9 +73,9 @@ export function Founder() {
 
           {/* Credential badges */}
           <div className="fp-badges">
-            <span className="fp-badge">Patterson Dental — Sales</span>
-            <span className="fp-badge">AI-Certified Developer</span>
-            <span className="fp-badge">Full-Stack Engineer</span>
+            <span className="fp-badge">Patterson Dental Sales</span>
+            <span className="fp-badge">Full-Stack Developer</span>
+            <span className="fp-badge">8 Production Apps</span>
             <span className="fp-badge">Canyon Lake, TX</span>
           </div>
 
@@ -94,35 +94,39 @@ export function Founder() {
         >
           <div className="sh">
             <div className="tag" style={{ marginBottom: '16px', display: 'inline-flex' }}>
-              Why This Exists
+              Meet the Founder
             </div>
             <h2 className="st">
-              Built by Someone Who&nbsp;
-              <em>Lives</em> Local Business
+              I Know Dental. I Build&nbsp;
+              <em>Websites.</em>
             </h2>
           </div>
 
           <p style={{ fontSize: '15px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '18px' }}>
-            I&rsquo;m a territory sales rep at Patterson Dental covering 400+ accounts across Austin and San Antonio. Every week I walk into dental offices, HVAC shops, and local businesses and see the same thing: 
-            <strong style={{ color: 'var(--text)' }}> great services, terrible websites.</strong>
+            I&rsquo;m a territory sales rep at Patterson Dental, covering <strong style={{ color: 'var(--text)' }}>400+ dental accounts</strong> across Austin and San Antonio. Every week I walk into practices and see the same problem:
+            <strong style={{ color: 'var(--text)' }}> incredible dentistry, invisible online.</strong>
           </p>
 
           <p style={{ fontSize: '15px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '18px' }}>
-            I watched businesses lose patients to competitors with worse reviews and worse service &mdash; purely because their website was 
-            <strong style={{ color: 'var(--text)' }}> faster, prettier, and easier to trust</strong>. So I built what I kept recommending but couldn&rsquo;t find anywhere: AI-powered websites that deliver agency quality at a price that makes sense for local business.
+            I watched practices lose patients to competitors with worse reviews and worse care &mdash; purely because the other practice had
+            <strong style={{ color: 'var(--text)' }}> a faster, more trustworthy website</strong>. That&rsquo;s a problem I knew I could solve.
+          </p>
+
+          <p style={{ fontSize: '15px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '18px' }}>
+            I&rsquo;m also a self-taught full-stack developer with <strong style={{ color: 'var(--text)' }}>8 production applications shipped</strong>. I combined my dental industry knowledge with AI-powered development to build premium websites in days instead of weeks &mdash; at a price that actually makes sense for local practices.
           </p>
 
           <p style={{ fontSize: '15px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '28px' }}>
-            I&rsquo;m also a self-taught developer with 8 production apps shipped. When I say the code is yours, I mean it &mdash; because I built it that way on purpose. No platform lock-in. No hostage situation when you want to leave.
+            When I say the code is yours, I mean it &mdash; I built it that way on purpose. No platform lock-in. No hostage situation. Just a better website that brings in more patients.
           </p>
 
           {/* Differentiators */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '28px' }}>
             {[
-              { icon: '⚡', title: 'AI-First Builder', desc: 'Ship sites in 72 hours with AI generation + human polish' },
-              { icon: '🎯', title: 'Industry Insider', desc: '400+ dental & local business relationships' },
-              { icon: '💎', title: 'Code Ownership', desc: 'You own everything. We just build it fast.' },
-              { icon: '📈', title: 'Revenue Focus', desc: 'Every decision optimized for leads, not aesthetics' },
+              { icon: '🦷', title: 'Dental Industry Insider', desc: '400+ accounts — I know what patients look for online' },
+              { icon: '⚡', title: 'AI-Powered Speed', desc: 'Ship premium sites in 3-7 days with AI + human polish' },
+              { icon: '💎', title: 'You Own Everything', desc: 'Your code, your domain, your Vercel account' },
+              { icon: '📈', title: 'Revenue-First Design', desc: 'Every element optimized to convert visitors into patients' },
             ].map((item) => (
               <div key={item.title} style={{
                 background: 'var(--bg1)',
@@ -144,7 +148,7 @@ export function Founder() {
           {/* Tech stack */}
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
             <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--t3)' }}>Stack</span>
-            {['Next.js', 'React', 'TypeScript', 'Supabase', 'Vercel', 'n8n', 'Claude AI', 'Stripe'].map((tech) => (
+            {['Next.js', 'React', 'TypeScript', 'Supabase', 'Vercel', 'Claude AI', 'Stripe'].map((tech) => (
               <span key={tech} className="ptg hi">{tech}</span>
             ))}
           </div>

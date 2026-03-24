@@ -5,24 +5,29 @@ import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 
 const STEPS = [
   {
-    title: 'Free Consultation',
+    title: 'Discovery Call',
     description:
-      '30-minute call to understand your business, goals, and local market. No pressure. We share examples from your industry.',
+      'Free 30-minute call. We learn your practice, your goals, and your market. No pressure, no pitch — just a conversation about what\'s possible.',
+  },
+  {
+    title: 'Free Site Audit',
+    description:
+      'We audit your current site (or lack of one), analyze your top 10 local competitors, and show you exactly where you\'re losing patients online.',
   },
   {
     title: 'Design & Build',
     description:
-      'We analyze your top 10 local competitors, generate your custom site, and deliver a live preview within 48 hours.',
+      'AI-powered generation plus human polish. We build your custom site with competitor-informed copy, SEO foundations, and conversion-optimized layouts.',
   },
   {
     title: 'Launch',
     description:
-      'Domain connected, deployed on global CDN, analytics installed, monthly reporting activated. You\u2019re live.',
+      'Domain connected, deployed on global CDN, analytics installed, Google Business Profile linked. You\'re live and getting found in 3-7 business days.',
   },
   {
-    title: 'Grow',
+    title: '90-Day Optimization',
     description:
-      'Monthly reports show traffic, rankings, calls, and form submissions. We handle hosting, updates, and security.',
+      'After launch, we monitor traffic, refine SEO, and optimize conversions for 90 days. Monthly reports show exactly what\'s working and what we\'re improving.',
   },
 ];
 
@@ -49,10 +54,10 @@ export function HowItWorks() {
             How It Works
           </div>
           <h2 className="st">
-            Live Site in <em>4 Steps</em>
+            From First Call to <em>More Patients</em>
           </h2>
           <p className="sd">
-            From first call to live website in as little as 3 business days.
+            Five steps. Your site is live in as little as 3 business days, then we optimize for 90 more.
           </p>
         </motion.div>
 

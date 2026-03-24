@@ -1,144 +1,141 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 
-const REVIEWS = [
+const GUARANTEES = [
   {
-    industry: 'Dental',
-    quote: "We had zero web presence before Erik stepped in. Four days later we had a site that looks like we spent $15K on it. Within 30 days, 23 new patients booked directly through the website. The AI chatbot answers questions at midnight when we're obviously closed — it's insane.",
-    result: '+23 patients in month 1',
-    name: 'Dr. Rachel Kwon, DDS',
-    practice: 'Bright Smile Dental · Austin, TX',
-    initials: 'RK',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M16 18l6-6-6-6" /><path d="M8 6l-6 6 6 6" />
+      </svg>
+    ),
+    title: 'You Own Every Line of Code',
+    description: 'Your website is built on Next.js and deployed to your own Vercel account. No proprietary platforms, no lock-in. If you leave, you take everything with you.',
   },
   {
-    industry: 'HVAC',
-    quote: "Our old GoDaddy site was embarrassing. BDC rebuilt it in 5 days and within 6 weeks we were on page 1 of Google for 'HVAC repair Denver.' We've tracked $47K in jobs directly from the site this quarter. Best ROI of anything we've done in 12 years.",
-    result: '$47K attributed revenue Q1',
-    name: 'Mike Torres, Owner',
-    practice: 'Summit HVAC Services · Denver, CO',
-    initials: 'MT',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg>
+    ),
+    title: 'No Contracts. Ever.',
+    description: 'Month-to-month hosting and support. Cancel anytime with zero penalties. We keep your business by earning it, not by trapping you.',
   },
   {
-    industry: 'Plumbing',
-    quote: "The monthly reports show exactly how many people visited, where they came from, and how many clicked 'Request Estimate.' Last month: 89 estimate requests. That's insane for a plumbing company. We've had to hire two more plumbers.",
-    result: '89 estimate requests/month',
-    name: 'James Ruiz, Owner',
-    practice: 'Apex Plumbing Co. · Phoenix, AZ',
-    initials: 'JR',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
+      </svg>
+    ),
+    title: '3-7 Day Delivery',
+    description: 'Your site goes live in days, not weeks. AI-powered generation plus human polish means agency-quality work on a startup timeline.',
   },
   {
-    industry: 'Electrical',
-    quote: "I was paying another company $350/month and my site looked like 2016. Erik rebuilt it for less than one month of my old contract. Three competitors have asked who designed it. I tell them nothing.",
-    result: '3 competitors asked who built it',
-    name: 'Kevin Walsh, Owner',
-    practice: 'Greenline Electrical · Charlotte, NC',
-    initials: 'KW',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+      </svg>
+    ),
+    title: '95+ PageSpeed Guaranteed',
+    description: 'Every site is built on Next.js with server-side rendering, image optimization, and global CDN. Sub-2-second load times, every time.',
   },
   {
-    industry: 'Roofing',
-    quote: "We run a 4-location roofing company and needed proper SEO for each service area. BDC nailed it in under 2 weeks. We're ranking in 3 cities and the phone hasn't stopped. We've stopped spending on Google Ads because organic is doing the work now.",
-    result: 'Ranking in 3 cities — no ad spend',
-    name: 'Brandon Hicks, CEO',
-    practice: 'RedShield Roofing · Nashville, TN',
-    initials: 'BH',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" /><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" />
+      </svg>
+    ),
+    title: 'Competitor Research Included',
+    description: 'Before we build, we analyze your top 10 local competitors. Your site is designed to outrank and outconvert every one of them.',
   },
   {
-    industry: 'Med Spa',
-    quote: "The Cinematic tier with the animated hero is absolutely stunning. Patients tell us they chose us specifically because of how professional our website looked compared to every other med spa in Scottsdale. We went from 8 consults/week to 22. That's the website.",
-    result: '22 new consults/week',
-    name: 'Sarah Nguyen, Owner',
-    practice: 'Luxe Aesthetics · Scottsdale, AZ',
-    initials: 'SN',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22 11.08V12a10 10 0 11-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />
+      </svg>
+    ),
+    title: '90-Day Optimization',
+    description: 'After launch, we monitor performance, tweak SEO, and optimize conversions for 90 days. Your site gets better every month.',
   },
 ];
 
 export function Reviews() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
+
   return (
-    <section id="reviews">
+    <section id="reviews" ref={sectionRef}>
       <div className="c">
-        <div className="sh rv">
+        <motion.div
+          className="sh rv"
+          initial={{ opacity: 0, y: 28, filter: 'blur(5px)' }}
+          animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
+        >
           <div className="tag" style={{ marginBottom: '12px' }}>
-            Client Results
+            Our Promise
           </div>
           <h2 className="st">
-            Real Results from <em>Real Businesses</em>
+            What We <em>Guarantee</em>
           </h2>
           <p className="sd">
-            127+ local businesses. Every review below is from an actual client. No made-up logos, no fake results.
+            We&apos;re a new agency building our reputation one client at a time. These aren&apos;t vague promises &mdash; they&apos;re commitments we back with action.
           </p>
-        </div>
+        </motion.div>
       </div>
 
-      <div className="rs rv d1" style={{ padding: '0 24px' }}>
-        {REVIEWS.map((review) => (
-          <div className="rc" key={review.name}>
-            <div className="stars">★★★★★</div>
-            <div style={{ display: 'flex', gap: '4px', marginBottom: '12px' }}>
-              <span className="ptg hi">{review.industry}</span>
-              <span className="ptg" style={{ borderColor: 'rgba(52,211,153,.2)', color: 'var(--green)' }}>Verified Client</span>
-            </div>
-            <blockquote>&ldquo;{review.quote}&rdquo;</blockquote>
-            <div className="met">{review.result}</div>
-            <div className="ra">
-              <div className="rav">{review.initials}</div>
-              <div>
-                <h4>{review.name}</h4>
-                <p>{review.practice}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+      <style dangerouslySetInnerHTML={{ __html: `
+        @media(max-width:1024px){#guarantee-grid{grid-template-columns:repeat(2,1fr)!important}}
+        @media(max-width:640px){#guarantee-grid{grid-template-columns:1fr!important}}
+      ` }} />
 
-      {/* Aggregate trust bar */}
-      <div className="c" style={{ marginTop: '40px' }}>
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          style={{
-            display: 'flex',
-            gap: '0',
-            background: 'var(--bg1)',
-            border: '1px solid var(--hr)',
-            borderRadius: 'var(--rr)',
-            overflow: 'hidden',
-          }}
-        >
-          {[
-            { value: '127+', label: 'Sites Launched' },
-            { value: '4.9/5', label: 'Average Rating' },
-            { value: '3.2×', label: 'Lead Increase' },
-            { value: '$0', label: 'Contracts' },
-          ].map((stat, i) => (
-            <div
-              key={stat.label}
-              style={{
-                flex: 1,
-                textAlign: 'center',
-                padding: '24px 16px',
-                borderRight: i < 3 ? '1px solid var(--hr)' : 'none',
+      <div className="c">
+        <div id="guarantee-grid" style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: '14px',
+        }}>
+          {GUARANTEES.map((g, i) => (
+            <motion.div
+              key={g.title}
+              className="svc"
+              initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
+              animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+              transition={{
+                duration: 0.7,
+                delay: i * 0.1,
+                ease: [0.16, 1, 0.3, 1] as const,
+              }}
+              whileHover={{
+                y: -4,
+                boxShadow: '0 8px 32px rgba(93,196,232,.08), inset 0 1px 0 rgba(255,255,255,.03)',
+                borderColor: 'rgba(93,196,232,.12)',
               }}
             >
-              <div style={{
+              <div style={{ marginBottom: '16px' }}>
+                {g.icon}
+              </div>
+              <h3 style={{
                 fontFamily: "'Instrument Serif', serif",
-                fontSize: '28px',
+                fontSize: '20px',
                 color: 'var(--text)',
-                lineHeight: 1,
-                marginBottom: '6px',
-              }}>{stat.value}</div>
-              <div style={{
-                fontSize: '9px',
-                fontWeight: 700,
-                letterSpacing: '1.5px',
-                textTransform: 'uppercase',
-                color: 'var(--t3)',
-              }}>{stat.label}</div>
-            </div>
+                fontWeight: 400,
+                marginBottom: '10px',
+                lineHeight: 1.2,
+              }}>
+                {g.title}
+              </h3>
+              <p style={{
+                fontSize: '13px',
+                color: 'var(--t2)',
+                lineHeight: 1.75,
+              }}>
+                {g.description}
+              </p>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

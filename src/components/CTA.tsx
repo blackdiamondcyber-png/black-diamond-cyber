@@ -41,7 +41,7 @@ export function CTA() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
               style={{ position: 'relative', zIndex: 1 }}
             >
-              {/* Urgency pill */}
+              {/* Founding client pill */}
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
                 <span style={{
                   display: 'inline-flex',
@@ -49,25 +49,25 @@ export function CTA() {
                   gap: '8px',
                   padding: '6px 18px',
                   borderRadius: '40px',
-                  background: 'rgba(239,68,68,.08)',
-                  border: '1px solid rgba(239,68,68,.2)',
+                  background: 'rgba(52,211,153,.08)',
+                  border: '1px solid rgba(52,211,153,.2)',
                   fontSize: '11px',
                   fontWeight: 700,
                   letterSpacing: '1px',
-                  color: '#EF4444',
+                  color: 'var(--green)',
                 }}>
-                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#EF4444', display: 'inline-block', animation: 'p 1.5s infinite' }} />
-                  Only 3 client spots remaining this month
+                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--green)', display: 'inline-block', animation: 'p 1.5s infinite' }} />
+                  Now Accepting Founding Clients
                 </span>
               </div>
 
               <h2 style={{ marginBottom: '16px' }}>
-                Your Competitors Are Live.
+                More Patients Start with
                 <br />
-                <em>When Will You Be?</em>
+                <em>a Better Website.</em>
               </h2>
               <p style={{ marginBottom: '16px' }}>
-                Every day you wait is another day of lost patients, missed calls, and revenue going to whoever shows up first on Google. Let&apos;s fix that this week.
+                Your next patient is searching right now. If your website doesn&apos;t load fast, look professional, and make booking easy &mdash; they&apos;ll choose the practice that does. Let&apos;s make sure that&apos;s you.
               </p>
 
               {/* What you get free */}
@@ -106,10 +106,10 @@ export function CTA() {
               style={{ position: 'relative', zIndex: 1 }}
             >
               <MagneticButton href="#book" className="bp" strength={0.25}>
-                🚀 Book Free 30-Min Strategy Call
+                Book Free Strategy Call
               </MagneticButton>
               <MagneticButton href="/free-audit" className="bs" strength={0.2}>
-                Run Free Audit First
+                Run Your Free Site Audit
               </MagneticButton>
             </motion.div>
 

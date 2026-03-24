@@ -25,12 +25,13 @@ const jsonLd = {
   name: "Black Diamond Cyber",
   legalName: "Black Diamond Cybersecurity Consulting LLC",
   description:
-    "AI-powered website design and hosting for local service businesses. Custom websites for dental practices, HVAC, plumbing, electrical, roofing and more. Delivered in 3 days. No contracts.",
+    "AI-powered website design and hosting for dental practices and local service businesses. Custom websites delivered in 3-7 days. No contracts. You own the code.",
   url: "https://bd-cyber.com",
   email: "blackdiamondcyber@gmail.com",
   founder: {
     "@type": "Person",
     name: "Erik Pearson",
+    jobTitle: "Founder & CEO",
   },
   address: {
     "@type": "PostalAddress",
@@ -39,7 +40,7 @@ const jsonLd = {
     addressCountry: "US",
   },
   areaServed: "US",
-  priceRange: "$997 - $14,997",
+  priceRange: "$997 - $4,997",
   serviceType: [
     "Website Design",
     "Website Hosting",
@@ -83,6 +84,8 @@ export default function Home() {
         <Hero />
         <Marquee />
         <TrustBar />
+        <Founder />
+        <div className="sep" />
         <Portfolio />
         <div className="sep" />
         <Services />
@@ -90,6 +93,8 @@ export default function Home() {
         <WhyBDCyber />
         <div className="sep" />
         <HowItWorks />
+        <div className="sep" />
+        <Reviews />
         <div className="sep" />
         <Pricing />
         <div className="sep" />
@@ -100,10 +105,6 @@ export default function Home() {
         <FAQ />
         <div className="sep" />
         <TrustBadges />
-        <div className="sep" />
-        <Founder />
-        <div className="sep" />
-        <Reviews />
         <CTA />
         <Footer />
       </div>

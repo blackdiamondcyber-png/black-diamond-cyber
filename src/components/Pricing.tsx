@@ -269,37 +269,25 @@ export function Pricing() {
               </div>
             </div>
 
-            {/* Comparison table */}
-            <div className="rv d2" style={{ marginTop: '48px', maxWidth: '800px', margin: '48px auto 0' }}>
-              <h3 style={{ fontFamily: "'Instrument Serif', serif", fontSize: '24px', color: 'var(--text)', textAlign: 'center', marginBottom: '24px' }}>How We Compare</h3>
-              <div style={{ background: 'var(--bg1)', border: '1px solid var(--hr)', borderRadius: 'var(--rr)', overflow: 'hidden' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
-                  <thead>
-                    <tr style={{ borderBottom: '1px solid var(--hr)' }}>
-                      <th style={{ padding: '14px 18px', textAlign: 'left', color: 'var(--t2)', fontWeight: 600, fontSize: '10px', letterSpacing: '1px', textTransform: 'uppercase' }}></th>
-                      <th style={{ padding: '14px 18px', textAlign: 'center', color: 'var(--cyan)', fontWeight: 700, fontSize: '10px', letterSpacing: '1px', textTransform: 'uppercase' }}>Black Diamond</th>
-                      <th style={{ padding: '14px 18px', textAlign: 'center', color: 'var(--t3)', fontWeight: 600, fontSize: '10px', letterSpacing: '1px', textTransform: 'uppercase' }}>Typical Agency</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {[
-                      ['Setup cost', '$997 – $4,997', '$3,000 – $15,000'],
-                      ['Monthly cost', '$79 – $1,497', '$500 – $3,000'],
-                      ['Contracts', 'None — cancel anytime', '12-24 month lock-in'],
-                      ['Delivery time', '3-14 days', '4-8 weeks'],
-                      ['AI automation', 'Built-in', 'Not offered'],
-                      ['Code ownership', 'You own everything', 'They own your site'],
-                      ['PageSpeed score', '95+ (Next.js)', '30-60 (WordPress)'],
-                    ].map(([label, bd, agency], i) => (
-                      <tr key={label} style={{ borderBottom: i < 6 ? '1px solid var(--hr)' : 'none' }}>
-                        <td style={{ padding: '12px 18px', color: 'var(--t2)', fontWeight: 500 }}>{label}</td>
-                        <td style={{ padding: '12px 18px', textAlign: 'center', color: 'var(--green)', fontWeight: 600 }}>{bd}</td>
-                        <td style={{ padding: '12px 18px', textAlign: 'center', color: 'var(--t3)' }}>{agency}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+            {/* CTA below growth tiers */}
+            <div className="rv d2" style={{ marginTop: '48px', textAlign: 'center' }}>
+              <p style={{ fontSize: '14px', color: 'var(--t2)', marginBottom: '16px' }}>
+                Not sure which tier? Start with a free audit and we&apos;ll recommend the best fit.
+              </p>
+              <a href="/free-audit" style={{
+                display: 'inline-block',
+                padding: '12px 28px',
+                background: 'transparent',
+                border: '1px solid var(--hr)',
+                borderRadius: '40px',
+                color: 'var(--cyan)',
+                fontSize: '12px',
+                fontWeight: 600,
+                textDecoration: 'none',
+                transition: 'border-color .3s',
+              }}>
+                Get Your Free Site Audit
+              </a>
             </div>
           </div>
         )}
