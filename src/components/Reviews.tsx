@@ -35,19 +35,19 @@ const FOUNDING_CARDS = [
 
 const PROJECTED_OUTCOMES = [
   {
-    stat: '73%',
-    label: 'of dental patients check online reviews and your website before booking',
-    source: 'PatientPop 2024 Survey',
+    stat: '77%',
+    label: 'of patients use online search before booking a new healthcare provider',
+    source: 'PatientPop 2023 Patient Perspective Survey',
   },
   {
-    stat: '47%',
-    label: 'of patients leave practices with outdated or slow-loading websites',
-    source: 'Dental Economics Research',
+    stat: '53%',
+    label: 'of mobile visitors leave a site that takes longer than 3 seconds to load',
+    source: 'Google/SOASTA Research (Think with Google)',
   },
   {
-    stat: '3.2x',
-    label: 'more appointment requests from sites scoring 90+ on Google PageSpeed',
-    source: 'Google Web Vitals Study',
+    stat: '15%',
+    label: 'higher conversion rate for pages loading in under 2 seconds vs. slower pages',
+    source: 'Google Web Performance Documentation',
   },
 ];
 
@@ -219,7 +219,7 @@ export function Reviews() {
             maxWidth: '600px',
             margin: '0 auto 24px',
           }}>
-            Based on our analysis of 400+ dental practice websites, practices with optimized sites see measurable improvements across every metric that matters.
+            Industry research shows that practices with fast, optimized websites see measurable improvements across every metric that matters.
           </p>
 
           <div id="outcomes-grid" style={{

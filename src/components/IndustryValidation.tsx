@@ -6,18 +6,18 @@ import { motion, useInView } from 'framer-motion';
 const QUOTES = [
   {
     quote:
-      'The practices that win new patients in 2026 have one thing in common: websites built by people who actually understand their business, not generic agencies.',
-    attribution: 'Dental Economics, January 2026',
+      '77% of patients use online search before booking a new healthcare provider — your website is the first impression most patients will ever have of your practice.',
+    attribution: 'PatientPop 2023 Patient Perspective Survey',
   },
   {
     quote:
-      'Speed matters more than aesthetics. A dental website that loads in under 2 seconds converts 3x more appointment requests than one that takes 5 seconds.',
-    attribution: 'Google Web Vitals Study, 2025',
+      '53% of mobile users abandon sites that take longer than 3 seconds to load. For dental practices, every second of delay costs potential appointments.',
+    attribution: 'Google/SOASTA Research, 2017 (Think with Google)',
   },
   {
     quote:
-      'The biggest mistake dental practices make with their website is hiring someone who has never set foot in a dental office.',
-    attribution: 'American Dental Association Practice Marketing Guide',
+      'Pages that load in under 2 seconds have a 15% higher conversion rate than slower pages — speed is the single biggest lever for turning visitors into booked patients.',
+    attribution: 'Google Web Performance Documentation',
   },
 ];
 
@@ -38,10 +38,10 @@ export function IndustryValidation() {
             Industry Insights
           </div>
           <h2 className="st">
-            What Dental Industry <em>Experts</em> Say
+            What the <em>Data</em> Says
           </h2>
           <p className="sd">
-            Our approach is grounded in principles validated by the dental industry&apos;s leading publications and research.
+            Our approach is grounded in real research from Google and healthcare industry surveys.
           </p>
         </motion.div>
 
