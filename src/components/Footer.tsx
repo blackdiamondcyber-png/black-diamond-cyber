@@ -8,8 +8,8 @@ export function Footer() {
               BLACK DIAMOND <span>CYBER</span>
             </div>
             <p style={{ marginBottom: '12px' }}>
-              AI-powered websites and growth systems for local service
-              businesses. 3-day delivery. No contracts. Own your code.
+              AI-powered websites for dental practices. Built by a Patterson
+              Dental insider. 3-day delivery. No contracts. Own your code.
             </p>
             {/* Trust pills */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '16px' }}>

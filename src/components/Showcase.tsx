@@ -14,9 +14,12 @@ const DEMOS = [
       'Google Maps integration',
       'Before & after gallery',
     ],
-    gradient: 'linear-gradient(135deg, #0A1828 0%, #0F2A3D 50%, #0A1828 100%)',
     accent: 'var(--cyan)',
-    mockupSections: ['Hero with smile imagery', 'Services grid', 'Patient reviews carousel', 'Book Now sticky CTA'],
+    accentRaw: '#5DC4E8',
+    navItems: ['Services', 'About', 'Insurance', 'Book Now'],
+    heroHeadline: 'Your Family Deserves a Healthy Smile',
+    heroSub: 'Accepting new patients \u2014 book your visit today',
+    services: ['Cleanings & Exams', 'Fillings & Crowns', 'Pediatric Care'],
   },
   {
     type: 'Cosmetic & Implant Dentistry',
@@ -28,9 +31,12 @@ const DEMOS = [
       'Video testimonials section',
       'Procedure education pages',
     ],
-    gradient: 'linear-gradient(135deg, #0C0F16 0%, #1A1040 50%, #0C0F16 100%)',
     accent: '#8B5CF6',
-    mockupSections: ['Cinematic hero with video', 'Smile transformations', 'Financing options', 'Doctor credentials'],
+    accentRaw: '#8B5CF6',
+    navItems: ['Procedures', 'Gallery', 'Financing', 'Consult'],
+    heroHeadline: 'Transform Your Smile With Confidence',
+    heroSub: 'Veneers \u2022 Implants \u2022 Whitening',
+    services: ['Dental Implants', 'Porcelain Veneers', 'Smile Makeovers'],
   },
   {
     type: 'Pediatric Dentistry',
@@ -42,9 +48,12 @@ const DEMOS = [
       'Office tour virtual walkthrough',
       'Emergency contact quick-dial',
     ],
-    gradient: 'linear-gradient(135deg, #0A1828 0%, #0A2818 50%, #0A1828 100%)',
     accent: 'var(--green)',
-    mockupSections: ['Playful hero illustration', 'Meet the team', 'First visit guide', 'Parent resources'],
+    accentRaw: '#34D399',
+    navItems: ['For Parents', 'Services', 'First Visit', 'Contact'],
+    heroHeadline: 'Big Smiles Start Here',
+    heroSub: 'Fun, gentle dental care for kids of all ages',
+    services: ['First Visit & Exams', 'Sealants & Fluoride', 'Orthodontics'],
   },
 ] as const;
 
@@ -77,171 +86,126 @@ function MockupCard({
         position: 'relative',
       }}
     >
-      {/* Browser mockup header */}
-      <div
-        style={{
-          background: demo.gradient,
-          padding: '20px 20px 0',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-      >
-        {/* Browser chrome */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '6px',
-            marginBottom: '12px',
-          }}
-        >
-          <span
-            style={{
-              width: '8px',
-              height: '8px',
-              borderRadius: '50%',
-              background: '#EF4444',
-              opacity: 0.7,
-            }}
-          />
-          <span
-            style={{
-              width: '8px',
-              height: '8px',
-              borderRadius: '50%',
-              background: '#F59E0B',
-              opacity: 0.7,
-            }}
-          />
-          <span
-            style={{
-              width: '8px',
-              height: '8px',
-              borderRadius: '50%',
-              background: '#22C55E',
-              opacity: 0.7,
-            }}
-          />
-          <div
-            style={{
-              flex: 1,
-              marginLeft: '8px',
-              padding: '4px 12px',
-              background: 'rgba(255,255,255,.05)',
-              borderRadius: '6px',
-              fontSize: '10px',
-              color: 'var(--t3)',
-              fontFamily: 'monospace',
-            }}
-          >
-            {demo.name.toLowerCase().replace(/\s+/g, '')}.com
-          </div>
-        </div>
-
-        {/* Page layout mockup */}
-        <div
-          style={{
-            background: 'rgba(0,0,0,.3)',
-            borderRadius: '8px 8px 0 0',
-            padding: '16px',
-            minHeight: '160px',
-          }}
-        >
-          {demo.mockupSections.map((section, i) => (
-            <motion.div
-              key={section}
-              initial={{ opacity: 0, x: -12 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                delay: 0.3 + index * 0.12 + i * 0.08,
-                duration: 0.5,
-                ease: [0.16, 1, 0.3, 1] as const,
-              }}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '8px 10px',
-                background:
-                  i === 0
-                    ? `linear-gradient(90deg, ${demo.accent}15, transparent)`
-                    : 'rgba(255,255,255,.02)',
-                borderRadius: '6px',
-                marginBottom: '6px',
-                borderLeft: i === 0 ? `2px solid ${demo.accent}` : '2px solid transparent',
-              }}
-            >
-              <div
-                style={{
-                  width: i === 0 ? '100%' : `${70 - i * 12}%`,
-                  height: '6px',
-                  borderRadius: '3px',
-                  background:
-                    i === 0
-                      ? `linear-gradient(90deg, ${demo.accent}40, ${demo.accent}10)`
-                      : 'rgba(255,255,255,.06)',
-                }}
-              />
-            </motion.div>
-          ))}
+      {/* Browser chrome */}
+      <div style={{ background: 'rgba(255,255,255,.03)', padding: '10px 14px', borderBottom: '1px solid var(--hr)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+        <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#EF4444', opacity: 0.7 }} />
+        <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#F59E0B', opacity: 0.7 }} />
+        <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#22C55E', opacity: 0.7 }} />
+        <div style={{ flex: 1, marginLeft: '8px', padding: '3px 10px', background: 'rgba(255,255,255,.04)', borderRadius: '4px', fontSize: '9px', color: 'var(--t3)', fontFamily: 'monospace' }}>
+          {demo.name.toLowerCase().replace(/\s+/g, '')}.com
         </div>
       </div>
 
-      {/* Card content */}
-      <div style={{ padding: '24px 20px' }}>
-        <div
-          style={{
-            fontSize: '10px',
-            fontWeight: 700,
-            letterSpacing: '1.5px',
-            textTransform: 'uppercase',
-            color: demo.accent,
-            marginBottom: '8px',
-          }}
-        >
+      {/* Website preview */}
+      <div style={{ padding: '0', background: '#060A10' }}>
+        {/* Nav bar */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 14px', borderBottom: '1px solid rgba(255,255,255,.06)' }}>
+          <div style={{ fontSize: '9px', fontWeight: 700, color: demo.accent, letterSpacing: '0.5px' }}>
+            {demo.name.split(' ').slice(0, 2).join(' ')}
+          </div>
+          <div style={{ display: 'flex', gap: '10px' }}>
+            {demo.navItems.map((item, i) => (
+              <span key={item} style={{
+                fontSize: '7px',
+                color: i === demo.navItems.length - 1 ? '#060A10' : 'rgba(222,224,231,.5)',
+                fontWeight: i === demo.navItems.length - 1 ? 700 : 400,
+                background: i === demo.navItems.length - 1 ? demo.accent : 'transparent',
+                padding: i === demo.navItems.length - 1 ? '2px 6px' : '2px 0',
+                borderRadius: '3px',
+              }}>
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Hero section */}
+        <div style={{ padding: '20px 14px 16px', position: 'relative', background: `linear-gradient(135deg, ${demo.accentRaw}08, transparent)` }}>
+          {/* Placeholder image area */}
+          <div style={{
+            width: '100%',
+            height: '48px',
+            borderRadius: '6px',
+            background: `linear-gradient(135deg, ${demo.accentRaw}12, ${demo.accentRaw}04)`,
+            border: `1px solid ${demo.accentRaw}15`,
+            marginBottom: '12px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={demo.accentRaw} strokeWidth="1.2" opacity={0.4}>
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <path d="M21 15l-5-5L5 21" />
+            </svg>
+          </div>
+          <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text)', lineHeight: 1.3, marginBottom: '4px' }}>
+            {demo.heroHeadline}
+          </div>
+          <div style={{ fontSize: '8px', color: 'var(--t3)', marginBottom: '10px' }}>
+            {demo.heroSub}
+          </div>
+          <div style={{ display: 'flex', gap: '6px' }}>
+            <span style={{ fontSize: '7px', fontWeight: 700, padding: '3px 10px', background: demo.accent, color: '#060A10', borderRadius: '3px' }}>
+              Book Appointment
+            </span>
+            <span style={{ fontSize: '7px', fontWeight: 600, padding: '3px 10px', border: `1px solid ${demo.accentRaw}40`, color: demo.accent, borderRadius: '3px' }}>
+              Call Now
+            </span>
+          </div>
+        </div>
+
+        {/* Services grid */}
+        <div style={{ padding: '10px 14px 14px' }}>
+          <div style={{ fontSize: '7px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', color: demo.accent, marginBottom: '8px' }}>
+            Our Services
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '6px' }}>
+            {demo.services.map((svc) => (
+              <div key={svc} style={{
+                padding: '8px 6px',
+                background: 'rgba(255,255,255,.02)',
+                border: '1px solid rgba(255,255,255,.05)',
+                borderRadius: '4px',
+                textAlign: 'center',
+              }}>
+                <div style={{ width: '14px', height: '14px', borderRadius: '50%', background: `${demo.accentRaw}15`, margin: '0 auto 4px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <span style={{ fontSize: '7px', color: demo.accent }}>+</span>
+                </div>
+                <div style={{ fontSize: '6.5px', color: 'var(--t2)', lineHeight: 1.3 }}>{svc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Contact form stub */}
+        <div style={{ padding: '8px 14px 14px' }}>
+          <div style={{ display: 'flex', gap: '4px', marginBottom: '4px' }}>
+            <div style={{ flex: 1, height: '14px', background: 'rgba(255,255,255,.03)', borderRadius: '3px', border: '1px solid rgba(255,255,255,.06)' }} />
+            <div style={{ flex: 1, height: '14px', background: 'rgba(255,255,255,.03)', borderRadius: '3px', border: '1px solid rgba(255,255,255,.06)' }} />
+          </div>
+          <div style={{ width: '100%', height: '22px', background: 'rgba(255,255,255,.03)', borderRadius: '3px', border: '1px solid rgba(255,255,255,.06)', marginBottom: '4px' }} />
+          <div style={{ width: '60px', height: '14px', background: `${demo.accentRaw}30`, borderRadius: '3px' }} />
+        </div>
+      </div>
+
+      {/* Card content below mockup */}
+      <div style={{ padding: '20px' }}>
+        <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: demo.accent, marginBottom: '8px' }}>
           Demo Design
         </div>
-        <h3
-          style={{
-            fontFamily: "'Instrument Serif', serif",
-            fontSize: '20px',
-            color: 'var(--text)',
-            fontWeight: 400,
-            marginBottom: '4px',
-            lineHeight: 1.2,
-          }}
-        >
+        <h3 style={{ fontFamily: "'Instrument Serif', serif", fontSize: '20px', color: 'var(--text)', fontWeight: 400, marginBottom: '4px', lineHeight: 1.2 }}>
           {demo.name}
         </h3>
-        <p
-          style={{
-            fontSize: '13px',
-            color: 'var(--t3)',
-            marginBottom: '16px',
-          }}
-        >
+        <p style={{ fontSize: '13px', color: 'var(--t3)', marginBottom: '16px' }}>
           {demo.type}
         </p>
 
         {/* Feature list */}
         <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
           {demo.features.map((f) => (
-            <li
-              key={f}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                fontSize: '13px',
-                color: 'var(--t2)',
-                lineHeight: 1.5,
-                marginBottom: '6px',
-              }}
-            >
-              <span style={{ color: demo.accent, fontSize: '12px', flexShrink: 0 }}>
-                ✓
-              </span>
+            <li key={f} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', color: 'var(--t2)', lineHeight: 1.5, marginBottom: '6px' }}>
+              <span style={{ color: demo.accent, fontSize: '12px', flexShrink: 0 }}>&#10003;</span>
               {f}
             </li>
           ))}
@@ -304,7 +268,7 @@ export function Showcase() {
             className="bs"
             style={{ display: 'inline-flex' }}
           >
-            See Pricing &amp; Get Started →
+            See Pricing &amp; Get Started &rarr;
           </a>
         </motion.div>
       </div>

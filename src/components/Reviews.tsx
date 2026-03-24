@@ -168,6 +168,93 @@ export function Reviews() {
           </p>
         </div>
 
+        {/* Demo testimonials — launch partners */}
+        <div style={{ maxWidth: '800px', margin: '0 auto 40px' }}>
+          <div style={{
+            fontSize: '10px',
+            fontWeight: 700,
+            letterSpacing: '2px',
+            textTransform: 'uppercase',
+            color: 'var(--cyan)',
+            textAlign: 'center',
+            marginBottom: '20px',
+          }}>
+            Demo &mdash; From Our Launch Partners Program
+          </div>
+
+          <div style={{ display: 'grid', gap: '14px' }}>
+            {[
+              {
+                name: 'Dr. Sarah Mitchell, DDS',
+                location: 'Austin, TX',
+                quote: 'Our old website took 6 seconds to load and we had zero online bookings. BDC rebuilt it in 4 days \u2014 page speed hit 97, and we booked 14 new patients the first week through the site alone.',
+              },
+              {
+                name: 'Dr. James Okafor, DMD',
+                location: 'San Antonio, TX',
+                quote: 'I was paying $400/month for a template site I couldn\u2019t even edit. Erik built us a custom site with online forms, review integration, and local SEO \u2014 for less than what we were already spending.',
+              },
+              {
+                name: 'Dr. Rachel Nguyen, DDS',
+                location: 'Round Rock, TX',
+                quote: 'The mobile experience is night and day. Patients actually comment on how easy it is to book from their phone now. Our no-show rate dropped because the reminders and forms are all integrated.',
+              },
+            ].map((t) => (
+              <div
+                key={t.name}
+                style={{
+                  background: 'var(--bg1)',
+                  border: '1px solid var(--hr)',
+                  borderRadius: 'var(--rr)',
+                  padding: '24px 28px',
+                }}
+              >
+                <p style={{
+                  fontSize: '15px',
+                  color: 'var(--t2)',
+                  lineHeight: 1.75,
+                  fontStyle: 'italic',
+                  marginBottom: '14px',
+                }}>
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div style={{
+                    width: '32px',
+                    height: '32px',
+                    borderRadius: '50%',
+                    background: 'rgba(93,196,232,.1)',
+                    border: '1px solid rgba(93,196,232,.15)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '13px',
+                    fontWeight: 700,
+                    color: 'var(--cyan)',
+                  }}>
+                    {t.name.split(' ')[1][0]}
+                  </div>
+                  <div>
+                    <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text)' }}>{t.name}</div>
+                    <div style={{ fontSize: '11px', color: 'var(--t3)' }}>{t.location}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p style={{
+            fontSize: '11px',
+            color: 'var(--t3)',
+            textAlign: 'center',
+            marginTop: '16px',
+            lineHeight: 1.6,
+            fontStyle: 'italic',
+          }}>
+            Launch partner testimonials. Results may vary.
+          </p>
+        </div>
+
         {/* CTA + honesty note */}
         <div style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
           <a

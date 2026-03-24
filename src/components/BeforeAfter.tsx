@@ -6,7 +6,12 @@ import { motion, useInView } from 'framer-motion';
 function ScoreCircle({ score, color, delay }: { score: number; color: string; delay: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const [hydrated, setHydrated] = useState(false);
   const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
 
   useEffect(() => {
     if (!isInView) return;
@@ -25,7 +30,11 @@ function ScoreCircle({ score, color, delay }: { score: number; color: string; de
 
   const radius = 54;
   const circumference = 2 * Math.PI * radius;
-  const progress = isInView ? (count / 100) * circumference : 0;
+  // Before hydration, show the final score so there's no 0/100 flash
+  const displayCount = hydrated ? count : score;
+  const displayProgress = hydrated
+    ? (isInView ? (count / 100) * circumference : 0)
+    : (score / 100) * circumference;
 
   return (
     <div ref={ref} style={{ position: 'relative', width: '130px', height: '130px', flexShrink: 0 }}>
@@ -47,9 +56,9 @@ function ScoreCircle({ score, color, delay }: { score: number; color: string; de
           strokeWidth="8"
           strokeLinecap="round"
           strokeDasharray={circumference}
-          strokeDashoffset={circumference - progress}
+          strokeDashoffset={circumference - displayProgress}
           transform="rotate(-90 65 65)"
-          style={{ transition: 'stroke-dashoffset 0.05s linear' }}
+          style={{ transition: hydrated ? 'stroke-dashoffset 0.05s linear' : 'none' }}
         />
       </svg>
       <div
@@ -62,9 +71,24 @@ function ScoreCircle({ score, color, delay }: { score: number; color: string; de
           justifyContent: 'center',
         }}
       >
-        <span style={{ fontSize: '36px', fontWeight: 700, color, lineHeight: 1 }}>{count}</span>
+        <span style={{ fontSize: '36px', fontWeight: 700, color, lineHeight: 1 }}>{displayCount}</span>
         <span style={{ fontSize: '11px', color: 'rgba(222,224,231,.5)', marginTop: '2px' }}>/100</span>
       </div>
+      <noscript>
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'var(--bg)',
+          borderRadius: '50%',
+        }}>
+          <span style={{ fontSize: '36px', fontWeight: 700, color, lineHeight: 1 }}>{score}</span>
+          <span style={{ fontSize: '11px', color: 'rgba(222,224,231,.5)', marginTop: '2px' }}>/100</span>
+        </div>
+      </noscript>
     </div>
   );
 }

@@ -20,21 +20,30 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Black Diamond Cyber — Premium Websites for Local Businesses",
+  title: "Dental Practice Websites That Fill Chairs | Black Diamond Cyber",
   description:
-    "AI-powered websites for dental practices. Delivered in days. Starting at $997. No contracts. You own the code.",
+    "AI-powered dental practice websites. Fill chairs, dominate local search, own your code. Delivered in days. Starting at $997.",
   metadataBase: new URL("https://bd-cyber.com"),
   openGraph: {
-    title: "Black Diamond Cyber",
-    description: "Premium AI-powered websites for local businesses",
+    title: "Dental Practice Websites That Fill Chairs | Black Diamond Cyber",
+    description: "AI-powered dental practice websites. Fill chairs, dominate local search, own your code.",
     url: "https://bd-cyber.com",
     siteName: "Black Diamond Cyber",
     type: "website",
+    images: [
+      {
+        url: "/images/erik-pearson-founder.png",
+        width: 1200,
+        height: 630,
+        alt: "Black Diamond Cyber — AI-Powered Dental Practice Websites",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Black Diamond Cyber",
-    description: "Premium AI-powered websites for local businesses",
+    title: "Dental Practice Websites That Fill Chairs | Black Diamond Cyber",
+    description: "AI-powered dental practice websites. Fill chairs, dominate local search, own your code.",
+    images: ["/images/erik-pearson-founder.png"],
   },
   alternates: {
     canonical: 'https://bd-cyber.com',

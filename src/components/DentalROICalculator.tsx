@@ -1,7 +1,27 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
+
+function useCountUp(target: number, active: boolean, duration = 1200) {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    if (!active) { setValue(0); return; }
+    const start = performance.now();
+    let raf: number;
+    function tick(now: number) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      // ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setValue(Math.round(eased * target));
+      if (progress < 1) raf = requestAnimationFrame(tick);
+    }
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [target, active, duration]);
+  return value;
+}
 
 export function DentalROICalculator() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -13,7 +33,10 @@ export function DentalROICalculator() {
   const [showResult, setShowResult] = useState(false);
 
   const monthlyLost = Math.round(patients * (lostPct / 100));
-  const annualLoss = monthlyLost * avgValue * 12;
+  const monthlyLoss = monthlyLost * avgValue;
+  const annualLoss = monthlyLoss * 12;
+  const animatedMonthly = useCountUp(monthlyLoss, showResult);
+  const animatedAnnual = useCountUp(annualLoss, showResult);
 
   const handleCalculate = () => {
     setShowResult(true);
@@ -190,53 +213,57 @@ export function DentalROICalculator() {
                   exit={{ opacity: 0, y: -10, height: 0 }}
                   transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                   style={{
-                    background: 'linear-gradient(135deg, rgba(239,68,68,.06), rgba(239,68,68,.02))',
-                    border: '1px solid rgba(239,68,68,.15)',
-                    borderRadius: '12px',
-                    padding: '28px',
+                    background: 'linear-gradient(135deg, rgba(239,68,68,.08), rgba(239,68,68,.02))',
+                    border: '1px solid rgba(239,68,68,.2)',
+                    borderRadius: '16px',
+                    padding: '36px 28px',
                     textAlign: 'center',
                     overflow: 'hidden',
                   }}
                 >
-                  <div style={{ fontSize: '13px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: '#EF4444', marginBottom: '8px' }}>
-                    Estimated Annual Revenue Lost
+                  <div style={{ fontSize: '13px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#EF4444', marginBottom: '12px' }}>
+                    Your Practice May Be Losing
                   </div>
                   <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
+                    initial={{ scale: 0.7, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 0.2, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ delay: 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                     style={{
                       fontFamily: "'Instrument Serif', serif",
-                      fontSize: 'clamp(36px, 5vw, 56px)',
-                      color: 'var(--text)',
+                      fontSize: 'clamp(44px, 7vw, 72px)',
+                      color: '#EF4444',
                       lineHeight: 1,
-                      marginBottom: '12px',
+                      marginBottom: '4px',
+                      textShadow: '0 0 60px rgba(239,68,68,.3)',
                     }}
                   >
-                    ${annualLoss.toLocaleString()}
+                    ${animatedMonthly.toLocaleString()}
                   </motion.div>
-                  <div style={{ fontSize: '14px', color: 'var(--t2)', lineHeight: 1.7, marginBottom: '16px' }}>
-                    That&rsquo;s roughly <strong style={{ color: 'var(--text)' }}>{monthlyLost} patients/month</strong> choosing a competitor because your online presence didn&rsquo;t give them confidence to book.
+                  <div style={{ fontSize: '16px', fontWeight: 600, color: 'var(--t2)', marginBottom: '20px', letterSpacing: '0.5px' }}>
+                    per month in new patient revenue
                   </div>
+                  <div style={{ fontSize: '14px', color: 'var(--t2)', lineHeight: 1.7, marginBottom: '8px' }}>
+                    That&rsquo;s <strong style={{ color: 'var(--text)' }}>{monthlyLost} patients/month</strong> choosing a competitor &mdash; and <strong style={{ color: 'var(--text)' }}>${animatedAnnual.toLocaleString()}/year</strong> walking out the door.
+                  </div>
+                  <div style={{
+                    width: '48px',
+                    height: '2px',
+                    background: 'rgba(239,68,68,.3)',
+                    margin: '20px auto',
+                    borderRadius: '1px',
+                  }} />
                   <a
-                    href="#book"
+                    href="/free-audit"
+                    className="bp"
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '8px',
-                      padding: '12px 28px',
-                      background: 'var(--blue)',
-                      color: '#fff',
-                      borderRadius: '40px',
-                      fontSize: '12px',
-                      fontWeight: 700,
-                      letterSpacing: '1.2px',
-                      textTransform: 'uppercase',
+                      fontSize: '13px',
                       textDecoration: 'none',
-                      transition: '.4s',
                     }}
                   >
-                    Let&rsquo;s Fix This →
+                    Stop the Bleeding &mdash; Get Your Free Audit →
                   </a>
                 </motion.div>
               )}
