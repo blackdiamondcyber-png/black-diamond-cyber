@@ -6,7 +6,7 @@ import { BookingHandler } from '@/components/BookingHandler';
 export const metadata: Metadata = {
   title: 'Our Work — Demo Sites Built by Black Diamond Cyber',
   description:
-    'See real, functional demo sites built by Black Diamond Cyber for dental, HVAC, and plumbing businesses. Not mockups — real Next.js websites with 95+ PageSpeed scores.',
+    'See real, functional demo sites built by Black Diamond Cyber for dental, HVAC, plumbing, and med spa businesses. Not mockups — real Next.js websites with 95+ PageSpeed scores.',
   openGraph: {
     title: 'Our Work — Demo Sites Built by Black Diamond Cyber',
     description: 'Real demo sites showcasing what BDC builds for local service businesses.',
@@ -31,8 +31,8 @@ const demos = [
   {
     name: 'Canyon Lake Family Dentistry',
     type: 'Dental Practice',
-    gradient: 'linear-gradient(135deg, #1B4D5C, #2A8A9F)',
-    color: '#5DC4E8',
+    gradient: 'linear-gradient(135deg, #1E3A5F, #4ECDC4)',
+    color: '#4ECDC4',
     stack: ['Next.js', 'AI Chatbot', 'Online Booking', 'Local SEO'],
     features: [
       '95+ PageSpeed score on mobile and desktop',
@@ -41,43 +41,60 @@ const demos = [
       'Google Business Profile schema markup',
       'Service area pages for 12 surrounding cities',
     ],
-    note: 'This is a demo site showcasing what we build for dental practices.',
+    note: 'Demo site showcasing what we build for dental practices.',
     href: '/demo/dental',
     pageSpeed: 97,
   },
   {
-    name: 'Hill Country HVAC',
+    name: 'Hill Country Heating & Air',
     type: 'HVAC Company',
-    gradient: 'linear-gradient(135deg, #8B4513, #D4893C)',
-    color: '#F59E0B',
-    stack: ['Next.js', 'Lead Capture', 'Service Area Pages', 'Analytics'],
+    gradient: 'linear-gradient(135deg, #1B2A4A, #E8792F)',
+    color: '#E8792F',
+    stack: ['Next.js', 'Lead Capture', 'Service Area Pages', 'Flat-Rate Pricing'],
     features: [
       'Emergency CTA sticky on every page',
-      '24/7 online booking with confirmation emails',
-      'Seasonal promotion system with countdown timers',
-      'Before/after project gallery',
-      'Automated follow-up sequences for quotes',
+      '24/7 online booking with urgency selection',
+      'Service area grid for 8 Hill Country cities',
+      'Why Choose Us trust section with flat-rate pricing',
+      'TACLA license and insurance trust badges',
     ],
-    note: 'This is a demo site showcasing what we build for HVAC companies.',
-    href: '/hvac',
+    note: 'Demo site showcasing what we build for HVAC companies.',
+    href: '/demo/hvac',
     pageSpeed: 96,
   },
   {
-    name: 'Clearwater Plumbing',
+    name: 'Clearwater Plumbing Co.',
     type: 'Plumbing Contractor',
-    gradient: 'linear-gradient(135deg, #1A6B3F, #4CAF60)',
-    color: '#34D399',
-    stack: ['Next.js', 'Before/After Gallery', 'Review Widget', 'SEO'],
+    gradient: 'linear-gradient(135deg, #1A365D, #3182CE)',
+    color: '#3182CE',
+    stack: ['Next.js', 'Before/After Gallery', 'Emergency Banner', 'SEO'],
     features: [
-      'Service area targeting for 15+ zip codes',
-      'Instant quote calculator for common jobs',
-      'Google Reviews widget with live feed',
-      'Emergency plumber page ranking for "plumber near me"',
+      'Service area targeting for 8+ cities',
+      'Before/After project gallery with descriptions',
+      '24/7 emergency banner with click-to-call',
+      'Flat-rate pricing transparency in hero',
       'Mobile-first design with 48px+ touch targets',
     ],
-    note: 'This is a demo site showcasing what we build for plumbing contractors.',
-    href: '/plumbing',
+    note: 'Demo site showcasing what we build for plumbing contractors.',
+    href: '/demo/plumbing',
     pageSpeed: 95,
+  },
+  {
+    name: 'Serenity Med Spa & Wellness',
+    type: 'Med Spa',
+    gradient: 'linear-gradient(135deg, #2D3748, #B8860B)',
+    color: '#B8860B',
+    stack: ['Next.js', 'Consultation Booking', 'Team Profiles', 'Gallery'],
+    features: [
+      'Luxury aesthetic with serif headings and rose gold accents',
+      'Meet the Team section with credential badges',
+      'Before/After transformation gallery',
+      'New client special offer banner',
+      'Board-certified provider trust signals',
+    ],
+    note: 'Demo site showcasing what we build for med spas and wellness clinics.',
+    href: '/demo/medspa',
+    pageSpeed: 98,
   },
 ];
 
@@ -189,7 +206,7 @@ export default function OurWorkPage() {
                             marginBottom: '12px',
                           }}
                         >
-                          DEMO SITE
+                          LIVE DEMO
                         </span>
                         <h2
                           style={{
@@ -299,7 +316,7 @@ export default function OurWorkPage() {
                         transition: '.4s var(--ease)',
                       }}
                     >
-                      View Demo
+                      View Live Demo
                       <span style={{ fontSize: '14px' }}>&rarr;</span>
                     </a>
                   </div>
@@ -323,7 +340,7 @@ export default function OurWorkPage() {
               }}
             >
               These demos represent the quality, speed, and features every BDC client receives.
-              Your site will be custom-built for your practice &mdash; these show our baseline.
+              Your site will be custom-built for your business &mdash; these show our baseline.
             </p>
             <h2
               style={{

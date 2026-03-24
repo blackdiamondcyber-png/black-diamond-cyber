@@ -6,7 +6,7 @@ import { VideoBackground } from '@/components/VideoBackground';
 import { MagneticButton } from '@/components/MagneticButton';
 import { HeroBrowserMockup } from '@/components/HeroBrowserMockup';
 
-const HERO_WORDS = ['General Dentists', 'Orthodontists', 'Pediatric Dentists', 'Oral Surgeons', 'Cosmetic Dentists', 'Periodontists'] as const;
+const HERO_WORDS = ['General Dentists', 'HVAC Companies', 'Plumbing Services', 'Med Spas', 'Orthodontists', 'Chiropractors'] as const;
 
 const HEADLINE_WORDS = ['Your', 'Patients', 'Are', 'Googling', 'You', 'Right', 'Now.'];
 const HEADLINE_LINE2 = ['What', 'Do', 'They', 'Find?'];
@@ -558,7 +558,7 @@ export function Hero() {
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0, opacity: 0.6 }}>
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" fill="rgba(222,224,231,.5)"/>
               </svg>
-              Serving dental practices in Austin, San Antonio &amp; the Texas Hill Country
+              Serving local businesses in Austin, San Antonio &amp; the Texas Hill Country
             </motion.p>
           </motion.div>
 

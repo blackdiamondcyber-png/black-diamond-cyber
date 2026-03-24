@@ -1,13 +1,19 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const NAV_LINKS = [
-  { href: '#services', label: 'Services' },
   { href: '#pricing', label: 'Pricing' },
   { href: '/blog', label: 'Blog' },
   { href: '/free-audit', label: 'Free Audit' },
+];
+
+const INDUSTRY_LINKS = [
+  { href: '/demo/dental', label: 'Dental Practices' },
+  { href: '/demo/hvac', label: 'HVAC Companies' },
+  { href: '/demo/plumbing', label: 'Plumbing Services' },
+  { href: '/demo/medspa', label: 'Med Spas' },
 ];
 
 function HamburgerIcon({ open }: { open: boolean }) {
@@ -37,9 +43,28 @@ function HamburgerIcon({ open }: { open: boolean }) {
   );
 }
 
+function ChevronDown({ open }: { open: boolean }) {
+  return (
+    <motion.svg
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      fill="none"
+      animate={{ rotate: open ? 180 : 0 }}
+      transition={{ duration: 0.2 }}
+      style={{ flexShrink: 0 }}
+    >
+      <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </motion.svg>
+  );
+}
+
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [industriesOpen, setIndustriesOpen] = useState(false);
+  const [mobileIndustriesOpen, setMobileIndustriesOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -62,6 +87,17 @@ export function Nav() {
     return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
 
+  // Close desktop dropdown on outside click
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setIndustriesOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
+
   return (
     <>
       <motion.nav
@@ -82,6 +118,99 @@ export function Nav() {
           BLACK DIAMOND <span>CYBER</span>
         </div>
         <div className="nl nav-desktop-links">
+          {/* Industries dropdown */}
+          <div
+            ref={dropdownRef}
+            style={{ position: 'relative' }}
+            onMouseEnter={() => setIndustriesOpen(true)}
+            onMouseLeave={() => setIndustriesOpen(false)}
+          >
+            <button
+              onClick={() => setIndustriesOpen((v) => !v)}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'inherit',
+                font: 'inherit',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '4px',
+                padding: 0,
+                fontSize: 'inherit',
+                fontWeight: 'inherit',
+                letterSpacing: 'inherit',
+                textTransform: 'inherit' as CSSStyleDeclaration['textTransform'],
+              }}
+            >
+              Industries <ChevronDown open={industriesOpen} />
+            </button>
+            <AnimatePresence>
+              {industriesOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                  style={{
+                    position: 'absolute',
+                    top: '100%',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    marginTop: '12px',
+                    background: 'rgba(6,8,12,.95)',
+                    backdropFilter: 'blur(24px) saturate(1.5)',
+                    border: '1px solid rgba(255,255,255,.08)',
+                    borderRadius: '12px',
+                    padding: '8px',
+                    minWidth: '200px',
+                    zIndex: 999,
+                  }}
+                >
+                  {INDUSTRY_LINKS.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      style={{
+                        display: 'block',
+                        padding: '10px 16px',
+                        fontSize: '13px',
+                        fontWeight: 500,
+                        color: 'var(--t2)',
+                        textDecoration: 'none',
+                        borderRadius: '8px',
+                        transition: 'background .15s, color .15s',
+                        whiteSpace: 'nowrap',
+                        letterSpacing: '0.3px',
+                      }}
+                      onMouseEnter={(e) => {
+                        (e.target as HTMLElement).style.background = 'rgba(93,196,232,.1)';
+                        (e.target as HTMLElement).style.color = '#5DC4E8';
+                      }}
+                      onMouseLeave={(e) => {
+                        (e.target as HTMLElement).style.background = 'transparent';
+                        (e.target as HTMLElement).style.color = 'var(--t2)';
+                      }}
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                  <div
+                    style={{
+                      padding: '10px 16px',
+                      fontSize: '12px',
+                      color: 'rgba(222,224,231,.3)',
+                      fontWeight: 500,
+                      letterSpacing: '0.3px',
+                    }}
+                  >
+                    More Coming Soon
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
           {NAV_LINKS.map((link) => (
             <a key={link.href} href={link.href}>{link.label}</a>
           ))}
@@ -157,6 +286,82 @@ export function Nav() {
                 gap: '4px',
               }}
             >
+              {/* Industries expandable section */}
+              <motion.div
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.05, duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <button
+                  onClick={() => setMobileIndustriesOpen((v) => !v)}
+                  style={{
+                    width: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    fontSize: '15px',
+                    fontWeight: 600,
+                    letterSpacing: '1.2px',
+                    textTransform: 'uppercase' as const,
+                    color: 'var(--t2)',
+                    padding: '14px 8px',
+                    borderBottom: '1px solid rgba(255,255,255,.04)',
+                    background: 'none',
+                    border: 'none',
+                    borderBottomWidth: '1px',
+                    borderBottomStyle: 'solid',
+                    borderBottomColor: 'rgba(255,255,255,.04)',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <span>Industries</span>
+                  <ChevronDown open={mobileIndustriesOpen} />
+                </button>
+                <AnimatePresence>
+                  {mobileIndustriesOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25 }}
+                      style={{ overflow: 'hidden' }}
+                    >
+                      <div style={{ paddingLeft: '16px', paddingTop: '4px', paddingBottom: '8px' }}>
+                        {INDUSTRY_LINKS.map((link) => (
+                          <a
+                            key={link.href}
+                            href={link.href}
+                            onClick={() => setMobileOpen(false)}
+                            style={{
+                              display: 'block',
+                              fontSize: '14px',
+                              fontWeight: 500,
+                              color: 'var(--cyan)',
+                              padding: '10px 8px',
+                              textDecoration: 'none',
+                              borderBottom: '1px solid rgba(255,255,255,.02)',
+                            }}
+                          >
+                            {link.label}
+                          </a>
+                        ))}
+                        <span
+                          style={{
+                            display: 'block',
+                            fontSize: '13px',
+                            fontWeight: 500,
+                            color: 'rgba(222,224,231,.25)',
+                            padding: '10px 8px',
+                          }}
+                        >
+                          More Coming Soon
+                        </span>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+
               {NAV_LINKS.map((link, i) => (
                 <motion.a
                   key={link.href}
@@ -164,7 +369,7 @@ export function Nav() {
                   onClick={() => setMobileOpen(false)}
                   initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.05 + i * 0.06, duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ delay: 0.11 + i * 0.06, duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   style={{
                     fontSize: '15px',
                     fontWeight: 600,
