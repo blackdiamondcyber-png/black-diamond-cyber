@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { VideoBackground } from '@/components/VideoBackground';
 import { AnimatedCounter } from '@/components/AnimatedCounter';
 import { MagneticButton } from '@/components/MagneticButton';
+import { ProductDemoReel } from '@/components/ProductDemoReel';
 
 const HERO_WORDS = ['Dental Practices', 'HVAC Companies', 'Plumbers', 'Electricians', 'Roofers', 'Med Spas'] as const;
 
@@ -61,6 +62,7 @@ export function Hero() {
   const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '-10%']);
   const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
   const overlayOpacity = useTransform(scrollYProgress, [0, 0.8], [0.55, 0.85]);
+  const reelY = useTransform(scrollYProgress, [0, 1], ['0%', '-6%']);
 
   return (
     <section
@@ -125,18 +127,39 @@ export function Hero() {
           filter: 'blur(60px)',
           animation: 'heroOrb2 16s ease-in-out infinite reverse',
         }} />
+        {/* Extra glow behind the demo reel */}
+        <div style={{
+          position: 'absolute',
+          width: '600px',
+          height: '600px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(93,196,232,.06), transparent 70%)',
+          top: '10%',
+          right: '5%',
+          filter: 'blur(100px)',
+          animation: 'heroOrb1 25s ease-in-out infinite reverse',
+        }} />
       </div>
 
       {/* Content with parallax offset */}
       <motion.div
         style={{ y: contentY, position: 'relative', zIndex: 2, width: '100%' }}
       >
-        <div className="c" style={{ padding: '160px 24px 100px' }}>
+        <div
+          className="c"
+          style={{
+            padding: '140px 24px 80px',
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '56px',
+            alignItems: 'center',
+          }}
+        >
+          {/* LEFT — headline, CTAs, stats */}
           <motion.div
             variants={stagger}
             initial="hidden"
             animate="show"
-            style={{ maxWidth: '780px' }}
           >
             {/* Urgency tag */}
             <motion.div variants={fadeUp} style={{ marginBottom: '28px', display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
@@ -150,10 +173,10 @@ export function Hero() {
             <motion.h1
               variants={fadeUp}
               style={{
-                fontSize: 'clamp(38px, 5.5vw, 70px)',
+                fontSize: 'clamp(36px, 4.5vw, 62px)',
                 fontFamily: "'Instrument Serif', Georgia, serif",
                 fontWeight: 400,
-                lineHeight: 1.04,
+                lineHeight: 1.06,
                 letterSpacing: '-0.03em',
                 color: 'var(--text)',
                 marginBottom: '8px',
@@ -186,9 +209,9 @@ export function Hero() {
             <motion.div
               variants={fadeUp}
               style={{
-                fontSize: 'clamp(16px, 2vw, 22px)',
+                fontSize: 'clamp(15px, 1.6vw, 20px)',
                 color: 'var(--t2)',
-                marginBottom: '24px',
+                marginBottom: '20px',
                 height: '32px',
                 display: 'flex',
                 alignItems: 'center',
@@ -196,7 +219,7 @@ export function Hero() {
               }}
             >
               <span>AI-powered websites for</span>
-              <span style={{ position: 'relative', minWidth: '220px', display: 'inline-block', overflow: 'hidden', height: '32px' }}>
+              <span style={{ position: 'relative', minWidth: '200px', display: 'inline-block', overflow: 'hidden', height: '32px' }}>
                 <AnimatePresence mode="wait">
                   <motion.em
                     key={HERO_WORDS[wordIndex]}
@@ -223,11 +246,11 @@ export function Hero() {
             <motion.p
               variants={fadeUp}
               style={{
-                fontSize: '17px',
+                fontSize: '16px',
                 color: 'var(--t2)',
-                maxWidth: '560px',
+                maxWidth: '480px',
                 lineHeight: 1.85,
-                marginBottom: '44px',
+                marginBottom: '36px',
               }}
             >
               Built by a dental industry insider who manages <strong style={{ color: 'var(--text)' }}>400+ accounts</strong>. Premium websites delivered in days, not weeks. AI chatbots, review automation, and lead systems included. No contracts. You own the code.
@@ -236,7 +259,7 @@ export function Hero() {
             {/* CTAs */}
             <motion.div
               variants={fadeUp}
-              style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginBottom: '64px' }}
+              style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginBottom: '52px' }}
             >
               <MagneticButton href="#book" className="bp" strength={0.25}>
                 Book Free Strategy Call
@@ -249,10 +272,11 @@ export function Hero() {
             {/* Stats bar — honest, verifiable stats only */}
             <motion.div
               variants={fadeUp}
+              className="hero-stats"
               style={{
                 display: 'flex',
-                gap: '48px',
-                paddingTop: '36px',
+                gap: '40px',
+                paddingTop: '32px',
                 borderTop: '1px solid var(--hr)',
               }}
             >
@@ -284,6 +308,17 @@ export function Hero() {
                 <div style={statLabelStyle}>PageSpeed Score</div>
               </div>
             </motion.div>
+          </motion.div>
+
+          {/* RIGHT — Product Demo Reel */}
+          <motion.div
+            style={{ y: reelY }}
+            initial={{ opacity: 0, x: 40, filter: 'blur(12px)' }}
+            animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+            transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="hero-demo-reel"
+          >
+            <ProductDemoReel />
           </motion.div>
         </div>
       </motion.div>
@@ -334,6 +369,14 @@ export function Hero() {
         @keyframes heroOrb2 {
           0%, 100% { transform: translate(0, 0); }
           50% { transform: translate(50px, -40px); }
+        }
+        @media (max-width: 1024px) {
+          .hero-demo-reel {
+            display: none !important;
+          }
+          .c[style*="grid-template-columns"] {
+            display: block !important;
+          }
         }
         @media (max-width: 640px) {
           .hero-stats { flex-direction: column !important; gap: 20px !important; }

@@ -133,3 +133,73 @@ src/
 
 ## Page Section Order
 Nav → Hero → Marquee → TrustBar → Portfolio → Services → WhyBDCyber → HowItWorks → Pricing → Founder → Reviews → CTA → Footer
+
+---
+
+## Memory System Integration
+
+When you complete a session, you MUST save a summary. This keeps Midas (the main AI agent) informed about what changed and what needs follow-up.
+
+### 1. Session Summary (REQUIRED)
+Write a summary file to the Midas vault:
+```bash
+mkdir -p ~/midas-vault/sessions/claude-code
+cat > ~/midas-vault/sessions/claude-code/bdc_YYYY_MM_DD.md << 'EOF'
+---
+type: session-summary
+project: black-diamond-cyber
+tags: [bdc, web-agency, next.js, stripe, supabase]
+created: YYYY-MM-DD
+parent: "[[knowledge/business/BDC-WEB-AGENCY]]"
+---
+# Session Title
+
+## What Changed
+- [bullet list of changes made]
+
+## Why
+[context for why these changes were made]
+
+## Verification
+- Build: pnpm run build passed? (yes/no)
+- Type check: npx tsc --noEmit passed? (yes/no)
+- Deployed to Vercel? (yes/no — URL if yes)
+
+## Files Modified/Created
+- src/components/... 
+- src/app/...
+
+## Follow-up for Midas
+[anything the main agent should know or action next — client leads, bugs found, feature requests]
+EOF
+```
+
+### 2. Git Commit + Push (REQUIRED)
+```bash
+git add -A
+git commit -m "feat/fix/docs: descriptive message"
+git push origin main
+```
+
+### 3. Deploy to Vercel (if applicable)
+```bash
+vercel --prod --force
+```
+
+### 4. Notify Midas (OPTIONAL but recommended)
+```bash
+# Post to Slack #midas-coding channel
+curl -s -X POST https://slack.com/api/chat.postMessage \
+  -H "Authorization: Bearer $(cat ~/.openclaw/credentials/slack-default-allowFrom.json | python3 -c 'import sys,json; print(json.load(sys.stdin)["token"])')" \
+  -H "Content-Type: application/json" \
+  -d '{"channel":"C0ALL94L7GR","text":"BDC session complete: [brief summary]"}'
+```
+
+## Coding Standards
+- TypeScript strict mode — no `any` types
+- Tailwind for styling — inline styles only for dynamic grid layouts (Tailwind v4 purge issue)
+- pnpm as package manager
+- Run `pnpm run build && npx tsc --noEmit` before committing
+- Named exports only (except pages/layouts)
+- No `console.log` in committed code
+- Never commit secrets or API keys
