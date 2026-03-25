@@ -318,14 +318,14 @@ export default function PlumbingDemoPage() {
       >
         <span>🚨 24/7 Emergency Plumbing Service</span>
         <a
-          href="tel:+18305550199"
+          href="tel:+18309648800"
           style={{
             color: "#fff",
             textDecoration: "underline",
             fontWeight: 700,
           }}
         >
-          Call Now: (830) 555-0199
+          Call Now: (830) 964-8800
         </a>
       </div>
 
@@ -477,6 +477,31 @@ export default function PlumbingDemoPage() {
               filter: "blur(60px)",
             }}
           />
+          {/* Hero background photo */}
+          <img
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80"
+            alt=""
+            loading="lazy"
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center",
+              opacity: 0.18,
+              zIndex: 0,
+            }}
+          />
+          {/* Dark gradient overlay on photo */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.75))",
+              zIndex: 0,
+            }}
+          />
           <div style={{ ...container, position: "relative", zIndex: 1 }}>
             <div style={{ maxWidth: "640px" }}>
               <div
@@ -493,7 +518,7 @@ export default function PlumbingDemoPage() {
                   marginBottom: "24px",
                 }}
               >
-                Emergency? Call (830) 555-0199 — We Answer 24/7
+                Emergency? Call (830) 964-8800 — We Answer 24/7
               </div>
               <h1 style={{ ...heading, fontSize: "clamp(36px, 5.5vw, 56px)", color: "#fff", marginBottom: "16px" }}>
                 Fast, Reliable Plumbing —{" "}
@@ -539,7 +564,7 @@ export default function PlumbingDemoPage() {
                 <a href="#book" style={btn}>
                   Book Now
                 </a>
-                <a href="tel:+18305550199" style={btnRed}>
+                <a href="tel:+18309648800" style={btnRed}>
                   Emergency? Call Now
                 </a>
               </div>
@@ -822,8 +847,8 @@ export default function PlumbingDemoPage() {
                 </h2>
                 <p style={{ fontSize: "14px", color: C.textLight }}>
                   Or call us at{" "}
-                  <a href="tel:+18305550199" style={{ color: C.blue, fontWeight: 600, textDecoration: "none" }}>
-                    (830) 555-0199
+                  <a href="tel:+18309648800" style={{ color: C.blue, fontWeight: 600, textDecoration: "none" }}>
+                    (830) 964-8800
                   </a>
                 </p>
               </div>
@@ -995,7 +1020,7 @@ export default function PlumbingDemoPage() {
                 Contact
               </h4>
               <div style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px" }}>
-                <span>(830) 555-0199</span>
+                <span>(830) 964-8800</span>
                 <span>info@clearwaterplumbing.com</span>
                 <span>789 Water St</span>
                 <span>San Marcos, TX 78666</span>

@@ -397,6 +397,31 @@ export default function HvacDemoPage() {
               filter: "blur(60px)",
             }}
           />
+          {/* Hero background photo */}
+          <img
+            src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1200&q=80"
+            alt=""
+            loading="lazy"
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center",
+              opacity: 0.18,
+              zIndex: 0,
+            }}
+          />
+          {/* Dark gradient overlay on photo */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.75))",
+              zIndex: 0,
+            }}
+          />
           <div style={{ ...container, position: "relative", zIndex: 1 }}>
             <div style={{ maxWidth: "640px" }}>
               <div
@@ -443,8 +468,8 @@ export default function HvacDemoPage() {
                 <a href="#schedule" style={btn}>
                   Schedule Service
                 </a>
-                <a href="tel:+18305550177" style={{ ...btnOutline, borderColor: "rgba(255,255,255,.3)", color: "#fff" }}>
-                  Call (830) 555-0177
+                <a href="tel:+18306254400" style={{ ...btnOutline, borderColor: "rgba(255,255,255,.3)", color: "#fff" }}>
+                  Call (830) 625-4400
                 </a>
               </div>
             </div>
@@ -697,8 +722,8 @@ export default function HvacDemoPage() {
                 </h2>
                 <p style={{ fontSize: "14px", color: C.textLight }}>
                   Or call us at{" "}
-                  <a href="tel:+18305550177" style={{ color: C.orange, fontWeight: 600, textDecoration: "none" }}>
-                    (830) 555-0177
+                  <a href="tel:+18306254400" style={{ color: C.orange, fontWeight: 600, textDecoration: "none" }}>
+                    (830) 625-4400
                   </a>
                 </p>
               </div>
@@ -887,7 +912,7 @@ export default function HvacDemoPage() {
                 Contact
               </h4>
               <div style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px" }}>
-                <span>(830) 555-0177</span>
+                <span>(830) 625-4400</span>
                 <span>info@hillcountryhvac.com</span>
                 <span>456 Main Street</span>
                 <span>New Braunfels, TX 78130</span>

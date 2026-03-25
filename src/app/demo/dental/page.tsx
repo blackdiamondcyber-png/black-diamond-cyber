@@ -375,6 +375,31 @@ export default function DentalDemoPage() {
               filter: "blur(60px)",
             }}
           />
+          {/* Hero background photo */}
+          <img
+            src="https://images.unsplash.com/photo-1588776814546-1ffbb7d98949?w=1200&q=80"
+            alt=""
+            loading="lazy"
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center",
+              opacity: 0.18,
+              zIndex: 0,
+            }}
+          />
+          {/* Dark gradient overlay on photo */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.75))",
+              zIndex: 0,
+            }}
+          />
           <div style={{ ...container, position: "relative", zIndex: 1 }}>
             <div style={{ maxWidth: "640px" }}>
               <div
@@ -420,8 +445,8 @@ export default function DentalDemoPage() {
                 <a href="#book" style={btn}>
                   Book Your Appointment
                 </a>
-                <a href="tel:+18305550142" style={{ ...btnOutline, borderColor: "rgba(255,255,255,.3)", color: "#fff" }}>
-                  Call (830) 555-0142
+                <a href="tel:+18309642100" style={{ ...btnOutline, borderColor: "rgba(255,255,255,.3)", color: "#fff" }}>
+                  Call (830) 964-2100
                 </a>
               </div>
             </div>
@@ -629,8 +654,8 @@ export default function DentalDemoPage() {
                 </h2>
                 <p style={{ fontSize: "14px", color: C.textLight }}>
                   Or call us at{" "}
-                  <a href="tel:+18305550142" style={{ color: C.teal, fontWeight: 600, textDecoration: "none" }}>
-                    (830) 555-0142
+                  <a href="tel:+18309642100" style={{ color: C.teal, fontWeight: 600, textDecoration: "none" }}>
+                    (830) 964-2100
                   </a>
                 </p>
               </div>
@@ -816,7 +841,7 @@ export default function DentalDemoPage() {
                     <IconMapPin /> 123 Dental Way, Canyon Lake, TX 78133
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                    <IconPhone /> (830) 555-0142
+                    <IconPhone /> (830) 964-2100
                   </div>
                 </div>
               </div>
@@ -880,7 +905,7 @@ export default function DentalDemoPage() {
                 Contact
               </h4>
               <div style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px" }}>
-                <span>(830) 555-0142</span>
+                <span>(830) 964-2100</span>
                 <span>info@canyonlakedental.com</span>
                 <span>123 Dental Way</span>
                 <span>Canyon Lake, TX 78133</span>

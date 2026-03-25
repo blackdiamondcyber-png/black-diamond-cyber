@@ -420,6 +420,31 @@ export default function MedSpaDemoPage() {
               filter: "blur(60px)",
             }}
           />
+          {/* Hero background photo */}
+          <img
+            src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1200&q=80"
+            alt=""
+            loading="lazy"
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center",
+              opacity: 0.18,
+              zIndex: 0,
+            }}
+          />
+          {/* Dark gradient overlay on photo */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.75))",
+              zIndex: 0,
+            }}
+          />
           <div style={{ ...container, position: "relative", zIndex: 1, textAlign: "center" }}>
             <div style={{ maxWidth: "700px", margin: "0 auto" }}>
               <p
@@ -946,7 +971,7 @@ export default function MedSpaDemoPage() {
                 Contact
               </h4>
               <div style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px" }}>
-                <span>(830) 555-0233</span>
+                <span>(830) 964-5500</span>
                 <span>hello@serenityspa.com</span>
                 <span>321 Wellness Blvd</span>
                 <span>Wimberley, TX 78676</span>
