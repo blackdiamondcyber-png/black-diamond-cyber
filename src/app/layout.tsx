@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Outfit, Instrument_Serif } from "next/font/google";
 import Script from "next/script";
 import { Chatbot } from "@/components/Chatbot";
+import { GSAPProvider } from "@/components/GSAPProvider";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -70,7 +72,10 @@ export default function RootLayout({
     <html lang="en" className={`${outfit.variable} ${instrumentSerif.variable}`}>
       <head />
       <body>
-        {children}
+        <ScrollProgress />
+        <GSAPProvider>
+          {children}
+        </GSAPProvider>
         <Chatbot />
         <Script id="scroll-reveal" strategy="afterInteractive">
           {`

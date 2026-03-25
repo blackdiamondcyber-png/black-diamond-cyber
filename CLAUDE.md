@@ -2,6 +2,22 @@
 
 # Black Diamond Cyber — Project CLAUDE.md
 
+## Design Standards
+Act as a senior UI designer and front-end developer. Prioritize visual quality, clean typography, smooth animations, and professional polish.
+
+### Standard Toolkit (npm — use in all projects):
+- Tailwind CSS + ShadCN UI — styling + components
+- GSAP — scroll animations
+- Framer Motion — hover effects
+- Three.js — 3D background graphics
+- Google Fonts — typography
+
+### Standard Workflow:
+1. Stitch 2.0 → design system + 3 variations from reference screenshot
+2. Export → Claude Code builds full site
+3. Add Spline 3D hero + GSAP animations
+4. GitHub → Vercel auto-deploy
+
 ## Overview
 AI-powered website design, automation, and growth systems for local service businesses.
 Owner: Erik Pearson | LLC: Black Diamond Cyber LLC | Email: blackdiamondcyber@gmail.com

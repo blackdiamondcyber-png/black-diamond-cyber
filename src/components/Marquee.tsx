@@ -1,44 +1,63 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useRef, useEffect } from 'react';
+import gsap from 'gsap';
+
+const INDUSTRIES = [
+  'General Dentistry',
+  'Cosmetic Dentistry',
+  'Pediatric Dentistry',
+  'Orthodontics',
+  'Oral Surgery',
+  'Periodontics',
+  'Endodontics',
+  'Prosthodontics',
+  'Implant Centers',
+  'Multi-Location Practices',
+  'DSO Groups',
+  'Dental Startups',
+];
 
 export function Marquee() {
   const trackRef = useRef<HTMLDivElement>(null);
+  const tweenRef = useRef<gsap.core.Tween | null>(null);
 
   useEffect(() => {
     const el = trackRef.current;
-    if (el) {
-      el.innerHTML += el.innerHTML;
-    }
+    if (!el) return;
+
+    // Duplicate content for seamless loop
+    el.innerHTML += el.innerHTML;
+
+    tweenRef.current = gsap.to(el, {
+      xPercent: -50,
+      duration: 28,
+      ease: 'none',
+      repeat: -1,
+    });
+
+    const handleEnter = () => tweenRef.current?.timeScale(0.3);
+    const handleLeave = () => tweenRef.current?.timeScale(1);
+
+    el.addEventListener('mouseenter', handleEnter);
+    el.addEventListener('mouseleave', handleLeave);
+
+    return () => {
+      tweenRef.current?.kill();
+      el.removeEventListener('mouseenter', handleEnter);
+      el.removeEventListener('mouseleave', handleLeave);
+    };
   }, []);
 
   return (
     <div className="mq">
-      <div className="mt" id="mqt" ref={trackRef}>
-        <span className="mi">General Dentistry</span>
-        <span className="md"></span>
-        <span className="mi">Cosmetic Dentistry</span>
-        <span className="md"></span>
-        <span className="mi">Pediatric Dentistry</span>
-        <span className="md"></span>
-        <span className="mi">Orthodontics</span>
-        <span className="md"></span>
-        <span className="mi">Oral Surgery</span>
-        <span className="md"></span>
-        <span className="mi">Periodontics</span>
-        <span className="md"></span>
-        <span className="mi">Endodontics</span>
-        <span className="md"></span>
-        <span className="mi">Prosthodontics</span>
-        <span className="md"></span>
-        <span className="mi">Implant Centers</span>
-        <span className="md"></span>
-        <span className="mi">Multi-Location Practices</span>
-        <span className="md"></span>
-        <span className="mi">DSO Groups</span>
-        <span className="md"></span>
-        <span className="mi">Dental Startups</span>
-        <span className="md"></span>
+      <div className="mt" ref={trackRef} style={{ animation: 'none' }}>
+        {INDUSTRIES.map((name, i) => (
+          <span key={i}>
+            <span className="mi">{name}</span>
+            <span className="md"></span>
+          </span>
+        ))}
       </div>
     </div>
   );

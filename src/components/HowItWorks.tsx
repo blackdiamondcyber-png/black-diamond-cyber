@@ -1,7 +1,12 @@
 'use client';
 
 import { useRef } from 'react';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const STEPS = [
   {
@@ -32,23 +37,67 @@ const STEPS = [
 
 export function HowItWorks() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start 0.8', 'end 0.6'],
-  });
+  const headerRef = useRef<HTMLDivElement>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
+  const stepsContainerRef = useRef<HTMLDivElement>(null);
 
-  const lineHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+  useGSAP(
+    () => {
+      // Header reveal
+      if (headerRef.current) {
+        gsap.from(headerRef.current, {
+          opacity: 0,
+          y: 40,
+          filter: 'blur(6px)',
+          duration: 0.9,
+          ease: 'power4.out',
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: 'top 85%',
+            once: true,
+          },
+        });
+      }
+
+      // Progress line — scrubbed on scroll
+      if (progressRef.current) {
+        gsap.to(progressRef.current, {
+          height: '100%',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: stepsContainerRef.current,
+            start: 'top 75%',
+            end: 'bottom 60%',
+            scrub: 0.5,
+          },
+        });
+      }
+
+      // Step cards stagger
+      if (stepsContainerRef.current) {
+        const steps = stepsContainerRef.current.querySelectorAll('.hiw-step');
+        gsap.from(steps, {
+          opacity: 0,
+          x: -30,
+          filter: 'blur(4px)',
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power4.out',
+          scrollTrigger: {
+            trigger: stepsContainerRef.current,
+            start: 'top 75%',
+            once: true,
+          },
+        });
+      }
+    },
+    { scope: sectionRef }
+  );
 
   return (
     <section id="process" ref={sectionRef}>
       <div className="c">
-        <motion.div
-          className="sh sc"
-          initial={{ opacity: 0, y: 28, filter: 'blur(5px)' }}
-          animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
-        >
+        <div className="sh sc" ref={headerRef}>
           <div className="tag" style={{ display: 'inline-flex' }}>
             How It Works
           </div>
@@ -58,9 +107,9 @@ export function HowItWorks() {
           <p className="sd">
             Four steps. Your website is live in as little as 7 business days.
           </p>
-        </motion.div>
+        </div>
 
-        <div style={{ position: 'relative', maxWidth: '640px', margin: '0 auto' }}>
+        <div ref={stepsContainerRef} style={{ position: 'relative', maxWidth: '640px', margin: '0 auto' }}>
           {/* Progress line (vertical) */}
           <div style={{
             position: 'absolute',
@@ -71,10 +120,11 @@ export function HowItWorks() {
             background: 'var(--hr)',
             borderRadius: '1px',
           }}>
-            <motion.div
+            <div
+              ref={progressRef}
               style={{
                 width: '100%',
-                height: lineHeight,
+                height: '0%',
                 background: 'linear-gradient(180deg, var(--cyan), var(--blue))',
                 borderRadius: '1px',
               }}
@@ -83,16 +133,9 @@ export function HowItWorks() {
 
           {/* Steps */}
           {STEPS.map((step, i) => (
-            <motion.div
+            <div
               key={step.title}
-              initial={{ opacity: 0, x: -20, filter: 'blur(4px)' }}
-              whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{
-                duration: 0.7,
-                delay: 0.1 + i * 0.12,
-                ease: [0.16, 1, 0.3, 1] as const,
-              }}
+              className="hiw-step"
               style={{
                 display: 'flex',
                 gap: '20px',
@@ -156,7 +199,7 @@ export function HowItWorks() {
                   {step.detail}
                 </p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

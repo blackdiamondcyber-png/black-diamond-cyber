@@ -1,8 +1,13 @@
 'use client';
 
 import { useRef } from 'react';
-import { motion, useMotionValue, useSpring, useTransform, useInView } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { IconBolt, IconBot, IconStar, IconPhone, IconMapPin, IconBarChart } from '@/components/Icons';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 type ServiceIconComponent = React.FC<{ size?: number; color?: string }>;
 
@@ -102,11 +107,9 @@ const SERVICES: Service[] = [
 
 function TiltCard({
   children,
-  index,
   highlight,
 }: {
   children: React.ReactNode;
-  index: number;
   highlight?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -141,13 +144,11 @@ function TiltCard({
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
-      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-      viewport={{ once: true, margin: '-40px' }}
-      transition={{
-        duration: 0.7,
-        delay: index * 0.08,
-        ease: [0.16, 1, 0.3, 1] as const,
+      whileHover={{
+        y: -6,
+        boxShadow: '0 16px 48px rgba(0,0,0,.4), 0 0 40px rgba(93,196,232,.06)',
+        borderColor: 'rgba(93,196,232,.15)',
+        transition: { type: 'spring', stiffness: 300, damping: 20 },
       }}
       style={{
         rotateX,
@@ -159,7 +160,7 @@ function TiltCard({
         border: highlight ? '1px solid rgba(40,135,204,.25)' : undefined,
         boxShadow: highlight ? '0 0 40px rgba(40,135,204,.08)' : undefined,
       }}
-      className="svc"
+      className="svc gsap-svc-card"
     >
       {/* Glare overlay */}
       <motion.div
@@ -180,26 +181,70 @@ function TiltCard({
   );
 }
 
-const containerVariants = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.08 },
-  },
-};
-
 export function Services() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+  const headerRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      // Header reveal
+      if (headerRef.current) {
+        gsap.from(headerRef.current, {
+          opacity: 0,
+          y: 40,
+          filter: 'blur(6px)',
+          duration: 0.9,
+          ease: 'power4.out',
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: 'top 85%',
+            once: true,
+          },
+        });
+      }
+
+      // Staggered card reveals
+      if (gridRef.current) {
+        const cards = gridRef.current.querySelectorAll('.gsap-svc-card');
+        gsap.from(cards, {
+          opacity: 0,
+          y: 50,
+          filter: 'blur(6px)',
+          duration: 0.8,
+          stagger: 0.1,
+          ease: 'power4.out',
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: 'top 80%',
+            once: true,
+          },
+        });
+      }
+
+      // Bottom CTA strip
+      if (ctaRef.current) {
+        gsap.from(ctaRef.current, {
+          opacity: 0,
+          y: 24,
+          duration: 0.7,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: ctaRef.current,
+            start: 'top 90%',
+            once: true,
+          },
+        });
+      }
+    },
+    { scope: sectionRef }
+  );
 
   return (
     <section id="services" ref={sectionRef} style={{ scrollMarginTop: '80px' }}>
       <div className="c">
-        <motion.div
-          className="sh sc"
-          initial={{ opacity: 0, y: 28, filter: 'blur(5px)' }}
-          animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
-        >
+        <div className="sh sc" ref={headerRef}>
           <div className="tag" style={{ display: 'inline-flex' }}>
             What Your Practice Gets
           </div>
@@ -209,16 +254,11 @@ export function Services() {
           <p className="sd" style={{ maxWidth: '520px' }}>
             Everything a dental practice needs to fill chairs, grow reviews, and stop losing patients to the practice down the street.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="svcs"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? 'show' : 'hidden'}
-        >
-          {SERVICES.map((svc, i) => (
-            <TiltCard key={svc.title} index={i} highlight={svc.highlight}>
+        <div className="svcs" ref={gridRef}>
+          {SERVICES.map((svc) => (
+            <TiltCard key={svc.title} highlight={svc.highlight}>
               {/* Badge area — fixed height so titles align across cards */}
               <div style={{ minHeight: '24px', marginBottom: '4px' }}>
                 {svc.highlight && (
@@ -285,13 +325,11 @@ export function Services() {
               </a>
             </TiltCard>
           ))}
-        </motion.div>
+        </div>
 
         {/* Bottom CTA strip */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        <div
+          ref={ctaRef}
           style={{
             marginTop: '48px',
             padding: '24px 32px',
@@ -320,7 +358,7 @@ export function Services() {
           >
             Get Free Dental Audit →
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

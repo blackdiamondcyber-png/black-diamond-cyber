@@ -294,9 +294,19 @@ section{padding:100px 0;scroll-margin-top:80px}
 #pricing::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 40 40' width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 2 L38 20 L20 38 L2 20 Z' fill='none' stroke='%235DC4E8' stroke-width='0.5'/%3E%3C/svg%3E");background-size:60px 60px;z-index:0}
 #pricing>*{position:relative;z-index:1}
 
+/* GSAP scroll reveal — prevents FOUC before GSAP initializes */
+.gsap-reveal{visibility:hidden}
+
+/* Gradient text utility */
+.gradient-text{background:linear-gradient(135deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* Section spacing enhancement */
+section{padding:120px 0;scroll-margin-top:80px}
+
 /* Accessibility: reduce motion for users who prefer it */
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
   .orb,.mt{animation:none!important}
   .js .rv{opacity:1;transform:none;filter:none;transition:none}
+  .gsap-reveal{visibility:visible!important}
 }
