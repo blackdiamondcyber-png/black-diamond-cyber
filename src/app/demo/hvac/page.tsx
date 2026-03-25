@@ -33,7 +33,7 @@ function useReveal() {
           obs.unobserve(el);
         }
       },
-      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
+      { threshold: 0.02, rootMargin: "0px 0px -10px 0px" },
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -1104,7 +1104,7 @@ export default function HvacDemoPage() {
                 { img: "/images/hvac-handshake.jpg", name: "David & Lisa R.", quote: "Our AC died in July — they had a new system installed the next day. Professional, fair pricing, and our energy bill dropped 40%." },
                 { img: "/images/hvac-team-truck.jpg", name: "Jennifer T.", quote: "Finally found an HVAC company that shows up on time and does what they say. Marcus and his crew are the real deal." },
               ].map((t) => (
-                <div key={t.name} style={{ display: "flex", gap: "24px", background: C.bgSoft, borderRadius: "16px", padding: "24px", alignItems: "center" }}>
+                <div key={t.name} className="demo-client-card" style={{ display: "flex", gap: "24px", background: C.bgSoft, borderRadius: "16px", padding: "24px", alignItems: "center" }}>
                   <div style={{ position: "relative", width: "160px", minWidth: "160px", height: "160px", borderRadius: "12px", overflow: "hidden" }}>
                     <Image src={t.img} alt={t.name} fill style={{ objectFit: "cover" }} />
                   </div>
@@ -1137,6 +1137,8 @@ export default function HvacDemoPage() {
           .hvac-grid-2col { grid-template-columns: 1fr !important; }
           .hvac-nav-links { display: none !important; }
           .hvac-hamburger { display: flex !important; }
+          .demo-client-card { flex-direction: column !important; }
+          .demo-client-card > div:first-child { width: 100% !important; min-width: unset !important; height: 220px !important; }
         }
       `}</style>
     </div>

@@ -34,7 +34,7 @@ function useReveal() {
           obs.unobserve(el);
         }
       },
-      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
+      { threshold: 0.02, rootMargin: "0px 0px -10px 0px" },
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -1142,7 +1142,7 @@ export default function MedSpaDemoPage() {
                 { img: "/images/medspa-client-result.jpg", name: "Jessica L.", quote: "After my HydraFacial series, my skin has never looked better. The team at Serenity truly understands skincare on a deeper level." },
                 { img: "/images/medspa-treatment.jpg", name: "Christina M.", quote: "Sophia is an artist with injectables. Natural results, zero downtime, and the most relaxing environment. I drive 45 minutes and it's worth every mile." },
               ].map((t) => (
-                <div key={t.name} style={{ display: "flex", gap: "24px", background: C.bgSoft, borderRadius: "16px", padding: "24px", alignItems: "center" }}>
+                <div key={t.name} className="demo-client-card" style={{ display: "flex", gap: "24px", background: C.bgSoft, borderRadius: "16px", padding: "24px", alignItems: "center" }}>
                   <div style={{ position: "relative", width: "160px", minWidth: "160px", height: "160px", borderRadius: "12px", overflow: "hidden" }}>
                     <Image src={t.img} alt={t.name} fill style={{ objectFit: "cover" }} />
                   </div>

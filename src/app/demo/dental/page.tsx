@@ -33,7 +33,7 @@ function useReveal() {
           obs.unobserve(el);
         }
       },
-      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
+      { threshold: 0.02, rootMargin: "0px 0px -10px 0px" },
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -1076,7 +1076,7 @@ export default function DentalDemoPage() {
                 { img: "/images/dental-patient-happy.jpg", name: "Sarah M.", quote: "Best dental experience I've ever had. The team made me feel completely at ease — I actually look forward to my visits now!" },
                 { img: "/images/dental-exam-room.jpg", name: "Robert K.", quote: "State-of-the-art facility with a warm, welcoming atmosphere. Dr. Santos explained every step and my results are incredible." },
               ].map((t) => (
-                <div key={t.name} style={{ display: "flex", gap: "24px", background: C.bgSoft, borderRadius: "16px", padding: "24px", alignItems: "center" }}>
+                <div key={t.name} className="demo-client-card" style={{ display: "flex", gap: "24px", background: C.bgSoft, borderRadius: "16px", padding: "24px", alignItems: "center" }}>
                   <div style={{ position: "relative", width: "160px", minWidth: "160px", height: "160px", borderRadius: "12px", overflow: "hidden" }}>
                     <Image src={t.img} alt={t.name} fill style={{ objectFit: "cover" }} />
                   </div>
@@ -1109,6 +1109,8 @@ export default function DentalDemoPage() {
           .demo-grid-footer { grid-template-columns: 1fr !important; }
           .demo-nav-links { display: none !important; }
           .demo-hamburger { display: flex !important; }
+          .demo-client-card { flex-direction: column !important; }
+          .demo-client-card > div:first-child { width: 100% !important; min-width: unset !important; height: 220px !important; }
         }
       `}</style>
     </div>

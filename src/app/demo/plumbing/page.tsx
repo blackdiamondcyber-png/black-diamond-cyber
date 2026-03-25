@@ -34,7 +34,7 @@ function useReveal() {
           obs.unobserve(el);
         }
       },
-      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
+      { threshold: 0.02, rootMargin: "0px 0px -10px 0px" },
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -1153,7 +1153,7 @@ export default function PlumbingDemoPage() {
                 { img: "/images/plumbing-greeting.jpg", name: "Amanda & Tom S.", quote: "Pipe burst at 2 AM and Carlos was at our door within 30 minutes. Saved our kitchen from serious water damage. Can't recommend them enough." },
                 { img: "/images/plumbing-bathroom.jpg", name: "Michelle D.", quote: "They completely transformed our master bathroom. Came in on budget and ahead of schedule — the attention to detail was incredible." },
               ].map((t) => (
-                <div key={t.name} style={{ display: "flex", gap: "24px", background: C.bgSoft, borderRadius: "16px", padding: "24px", alignItems: "center" }}>
+                <div key={t.name} className="demo-client-card" style={{ display: "flex", gap: "24px", background: C.bgSoft, borderRadius: "16px", padding: "24px", alignItems: "center" }}>
                   <div style={{ position: "relative", width: "160px", minWidth: "160px", height: "160px", borderRadius: "12px", overflow: "hidden" }}>
                     <Image src={t.img} alt={t.name} fill style={{ objectFit: "cover" }} />
                   </div>
