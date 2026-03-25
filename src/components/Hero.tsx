@@ -136,13 +136,11 @@ export function Hero() {
             maxWidth: '620px',
             lineHeight: 1.75,
             marginBottom: '40px',
-            textAlign: 'left',
-            alignSelf: 'flex-start',
+            textAlign: 'center',
           }}
         >
-          We build fast, beautiful, AI-powered websites for dental practices,
-          HVAC companies, and local service businesses — delivered in 7 days.
-          You own the code.
+          AI-powered websites for local businesses — built in 7 days, code
+          yours to keep.
         </motion.p>
 
         {/* CTAs */}
@@ -186,9 +184,9 @@ export function Hero() {
           }}
         >
           {[
-            { icon: '⚡', label: '7-Day Delivery' },
+            { icon: '⚡', label: '7-Day Build' },
+            { icon: '🔒', label: 'Code Ownership' },
             { icon: '📱', label: 'Mobile-First' },
-            { icon: '🔒', label: '100% Code Ownership' },
             { icon: '⭐', label: '97 PageSpeed' },
           ].map((badge) => (
             <span

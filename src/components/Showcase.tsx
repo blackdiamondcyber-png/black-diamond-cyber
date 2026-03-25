@@ -2,83 +2,75 @@
 
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import Image from 'next/image';
 
 const DEMOS = [
   {
-    type: 'General & Family Dentistry',
-    name: 'Bright Smile Family Dental',
+    slug: 'dental',
+    image: '/images/demo-dental.png',
+    url: 'canyonlakefamilydentistry.com',
     href: '/demo/dental',
-    features: [
-      'Online appointment booking',
-      'Insurance verification widget',
-      'New patient forms (digital)',
-      'Google Maps integration',
-      'Before & after gallery',
-    ],
-    accent: 'var(--cyan)',
-    accentRaw: '#5DC4E8',
-    navItems: ['Services', 'About', 'Insurance', 'Book Now'],
-    heroHeadline: 'Your Family Deserves a Healthy Smile',
-    heroSub: 'Accepting new patients \u2014 book your visit today',
-    services: ['Cleanings & Exams', 'Fillings & Crowns', 'Pediatric Care'],
+    name: 'Canyon Lake Family Dentistry',
+    industry: '🦷 Dental',
+    description:
+      'Full-service dental practice site with online booking, HIPAA-compliant forms, and local SEO.',
+    features: ['Online Booking', 'HIPAA Forms', 'Patient Portal', 'Local SEO'],
+    accent: '#5DC4E8',
   },
   {
-    type: 'HVAC Services',
-    name: 'Summit Air Comfort',
+    slug: 'hvac',
+    image: '/images/demo-hvac.png',
+    url: 'hillcountryheatingandair.com',
     href: '/demo/hvac',
+    name: 'Hill Country Heating & Air',
+    industry: '❄️ HVAC',
+    description:
+      'Emergency-first HVAC site with service area pages, review integration, and mobile-optimized CTAs.',
     features: [
-      'Emergency service scheduling',
-      'Seasonal maintenance plans',
-      'Financing options displayed',
-      'Service area map',
-      'Customer testimonials',
+      'Emergency Service CTA',
+      'Service Area Pages',
+      'Review Integration',
+      'Mobile-First',
     ],
     accent: '#F59E0B',
-    accentRaw: '#F59E0B',
-    navItems: ['Services', 'Areas', 'Financing', 'Call Now'],
-    heroHeadline: 'Stay Comfortable Year-Round',
-    heroSub: 'AC repair \u2022 Heating \u2022 Installation',
-    services: ['AC Repair', 'Furnace Install', 'Maintenance Plans'],
   },
   {
-    type: 'Plumbing Services',
-    name: 'Iron Flow Plumbing',
+    slug: 'plumbing',
+    image: '/images/demo-plumbing.png',
+    url: 'clearwaterplumbingco.com',
     href: '/demo/plumbing',
+    name: 'Clearwater Plumbing Co.',
+    industry: '🔧 Plumbing',
+    description:
+      'Trust-building plumbing site with flat-rate pricing, before/after gallery, and 24/7 emergency line.',
     features: [
-      '24/7 emergency booking',
-      'Upfront pricing estimates',
-      'Licensed & insured badges',
-      'Service area coverage',
-      'Before & after project gallery',
+      'Flat-Rate Pricing',
+      'Emergency Line',
+      'Before/After Gallery',
+      'Booking Form',
     ],
-    accent: 'var(--blue)',
-    accentRaw: '#2887CC',
-    navItems: ['Services', 'Emergency', 'Reviews', 'Book Now'],
-    heroHeadline: 'Fast, Reliable Plumbing You Can Trust',
-    heroSub: 'Emergency \u2022 Repairs \u2022 Installation',
-    services: ['Emergency Repair', 'Water Heaters', 'Drain Cleaning'],
+    accent: '#2887CC',
   },
   {
-    type: 'Med Spa & Aesthetics',
-    name: 'Glow Luxe Med Spa',
+    slug: 'medspa',
+    image: '/images/demo-medspa.png',
+    url: 'serenitymedspa.com',
     href: '/demo/medspa',
+    name: 'Serenity Med Spa',
+    industry: '✨ Med Spa',
+    description:
+      'Luxury med spa site with consultation booking, treatment gallery, and new client offers.',
     features: [
-      'Online treatment booking',
-      'Before/after photo gallery',
-      'Treatment menu with pricing',
-      'Virtual consultation option',
-      'Loyalty program integration',
+      'Consultation Booking',
+      'Treatment Gallery',
+      'New Client Offer',
+      'Team Profiles',
     ],
     accent: '#8B5CF6',
-    accentRaw: '#8B5CF6',
-    navItems: ['Treatments', 'Gallery', 'Specials', 'Book'],
-    heroHeadline: 'Reveal Your Best Self',
-    heroSub: 'Botox \u2022 Fillers \u2022 Laser \u2022 Facials',
-    services: ['Botox & Fillers', 'Laser Treatments', 'Facials & Peels'],
   },
 ] as const;
 
-function MockupCard({
+function PortfolioCard({
   demo,
   index,
 }: {
@@ -86,7 +78,8 @@ function MockupCard({
   index: number;
 }) {
   return (
-    <motion.div
+    <motion.a
+      href={demo.href}
       initial={{ opacity: 0, y: 44, filter: 'blur(6px)' }}
       whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
       viewport={{ once: true, margin: '-40px' }}
@@ -97,23 +90,25 @@ function MockupCard({
       }}
       whileHover={{
         y: -6,
-        boxShadow: '0 16px 48px rgba(0,0,0,.4), 0 0 40px rgba(93,196,232,.04)',
+        boxShadow:
+          '0 16px 48px rgba(0,0,0,.4), 0 0 40px rgba(93,196,232,.04)',
         transition: { type: 'spring', stiffness: 300, damping: 20 },
       }}
       style={{
-        background: 'var(--bg1)',
-        border: '1px solid var(--hr)',
-        borderRadius: 'var(--rr)',
+        display: 'block',
+        textDecoration: 'none',
+        background: '#0D1117',
+        border: '1px solid rgba(255,255,255,0.08)',
+        borderRadius: '12px',
         overflow: 'hidden',
-        position: 'relative',
+        cursor: 'pointer',
       }}
     >
       {/* Browser chrome */}
       <div
         style={{
-          background: 'rgba(255,255,255,.03)',
+          background: '#1a1f2e',
           padding: '10px 14px',
-          borderBottom: '1px solid var(--hr)',
           display: 'flex',
           alignItems: 'center',
           gap: '6px',
@@ -125,7 +120,7 @@ function MockupCard({
             height: '8px',
             borderRadius: '50%',
             background: '#EF4444',
-            opacity: 0.7,
+            opacity: 0.8,
           }}
         />
         <span
@@ -134,7 +129,7 @@ function MockupCard({
             height: '8px',
             borderRadius: '50%',
             background: '#F59E0B',
-            opacity: 0.7,
+            opacity: 0.8,
           }}
         />
         <span
@@ -143,285 +138,115 @@ function MockupCard({
             height: '8px',
             borderRadius: '50%',
             background: '#22C55E',
-            opacity: 0.7,
+            opacity: 0.8,
           }}
         />
         <div
           style={{
             flex: 1,
             marginLeft: '8px',
-            padding: '3px 10px',
-            background: 'rgba(255,255,255,.04)',
-            borderRadius: '4px',
-            fontSize: '9px',
-            color: 'var(--t3)',
+            padding: '4px 12px',
+            background: 'rgba(255,255,255,.06)',
+            borderRadius: '6px',
+            fontSize: '11px',
+            color: 'rgba(255,255,255,.5)',
             fontFamily: 'monospace',
           }}
         >
-          {demo.name.toLowerCase().replace(/\s+/g, '')}.com
+          {demo.url}
         </div>
       </div>
 
-      {/* Website preview */}
-      <div style={{ padding: '0', background: '#060A10' }}>
-        {/* Nav bar */}
-        <div
+      {/* Screenshot */}
+      <div style={{ position: 'relative', width: '100%', height: '380px' }}>
+        <Image
+          src={demo.image}
+          alt={`${demo.name} website screenshot`}
+          width={1280}
+          height={700}
+          priority={index < 2}
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            padding: '8px 14px',
-            borderBottom: '1px solid rgba(255,255,255,.06)',
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'top',
           }}
-        >
-          <div
-            style={{
-              fontSize: '9px',
-              fontWeight: 700,
-              color: demo.accent,
-              letterSpacing: '0.5px',
-            }}
-          >
-            {demo.name.split(' ').slice(0, 2).join(' ')}
-          </div>
-          <div style={{ display: 'flex', gap: '10px' }}>
-            {demo.navItems.map((item, i) => (
-              <span
-                key={item}
-                style={{
-                  fontSize: '7px',
-                  color:
-                    i === demo.navItems.length - 1
-                      ? '#060A10'
-                      : 'rgba(222,224,231,.5)',
-                  fontWeight: i === demo.navItems.length - 1 ? 700 : 400,
-                  background:
-                    i === demo.navItems.length - 1
-                      ? demo.accent
-                      : 'transparent',
-                  padding:
-                    i === demo.navItems.length - 1 ? '2px 6px' : '2px 0',
-                  borderRadius: '3px',
-                }}
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Hero section */}
-        <div
-          style={{
-            padding: '20px 14px 16px',
-            position: 'relative',
-            background: `linear-gradient(135deg, ${demo.accentRaw}08, transparent)`,
-          }}
-        >
-          <div
-            style={{
-              width: '100%',
-              height: '48px',
-              borderRadius: '6px',
-              background: `linear-gradient(135deg, ${demo.accentRaw}12, ${demo.accentRaw}04)`,
-              border: `1px solid ${demo.accentRaw}15`,
-              marginBottom: '12px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke={demo.accentRaw}
-              strokeWidth="1.2"
-              opacity={0.4}
-            >
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <circle cx="8.5" cy="8.5" r="1.5" />
-              <path d="M21 15l-5-5L5 21" />
-            </svg>
-          </div>
-          <div
-            style={{
-              fontSize: '12px',
-              fontWeight: 600,
-              color: 'var(--text)',
-              lineHeight: 1.3,
-              marginBottom: '4px',
-            }}
-          >
-            {demo.heroHeadline}
-          </div>
-          <div
-            style={{
-              fontSize: '8px',
-              color: 'var(--t3)',
-              marginBottom: '10px',
-            }}
-          >
-            {demo.heroSub}
-          </div>
-          <div style={{ display: 'flex', gap: '6px' }}>
-            <span
-              style={{
-                fontSize: '7px',
-                fontWeight: 700,
-                padding: '3px 10px',
-                background: demo.accent,
-                color: '#060A10',
-                borderRadius: '3px',
-              }}
-            >
-              Book Appointment
-            </span>
-            <span
-              style={{
-                fontSize: '7px',
-                fontWeight: 600,
-                padding: '3px 10px',
-                border: `1px solid ${demo.accentRaw}40`,
-                color: demo.accent,
-                borderRadius: '3px',
-              }}
-            >
-              Call Now
-            </span>
-          </div>
-        </div>
-
-        {/* Services grid */}
-        <div style={{ padding: '10px 14px 14px' }}>
-          <div
-            style={{
-              fontSize: '7px',
-              fontWeight: 700,
-              letterSpacing: '1px',
-              textTransform: 'uppercase',
-              color: demo.accent,
-              marginBottom: '8px',
-            }}
-          >
-            Our Services
-          </div>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr 1fr',
-              gap: '6px',
-            }}
-          >
-            {demo.services.map((svc) => (
-              <div
-                key={svc}
-                style={{
-                  padding: '8px 6px',
-                  background: 'rgba(255,255,255,.02)',
-                  border: '1px solid rgba(255,255,255,.05)',
-                  borderRadius: '4px',
-                  textAlign: 'center',
-                }}
-              >
-                <div
-                  style={{
-                    width: '14px',
-                    height: '14px',
-                    borderRadius: '50%',
-                    background: `${demo.accentRaw}15`,
-                    margin: '0 auto 4px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <span style={{ fontSize: '7px', color: demo.accent }}>
-                    +
-                  </span>
-                </div>
-                <div
-                  style={{
-                    fontSize: '6.5px',
-                    color: 'var(--t2)',
-                    lineHeight: 1.3,
-                  }}
-                >
-                  {svc}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        />
       </div>
 
-      {/* Card content below mockup */}
+      {/* Card info */}
       <div style={{ padding: '20px' }}>
-        <div
+        <span
           style={{
-            fontSize: '10px',
+            display: 'inline-block',
+            fontSize: '11px',
             fontWeight: 700,
-            letterSpacing: '1.5px',
+            letterSpacing: '1px',
             textTransform: 'uppercase',
             color: demo.accent,
             marginBottom: '8px',
           }}
         >
-          {demo.type}
-        </div>
+          {demo.industry}
+        </span>
         <h3
           style={{
             fontFamily: "'Outfit', system-ui, sans-serif",
-            fontSize: '18px',
+            fontSize: '20px',
             color: 'var(--text)',
             fontWeight: 600,
-            marginBottom: '4px',
+            marginBottom: '6px',
             lineHeight: 1.2,
           }}
         >
           {demo.name}
         </h3>
+        <p
+          style={{
+            fontSize: '13px',
+            color: 'var(--t2)',
+            lineHeight: 1.5,
+            marginBottom: '14px',
+          }}
+        >
+          {demo.description}
+        </p>
 
-        {/* Feature list */}
-        <ul style={{ listStyle: 'none', padding: 0, margin: '12px 0 16px' }}>
+        {/* Feature pills */}
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '6px',
+            marginBottom: '16px',
+          }}
+        >
           {demo.features.map((f) => (
-            <li
+            <span
               key={f}
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                fontSize: '13px',
+                fontSize: '11px',
+                fontWeight: 600,
+                padding: '4px 10px',
+                background: 'rgba(255,255,255,.04)',
+                border: '1px solid rgba(255,255,255,.08)',
+                borderRadius: '20px',
                 color: 'var(--t2)',
-                lineHeight: 1.5,
-                marginBottom: '5px',
               }}
             >
-              <span
-                style={{
-                  color: demo.accent,
-                  fontSize: '12px',
-                  flexShrink: 0,
-                }}
-              >
-                &#10003;
-              </span>
               {f}
-            </li>
+            </span>
           ))}
-        </ul>
+        </div>
 
-        {/* Live demo link */}
-        <a
-          href={demo.href}
+        <span
           className="svc-link"
-          style={{ display: 'inline-block' }}
+          style={{ display: 'inline-block', pointerEvents: 'none' }}
         >
           View Live Demo →
-        </a>
+        </span>
       </div>
-    </motion.div>
+    </motion.a>
   );
 }
 
@@ -451,11 +276,11 @@ export function Showcase() {
               fontWeight: 700,
             }}
           >
-            Demo Sites for <em>Every Industry</em>
+            Real Websites <em>We Built</em>
           </h2>
           <p className="sd" style={{ maxWidth: '520px' }}>
-            Every site is custom-built for your industry. Click any demo to see
-            it live.
+            Every demo is a live, fully functional website — click to explore
+            it.
           </p>
         </motion.div>
 
@@ -464,11 +289,11 @@ export function Showcase() {
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '16px',
+            gap: '20px',
           }}
         >
           {DEMOS.map((demo, i) => (
-            <MockupCard key={demo.name} demo={demo} index={i} />
+            <PortfolioCard key={demo.slug} demo={demo} index={i} />
           ))}
         </div>
 
