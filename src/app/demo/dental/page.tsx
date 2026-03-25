@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import type { FormEvent, CSSProperties } from "react";
 
@@ -376,15 +377,12 @@ export default function DentalDemoPage() {
             }}
           />
           {/* Hero background photo */}
-          <img
-            src="https://images.unsplash.com/photo-1588776814546-1ffbb7d98949?w=1200&q=80"
-            alt=""
-            loading="lazy"
+          <Image
+            src="/images/dental-reception.jpg"
+            alt="Modern dental office reception"
+            fill
+            priority
             style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
               objectFit: "cover",
               objectPosition: "center",
               opacity: 0.18,
@@ -972,10 +970,72 @@ export default function DentalDemoPage() {
         </a>
       </div>
 
+      {/* ─── MEET THE TEAM ─── */}
+      <Section>
+        <section style={{ padding: "80px 0", background: C.bgSoft }}>
+          <div style={{ maxWidth: "1120px", margin: "0 auto", padding: "0 24px" }}>
+            <h2 style={{ textAlign: "center", fontSize: "32px", fontWeight: 700, color: C.navy, marginBottom: "12px" }}>
+              Meet Our Team
+            </h2>
+            <p style={{ textAlign: "center", color: C.textLight, marginBottom: "48px", maxWidth: "600px", marginLeft: "auto", marginRight: "auto" }}>
+              Experienced professionals dedicated to your smile
+            </p>
+            <div className="demo-grid-3col" style={{ display: "grid", gap: "32px" }}>
+              {[
+                { img: "/images/dental-dentist-female.jpg", name: "Dr. Maria Santos, DDS", role: "General & Cosmetic Dentistry" },
+                { img: "/images/dental-dentist-male.jpg", name: "Dr. James Mitchell, DMD", role: "Implants & Oral Surgery" },
+                { img: "/images/dental-team.jpg", name: "Our Dental Team", role: "Hygienists, Assistants & Front Office" },
+              ].map((m) => (
+                <div key={m.name} style={{ background: "#fff", borderRadius: "16px", overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,.06)" }}>
+                  <div style={{ position: "relative", width: "100%", height: "320px" }}>
+                    <Image src={m.img} alt={m.name} fill style={{ objectFit: "cover" }} />
+                  </div>
+                  <div style={{ padding: "20px", textAlign: "center" }}>
+                    <h3 style={{ fontSize: "18px", fontWeight: 600, color: C.navy, marginBottom: "4px" }}>{m.name}</h3>
+                    <p style={{ fontSize: "14px", color: C.textLight }}>{m.role}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </Section>
+
+      {/* ─── HAPPY CLIENTS ─── */}
+      <Section>
+        <section style={{ padding: "80px 0", background: C.bg }}>
+          <div style={{ maxWidth: "1120px", margin: "0 auto", padding: "0 24px" }}>
+            <h2 style={{ textAlign: "center", fontSize: "32px", fontWeight: 700, color: C.navy, marginBottom: "12px" }}>
+              Happy Patients
+            </h2>
+            <p style={{ textAlign: "center", color: C.textLight, marginBottom: "48px", maxWidth: "600px", marginLeft: "auto", marginRight: "auto" }}>
+              Real smiles from real patients
+            </p>
+            <div className="demo-grid-2col" style={{ display: "grid", gap: "32px" }}>
+              {[
+                { img: "/images/dental-patient-happy.jpg", name: "Sarah M.", quote: "Best dental experience I've ever had. The team made me feel completely at ease — I actually look forward to my visits now!" },
+                { img: "/images/dental-exam-room.jpg", name: "Robert K.", quote: "State-of-the-art facility with a warm, welcoming atmosphere. Dr. Santos explained every step and my results are incredible." },
+              ].map((t) => (
+                <div key={t.name} style={{ display: "flex", gap: "24px", background: C.bgSoft, borderRadius: "16px", padding: "24px", alignItems: "center" }}>
+                  <div style={{ position: "relative", width: "160px", minWidth: "160px", height: "160px", borderRadius: "12px", overflow: "hidden" }}>
+                    <Image src={t.img} alt={t.name} fill style={{ objectFit: "cover" }} />
+                  </div>
+                  <div>
+                    <p style={{ fontSize: "15px", color: C.text, lineHeight: 1.7, marginBottom: "12px", fontStyle: "italic" }}>&ldquo;{t.quote}&rdquo;</p>
+                    <p style={{ fontSize: "14px", fontWeight: 600, color: C.navy }}>— {t.name}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </Section>
+
       {/* ─── RESPONSIVE STYLES ─── */}
       <style>{`
         * { box-sizing: border-box; margin: 0; }
         .demo-grid-2col { grid-template-columns: 1fr 1fr; }
+        .demo-grid-3col { grid-template-columns: repeat(3, 1fr); }
         .demo-grid-footer { grid-template-columns: 2fr 1fr 1fr 1fr; }
         .demo-nav-links { display: flex; align-items: center; gap: 24px; }
         input:focus, select:focus {
@@ -984,6 +1044,7 @@ export default function DentalDemoPage() {
         }
         @media (max-width: 768px) {
           .demo-grid-2col { grid-template-columns: 1fr !important; }
+          .demo-grid-3col { grid-template-columns: 1fr !important; }
           .demo-grid-footer { grid-template-columns: 1fr !important; }
           .demo-nav-links > a:not(:last-child) { display: none !important; }
         }

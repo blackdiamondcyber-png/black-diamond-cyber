@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import type { FormEvent, CSSProperties } from "react";
 
@@ -478,15 +479,12 @@ export default function PlumbingDemoPage() {
             }}
           />
           {/* Hero background photo */}
-          <img
-            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80"
-            alt=""
-            loading="lazy"
+          <Image
+            src="/images/plumbing-bathroom.jpg"
+            alt="Renovated luxury bathroom"
+            fill
+            priority
             style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
               objectFit: "cover",
               objectPosition: "center",
               opacity: 0.18,
@@ -1088,11 +1086,74 @@ export default function PlumbingDemoPage() {
         </a>
       </div>
 
+      {/* ─── MEET THE TEAM ─── */}
+      <Section>
+        <section style={{ padding: "80px 0", background: C.bgSoft }}>
+          <div style={{ maxWidth: "1120px", margin: "0 auto", padding: "0 24px" }}>
+            <h2 style={{ textAlign: "center", fontSize: "32px", fontWeight: 700, color: C.navy, marginBottom: "12px" }}>
+              Meet Our Team
+            </h2>
+            <p style={{ textAlign: "center", color: C.textLight, marginBottom: "48px", maxWidth: "600px", marginLeft: "auto", marginRight: "auto" }}>
+              Licensed master plumbers serving San Antonio since 2012
+            </p>
+            <div className="plumb-grid-3col" style={{ display: "grid", gap: "32px" }}>
+              {[
+                { img: "/images/plumbing-technician.jpg", name: "Carlos Rivera", role: "Master Plumber — TX License #M-40821" },
+                { img: "/images/plumbing-greeting.jpg", name: "Customer Service", role: "Friendly, on-time, every time" },
+                { img: "/images/plumbing-bathroom.jpg", name: "Quality Craftsmanship", role: "Luxury remodels & emergency repairs" },
+              ].map((m) => (
+                <div key={m.name} style={{ background: "#fff", borderRadius: "16px", overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,.06)" }}>
+                  <div style={{ position: "relative", width: "100%", height: "320px" }}>
+                    <Image src={m.img} alt={m.name} fill style={{ objectFit: "cover" }} />
+                  </div>
+                  <div style={{ padding: "20px", textAlign: "center" }}>
+                    <h3 style={{ fontSize: "18px", fontWeight: 600, color: C.navy, marginBottom: "4px" }}>{m.name}</h3>
+                    <p style={{ fontSize: "14px", color: C.textLight }}>{m.role}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </Section>
+
+      {/* ─── HAPPY CLIENTS ─── */}
+      <Section>
+        <section style={{ padding: "80px 0", background: C.bg }}>
+          <div style={{ maxWidth: "1120px", margin: "0 auto", padding: "0 24px" }}>
+            <h2 style={{ textAlign: "center", fontSize: "32px", fontWeight: 700, color: C.navy, marginBottom: "12px" }}>
+              Happy Homeowners
+            </h2>
+            <p style={{ textAlign: "center", color: C.textLight, marginBottom: "48px", maxWidth: "600px", marginLeft: "auto", marginRight: "auto" }}>
+              5-star service backed by a lifetime warranty
+            </p>
+            <div className="plumb-grid-2col" style={{ display: "grid", gap: "32px" }}>
+              {[
+                { img: "/images/plumbing-greeting.jpg", name: "Amanda & Tom S.", quote: "Pipe burst at 2 AM and Carlos was at our door within 30 minutes. Saved our kitchen from serious water damage. Can't recommend them enough." },
+                { img: "/images/plumbing-bathroom.jpg", name: "Michelle D.", quote: "They completely transformed our master bathroom. Came in on budget and ahead of schedule — the attention to detail was incredible." },
+              ].map((t) => (
+                <div key={t.name} style={{ display: "flex", gap: "24px", background: C.bgSoft, borderRadius: "16px", padding: "24px", alignItems: "center" }}>
+                  <div style={{ position: "relative", width: "160px", minWidth: "160px", height: "160px", borderRadius: "12px", overflow: "hidden" }}>
+                    <Image src={t.img} alt={t.name} fill style={{ objectFit: "cover" }} />
+                  </div>
+                  <div>
+                    <p style={{ fontSize: "15px", color: C.text, lineHeight: 1.7, marginBottom: "12px", fontStyle: "italic" }}>&ldquo;{t.quote}&rdquo;</p>
+                    <p style={{ fontSize: "14px", fontWeight: 600, color: C.navy }}>— {t.name}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </Section>
+
       {/* ─── RESPONSIVE STYLES ─── */}
       <style>{`
         * { box-sizing: border-box; margin: 0; }
         .plumb-grid-footer { grid-template-columns: 2fr 1fr 1fr 1fr; }
         .plumb-nav-links { display: flex; align-items: center; gap: 24px; }
+        .plumb-grid-3col { grid-template-columns: repeat(3, 1fr); }
+        .plumb-grid-2col { grid-template-columns: repeat(2, 1fr); }
         input:focus, select:focus, textarea:focus {
           border-color: ${C.blue} !important;
           box-shadow: 0 0 0 3px ${C.blue}20;
@@ -1100,6 +1161,8 @@ export default function PlumbingDemoPage() {
         @media (max-width: 768px) {
           .plumb-grid-footer { grid-template-columns: 1fr !important; }
           .plumb-nav-links > a:not(:last-child) { display: none !important; }
+          .plumb-grid-3col { grid-template-columns: 1fr !important; }
+          .plumb-grid-2col { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </div>

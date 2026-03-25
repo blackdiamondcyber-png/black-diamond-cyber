@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import type { FormEvent, CSSProperties } from "react";
 
@@ -421,15 +422,12 @@ export default function MedSpaDemoPage() {
             }}
           />
           {/* Hero background photo */}
-          <img
-            src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1200&q=80"
-            alt=""
-            loading="lazy"
+          <Image
+            src="/images/medspa-treatment-room.jpg"
+            alt="Luxury med spa treatment room"
+            fill
+            priority
             style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
               objectFit: "cover",
               objectPosition: "center",
               opacity: 0.18,
@@ -1036,11 +1034,74 @@ export default function MedSpaDemoPage() {
         </a>
       </div>
 
+      {/* ─── MEET THE TEAM ─── */}
+      <Section>
+        <section style={{ padding: "80px 0", background: C.bgSoft }}>
+          <div style={{ maxWidth: "1120px", margin: "0 auto", padding: "0 24px" }}>
+            <h2 style={{ textAlign: "center", fontSize: "32px", fontWeight: 700, color: C.charcoal, marginBottom: "12px", letterSpacing: "1px" }}>
+              Meet Our Team
+            </h2>
+            <p style={{ textAlign: "center", color: C.textLight, marginBottom: "48px", maxWidth: "600px", marginLeft: "auto", marginRight: "auto" }}>
+              Board-certified aestheticians and licensed practitioners
+            </p>
+            <div className="spa-grid-3col" style={{ display: "grid", gap: "32px" }}>
+              {[
+                { img: "/images/medspa-aesthetician.jpg", name: "Dr. Natalie Chen, MD", role: "Medical Director — Board-Certified Dermatologist" },
+                { img: "/images/medspa-botox.jpg", name: "Sophia Reyes, RN", role: "Lead Injector — Advanced Botox & Fillers" },
+                { img: "/images/medspa-team.jpg", name: "Our Team", role: "Licensed aestheticians & wellness specialists" },
+              ].map((m) => (
+                <div key={m.name} style={{ background: "#fff", borderRadius: "16px", overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,.06)" }}>
+                  <div style={{ position: "relative", width: "100%", height: "320px" }}>
+                    <Image src={m.img} alt={m.name} fill style={{ objectFit: "cover" }} />
+                  </div>
+                  <div style={{ padding: "20px", textAlign: "center" }}>
+                    <h3 style={{ fontSize: "18px", fontWeight: 600, color: C.charcoal, marginBottom: "4px" }}>{m.name}</h3>
+                    <p style={{ fontSize: "14px", color: C.textLight }}>{m.role}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </Section>
+
+      {/* ─── HAPPY CLIENTS ─── */}
+      <Section>
+        <section style={{ padding: "80px 0", background: C.bg }}>
+          <div style={{ maxWidth: "1120px", margin: "0 auto", padding: "0 24px" }}>
+            <h2 style={{ textAlign: "center", fontSize: "32px", fontWeight: 700, color: C.charcoal, marginBottom: "12px", letterSpacing: "1px" }}>
+              Client Transformations
+            </h2>
+            <p style={{ textAlign: "center", color: C.textLight, marginBottom: "48px", maxWidth: "600px", marginLeft: "auto", marginRight: "auto" }}>
+              Real results from real clients
+            </p>
+            <div className="spa-grid-2col" style={{ display: "grid", gap: "32px" }}>
+              {[
+                { img: "/images/medspa-client-result.jpg", name: "Jessica L.", quote: "After my HydraFacial series, my skin has never looked better. The team at Serenity truly understands skincare on a deeper level." },
+                { img: "/images/medspa-treatment.jpg", name: "Christina M.", quote: "Sophia is an artist with injectables. Natural results, zero downtime, and the most relaxing environment. I drive 45 minutes and it's worth every mile." },
+              ].map((t) => (
+                <div key={t.name} style={{ display: "flex", gap: "24px", background: C.bgSoft, borderRadius: "16px", padding: "24px", alignItems: "center" }}>
+                  <div style={{ position: "relative", width: "160px", minWidth: "160px", height: "160px", borderRadius: "12px", overflow: "hidden" }}>
+                    <Image src={t.img} alt={t.name} fill style={{ objectFit: "cover" }} />
+                  </div>
+                  <div>
+                    <p style={{ fontSize: "15px", color: C.text, lineHeight: 1.7, marginBottom: "12px", fontStyle: "italic" }}>&ldquo;{t.quote}&rdquo;</p>
+                    <p style={{ fontSize: "14px", fontWeight: 600, color: C.charcoal }}>— {t.name}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </Section>
+
       {/* ─── RESPONSIVE STYLES ─── */}
       <style>{`
         * { box-sizing: border-box; margin: 0; }
         .spa-grid-footer { grid-template-columns: 2fr 1fr 1fr 1fr; }
         .spa-nav-links { display: flex; align-items: center; gap: 24px; }
+        .spa-grid-3col { grid-template-columns: repeat(3, 1fr); }
+        .spa-grid-2col { grid-template-columns: repeat(2, 1fr); }
         input:focus, select:focus, textarea:focus {
           border-color: ${C.rose} !important;
           box-shadow: 0 0 0 3px ${C.rose}20;
@@ -1048,6 +1109,8 @@ export default function MedSpaDemoPage() {
         @media (max-width: 768px) {
           .spa-grid-footer { grid-template-columns: 1fr !important; }
           .spa-nav-links > a:not(:last-child) { display: none !important; }
+          .spa-grid-3col { grid-template-columns: 1fr !important; }
+          .spa-grid-2col { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </div>
