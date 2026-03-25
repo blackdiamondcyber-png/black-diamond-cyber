@@ -4,18 +4,18 @@ import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 
 const INDUSTRIES = [
-  'General Dentistry',
-  'Cosmetic Dentistry',
-  'Pediatric Dentistry',
-  'Orthodontics',
-  'Oral Surgery',
-  'Periodontics',
-  'Endodontics',
-  'Prosthodontics',
-  'Implant Centers',
-  'Multi-Location Practices',
-  'DSO Groups',
-  'Dental Startups',
+  'Dental Practices',
+  'HVAC Companies',
+  'Plumbing Services',
+  'Med Spas',
+  'Chiropractors',
+  'Roofing Companies',
+  'Electricians',
+  'Orthodontists',
+  'Veterinary Clinics',
+  'Auto Repair Shops',
+  'Landscaping Companies',
+  'Law Firms',
 ];
 
 export function Marquee() {

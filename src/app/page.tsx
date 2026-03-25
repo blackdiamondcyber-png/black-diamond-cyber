@@ -2,27 +2,16 @@ import { Suspense } from "react";
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
 import { Marquee } from "@/components/Marquee";
-import { TrustBar } from "@/components/TrustBar";
 import { Services } from "@/components/Services";
 import { HowItWorks } from "@/components/HowItWorks";
-import { Pricing } from "@/components/Pricing";
-import { WhyBDCyber } from "@/components/WhyBDCyber";
+import { Showcase } from "@/components/Showcase";
 import { Founder } from "@/components/Founder";
-import { Reviews } from "@/components/Reviews";
+import { BeforeAfter } from "@/components/BeforeAfter";
+import { FAQ } from "@/components/FAQ";
 import { CTA } from "@/components/CTA";
 import { Footer } from "@/components/Footer";
 import { BookingHandler } from "@/components/BookingHandler";
 import { SuccessModal } from "@/components/SuccessModal";
-import { FAQ } from "@/components/FAQ";
-import { StickyMobileCTA } from "@/components/StickyMobileCTA";
-import { BeforeAfter } from "@/components/BeforeAfter";
-import { Showcase } from "@/components/Showcase";
-import { DentalROICalculator } from "@/components/DentalROICalculator";
-import { ProcessTimeline } from "@/components/ProcessTimeline";
-import { ExitIntent } from "@/components/ExitIntent";
-import { SocialProofToast } from "@/components/SocialProofToast";
-import { DiamondAccent } from "@/components/DiamondAccent";
-import { IndustryValidation } from "@/components/IndustryValidation";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -179,52 +168,22 @@ export default function Home() {
       <Suspense>
         <SuccessModal />
       </Suspense>
-      {/* Ambient background orbs */}
-      <div className="amb">
-        <div className="orb"></div>
-        <div className="orb"></div>
-      </div>
       {/* Grain texture overlay */}
       <div className="grain"></div>
-      {/* Page content — restructured for conversion */}
+      {/* Page content */}
       <div className="pg">
         <Nav />
         <Hero />
         <Marquee />
-        <TrustBar />
-        <DiamondAccent />
         <Services />
-        <DiamondAccent />
-        <WhyBDCyber />
-        <DiamondAccent />
         <HowItWorks />
-        <DiamondAccent />
-        <ProcessTimeline />
-        <DiamondAccent />
-        <BeforeAfter />
-        <DiamondAccent />
-        <Founder />
-        <DiamondAccent />
-        <IndustryValidation />
-        <DiamondAccent />
-        <Reviews />
-        <DiamondAccent />
-        <DentalROICalculator />
-        <DiamondAccent />
         <Showcase />
-        <DiamondAccent />
-        <Pricing />
-        <DiamondAccent />
+        <Founder />
+        <BeforeAfter />
         <FAQ />
         <CTA />
         <Footer />
       </div>
-      {/* Sticky mobile CTA */}
-      <StickyMobileCTA />
-      {/* Exit intent banner (desktop only, once per session) */}
-      <ExitIntent />
-      {/* Social proof toast (once per session) */}
-      <SocialProofToast />
     </>
   );
 }

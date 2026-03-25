@@ -22,13 +22,13 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Dental Practice Websites That Fill Chairs | Black Diamond Cyber",
+  title: "AI-Powered Websites for Local Businesses | Black Diamond Cyber",
   description:
-    "AI-powered dental practice websites. Fill chairs, dominate local search, own your code. Delivered in days. Starting at $997.",
+    "Fast, beautiful, AI-powered websites for dental practices, HVAC companies, and local service businesses. Delivered in 7 days. You own the code. Starting at $997.",
   metadataBase: new URL("https://bd-cyber.com"),
   openGraph: {
-    title: "Dental Practice Websites That Fill Chairs | Black Diamond Cyber",
-    description: "AI-powered dental practice websites. Fill chairs, dominate local search, own your code.",
+    title: "AI-Powered Websites for Local Businesses | Black Diamond Cyber",
+    description: "AI-powered websites delivered in 7 days. You own the code. No contracts.",
     url: "https://bd-cyber.com",
     siteName: "Black Diamond Cyber",
     type: "website",
@@ -37,14 +37,14 @@ export const metadata: Metadata = {
         url: "/api/og",
         width: 1200,
         height: 630,
-        alt: "Black Diamond Cyber — Dental Practice Websites That Fill Chairs",
+        alt: "Black Diamond Cyber — AI-Powered Websites for Local Businesses",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dental Practice Websites That Fill Chairs | Black Diamond Cyber",
-    description: "AI-powered dental practice websites. Fill chairs, dominate local search, own your code.",
+    title: "AI-Powered Websites for Local Businesses | Black Diamond Cyber",
+    description: "AI-powered websites delivered in 7 days. You own the code. No contracts.",
     images: ["/api/og"],
   },
   alternates: {
