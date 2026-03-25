@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import type { FormEvent, CSSProperties } from "react";
 
 /* ─── palette ─── */
@@ -21,27 +21,6 @@ const C = {
 };
 
 /* ─── scroll-reveal hook ─── */
-function useReveal() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          setVisible(true);
-          obs.unobserve(el);
-        }
-      },
-      { threshold: 0.02, rootMargin: "0px 0px -10px 0px" },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-  return { ref, visible };
-}
-
 function Section({
   children,
   style,
@@ -51,18 +30,8 @@ function Section({
   style?: CSSProperties;
   id?: string;
 }) {
-  const { ref, visible } = useReveal();
   return (
-    <div
-      ref={ref}
-      id={id}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(28px)",
-        transition: "opacity .7s ease, transform .7s ease",
-        ...style,
-      }}
-    >
+    <div id={id} style={style}>
       {children}
     </div>
   );
