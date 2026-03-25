@@ -1137,7 +1137,7 @@ export default function PlumbingDemoPage() {
         </a>
       </div>
 
-      {/* ─── MEET THE TEAM ─── */}
+
       <style>{`
         * { box-sizing: border-box; margin: 0; }
         .plumb-grid-footer { grid-template-columns: 2fr 1fr 1fr 1fr; }

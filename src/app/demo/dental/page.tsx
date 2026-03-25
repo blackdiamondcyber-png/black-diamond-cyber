@@ -926,6 +926,7 @@ export default function DentalDemoPage() {
       </Section>
 
       {/* ─── RESPONSIVE STYLES ─── */}
+      {/* ─── MEET THE TEAM ─── */}
       {/* ─── DENTAL FOOTER ─── */}
       <footer style={{ background: C.navy, color: "rgba(255,255,255,.7)", padding: "48px 0 100px" }}>
         <div style={container}>
@@ -1048,7 +1049,6 @@ export default function DentalDemoPage() {
         </a>
       </div>
 
-      {/* ─── MEET THE TEAM ─── */}
       <style>{`
         * { box-sizing: border-box; margin: 0; }
         .demo-grid-2col { grid-template-columns: 1fr 1fr; }

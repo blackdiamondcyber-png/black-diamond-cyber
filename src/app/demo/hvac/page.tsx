@@ -903,7 +903,7 @@ export default function HvacDemoPage() {
         </section>
       </Section>
 
-      {/* ─── MEET THE TEAM ─── */}
+
       <Section>
         <section style={{ padding: "80px 0", background: C.bgSoft }}>
           <div style={{ maxWidth: "1120px", margin: "0 auto", padding: "0 24px" }}>
@@ -1088,7 +1088,7 @@ export default function HvacDemoPage() {
         </a>
       </div>
 
-      {/* ─── OUR WORK ─── */}
+
       <style>{`
         * { box-sizing: border-box; margin: 0; }
         .hvac-grid-footer { grid-template-columns: 2fr 1fr 1fr 1fr; }
