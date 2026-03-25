@@ -310,3 +310,76 @@ section{padding:120px 0;scroll-margin-top:80px}
   .js .rv{opacity:1;transform:none;filter:none;transition:none}
   .gsap-reveal{visibility:visible!important}
 }
+
+/* ─── Demo Page Nav: Mobile Hamburger ─── */
+.demo-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.demo-hamburger {
+  display: none !important;
+}
+@media (max-width: 768px) {
+  .demo-nav-links {
+    display: none !important;
+  }
+  .demo-hamburger {
+    display: flex !important;
+  }
+}
+
+/* ─── Demo Page: Mobile Hero Fixes ─── */
+@media (max-width: 768px) {
+  .demo-hero-content {
+    text-align: center;
+  }
+  .demo-hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  .demo-hero-buttons a,
+  .demo-hero-buttons button {
+    width: 100%;
+    min-height: 52px;
+    justify-content: center;
+  }
+  .demo-trust-badges {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .demo-team-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .demo-services-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .demo-testimonials-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .demo-two-col {
+    grid-template-columns: 1fr !important;
+  }
+  .demo-footer-cols {
+    flex-direction: column !important;
+  }
+  .demo-stats-row {
+    flex-wrap: wrap;
+  }
+  .demo-stats-row > div {
+    flex: 1 1 45%;
+    min-width: 120px;
+  }
+}
+
+/* ─── Demo Page: Image Sections ─── */
+.demo-image-card {
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+.demo-image-card img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}

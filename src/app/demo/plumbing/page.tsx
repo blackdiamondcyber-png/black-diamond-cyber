@@ -237,6 +237,7 @@ const beforeAfter = [
 /* ─── main page ─── */
 export default function PlumbingDemoPage() {
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -257,7 +258,7 @@ export default function PlumbingDemoPage() {
     padding: "0 24px",
   };
 
-  const sectionPad: CSSProperties = { padding: "80px 0" };
+  const sectionPad: CSSProperties = { padding: "80px 0", minHeight: "200px" };
 
   const heading: CSSProperties = {
     fontFamily: "'Instrument Serif', Georgia, serif",
@@ -289,56 +290,17 @@ export default function PlumbingDemoPage() {
     color: C.navy,
   };
 
-  const btnRed: CSSProperties = {
-    ...btn,
-    background: C.red,
-  };
-
   return (
     <div style={wrap}>
-      {/* ─── EMERGENCY BANNER ─── */}
+      {/* ─── BDC TOP BANNER ─── */}
       <div
         style={{
           position: "fixed",
           top: 0,
           left: 0,
           right: 0,
-          zIndex: 10000,
-          background: C.red,
-          color: "#fff",
-          fontSize: "13px",
-          padding: "10px 16px",
-          textAlign: "center",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "10px",
-          flexWrap: "wrap",
-          fontWeight: 600,
-        }}
-      >
-        <span>🚨 24/7 Emergency Plumbing Service</span>
-        <a
-          href="tel:+18309648800"
-          style={{
-            color: "#fff",
-            textDecoration: "underline",
-            fontWeight: 700,
-          }}
-        >
-          Call Now: (830) 964-8800
-        </a>
-      </div>
-
-      {/* ─── BDC TOP BANNER ─── */}
-      <div
-        style={{
-          position: "fixed",
-          top: "38px",
-          left: 0,
-          right: 0,
           zIndex: 9999,
-          background: C.bannerBg,
+          background: "rgba(15, 23, 42, 0.95)",
           color: "#fff",
           fontSize: "12px",
           padding: "8px 16px",
@@ -348,9 +310,10 @@ export default function PlumbingDemoPage() {
           justifyContent: "center",
           gap: "8px",
           flexWrap: "wrap",
+          borderBottom: "1px solid rgba(255,255,255,0.08)",
         }}
       >
-        <span style={{ opacity: 0.9 }}>
+        <span style={{ color: "rgba(255,255,255,0.75)" }}>
           🔷 <strong>LIVE DEMO</strong> built by Black Diamond Cyber
         </span>
         <span>&rarr;</span>
@@ -371,7 +334,7 @@ export default function PlumbingDemoPage() {
       <nav
         style={{
           position: "sticky",
-          top: "72px",
+          top: "36px",
           zIndex: 100,
           background: "rgba(255,255,255,.95)",
           backdropFilter: "blur(12px)",
@@ -430,8 +393,66 @@ export default function PlumbingDemoPage() {
               Book Now
             </a>
           </div>
+          <button
+            className="plumb-hamburger"
+            onClick={() => setMenuOpen(!menuOpen)}
+            style={{
+              display: "none",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: "8px",
+              flexDirection: "column",
+              gap: "5px",
+            }}
+            aria-label="Toggle menu"
+          >
+            <span style={{ display: "block", width: "24px", height: "2px", background: C.navy, borderRadius: "2px", transition: "transform .2s", transform: menuOpen ? "rotate(45deg) translateY(7px)" : "none" }} />
+            <span style={{ display: "block", width: "24px", height: "2px", background: C.navy, borderRadius: "2px", transition: "opacity .2s", opacity: menuOpen ? 0 : 1 }} />
+            <span style={{ display: "block", width: "24px", height: "2px", background: C.navy, borderRadius: "2px", transition: "transform .2s", transform: menuOpen ? "rotate(-45deg) translateY(-7px)" : "none" }} />
+          </button>
         </div>
       </nav>
+      {menuOpen && (
+        <div style={{
+          position: "fixed",
+          top: "104px",
+          left: 0,
+          right: 0,
+          zIndex: 99,
+          background: "#fff",
+          borderBottom: `1px solid ${C.border}`,
+          boxShadow: "0 8px 32px rgba(0,0,0,.1)",
+          padding: "16px 24px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "4px",
+        }}>
+          {["Services", "Projects", "Reviews", "Book"].map((l) => (
+            <a
+              key={l}
+              href={`#${l.toLowerCase()}`}
+              onClick={() => setMenuOpen(false)}
+              style={{
+                fontSize: "16px",
+                fontWeight: 500,
+                color: C.text,
+                textDecoration: "none",
+                padding: "12px 0",
+                borderBottom: `1px solid ${C.border}`,
+                minHeight: "48px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              {l}
+            </a>
+          ))}
+          <a href="#book" onClick={() => setMenuOpen(false)} style={{ ...btn, justifyContent: "center", marginTop: "8px", minHeight: "48px" }}>
+            Book Now
+          </a>
+        </div>
+      )}
 
       {/* ─── HERO ─── */}
       <Section>
@@ -487,7 +508,7 @@ export default function PlumbingDemoPage() {
             style={{
               objectFit: "cover",
               objectPosition: "center",
-              opacity: 0.18,
+              opacity: 0.35,
               zIndex: 0,
             }}
           />
@@ -496,7 +517,7 @@ export default function PlumbingDemoPage() {
             style={{
               position: "absolute",
               inset: 0,
-              background: "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.75))",
+              background: "linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.65))",
               zIndex: 0,
             }}
           />
@@ -518,7 +539,7 @@ export default function PlumbingDemoPage() {
               >
                 Emergency? Call (830) 964-8800 — We Answer 24/7
               </div>
-              <h1 style={{ ...heading, fontSize: "clamp(36px, 5.5vw, 56px)", color: "#fff", marginBottom: "16px" }}>
+              <h1 style={{ ...heading, fontSize: "clamp(32px, 5.5vw, 56px)", color: "#fff", marginBottom: "16px" }}>
                 Fast, Reliable Plumbing —{" "}
                 <span style={{ color: C.blue }}>Guaranteed</span>
               </h1>
@@ -528,8 +549,8 @@ export default function PlumbingDemoPage() {
               {/* Stat badges */}
               <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginBottom: "16px" }}>
                 {[
-                  { icon: "⭐", text: "4.8 Google Rating" },
-                  { icon: "💧", text: "Licensed & Bonded" },
+                  { icon: "⏰", text: "Same-Day Service" },
+                  { icon: "💧", text: "Free Estimates" },
                   { icon: "🚨", text: "24/7 Emergency" },
                 ].map((s) => (
                   <span key={s.text} style={{
@@ -562,7 +583,7 @@ export default function PlumbingDemoPage() {
                 <a href="#book" style={btn}>
                   Book Now
                 </a>
-                <a href="tel:+18309648800" style={btnRed}>
+                <a href="tel:+18309648800" style={{ ...btnOutline, borderColor: "rgba(255,255,255,0.6)", color: "#fff" }}>
                   Emergency? Call Now
                 </a>
               </div>
@@ -1152,6 +1173,7 @@ export default function PlumbingDemoPage() {
         * { box-sizing: border-box; margin: 0; }
         .plumb-grid-footer { grid-template-columns: 2fr 1fr 1fr 1fr; }
         .plumb-nav-links { display: flex; align-items: center; gap: 24px; }
+        .plumb-hamburger { display: none; }
         .plumb-grid-3col { grid-template-columns: repeat(3, 1fr); }
         .plumb-grid-2col { grid-template-columns: repeat(2, 1fr); }
         input:focus, select:focus, textarea:focus {
@@ -1160,7 +1182,8 @@ export default function PlumbingDemoPage() {
         }
         @media (max-width: 768px) {
           .plumb-grid-footer { grid-template-columns: 1fr !important; }
-          .plumb-nav-links > a:not(:last-child) { display: none !important; }
+          .plumb-nav-links { display: none !important; }
+          .plumb-hamburger { display: flex !important; }
           .plumb-grid-3col { grid-template-columns: 1fr !important; }
           .plumb-grid-2col { grid-template-columns: 1fr !important; }
         }

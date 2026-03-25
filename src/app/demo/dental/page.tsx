@@ -173,6 +173,7 @@ const hours = [
 /* ─── main page ─── */
 export default function DentalDemoPage() {
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -193,7 +194,7 @@ export default function DentalDemoPage() {
     padding: "0 24px",
   };
 
-  const sectionPad: CSSProperties = { padding: "80px 0" };
+  const sectionPad: CSSProperties = { padding: "80px 0", minHeight: "200px" };
 
   const heading: CSSProperties = {
     fontFamily: "'Instrument Serif', Georgia, serif",
@@ -235,10 +236,11 @@ export default function DentalDemoPage() {
           left: 0,
           right: 0,
           zIndex: 9999,
-          background: C.bannerBg,
+          background: "rgba(15, 23, 42, 0.95)",
           color: "#fff",
-          fontSize: "13px",
-          padding: "10px 16px",
+          fontSize: "12px",
+          padding: "8px 16px",
+          borderBottom: "1px solid rgba(255,255,255,0.08)",
           textAlign: "center",
           display: "flex",
           alignItems: "center",
@@ -247,7 +249,7 @@ export default function DentalDemoPage() {
           flexWrap: "wrap",
         }}
       >
-        <span style={{ opacity: 0.9 }}>
+        <span style={{ color: "rgba(255,255,255,0.75)" }}>
           This is a <strong>LIVE DEMO</strong> built by Black Diamond Cyber in 48 hours.
         </span>
         <span>Want one for your practice?</span>
@@ -327,8 +329,66 @@ export default function DentalDemoPage() {
               Book Now
             </a>
           </div>
+          <button
+            className="demo-hamburger"
+            onClick={() => setMenuOpen(!menuOpen)}
+            style={{
+              display: "none",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: "8px",
+              flexDirection: "column",
+              gap: "5px",
+            }}
+            aria-label="Toggle menu"
+          >
+            <span style={{ display: "block", width: "24px", height: "2px", background: C.navy, borderRadius: "2px", transition: "transform .2s", transform: menuOpen ? "rotate(45deg) translateY(7px)" : "none" }} />
+            <span style={{ display: "block", width: "24px", height: "2px", background: C.navy, borderRadius: "2px", transition: "opacity .2s", opacity: menuOpen ? 0 : 1 }} />
+            <span style={{ display: "block", width: "24px", height: "2px", background: C.navy, borderRadius: "2px", transition: "transform .2s", transform: menuOpen ? "rotate(-45deg) translateY(-7px)" : "none" }} />
+          </button>
         </div>
       </nav>
+      {menuOpen && (
+        <div style={{
+          position: "fixed",
+          top: "104px",
+          left: 0,
+          right: 0,
+          zIndex: 99,
+          background: "#fff",
+          borderBottom: `1px solid ${C.border}`,
+          boxShadow: "0 8px 32px rgba(0,0,0,.1)",
+          padding: "16px 24px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "4px",
+        }}>
+          {["Services", "About", "Reviews", "Book"].map((l) => (
+            <a
+              key={l}
+              href={`#${l.toLowerCase()}`}
+              onClick={() => setMenuOpen(false)}
+              style={{
+                fontSize: "16px",
+                fontWeight: 500,
+                color: C.text,
+                textDecoration: "none",
+                padding: "12px 0",
+                borderBottom: `1px solid ${C.border}`,
+                minHeight: "48px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              {l}
+            </a>
+          ))}
+          <a href="#book" onClick={() => setMenuOpen(false)} style={{ ...btn, justifyContent: "center", marginTop: "8px", minHeight: "48px" }}>
+            Book Now
+          </a>
+        </div>
+      )}
 
       {/* ─── HERO ─── */}
       <Section>
@@ -385,7 +445,7 @@ export default function DentalDemoPage() {
             style={{
               objectFit: "cover",
               objectPosition: "center",
-              opacity: 0.18,
+              opacity: 0.35,
               zIndex: 0,
             }}
           />
@@ -394,7 +454,7 @@ export default function DentalDemoPage() {
             style={{
               position: "absolute",
               inset: 0,
-              background: "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.75))",
+              background: "linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.65))",
               zIndex: 0,
             }}
           />
@@ -416,7 +476,7 @@ export default function DentalDemoPage() {
               >
                 <IconClock /> Mon–Fri 8am–5pm &middot; Sat 9am–1pm
               </div>
-              <h1 style={{ ...heading, fontSize: "clamp(36px, 5.5vw, 56px)", color: "#fff", marginBottom: "16px" }}>
+              <h1 style={{ ...heading, fontSize: "clamp(32px, 5.5vw, 56px)", color: "#fff", marginBottom: "16px" }}>
                 Welcome to <br />
                 <span style={{ color: C.teal }}>Canyon Lake</span> Family Dentistry
               </h1>
@@ -443,7 +503,7 @@ export default function DentalDemoPage() {
                 <a href="#book" style={btn}>
                   Book Your Appointment
                 </a>
-                <a href="tel:+18309642100" style={{ ...btnOutline, borderColor: "rgba(255,255,255,.3)", color: "#fff" }}>
+                <a href="tel:+18309642100" style={{ ...btnOutline, borderColor: "rgba(255,255,255,0.6)", color: "#fff" }}>
                   Call (830) 964-2100
                 </a>
               </div>
@@ -1038,6 +1098,7 @@ export default function DentalDemoPage() {
         .demo-grid-3col { grid-template-columns: repeat(3, 1fr); }
         .demo-grid-footer { grid-template-columns: 2fr 1fr 1fr 1fr; }
         .demo-nav-links { display: flex; align-items: center; gap: 24px; }
+        .demo-hamburger { display: none; }
         input:focus, select:focus {
           border-color: ${C.teal} !important;
           box-shadow: 0 0 0 3px ${C.teal}20;
@@ -1046,7 +1107,8 @@ export default function DentalDemoPage() {
           .demo-grid-2col { grid-template-columns: 1fr !important; }
           .demo-grid-3col { grid-template-columns: 1fr !important; }
           .demo-grid-footer { grid-template-columns: 1fr !important; }
-          .demo-nav-links > a:not(:last-child) { display: none !important; }
+          .demo-nav-links { display: none !important; }
+          .demo-hamburger { display: flex !important; }
         }
       `}</style>
     </div>
