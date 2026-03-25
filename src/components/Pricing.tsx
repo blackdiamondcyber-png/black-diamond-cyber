@@ -87,7 +87,7 @@ export function Pricing() {
   const [tab, setTab] = useState<'websites' | 'growth'>('websites');
   const [billing, setBilling] = useState<'monthly' | 'yearly'>('monthly');
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
+  const isInView = useInView(sectionRef, { once: true, margin: '-40px' });
 
   const wp = websitePrices[billing];
   const gp = growthPrices[billing];

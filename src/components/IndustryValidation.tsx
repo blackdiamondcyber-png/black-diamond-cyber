@@ -23,7 +23,7 @@ const QUOTES = [
 
 export function IndustryValidation() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
+  const isInView = useInView(sectionRef, { once: true, margin: '-40px' });
 
   return (
     <section ref={sectionRef} style={{ padding: '100px 0', scrollMarginTop: '80px' }}>

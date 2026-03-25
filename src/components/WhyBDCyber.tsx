@@ -100,7 +100,7 @@ export function WhyBDCyber() {
   return (
     <section id="why" ref={sectionRef}>
       <div className="c">
-        <div className="sh sc" ref={headerRef}>
+        <div className="sh sc" ref={headerRef} data-gsap-reveal>
           <div className="tag" style={{ display: 'inline-flex' }}>Why Black Diamond Cyber</div>
           <h2 className="st">You Have Options.<br /><em>Here is Why We Win.</em></h2>
           <p className="sd">See how we stack up against every alternative &mdash; and why practices choose us.</p>
@@ -109,6 +109,7 @@ export function WhyBDCyber() {
         {/* Villain framing */}
         <div
           ref={villainRef}
+          data-gsap-reveal
           style={{
             maxWidth: '700px',
             margin: '0 auto 40px',

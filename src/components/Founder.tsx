@@ -7,7 +7,7 @@ import { AnimatedCounter } from '@/components/AnimatedCounter';
 
 export function Founder() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
+  const isInView = useInView(sectionRef, { once: true, margin: '-40px' });
 
   return (
     <section id="about" ref={sectionRef} style={{ scrollMarginTop: '80px' }}>

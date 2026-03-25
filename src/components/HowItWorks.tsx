@@ -97,7 +97,7 @@ export function HowItWorks() {
   return (
     <section id="process" ref={sectionRef}>
       <div className="c">
-        <div className="sh sc" ref={headerRef}>
+        <div className="sh sc" ref={headerRef} data-gsap-reveal>
           <div className="tag" style={{ display: 'inline-flex' }}>
             How It Works
           </div>

@@ -5,7 +5,7 @@ import { motion, useInView } from 'framer-motion';
 
 function ScoreCircle({ score, color, delay }: { score: number; color: string; delay: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: true, margin: '-40px' });
   const [hydrated, setHydrated] = useState(false);
   const [count, setCount] = useState(0);
 
@@ -133,7 +133,7 @@ export function BeforeAfter() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
+          viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           style={{ textAlign: 'center', marginBottom: '56px' }}
         >
@@ -177,7 +177,7 @@ export function BeforeAfter() {
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-80px' }}
+            viewport={{ once: true, margin: '-40px' }}
             style={{
               background: 'rgba(255,255,255,.02)',
               border: '1px solid rgba(239,68,68,.2)',
@@ -243,7 +243,7 @@ export function BeforeAfter() {
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-80px' }}
+            viewport={{ once: true, margin: '-40px' }}
             style={{
               background: 'rgba(52,211,153,.02)',
               border: '1px solid rgba(52,211,153,.2)',

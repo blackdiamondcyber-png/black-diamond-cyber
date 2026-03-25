@@ -25,7 +25,7 @@ function useCountUp(target: number, active: boolean, duration = 1200) {
 
 export function DentalROICalculator() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
+  const isInView = useInView(sectionRef, { once: true, margin: '-40px' });
 
   const [patients, setPatients] = useState(80);
   const [avgValue, setAvgValue] = useState(800);

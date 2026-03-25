@@ -27,7 +27,7 @@ const inputStyle: React.CSSProperties = {
 
 export function CTA() {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-80px' });
+  const isInView = useInView(ref, { once: true, margin: '-40px' });
   const [status, setStatus] = useState<FormStatus>('idle');
   const [errorMsg, setErrorMsg] = useState('');
   const [form, setForm] = useState({

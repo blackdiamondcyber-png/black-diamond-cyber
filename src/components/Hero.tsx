@@ -65,7 +65,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           style={{
-            fontSize: 'clamp(2.4rem, 5.5vw, 4.2rem)',
+            fontSize: 'clamp(2.5rem, 4.5vw, 4.5rem)',
             fontFamily: "'Outfit', system-ui, sans-serif",
             fontWeight: 700,
             lineHeight: 1.12,
@@ -136,6 +136,8 @@ export function Hero() {
             maxWidth: '620px',
             lineHeight: 1.75,
             marginBottom: '40px',
+            textAlign: 'left',
+            alignSelf: 'flex-start',
           }}
         >
           We build fast, beautiful, AI-powered websites for dental practices,
@@ -153,7 +155,8 @@ export function Hero() {
             display: 'flex',
             gap: '14px',
             flexWrap: 'wrap',
-            justifyContent: 'center',
+            justifyContent: 'flex-start',
+            alignSelf: 'flex-start',
             marginBottom: '52px',
           }}
         >
@@ -175,7 +178,7 @@ export function Hero() {
             display: 'flex',
             gap: '12px',
             flexWrap: 'wrap',
-            justifyContent: 'center',
+            justifyContent: 'flex-start',
             paddingTop: '32px',
             borderTop: '1px solid var(--hr)',
             marginBottom: '28px',
@@ -222,7 +225,8 @@ export function Hero() {
             alignItems: 'center',
             gap: '8px',
             flexWrap: 'wrap',
-            justifyContent: 'center',
+            justifyContent: 'flex-start',
+            alignSelf: 'flex-start',
           }}
         >
           <span>Built by a US-based team</span>

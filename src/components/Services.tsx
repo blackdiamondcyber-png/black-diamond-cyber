@@ -244,7 +244,7 @@ export function Services() {
   return (
     <section id="services" ref={sectionRef} style={{ scrollMarginTop: '80px' }}>
       <div className="c">
-        <div className="sh sc" ref={headerRef}>
+        <div className="sh sc" ref={headerRef} data-gsap-reveal>
           <div className="tag" style={{ display: 'inline-flex' }}>
             What Your Practice Gets
           </div>
@@ -256,7 +256,7 @@ export function Services() {
           </p>
         </div>
 
-        <div className="svcs" ref={gridRef}>
+        <div className="svcs" ref={gridRef} data-gsap-reveal>
           {SERVICES.map((svc) => (
             <TiltCard key={svc.title} highlight={svc.highlight}>
               {/* Badge area — fixed height so titles align across cards */}

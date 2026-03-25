@@ -53,7 +53,7 @@ const PROJECTED_OUTCOMES = [
 
 export function Reviews() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
+  const isInView = useInView(sectionRef, { once: true, margin: '-40px' });
 
   return (
     <section id="founding" ref={sectionRef}>
