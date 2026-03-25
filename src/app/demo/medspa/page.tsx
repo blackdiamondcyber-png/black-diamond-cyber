@@ -636,18 +636,13 @@ export default function MedSpaDemoPage() {
                     border: `1px solid ${C.border}`,
                   }}
                 >
-                  <div
-                    style={{
-                      background: `linear-gradient(135deg, ${C.charcoal}, ${C.rose})`,
-                      height: "200px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "rgba(255,255,255,.4)",
-                      fontSize: "14px",
-                    }}
-                  >
-                    Professional Photo
+                  <div style={{ position: "relative", height: "240px", overflow: "hidden" }}>
+                    <Image
+                      src={t.name.includes("Elena") ? "/images/medspa-aesthetician.jpg" : "/images/medspa-botox.jpg"}
+                      alt={t.name}
+                      fill
+                      style={{ objectFit: "cover", objectPosition: "top" }}
+                    />
                   </div>
                   <div style={{ padding: "28px" }}>
                     <h3 style={{ fontSize: "18px", fontWeight: 600, color: C.charcoal, marginBottom: "4px" }}>

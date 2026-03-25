@@ -558,21 +558,9 @@ export default function DentalDemoPage() {
         <section style={{ ...sectionPad, background: C.bgSoft }}>
           <div style={container}>
             <div className="demo-grid-2col" style={{ display: "grid", gap: "48px", alignItems: "center" }}>
-              {/* Photo placeholder */}
-              <div
-                style={{
-                  background: `linear-gradient(135deg, ${C.navy}, ${C.teal})`,
-                  borderRadius: "16px",
-                  aspectRatio: "4/3",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "rgba(255,255,255,.4)",
-                  fontSize: "14px",
-                  fontWeight: 500,
-                }}
-              >
-                Dr. Mitchell & Team Photo
+              {/* About Photo */}
+              <div style={{ position: "relative", borderRadius: "16px", overflow: "hidden", aspectRatio: "4/3" }}>
+                <Image src="/images/dental-dentist-male.jpg" alt="Dr. Sarah Mitchell and Team" fill style={{ objectFit: "cover" }} />
               </div>
               <div>
                 <p style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: C.teal, marginBottom: "8px" }}>
