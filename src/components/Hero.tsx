@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 
 const Hero3DScene = dynamic(
@@ -9,24 +8,7 @@ const Hero3DScene = dynamic(
   { ssr: false },
 );
 
-const INDUSTRIES = [
-  'Dental Practices',
-  'HVAC Companies',
-  'Plumbing Services',
-  'Med Spas',
-  'Chiropractors',
-  'Roofing Companies',
-] as const;
-
 export function Hero() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % INDUSTRIES.length);
-    }, 2800);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <section
@@ -78,11 +60,11 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           style={{
-            fontSize: 'clamp(2.5rem, 4.5vw, 4.5rem)',
-            fontFamily: "'Outfit', system-ui, sans-serif",
-            fontWeight: 700,
-            lineHeight: 1.12,
-            letterSpacing: '-0.03em',
+            fontSize: 'clamp(3rem, 6.5vw, 6.5rem)',
+            fontFamily: "'Instrument Serif', Georgia, serif",
+            fontWeight: 400,
+            lineHeight: 1.02,
+            letterSpacing: '-0.05em',
             color: 'var(--text)',
             marginBottom: '20px',
           }}
@@ -90,53 +72,6 @@ export function Hero() {
           Be the First Answer When Customers Search{' '}
           <span style={{ color: 'var(--cyan)' }}>&mdash; On Google and AI.</span>
         </motion.h1>
-
-        {/* Rotating industries */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
-          style={{
-            height: '30px',
-            marginBottom: '20px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '8px',
-            fontSize: 'clamp(14px, 1.5vw, 16px)',
-            color: 'var(--t2)',
-          }}
-        >
-          <span>Built for</span>
-          <span
-            style={{
-              position: 'relative',
-              minWidth: '190px',
-              height: '30px',
-              display: 'inline-flex',
-              alignItems: 'center',
-              overflow: 'hidden',
-            }}
-          >
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={INDUSTRIES[index]}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -16 }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                style={{
-                  color: 'var(--cyan)',
-                  fontWeight: 600,
-                  position: 'absolute',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                {INDUSTRIES[index]}
-              </motion.span>
-            </AnimatePresence>
-          </span>
-        </motion.div>
 
         {/* Subheadline */}
         <motion.p
@@ -152,9 +87,8 @@ export function Hero() {
             textAlign: 'center',
           }}
         >
-          We build high-performance websites and optimize your business to show
-          up first on Google, ChatGPT, and every AI search engine. Built in 7
-          days. No contracts. You own everything.
+          High-performance websites and AI growth systems for local businesses.
+          Built in 7 days. No contracts. You own everything.
         </motion.p>
 
         {/* CTAs */}

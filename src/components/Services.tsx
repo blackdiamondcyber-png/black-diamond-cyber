@@ -2,139 +2,52 @@
 
 import { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { IconBolt, IconBot, IconStar, IconPhone, IconMapPin, IconBarChart, IconGlobe } from '@/components/Icons';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-type ServiceIconComponent = React.FC<{ size?: number; color?: string }>;
-
-type Service = {
-  Icon: ServiceIconComponent;
-  title: string;
-  badge?: string;
-  description: string;
-  tags: readonly string[];
-  features: readonly string[];
-  highlight?: boolean;
-};
-
-const SERVICES: Service[] = [
+const SERVICES = [
   {
-    Icon: IconBolt,
-    title: 'Dental Practice Websites',
-    badge: 'Most Popular',
-    description:
-      'A website that makes patients feel confident before they ever walk in. Online booking, insurance info, emergency CTAs — all loading in under 2 seconds.',
-    tags: ['Online Booking', '7-Day Delivery', 'PageSpeed 95+'],
-    features: [
-      'Rank in the top 3 when patients search "dentist near me"',
-      'Let patients book online 24/7 — even when your front desk is closed',
-      'Know exactly how many new patients your website brings in each month',
-      'Load in under 2 seconds — before patients hit the back button',
-      'Custom design that matches your practice brand',
-    ],
-    highlight: true,
+    title: 'High-Performance Websites',
+    tags: ['Custom Design', '7-Day Build', 'Code Ownership'],
   },
   {
-    Icon: IconGlobe,
-    title: 'AI Search Optimization (GEO)',
-    badge: 'New',
-    description:
-      'Get recommended when customers ask AI "who\'s the best near me?" We optimize your content so ChatGPT, Google AI, and Perplexity cite your business first.',
+    title: 'AI Search Optimization',
     tags: ['ChatGPT', 'Google AI', 'Perplexity'],
-    features: [
-      'Show up when patients ask AI for recommendations',
-      'Structured data and schema markup optimization',
-      'Monthly AI visibility monitoring across all platforms',
-      'Content optimized for conversational AI queries',
-    ],
+    badge: 'GEO',
   },
   {
-    Icon: IconBot,
+    title: 'Local SEO & Maps',
+    tags: ['Map Pack', 'Google Business', 'Citations'],
+  },
+  {
     title: 'AI Patient Concierge',
-    description:
-      'Your website answers patient questions and books appointments 24/7. When a nervous patient visits at 11pm, they get instant answers — not a voicemail.',
-    tags: ['24/7 Booking', 'AI-Powered', 'HIPAA-Aware'],
-    features: [
-      'Answer patient questions instantly, even at 2am',
-      'Convert website visitors into booked appointments automatically',
-      'Reduce front desk call volume by up to 40%',
-      'Smart routing — new patients vs. existing, emergency vs. routine',
-    ],
+    tags: ['24/7 Booking', 'Smart Routing', 'HIPAA-Aware'],
   },
   {
-    Icon: IconStar,
-    title: 'Review Generation Engine',
-    description:
-      'After every appointment, patients get a friendly text asking for a Google review. Go from a handful of reviews to the most-reviewed practice in your zip code.',
+    title: 'Review Generation',
     tags: ['Google Reviews', 'Automated', 'Post-Visit SMS'],
-    features: [
-      'Get 5-star reviews on autopilot after every appointment',
-      'Respond to negative reviews before they hurt your reputation',
-      'Climb to the top of Google Maps local pack',
-      'Monitor what patients say about you across every platform',
-    ],
   },
   {
-    Icon: IconPhone,
     title: 'Missed Call Recovery',
-    description:
-      'Every missed call gets an instant text back: "Sorry we missed you! Book online or we\'ll call you back in 10 minutes." Recover patients who would\'ve called the next practice on Google.',
-    tags: ['SMS Automation', '< 30sec', 'Patient Recovery'],
-    features: [
-      'Instant SMS when your front desk misses a call',
-      'AI follows up until they book',
-      'Appointment reminder sequences',
-      'No-show recovery campaigns',
-    ],
+    tags: ['Instant SMS', 'AI Follow-Up', 'No-Show Recovery'],
   },
-  {
-    Icon: IconMapPin,
-    title: 'Local Dental SEO',
-    description:
-      'Dominate the Google Map Pack when patients search "dentist near me" or "emergency dentist [your city]." Show up first — not your competitor across the street.',
-    tags: ['Google Maps', 'Google Business Profile', 'AI Search'],
-    features: [
-      'Google Business Profile optimization',
-      'Dental-specific citation building',
-      'AI search visibility (ChatGPT, Perplexity, Gemini)',
-      'Monthly ranking reports by keyword',
-    ],
-  },
-  {
-    Icon: IconBarChart,
-    title: 'New Patient Analytics',
-    description:
-      'Know exactly how many new patients your website generates each month. See which channels drive bookings and which marketing dollars are wasted.',
-    tags: ['Dashboard', 'ROI Tracking', 'Monthly Reports'],
-    features: [
-      'New patient inquiry tracking',
-      'Source attribution (Google, direct, referral)',
-      'Monthly performance reports',
-      'Cost-per-acquisition visibility',
-    ],
-  },
-];
+] as const;
 
-function TiltCard({
-  children,
-  highlight,
-}: {
-  children: React.ReactNode;
-  highlight?: boolean;
-}) {
+type ServiceItem = (typeof SERVICES)[number];
+
+function TiltCard({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0.5);
   const y = useMotionValue(0.5);
 
-  const rotateX = useSpring(useTransform(y, [0, 1], [5, -5]), {
+  const rotateX = useSpring(useTransform(y, [0, 1], [4, -4]), {
     stiffness: 200,
     damping: 20,
   });
-  const rotateY = useSpring(useTransform(x, [0, 1], [-5, 5]), {
+  const rotateY = useSpring(useTransform(x, [0, 1], [-4, 4]), {
     stiffness: 200,
     damping: 20,
   });
@@ -160,7 +73,8 @@ function TiltCard({
       onMouseLeave={handleMouseLeave}
       whileHover={{
         y: -6,
-        boxShadow: '0 16px 48px rgba(0,0,0,.4), 0 0 40px rgba(93,196,232,.06)',
+        boxShadow:
+          '0 16px 48px rgba(0,0,0,.4), 0 0 40px rgba(93,196,232,.06)',
         borderColor: 'rgba(93,196,232,.15)',
         transition: { type: 'spring', stiffness: 300, damping: 20 },
       }}
@@ -171,12 +85,9 @@ function TiltCard({
         transformStyle: 'preserve-3d',
         position: 'relative',
         overflow: 'hidden',
-        border: highlight ? '1px solid rgba(40,135,204,.25)' : undefined,
-        boxShadow: highlight ? '0 0 40px rgba(40,135,204,.08)' : undefined,
       }}
       className="svc gsap-svc-card"
     >
-      {/* Glare overlay */}
       <motion.div
         style={{
           position: 'absolute',
@@ -184,7 +95,7 @@ function TiltCard({
           background: useTransform(
             [glareX, glareY],
             ([gx, gy]) =>
-              `radial-gradient(circle at ${gx} ${gy}, rgba(93,196,232,.07), transparent 60%)`
+              `radial-gradient(circle at ${gx} ${gy}, rgba(93,196,232,.07), transparent 60%)`,
           ),
           pointerEvents: 'none',
           zIndex: 1,
@@ -199,11 +110,9 @@ export function Services() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
-      // Header reveal
       if (headerRef.current) {
         gsap.from(headerRef.current, {
           opacity: 0,
@@ -218,8 +127,6 @@ export function Services() {
           },
         });
       }
-
-      // Staggered card reveals
       if (gridRef.current) {
         const cards = gridRef.current.querySelectorAll('.gsap-svc-card');
         gsap.from(cards, {
@@ -236,141 +143,151 @@ export function Services() {
           },
         });
       }
-
-      // Bottom CTA strip
-      if (ctaRef.current) {
-        gsap.from(ctaRef.current, {
-          opacity: 0,
-          y: 24,
-          duration: 0.7,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: ctaRef.current,
-            start: 'top 90%',
-            once: true,
-          },
-        });
-      }
     },
-    { scope: sectionRef }
+    { scope: sectionRef },
   );
 
   return (
-    <section id="services" ref={sectionRef} style={{ scrollMarginTop: '80px' }}>
+    <section
+      id="services"
+      ref={sectionRef}
+      style={{ scrollMarginTop: '80px', padding: '140px 0' }}
+    >
       <div className="c">
-        <div className="sh sc" ref={headerRef} data-gsap-reveal>
-          <div className="tag" style={{ display: 'inline-flex' }}>
-            What Your Practice Gets
+        {/* Numbered section badge */}
+        <div className="sh sc" ref={headerRef}>
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '10px',
+              padding: '8px 18px',
+              borderRadius: '100px',
+              background: 'rgba(255,255,255,.04)',
+              border: '1px solid rgba(255,255,255,.06)',
+              marginBottom: '24px',
+            }}
+          >
+            <span
+              style={{
+                width: '24px',
+                height: '24px',
+                borderRadius: '50%',
+                background: 'rgba(255,255,255,.08)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '12px',
+                fontWeight: 700,
+                color: 'var(--t2)',
+              }}
+            >
+              1
+            </span>
+            <span
+              style={{
+                fontSize: '12px',
+                fontWeight: 600,
+                letterSpacing: '1.5px',
+                textTransform: 'uppercase',
+                color: 'var(--text)',
+              }}
+            >
+              Our Services
+            </span>
           </div>
-          <h2 className="st">
-            Not Just a Website. A <em>Patient Booking Machine.</em>
+          <h2
+            style={{
+              fontFamily: "'Instrument Serif', serif",
+              fontSize: 'clamp(36px, 5vw, 64px)',
+              fontWeight: 400,
+              lineHeight: 1.05,
+              letterSpacing: '-0.04em',
+              color: 'var(--text)',
+              marginBottom: '16px',
+            }}
+          >
+            What we specialize in.
           </h2>
-          <p className="sd" style={{ maxWidth: '520px' }}>
-            Everything a dental practice needs to fill chairs, grow reviews, and stop losing patients to the practice down the street.
-          </p>
         </div>
 
-        <div className="svcs" ref={gridRef} data-gsap-reveal>
-          {SERVICES.map((svc) => (
-            <TiltCard key={svc.title} highlight={svc.highlight}>
-              {/* Badge area — fixed height so titles align across cards */}
-              <div style={{ minHeight: '24px', marginBottom: '4px' }}>
-                {svc.highlight && (
-                  <div style={{
+        <div
+          className="svcs"
+          ref={gridRef}
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '16px',
+          }}
+        >
+          {SERVICES.map((svc: ServiceItem) => (
+            <TiltCard key={svc.title}>
+              {'badge' in svc && svc.badge && (
+                <div
+                  style={{
                     position: 'absolute',
-                    top: '-1px',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    background: 'var(--blue)',
-                    color: '#fff',
+                    top: '16px',
+                    right: '16px',
                     fontSize: '10px',
                     fontWeight: 700,
-                    letterSpacing: '1.5px',
+                    letterSpacing: '1.2px',
                     textTransform: 'uppercase',
-                    padding: '4px 14px',
-                    borderRadius: '0 0 8px 8px',
-                    whiteSpace: 'nowrap',
-                  }}>
-                    {svc.badge}
-                  </div>
-                )}
-              </div>
-              <span className="svc-icon"><svc.Icon size={28} /></span>
-              <h3>{svc.title}</h3>
-              <p>{svc.description}</p>
-              <ul
+                    color: 'var(--cyan)',
+                    padding: '3px 10px',
+                    borderRadius: '20px',
+                    border: '1px solid rgba(93,196,232,.2)',
+                    background: 'rgba(93,196,232,.06)',
+                    zIndex: 3,
+                  }}
+                >
+                  {svc.badge}
+                </div>
+              )}
+              <h3
                 style={{
-                  listStyle: 'none',
-                  padding: 0,
-                  margin: '12px 0 0',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '8px',
+                  fontFamily: "'Instrument Serif', serif",
+                  fontSize: '24px',
+                  fontWeight: 400,
+                  color: 'var(--text)',
+                  lineHeight: 1.2,
+                  marginBottom: '20px',
                 }}
               >
-                {svc.features.map((f) => (
-                  <li
-                    key={f}
+                {svc.title}
+              </h3>
+              <div
+                style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: '6px',
+                  marginTop: 'auto',
+                }}
+              >
+                {svc.tags.map((tag) => (
+                  <span
+                    key={tag}
                     style={{
-                      fontSize: '14px',
+                      padding: '5px 12px',
+                      borderRadius: '20px',
+                      fontSize: '12px',
+                      fontWeight: 500,
                       color: 'var(--t2)',
-                      display: 'flex',
-                      alignItems: 'flex-start',
-                      gap: '8px',
-                      lineHeight: 1.55,
+                      background: 'rgba(255,255,255,.04)',
+                      border: '1px solid rgba(255,255,255,.06)',
                     }}
                   >
-                    <span style={{ color: 'var(--green)', fontSize: '14px', marginTop: '1px', flexShrink: 0 }}>
-                      ✓
-                    </span>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <div className="svc-tags">
-                {svc.tags.map((tag) => (
-                  <span key={tag} className="ptg hi">
                     {tag}
                   </span>
                 ))}
               </div>
-              <a href="#pricing" className="svc-link">
-                See Pricing →
-              </a>
             </TiltCard>
           ))}
         </div>
 
-        {/* Bottom CTA strip */}
-        <div
-          ref={ctaRef}
-          style={{
-            marginTop: '48px',
-            padding: '24px 32px',
-            background: 'var(--bg1)',
-            border: '1px solid var(--hr)',
-            borderRadius: 'var(--rr)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: '16px',
-          }}
-        >
-          <div>
-            <div style={{ fontSize: '16px', fontWeight: 700, color: 'var(--text)', marginBottom: '4px' }}>
-              Not sure what your practice needs?
-            </div>
-            <div style={{ fontSize: '14px', color: 'var(--t2)' }}>
-              Book a free 30-min call. We&apos;ll audit your current online presence and show you exactly where you&apos;re losing patients.
-            </div>
-          </div>
-          <a
-            href="#book"
-            className="bp"
-            style={{ whiteSpace: 'nowrap', flexShrink: 0 }}
-          >
-            Get Free Dental Audit →
+        {/* Single CTA */}
+        <div style={{ textAlign: 'center', marginTop: '56px' }}>
+          <a href="#book" className="bp">
+            Book a Free Strategy Call
           </a>
         </div>
       </div>

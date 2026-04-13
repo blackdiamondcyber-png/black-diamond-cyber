@@ -39,12 +39,12 @@ a{text-decoration:none;color:inherit;transition:color .2s ease,opacity .2s ease}
 
 /* Tags, titles */
 .tag{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:40px;font-size:11px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;border:1px solid var(--hr-b);color:var(--cyan);background:var(--blue-d)}
-.st{font-size:clamp(28px,3.6vw,46px);color:var(--text);margin-bottom:12px}.st em{color:var(--cyan);font-style:italic}
-.sd{font-size:15px;color:var(--t2);max-width:440px;line-height:1.85}
-.sh{margin-bottom:60px}.sc{text-align:center}.sc .sd{margin:0 auto}
+.st{font-size:clamp(36px,5vw,64px);color:var(--text);margin-bottom:16px;letter-spacing:-0.04em;line-height:1.05}.st em{color:var(--cyan);font-style:italic}
+.sd{font-size:16px;color:var(--t2);max-width:520px;line-height:1.75}
+.sh{margin-bottom:72px}.sc{text-align:center}.sc .sd{margin:0 auto}
 .sep{height:1px;background:linear-gradient(90deg,transparent 5%,rgba(40,135,204,.08) 30%,rgba(93,196,232,.12) 50%,rgba(40,135,204,.08) 70%,transparent 95%);margin:0;position:relative}
 .sep::after{content:'';position:absolute;left:50%;top:-2px;transform:translateX(-50%);width:40px;height:5px;background:radial-gradient(ellipse,rgba(93,196,232,.15),transparent);border-radius:50%;filter:blur(2px)}
-section{padding:100px 0;scroll-margin-top:80px}
+section{padding:140px 0;scroll-margin-top:80px}
 
 /* Section visual alternation — break monotony */
 #services,#process,#faq{background:linear-gradient(180deg,rgba(12,15,22,.6) 0%,rgba(10,14,20,.9) 50%,rgba(6,8,12,1) 100%)}
