@@ -2,6 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import dynamic from 'next/dynamic';
+
+const Hero3DScene = dynamic(
+  () => import('@/components/Hero3DScene').then((mod) => mod.Hero3DScene),
+  { ssr: false },
+);
 
 const INDUSTRIES = [
   'Dental Practices',
@@ -24,6 +30,7 @@ export function Hero() {
 
   return (
     <section
+      suppressHydrationWarning
       style={{
         minHeight: '100dvh',
         display: 'flex',
@@ -31,8 +38,12 @@ export function Hero() {
         justifyContent: 'center',
         padding: '120px 24px 80px',
         position: 'relative',
+        overflow: 'hidden',
       }}
     >
+      {/* 3D Background — rendered client-side only */}
+      <Hero3DScene />
+
       <div
         style={{
           maxWidth: '820px',
@@ -40,6 +51,8 @@ export function Hero() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          position: 'relative',
+          zIndex: 1,
         }}
       >
         {/* Label */}

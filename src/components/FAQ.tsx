@@ -5,6 +5,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const faqItems = [
   {
+    q: 'What is GEO and why does it matter for my business?',
+    a: 'GEO (Generative Engine Optimization) is how you show up when customers ask AI tools like ChatGPT, Google AI Overviews, or Perplexity for recommendations. Instead of scrolling Google results, more people now ask AI "who\u2019s the best dentist near me?" \u2014 and AI gives them a direct answer. GEO makes sure that answer is your business.',
+  },
+  {
+    q: 'How is GEO different from regular SEO?',
+    a: 'Traditional SEO gets you ranked on Google\u2019s search results page. GEO gets you recommended inside AI-generated answers. Both matter \u2014 but AI search is growing fast, and most agencies don\u2019t offer GEO at all. We optimize for both simultaneously.',
+  },
+  {
     q: 'Why should I trust a new agency?',
     a: 'Fair question. Black Diamond Cyber is new, but its founder is not. Erik Pearson is a Patterson Dental territory sales rep who has worked inside 400+ dental practices across Austin and San Antonio. He is also a self-taught developer who has shipped 8 production web applications. The first 4 clients get founding pricing and Erik\u2019s personal attention on every detail. We succeed by delivering results \u2014 not by running ads.',
   },

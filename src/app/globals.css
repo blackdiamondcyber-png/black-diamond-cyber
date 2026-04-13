@@ -46,6 +46,14 @@ a{text-decoration:none;color:inherit;transition:color .2s ease,opacity .2s ease}
 .sep::after{content:'';position:absolute;left:50%;top:-2px;transform:translateX(-50%);width:40px;height:5px;background:radial-gradient(ellipse,rgba(93,196,232,.15),transparent);border-radius:50%;filter:blur(2px)}
 section{padding:100px 0;scroll-margin-top:80px}
 
+/* Section visual alternation — break monotony */
+#services,#process,#faq{background:linear-gradient(180deg,rgba(12,15,22,.6) 0%,rgba(10,14,20,.9) 50%,rgba(6,8,12,1) 100%)}
+#work,#about,#founding{background:rgba(8,11,18,.5)}
+
+/* Enhanced card glow on hover */
+.svc{transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .4s var(--ease)}
+.svc:hover{box-shadow:0 8px 40px rgba(40,135,204,.06),0 0 0 1px rgba(93,196,232,.08);border-color:rgba(93,196,232,.1)}
+
 /* Buttons with ripple */
 .bp{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;border-radius:40px;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border:none;cursor:pointer;font-family:inherit;transition:.5s var(--ease);background:var(--blue);color:#fff;box-shadow:0 4px 20px rgba(40,135,204,.2);position:relative;overflow:hidden}
 .bp::after{content:'';position:absolute;top:50%;left:50%;width:0;height:0;background:rgba(255,255,255,.12);border-radius:50%;transform:translate(-50%,-50%);transition:width .6s var(--ease),height .6s var(--ease)}

@@ -240,7 +240,7 @@ export function CTA() {
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '12px' }}>
                     <div>
                       <label style={{ display: 'block', fontSize: '11px', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--t2)', marginBottom: '6px' }}>
-                        Practice Name <span style={{ color: 'var(--cyan)' }}>*</span>
+                        Business Name <span style={{ color: 'var(--cyan)' }}>*</span>
                       </label>
                       <input
                         type="text"

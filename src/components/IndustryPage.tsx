@@ -92,7 +92,7 @@ export function IndustryPage({ data }: { data: IndustryData }) {
                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(0deg, rgba(6,8,12,.85) 0%, rgba(6,8,12,.3) 40%, rgba(6,8,12,.1) 100%)' }} />
                 <div style={{ position: 'absolute', bottom: '28px', left: '28px', right: '28px', zIndex: 1 }}>
                   <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--cyan)', marginBottom: '8px' }}>{data.portfolioName}</div>
-                  <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: '24px', color: 'var(--text)', lineHeight: 1.15, marginBottom: '4px' }}>{data.portfolioResult}</div>
+                  <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: '24px', color: 'var(--text)', lineHeight: 1.15, marginBottom: '4px' }}>Demo Site</div>
                   <div style={{ fontSize: '12px', color: 'var(--t2)' }}>{data.portfolioLocation}</div>
                 </div>
               </div>
@@ -132,24 +132,17 @@ export function IndustryPage({ data }: { data: IndustryData }) {
 
         <div className="sep"></div>
 
-        {/* Testimonial */}
+        {/* Demo CTA (replaces fictional testimonial) */}
         <section>
           <div className="c">
             <div className="rv" style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
-              <div style={{ fontSize: '48px', color: 'var(--cyan)', fontFamily: "'Instrument Serif', serif", lineHeight: 1, marginBottom: '24px' }}>&ldquo;</div>
-              <blockquote style={{ fontFamily: "'Instrument Serif', serif", fontSize: 'clamp(20px, 3vw, 28px)', color: 'var(--text)', lineHeight: 1.5, fontStyle: 'italic', fontWeight: 400, marginBottom: '28px' }}>
-                {data.testimonial.quote}
-              </blockquote>
-              <div style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--cyan)' }}>
-                {data.testimonial.name}
-              </div>
-              <div style={{ fontSize: '12px', color: 'var(--t2)', marginTop: '4px' }}>
-                {data.testimonial.title}
-              </div>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', marginTop: '12px', padding: '4px 12px', borderRadius: '40px', border: '1px solid var(--hr)', fontSize: '9px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--green)' }}>
-                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--green)' }}></span>
-                Verified {data.testimonial.industry} Client
-              </div>
+              <h2 style={{ fontFamily: "'Instrument Serif', serif", fontSize: 'clamp(24px, 3.5vw, 36px)', color: 'var(--text)', fontWeight: 400, lineHeight: 1.3, marginBottom: '16px' }}>
+                See what we build for {data.testimonial.industry.toLowerCase()} businesses.
+              </h2>
+              <p style={{ fontSize: '15px', color: 'var(--t2)', lineHeight: 1.7, marginBottom: '28px' }}>
+                Browse a live demo site built with our stack &mdash; custom design, online booking, and local SEO included.
+              </p>
+              <a href={`/demo/${data.slug}`} className="bp">View Live Demo &rarr;</a>
             </div>
           </div>
         </section>
