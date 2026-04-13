@@ -23,12 +23,12 @@ const SERVICES = [
     tags: ['Map Pack', 'Google Business', 'Citations'],
   },
   {
-    title: 'AI Patient Concierge',
-    tags: ['24/7 Booking', 'Smart Routing', 'HIPAA-Aware'],
+    title: 'AI Concierge',
+    tags: ['24/7 Booking', 'Smart Routing', 'Lead Capture'],
   },
   {
     title: 'Review Generation',
-    tags: ['Google Reviews', 'Automated', 'Post-Visit SMS'],
+    tags: ['Google Reviews', 'Automated', 'Post-Service SMS'],
   },
   {
     title: 'Missed Call Recovery',

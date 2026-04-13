@@ -23,7 +23,7 @@ export function Founder() {
             <span style={{ fontSize: '12px', fontWeight: 600, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--text)' }}>About Us</span>
           </div>
           <h2 className="st">
-            Built by Someone Who Actually<br /><em>Knows Your Industry.</em>
+            Built by Someone Who Actually{' '}<br /><em>Knows Your Industry.</em>
           </h2>
         </motion.div>
 

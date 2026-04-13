@@ -213,6 +213,7 @@ export function CTA() {
                       </label>
                       <input
                         type="text"
+                        name="fullName"
                         value={form.name}
                         onChange={(e) => update('name', e.target.value)}
                         placeholder="Jane Smith"
@@ -226,9 +227,10 @@ export function CTA() {
                       </label>
                       <input
                         type="email"
+                        name="email"
                         value={form.email}
                         onChange={(e) => update('email', e.target.value)}
-                        placeholder="jane@practice.com"
+                        placeholder="jane@yourbusiness.com"
                         required
                         style={inputStyle}
                       />
@@ -242,6 +244,7 @@ export function CTA() {
                       </label>
                       <input
                         type="text"
+                        name="businessName"
                         value={form.practiceName}
                         onChange={(e) => update('practiceName', e.target.value)}
                         placeholder="Your Business Name"
@@ -255,9 +258,10 @@ export function CTA() {
                       </label>
                       <input
                         type="tel"
+                        name="phone"
                         value={form.phone}
                         onChange={(e) => update('phone', e.target.value)}
-                        placeholder="(555) 123-4567"
+                        placeholder="(830) 000-0000"
                         style={inputStyle}
                       />
                     </div>

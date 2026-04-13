@@ -22,12 +22,12 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "AI Growth Systems for Local Businesses | Black Diamond Cyber",
+  title: "The AI Growth Partner for Local Businesses | Black Diamond Cyber",
   description:
     "High-performance websites, AI search optimization (GEO), and automation systems for local businesses. Built in 7 days. No contracts. You own the code.",
   metadataBase: new URL("https://bd-cyber.com"),
   openGraph: {
-    title: "AI Growth Systems for Local Businesses | Black Diamond Cyber",
+    title: "The AI Growth Partner for Local Businesses | Black Diamond Cyber",
     description: "Websites, AI search optimization, and automation for local businesses. Built in 7 days. No contracts.",
     url: "https://bd-cyber.com",
     siteName: "Black Diamond Cyber",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Growth Systems for Local Businesses | Black Diamond Cyber",
+    title: "The AI Growth Partner for Local Businesses | Black Diamond Cyber",
     description: "Websites, AI search optimization, and automation for local businesses. Built in 7 days. No contracts.",
     images: ["/api/og"],
   },

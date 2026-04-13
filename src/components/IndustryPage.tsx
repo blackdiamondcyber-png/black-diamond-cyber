@@ -54,7 +54,7 @@ export function IndustryPage({ data }: { data: IndustryData }) {
                   {data.name}
                 </div>
                 <h1 style={{ fontSize: 'clamp(36px, 5vw, 58px)', fontFamily: "'Instrument Serif', Georgia, serif", fontWeight: 400, lineHeight: 1.08, letterSpacing: '-0.025em', color: 'var(--text)' }}>
-                  {data.headline}
+                  {data.headline}{' '}
                   <br />
                   <em style={{ color: 'var(--cyan)', fontStyle: 'italic' }}>{data.headlineEmphasis}</em>
                 </h1>
