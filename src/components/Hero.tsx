@@ -1,12 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import dynamic from 'next/dynamic';
-
-const Hero3DScene = dynamic(
-  () => import('@/components/Hero3DScene').then((mod) => mod.Hero3DScene),
-  { ssr: false },
-);
+import { Hero3DScene } from '@/components/Hero3DScene';
 
 export function Hero() {
 

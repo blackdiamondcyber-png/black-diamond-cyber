@@ -1,83 +1,11 @@
 'use client';
 
-import { useRef, useMemo, useEffect, useState } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import * as THREE from 'three';
-
 /*
- * Subtle dark abstract form — inspired by LeftClick's metallic ribbon.
- * Near-invisible, adds depth without competing with text.
- * Dark grays and very low opacity — no bright cyan, no particle confetti.
+ * CSS-only abstract visual — replaces R3F to avoid Turbopack incompatibility.
+ * Dark, subtle, metallic-feeling gradient orbs with slow CSS animation.
+ * Inspired by LeftClick's approach: depth without distraction.
  */
-
-function AbstractForm() {
-  const meshRef = useRef<THREE.Mesh>(null);
-
-  const geometry = useMemo(() => {
-    const geo = new THREE.TorusKnotGeometry(1.8, 0.4, 128, 16, 2, 3);
-    return geo;
-  }, []);
-
-  useFrame(({ clock }) => {
-    if (!meshRef.current) return;
-    const t = clock.getElapsedTime();
-    meshRef.current.rotation.x = t * 0.03;
-    meshRef.current.rotation.y = t * 0.05;
-    meshRef.current.rotation.z = t * 0.02;
-  });
-
-  return (
-    <mesh ref={meshRef} geometry={geometry} position={[0, 0.5, -2]} scale={1.2}>
-      <meshStandardMaterial
-        color="#1a1a1e"
-        emissive="#0a0a0c"
-        emissiveIntensity={0.5}
-        roughness={0.3}
-        metalness={0.95}
-        transparent
-        opacity={0.5}
-      />
-    </mesh>
-  );
-}
-
-/* Secondary subtle ring */
-function SubtleRing() {
-  const ref = useRef<THREE.Mesh>(null);
-
-  useFrame(({ clock }) => {
-    if (!ref.current) return;
-    const t = clock.getElapsedTime();
-    ref.current.rotation.x = Math.PI * 0.4 + t * 0.015;
-    ref.current.rotation.z = t * 0.02;
-  });
-
-  return (
-    <mesh ref={ref} position={[0, 0, -3]} scale={2.5}>
-      <torusGeometry args={[1, 0.02, 16, 64]} />
-      <meshStandardMaterial
-        color="#222226"
-        emissive="#111113"
-        emissiveIntensity={0.3}
-        roughness={0.4}
-        metalness={0.9}
-        transparent
-        opacity={0.3}
-      />
-    </mesh>
-  );
-}
-
 export function Hero3DScene() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
-  }, []);
-
-  // Skip 3D entirely on mobile for performance
-  if (isMobile) return null;
-
   return (
     <div
       style={{
@@ -85,33 +13,76 @@ export function Hero3DScene() {
         inset: 0,
         zIndex: 0,
         pointerEvents: 'none',
-        opacity: 0.4,
+        overflow: 'hidden',
       }}
     >
-      <Canvas
-        camera={{ position: [0, 0, 5], fov: 45 }}
-        dpr={[1, 1.5]}
-        gl={{
-          antialias: false,
-          alpha: true,
-          powerPreference: 'high-performance',
+      {/* Large dark gradient orb — upper right */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '-20%',
+          right: '-10%',
+          width: '60vw',
+          height: '60vw',
+          maxWidth: '800px',
+          maxHeight: '800px',
+          borderRadius: '50%',
+          background:
+            'radial-gradient(circle, rgba(40,135,204,.06) 0%, rgba(40,135,204,.02) 40%, transparent 70%)',
+          filter: 'blur(80px)',
+          animation: 'heroOrb1 25s ease-in-out infinite',
         }}
-        style={{ background: 'transparent' }}
-      >
-        <ambientLight intensity={0.15} />
-        <directionalLight
-          position={[3, 5, 4]}
-          intensity={0.3}
-          color="#888"
-        />
-        <pointLight
-          position={[-4, -2, 3]}
-          intensity={0.15}
-          color="#555"
-        />
-        <AbstractForm />
-        <SubtleRing />
-      </Canvas>
+      />
+      {/* Smaller orb — lower left */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '-15%',
+          left: '-5%',
+          width: '40vw',
+          height: '40vw',
+          maxWidth: '600px',
+          maxHeight: '600px',
+          borderRadius: '50%',
+          background:
+            'radial-gradient(circle, rgba(93,196,232,.04) 0%, rgba(93,196,232,.01) 40%, transparent 70%)',
+          filter: 'blur(100px)',
+          animation: 'heroOrb2 30s ease-in-out infinite',
+        }}
+      />
+      {/* Subtle center glow */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '30%',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '50vw',
+          height: '30vw',
+          maxWidth: '700px',
+          maxHeight: '400px',
+          borderRadius: '50%',
+          background:
+            'radial-gradient(ellipse, rgba(40,135,204,.03) 0%, transparent 60%)',
+          filter: 'blur(60px)',
+        }}
+      />
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            @keyframes heroOrb1 {
+              0%, 100% { transform: translate(0, 0) scale(1); }
+              33% { transform: translate(-40px, 30px) scale(1.05); }
+              66% { transform: translate(20px, -20px) scale(0.95); }
+            }
+            @keyframes heroOrb2 {
+              0%, 100% { transform: translate(0, 0) scale(1); }
+              33% { transform: translate(30px, -40px) scale(1.08); }
+              66% { transform: translate(-20px, 20px) scale(0.92); }
+            }
+          `,
+        }}
+      />
     </div>
   );
 }
