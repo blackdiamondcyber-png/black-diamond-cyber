@@ -266,22 +266,13 @@ export function Showcase() {
             ease: [0.16, 1, 0.3, 1] as const,
           }}
         >
-          <div className="tag" style={{ display: 'inline-flex' }}>
-            Our Work
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', padding: '8px 18px', borderRadius: '100px', background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.06)', marginBottom: '24px' }}>
+            <span style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(255,255,255,.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 700, color: 'var(--t2)' }}>5</span>
+            <span style={{ fontSize: '12px', fontWeight: 600, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--text)' }}>Our Work</span>
           </div>
-          <h2
-            className="st"
-            style={{
-              fontFamily: "'Outfit', system-ui, sans-serif",
-              fontWeight: 700,
-            }}
-          >
-            Real Websites <em>We Built</em>
+          <h2 className="st">
+            Some of our <em>work.</em>
           </h2>
-          <p className="sd" style={{ maxWidth: '520px' }}>
-            Every demo is a live, fully functional website — click to explore
-            it.
-          </p>
         </motion.div>
 
         <div

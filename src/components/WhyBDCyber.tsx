@@ -12,30 +12,26 @@ const comparisons = [
   {
     vs: 'vs. Wix / Squarespace',
     verdict: 'You Look Like Everyone Else',
-    point: 'Template builders give you a generic site that looks like every other business on the block. No SEO strategy, no conversion optimization, no competitive edge. Your competitors who invest in custom sites will outrank you every time.',
     them: ['Cookie-cutter templates', 'DIY = your time wasted', 'Locked into their platform'],
     us: ['Custom-designed for your business', 'Done-for-you in 7 days', '100% code ownership'],
   },
   {
     vs: 'vs. Agencies ($10K+)',
     verdict: 'You Pay 5x for the Same Result',
-    point: 'Traditional agencies charge $10K-$30K and take 8-12 weeks. Many outsource to overseas contractors or operate from different time zones. We are US-based in Texas, deliver agency-quality work in days, and you own every line of code.',
-    them: ['$10K-$30K setup', '8-12 week timeline', 'Overseas contractors, different timezone'],
-    us: ['$997-$4,997 setup', '7-day delivery', 'US-based team, Central Time support'],
+    them: ['$10K-$30K setup', '8-12 week timeline', 'Overseas contractors'],
+    us: ['Fraction of the cost', '7-day delivery', 'US-based, Central Time'],
   },
   {
-    vs: 'vs. Your Nephew\'s Website',
+    vs: 'vs. DIY / WordPress',
     verdict: 'Cheap Now, Expensive Later',
-    point: 'A friend-of-a-friend WordPress site might save money upfront, but it won\'t rank on Google, won\'t convert visitors into patients, and will break the moment you need to update it. You end up paying twice to fix it.',
     them: ['No SEO knowledge', 'Breaks when plugins update', 'No conversion strategy'],
-    us: ['Local SEO built in', 'Modern tech, zero plugins', 'Every page designed to convert'],
+    us: ['Local SEO built in', 'Modern stack, zero plugins', 'Every page designed to convert'],
   },
   {
     vs: 'vs. Doing Nothing',
     verdict: 'Your Competitors Thank You',
-    point: 'Every day without a strong online presence, potential patients find your competitors instead. 77% of patients research online before booking. If your site is slow, outdated, or invisible on Google — they are already gone.',
-    them: ['Losing patients daily', 'Invisible on Google', 'Competitors grow instead'],
-    us: ['Patients find you first', 'Rank for "near me" searches', 'Local Texas market expertise'],
+    them: ['Losing customers daily', 'Invisible on Google + AI', 'Competitors grow instead'],
+    us: ['Customers find you first', 'Rank on Google + AI search', 'Visibility compounds monthly'],
   },
 ];
 
@@ -101,41 +97,14 @@ export function WhyBDCyber() {
     <section id="why" ref={sectionRef}>
       <div className="c">
         <div className="sh sc" ref={headerRef} data-gsap-reveal>
-          <div className="tag" style={{ display: 'inline-flex' }}>Why Black Diamond Cyber</div>
-          <h2 className="st">You Have Options.<br /><em>Here is Why We Win.</em></h2>
-          <p className="sd">See how we stack up against every alternative &mdash; and why practices choose us.</p>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', padding: '8px 18px', borderRadius: '100px', background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.06)', marginBottom: '24px' }}>
+            <span style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(255,255,255,.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 700, color: 'var(--t2)' }}>3</span>
+            <span style={{ fontSize: '12px', fontWeight: 600, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--text)' }}>Why Us</span>
+          </div>
+          <h2 className="st">You have options. <em>Here is why we win.</em></h2>
         </div>
 
-        {/* Villain framing */}
-        <div
-          ref={villainRef}
-          data-gsap-reveal
-          style={{
-            maxWidth: '700px',
-            margin: '0 auto 40px',
-            padding: '24px 32px',
-            background: 'rgba(239,68,68,.04)',
-            border: '1px solid rgba(239,68,68,.12)',
-            borderRadius: 'var(--rr)',
-            textAlign: 'center',
-          }}
-        >
-          <p style={{
-            fontSize: '15px',
-            color: 'var(--t2)',
-            lineHeight: 1.8,
-            marginBottom: '12px',
-          }}>
-            Most web agencies have never stepped inside a dental practice. They build beautiful sites that rank for nothing and convert nobody. They charge $10K+, take 8 weeks, and lock you into a contract. Then they disappear.
-          </p>
-          <p style={{
-            fontSize: '16px',
-            color: 'var(--text)',
-            fontWeight: 600,
-          }}>
-            We are the opposite — US-based, same timezone, and we know the Texas market.
-          </p>
-        </div>
+        {/* Removed villain framing for density */}
 
         <style dangerouslySetInnerHTML={{ __html: `
           @media(max-width:1024px){#why-grid{grid-template-columns:repeat(2,1fr)!important}}
@@ -178,15 +147,6 @@ export function WhyBDCyber() {
               }}>
                 {c.verdict}
               </h3>
-              <p style={{
-                fontSize: '14px',
-                color: 'var(--t2)',
-                lineHeight: 1.7,
-                marginBottom: '20px',
-              }}>
-                {c.point}
-              </p>
-
               {/* Comparison list */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                 <div>

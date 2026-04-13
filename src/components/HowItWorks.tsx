@@ -10,28 +10,28 @@ gsap.registerPlugin(ScrollTrigger);
 
 const STEPS = [
   {
-    title: 'Free Website Audit',
+    title: 'Free Audit',
     description:
-      'We audit your current online presence: website speed, mobile experience, Google rankings, and how you compare to every competitor within 10 miles. You get the report whether you hire us or not.',
-    detail: 'Takes 30 seconds to start. Results in 24 hours.',
+      'We audit your website, Google rankings, and AI search visibility. You get the report whether you hire us or not.',
+    detail: 'Results in 24 hours.',
   },
   {
-    title: 'Custom Proposal',
+    title: 'Proposal',
     description:
-      'Based on your audit, we build a custom proposal showing exactly what your new site will look like, what it will cost, and how it will outperform your current setup. No generic decks — this is built for your business.',
+      'A clear scope, timeline, and price built for your business. No generic decks.',
     detail: 'You see the plan before you spend a dollar.',
   },
   {
-    title: 'AI-Powered Build',
+    title: 'Build',
     description:
-      'We generate your site with AI, then hand-polish every detail. Industry-specific copy that speaks to patients, not dentists. Online booking, click-to-call, insurance info — all built in and conversion-optimized.',
-    detail: 'Every page is designed to turn a visitor into a booked appointment.',
+      'Custom site, AI-optimized content, online booking, schema markup. Live in 7 days.',
+    detail: 'Every page designed to convert.',
   },
   {
-    title: 'Launch & Grow',
+    title: 'Grow',
     description:
-      'Domain connected, deployed on a global CDN, Google Analytics installed, schema markup live. You are ranking within 7 days. Then we optimize for 90 more — tracking new patient inquiries, not vanity metrics.',
-    detail: 'Your business shows up when customers search "near me."',
+      'Monthly GEO optimization, performance reports, and AI search monitoring. Your visibility compounds.',
+    detail: 'This is where the real ROI happens.',
   },
 ];
 
@@ -98,15 +98,13 @@ export function HowItWorks() {
     <section id="process" ref={sectionRef}>
       <div className="c">
         <div className="sh sc" ref={headerRef} data-gsap-reveal>
-          <div className="tag" style={{ display: 'inline-flex' }}>
-            How It Works
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', padding: '8px 18px', borderRadius: '100px', background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.06)', marginBottom: '24px' }}>
+            <span style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(255,255,255,.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 700, color: 'var(--t2)' }}>2</span>
+            <span style={{ fontSize: '12px', fontWeight: 600, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--text)' }}>How We Work</span>
           </div>
           <h2 className="st">
-            Audit. Proposal. Build. <em>Launch.</em>
+            From first call to <em>launch.</em>
           </h2>
-          <p className="sd">
-            Four steps. Your website is live in as little as 7 business days.
-          </p>
         </div>
 
         <div ref={stepsContainerRef} style={{ position: 'relative', maxWidth: '640px', margin: '0 auto' }}>

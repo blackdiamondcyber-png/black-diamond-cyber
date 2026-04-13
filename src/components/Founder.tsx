@@ -18,7 +18,10 @@ export function Founder() {
           animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
         >
-          <div className="tag" style={{ display: 'inline-flex' }}>Meet the Founder</div>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', padding: '8px 18px', borderRadius: '100px', background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.06)', marginBottom: '24px' }}>
+            <span style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(255,255,255,.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 700, color: 'var(--t2)' }}>4</span>
+            <span style={{ fontSize: '12px', fontWeight: 600, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--text)' }}>About</span>
+          </div>
           <h2 className="st">
             Built by Someone Who Actually<br /><em>Knows Your Industry.</em>
           </h2>
@@ -108,19 +111,11 @@ export function Founder() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <p style={{ fontSize: '16px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '20px' }}>
-              I am Erik Pearson. By day, I manage <strong style={{ color: 'var(--text)' }}>400+ dental practice accounts</strong> across Austin and San Antonio as a territory sales rep at <strong style={{ color: 'var(--text)' }}>Patterson Dental</strong> &mdash; the largest dental supply company in the US.
-            </p>
-
-            <p style={{ fontSize: '16px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '20px' }}>
-              I have walked into hundreds of dental offices. I have seen the websites that bring in new patients, and the ones that silently bleed them to competitors down the street.
-            </p>
-
-            <p style={{ fontSize: '16px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '20px' }}>
-              After years of watching practices struggle with overpriced agencies, cookie-cutter templates, and websites that load like it is 2005 &mdash; I taught myself to code and built something better.
+              I manage <strong style={{ color: 'var(--text)' }}>400+ dental practice accounts</strong> at <strong style={{ color: 'var(--text)' }}>Patterson Dental</strong> across Austin and San Antonio. I&apos;ve walked into hundreds of offices and seen what actually drives customers through the door.
             </p>
 
             <p style={{ fontSize: '16px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '32px' }}>
-              <strong style={{ color: 'var(--text)' }}>8 production apps later</strong>, Black Diamond Cyber was born. Every site I build is informed by real conversations with real practice owners about what actually drives patients through the door.
+              After years of watching businesses struggle with overpriced agencies and zero AI search visibility, I built Black Diamond Cyber to fix it.
             </p>
 
             {/* Stats row with animated counters */}
