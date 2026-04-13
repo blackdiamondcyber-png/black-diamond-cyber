@@ -874,7 +874,7 @@ export default function PlumbingDemoPage() {
                 >
                   {[
                     { label: "Full Name", type: "text", placeholder: "John Smith" },
-                    { label: "Phone Number", type: "tel", placeholder: "(830) 555-0000" },
+                    { label: "Phone Number", type: "tel", placeholder: "(830) 964-8800" },
                     { label: "Email Address", type: "email", placeholder: "john@example.com" },
                   ].map((f) => (
                     <label key={f.label} style={{ display: "flex", flexDirection: "column", gap: "6px" }}>

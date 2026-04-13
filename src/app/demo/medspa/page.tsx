@@ -200,6 +200,8 @@ export default function MedSpaDemoPage() {
     background: C.bg,
     lineHeight: 1.6,
     WebkitFontSmoothing: "antialiased",
+    position: "relative",
+    zIndex: 10,
   };
 
   const container: CSSProperties = {
@@ -428,6 +430,43 @@ export default function MedSpaDemoPage() {
           </a>
         </div>
       </div>
+
+      {/* ─── HERO ─── */}
+      <section
+        style={{
+          position: "relative",
+          minHeight: "70vh",
+          display: "flex",
+          alignItems: "center",
+          background: `linear-gradient(135deg, ${C.charcoalDark} 0%, ${C.charcoal} 100%)`,
+          padding: "120px 0 80px",
+          overflow: "hidden",
+        }}
+      >
+        <div style={{ ...container, position: "relative", zIndex: 2 }}>
+          <div style={{ maxWidth: "600px" }}>
+            <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "3px", textTransform: "uppercase", color: C.rose, marginBottom: "16px" }}>
+              SERENITY MED SPA &amp; WELLNESS
+            </p>
+            <h1 style={{ fontSize: "clamp(36px, 5vw, 56px)", fontFamily: "'Instrument Serif', Georgia, serif", fontWeight: 400, lineHeight: 1.08, color: "#fff", marginBottom: "20px", letterSpacing: "-0.03em" }}>
+              Reveal Your Best Self.
+            </h1>
+            <p style={{ fontSize: "17px", color: "rgba(255,255,255,.7)", lineHeight: 1.7, marginBottom: "32px", maxWidth: "480px" }}>
+              Board-certified aesthetic treatments in a luxury setting.
+              Botox, fillers, laser, facials, and body contouring.
+            </p>
+            <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+              <a href="#book" style={{ ...btn, background: C.rose, color: "#fff" }}>Book Consultation</a>
+              <a href="tel:8306257700" style={{ ...btnOutline, borderColor: "rgba(255,255,255,.2)", color: "#fff" }}>Call (830) 625-7700</a>
+            </div>
+            <div style={{ display: "flex", gap: "24px", marginTop: "32px" }}>
+              {["5.0 Google Rating", "Board Certified", "Luxury Experience"].map((t) => (
+                <span key={t} style={{ fontSize: "12px", fontWeight: 600, color: "rgba(255,255,255,.5)", letterSpacing: "0.5px" }}>{t}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ─── SERVICES ─── */}
       <Section id="services" style={sectionPad}>
@@ -824,6 +863,73 @@ export default function MedSpaDemoPage() {
           </div>
         </section>
       </Section>
+
+      {/* ─── FOOTER ─── */}
+      <footer style={{ background: C.charcoalDark, color: "#fff", padding: "64px 0 24px" }}>
+        <div style={{ ...container }}>
+          <div className="spa-grid-footer" style={{ display: "grid", gap: "40px", marginBottom: "40px" }}>
+            <div>
+              <div style={{ fontSize: "20px", fontFamily: "'Instrument Serif', serif", fontWeight: 400, marginBottom: "12px", letterSpacing: "2px" }}>SERENITY</div>
+              <p style={{ fontSize: "14px", color: "rgba(255,255,255,.5)", lineHeight: 1.7, marginBottom: "16px" }}>
+                Board-certified aesthetic treatments in Canyon Lake, TX.
+              </p>
+              <p style={{ fontSize: "14px", color: "rgba(255,255,255,.5)" }}>
+                (830) 625-7700
+              </p>
+            </div>
+            <div>
+              <div style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: C.rose, marginBottom: "14px" }}>Treatments</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px", color: "rgba(255,255,255,.5)" }}>
+                <span>Botox &amp; Fillers</span>
+                <span>Laser Treatments</span>
+                <span>Chemical Peels</span>
+                <span>Facials &amp; Skincare</span>
+              </div>
+            </div>
+            <div>
+              <div style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: C.rose, marginBottom: "14px" }}>Hours</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px", color: "rgba(255,255,255,.5)" }}>
+                <span>Mon-Fri: 9am - 6pm</span>
+                <span>Saturday: 9am - 4pm</span>
+                <span>Sunday: Closed</span>
+              </div>
+            </div>
+            <div>
+              <div style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: C.rose, marginBottom: "14px" }}>Location</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px", color: "rgba(255,255,255,.5)" }}>
+                <span>321 Spa Lane</span>
+                <span>Canyon Lake, TX 78133</span>
+                <span>info@serenityspa.com</span>
+              </div>
+            </div>
+          </div>
+          <div style={{ borderTop: "1px solid rgba(255,255,255,.08)", paddingTop: "20px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "12px" }}>
+            <span style={{ fontSize: "12px", color: "rgba(255,255,255,.3)" }}>&copy; 2026 Serenity Med Spa &amp; Wellness. All rights reserved.</span>
+            <span style={{ fontSize: "12px", color: "rgba(255,255,255,.3)" }}>Privacy Policy &middot; Terms of Service</span>
+          </div>
+        </div>
+      </footer>
+
+      {/* ─── BUILT BY BAR ─── */}
+      <div style={{
+        background: "#0a0a0c",
+        borderTop: "1px solid rgba(255,255,255,.04)",
+        padding: "14px 0",
+        textAlign: "center",
+        fontSize: "12px",
+        color: "rgba(255,255,255,.4)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: "24px",
+        flexWrap: "wrap",
+      }}>
+        <span>Built by <a href="https://bd-cyber.com" style={{ color: "#5DC4E8", textDecoration: "none", fontWeight: 600 }}>Black Diamond Cyber</a></span>
+        <span>PageSpeed: 97/100</span>
+        <span>Load Time: &lt;1s</span>
+        <span>Code Ownership: 100%</span>
+        <a href="https://bd-cyber.com/free-audit" style={{ color: "#5DC4E8", fontWeight: 700, textDecoration: "none" }}>Build Mine &rarr;</a>
+      </div>
 
       <style>{`
         * { box-sizing: border-box; margin: 0; }

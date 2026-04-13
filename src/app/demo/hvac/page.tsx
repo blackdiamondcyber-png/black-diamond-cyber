@@ -788,7 +788,7 @@ export default function HvacDemoPage() {
                 >
                   {[
                     { label: "Full Name", type: "text", placeholder: "John Smith" },
-                    { label: "Phone Number", type: "tel", placeholder: "(830) 555-0000" },
+                    { label: "Phone Number", type: "tel", placeholder: "(830) 625-4400" },
                   ].map((f) => (
                     <label key={f.label} style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                       <span style={{ fontSize: "13px", fontWeight: 600, color: C.navy }}>{f.label}</span>
@@ -1025,7 +1025,7 @@ export default function HvacDemoPage() {
                 <span>456 Main Street</span>
                 <span>New Braunfels, TX 78130</span>
                 <span style={{ marginTop: "4px", fontSize: "11px", opacity: 0.6 }}>
-                  TACLA License #12345678
+                  TACLA License #042198B
                 </span>
               </div>
             </div>
