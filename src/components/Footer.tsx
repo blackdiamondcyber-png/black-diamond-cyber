@@ -8,8 +8,8 @@ export function Footer() {
               BLACK DIAMOND <span>CYBER</span>
             </div>
             <p style={{ marginBottom: '12px' }}>
-              AI-powered websites for dental practices. Built by a Patterson
-              Dental insider. 7-day delivery. No contracts. Own your code.
+              AI growth systems for local businesses. Websites, GEO, and
+              automation — built in 7 days. No contracts. Own your code.
             </p>
             {/* Trust pills */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '16px' }}>
@@ -47,8 +47,8 @@ export function Footer() {
               <li><a href="/hvac">HVAC Websites</a></li>
               <li><a href="/plumbing">Plumber Websites</a></li>
               <li><a href="/demo/dental">Live Demo</a></li>
-              <li><a href="#services">AI Chatbots</a></li>
-              <li><a href="#services">Review Automation</a></li>
+              <li><a href="/geo">AI Search (GEO)</a></li>
+              <li><a href="#services">All Services</a></li>
             </ul>
           </div>
 
@@ -69,7 +69,7 @@ export function Footer() {
             <h4>Company</h4>
             <ul className="fl">
               <li><a href="#about">About Erik</a></li>
-              <li><a href="#pricing">Pricing</a></li>
+              <li><a href="#book">Get a Quote</a></li>
               <li><a href="/contact">Contact</a></li>
               <li><a href="/privacy">Privacy Policy</a></li>
               <li><a href="/terms">Terms of Service</a></li>

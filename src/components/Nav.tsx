@@ -4,9 +4,9 @@ import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const NAV_LINKS = [
-  { href: '#pricing', label: 'Pricing' },
+  { href: '#services', label: 'Services' },
+  { href: '#work', label: 'Our Work' },
   { href: '/blog', label: 'Blog' },
-  { href: '/free-audit', label: 'Free Audit' },
 ];
 
 const INDUSTRY_LINKS = [
