@@ -242,7 +242,7 @@ export default function HvacDemoPage() {
         }}
       >
         <span style={{ color: "rgba(255,255,255,0.75)" }}>
-          🔷 <strong>LIVE DEMO</strong> built by Black Diamond Cyber
+          <strong>LIVE DEMO</strong> built by Black Diamond Cyber
         </span>
         <span>&rarr;</span>
         <a
@@ -478,9 +478,9 @@ export default function HvacDemoPage() {
               {/* Stat badges */}
               <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginBottom: "32px" }}>
                 {[
-                  { icon: "⭐", text: "4.8 Google Rating" },
-                  { icon: "🛡️", text: "NATE Certified" },
-                  { icon: "🔧", text: "Same-Day Service" },
+                  { icon: "", text: "4.8 Google Rating" },
+                  { icon: "", text: "NATE Certified" },
+                  { icon: "", text: "Same-Day Service" },
                 ].map((s) => (
                   <span key={s.text} style={{
                     display: "inline-flex", alignItems: "center", gap: "6px",
@@ -651,7 +651,7 @@ export default function HvacDemoPage() {
                     <IconStar key={s} />
                   ))}
                 </div>
-                <span style={{ fontSize: "14px", fontWeight: 600, color: C.navy }}>4.9</span>
+                <span style={{ fontSize: "14px", fontWeight: 600, color: C.navy }}>4.8</span>
                 <span style={{ fontSize: "13px", color: C.textLight }}>(214 reviews on Google)</span>
               </div>
             </div>

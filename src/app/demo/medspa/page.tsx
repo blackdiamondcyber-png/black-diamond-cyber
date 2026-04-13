@@ -264,7 +264,7 @@ export default function MedSpaDemoPage() {
         }}
       >
         <span style={{ color: "rgba(255,255,255,0.75)" }}>
-          🔷 <strong>LIVE DEMO</strong> built by Black Diamond Cyber
+          <strong>LIVE DEMO</strong> built by Black Diamond Cyber
         </span>
         <span>&rarr;</span>
         <a
@@ -610,7 +610,7 @@ export default function MedSpaDemoPage() {
                       }}
                     >
                       <span style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: C.textLight }}>Before</span>
-                      <span style={{ fontSize: "32px", opacity: 0.3 }}>🖼</span>
+                      <span style={{ fontSize: "24px", opacity: 0.3 }}>Before</span>
                     </div>
                     <div
                       style={{
@@ -624,7 +624,7 @@ export default function MedSpaDemoPage() {
                       }}
                     >
                       <span style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: C.sage }}>After</span>
-                      <span style={{ fontSize: "32px", opacity: 0.3 }}>✨</span>
+                      <span style={{ fontSize: "24px", opacity: 0.3, color: C.sage }}>After</span>
                     </div>
                   </div>
                   <div style={{ padding: "24px" }}>
@@ -749,7 +749,7 @@ export default function MedSpaDemoPage() {
                   {[
                     { label: "Full Name", type: "text", placeholder: "Sarah Johnson" },
                     { label: "Email Address", type: "email", placeholder: "sarah@example.com" },
-                    { label: "Phone Number", type: "tel", placeholder: "(830) 555-0000" },
+                    { label: "Phone Number", type: "tel", placeholder: "(830) 625-7700" },
                   ].map((f) => (
                     <label key={f.label} style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                       <span style={{ fontSize: "12px", fontWeight: 600, color: C.charcoal, letterSpacing: "0.5px" }}>{f.label}</span>

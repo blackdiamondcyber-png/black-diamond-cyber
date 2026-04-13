@@ -283,7 +283,7 @@ export default function PlumbingDemoPage() {
         }}
       >
         <span style={{ color: "rgba(255,255,255,0.75)" }}>
-          🔷 <strong>LIVE DEMO</strong> built by Black Diamond Cyber
+          <strong>LIVE DEMO</strong> built by Black Diamond Cyber
         </span>
         <span>&rarr;</span>
         <a
@@ -706,7 +706,7 @@ export default function PlumbingDemoPage() {
                           marginBottom: "8px",
                         }}
                       >
-                        <span style={{ fontSize: "28px" }}>✅</span>
+                        <span style={{ fontSize: "28px", color: C.blue }}>&#10003;</span>
                       </div>
                       <p style={{ fontSize: "13px", color: C.textLight, lineHeight: 1.6 }}>
                         {p.after}

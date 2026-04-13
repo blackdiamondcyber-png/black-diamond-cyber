@@ -455,9 +455,9 @@ export default function DentalDemoPage() {
               {/* Stat badges */}
               <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginBottom: "32px" }}>
                 {[
-                  { icon: "⭐", text: "4.9 Google Rating" },
-                  { icon: "🦷", text: "12 Years Trusted" },
-                  { icon: "📱", text: "Online Booking" },
+                  { icon: "", text: "4.9 Google Rating" },
+                  { icon: "", text: "12 Years Trusted" },
+                  { icon: "", text: "Online Booking" },
                 ].map((s) => (
                   <span key={s.text} style={{
                     display: "inline-flex", alignItems: "center", gap: "6px",
