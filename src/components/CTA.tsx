@@ -268,6 +268,8 @@ export function CTA() {
                       Preferred Call Time <span style={{ color: 'var(--cyan)' }}>*</span>
                     </label>
                     <select
+                      id="preferred-time"
+                      aria-label="Preferred call time"
                       value={form.preferredTime}
                       onChange={(e) => update('preferredTime', e.target.value)}
                       required

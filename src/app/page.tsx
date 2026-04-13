@@ -183,14 +183,16 @@ export default function Home() {
       {/* Page content */}
       <div className="pg">
         <Nav />
-        <Hero />
-        <Marquee />
-        <Services />
-        <HowItWorks />
-        <Showcase />
-        <Founder />
-        <CTA />
-        <FAQ />
+        <main>
+          <Hero />
+          <Marquee />
+          <Services />
+          <HowItWorks />
+          <Showcase />
+          <Founder />
+          <CTA />
+          <FAQ />
+        </main>
         <Footer />
       </div>
     </>

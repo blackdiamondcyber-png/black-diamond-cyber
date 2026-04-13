@@ -8,8 +8,8 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
 --bg:#06080C;--bg1:#0C0F16;--bg2:#12151E;--surf:#1E2333;
---blue:#2887CC;--cyan:#5DC4E8;--ice:#A8E0F6;--blue-d:rgba(40,135,204,.08);
---text:#DEE0E7;--t2:#7E8396;--t3:#474C5E;
+--blue:#1E6FA3;--cyan:#5DC4E8;--ice:#A8E0F6;--blue-d:rgba(30,111,163,.08);
+--text:#DEE0E7;--t2:#7E8396;--t3:#8A8FA3;
 --hr:rgba(255,255,255,.04);--hr-b:rgba(40,135,204,.12);
 --green:#34D399;--r:1.125rem;--rr:1.5rem;
 --ease:cubic-bezier(.16,1,.3,1)
@@ -201,7 +201,7 @@ section{padding:140px 0;scroll-margin-top:80px}
 /* Footer */
 .foot{padding:48px 0 24px;border-top:1px solid var(--hr)}
 .fg{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px}
-.foot h4{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
+.foot h4,.fh{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
 .foot p{font-size:13px;color:var(--t2);line-height:1.8}
 .fl{list-style:none;display:flex;flex-direction:column;gap:7px}.fl a{font-size:13px;color:var(--t2);transition:.3s}.fl a:hover{color:var(--cyan)}
 .fb{padding-top:16px;border-top:1px solid var(--hr);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}

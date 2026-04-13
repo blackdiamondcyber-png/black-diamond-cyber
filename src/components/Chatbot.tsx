@@ -146,7 +146,7 @@ export function Chatbot() {
                 width: 36,
                 height: 36,
                 borderRadius: '50%',
-                background: 'linear-gradient(135deg, #2887CC, #5DC4E8)',
+                background: 'linear-gradient(135deg, var(--blue), var(--cyan))',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -422,7 +422,7 @@ export function Chatbot() {
           height: 56,
           borderRadius: '50%',
           border: 'none',
-          background: 'linear-gradient(135deg, #2887CC, #5DC4E8)',
+          background: 'linear-gradient(135deg, var(--blue), var(--cyan))',
           color: '#fff',
           cursor: 'pointer',
           zIndex: 9998,
@@ -443,12 +443,12 @@ export function Chatbot() {
         }}
       >
         {isOpen ? (
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <line x1="18" y1="6" x2="6" y2="18" />
             <line x1="6" y1="6" x2="18" y2="18" />
           </svg>
         ) : (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
           </svg>
         )}

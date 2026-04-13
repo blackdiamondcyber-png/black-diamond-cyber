@@ -40,7 +40,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4>Services</h4>
+            <div role="heading" aria-level={2} className="fh">Services</div>
             <ul className="fl">
               <li><a href="/dental">Dental Websites</a></li>
               <li><a href="/dental-website-design-texas">Dental Design — Texas</a></li>
@@ -53,7 +53,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4>Resources</h4>
+            <div role="heading" aria-level={2} className="fh">Resources</div>
             <ul className="fl">
               <li><a href="/blog">Blog</a></li>
               <li><a href="/free-audit">Free Website Audit</a></li>
@@ -66,7 +66,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4>Company</h4>
+            <div role="heading" aria-level={2} className="fh">Company</div>
             <ul className="fl">
               <li><a href="#about">About Erik</a></li>
               <li><a href="#book">Get a Quote</a></li>
@@ -77,7 +77,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4>Contact</h4>
+            <div role="heading" aria-level={2} className="fh">Contact</div>
             <ul className="fl">
               <li>
                 <a href="mailto:blackdiamondcyber@gmail.com">
