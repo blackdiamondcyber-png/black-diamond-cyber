@@ -2,11 +2,7 @@
 
 import { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
-
-gsap.registerPlugin(ScrollTrigger);
+// GSAP removed — content visible immediately (LeftClick pattern)
 
 const SERVICES = [
   {
@@ -108,44 +104,10 @@ function TiltCard({ children }: { children: React.ReactNode }) {
 
 export function Services() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(
-    () => {
-      if (headerRef.current) {
-        gsap.from(headerRef.current, {
-          opacity: 0,
-          y: 40,
-          filter: 'blur(6px)',
-          duration: 0.9,
-          ease: 'power4.out',
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: 'top 85%',
-            once: true,
-          },
-        });
-      }
-      if (gridRef.current) {
-        const cards = gridRef.current.querySelectorAll('.gsap-svc-card');
-        gsap.from(cards, {
-          opacity: 0,
-          y: 50,
-          filter: 'blur(6px)',
-          duration: 0.8,
-          stagger: 0.1,
-          ease: 'power4.out',
-          scrollTrigger: {
-            trigger: gridRef.current,
-            start: 'top 80%',
-            once: true,
-          },
-        });
-      }
-    },
-    { scope: sectionRef },
-  );
+  // GSAP scroll animations removed — they caused invisible cards (P0 bug).
+  // Content is visible immediately, matching LeftClick's zero-animation approach.
+  void sectionRef; // keep ref for section id
 
   return (
     <section
@@ -155,7 +117,7 @@ export function Services() {
     >
       <div className="c">
         {/* Numbered section badge */}
-        <div className="sh sc" ref={headerRef}>
+        <div className="sh sc">
           <div
             style={{
               display: 'inline-flex',
@@ -213,7 +175,6 @@ export function Services() {
 
         <div
           className="svcs"
-          ref={gridRef}
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
