@@ -17,40 +17,20 @@ const faqItems = [
     a: 'Fair question. Black Diamond Cyber is new, but its founder is not. Erik Pearson is a Patterson Dental territory sales rep who has worked inside 400+ dental practices across Austin and San Antonio. He is also a self-taught developer who has shipped 8 production web applications. The first 4 clients get founding pricing and Erik\u2019s personal attention on every detail. We succeed by delivering results \u2014 not by running ads.',
   },
   {
-    q: 'What if I\u2019m not happy with the website?',
-    a: 'If your site does not score 90+ on Google PageSpeed within 30 days, we rebuild it at no charge. We also offer unlimited revisions during the build process. No contracts means you can walk away anytime \u2014 but our clients don\u2019t.',
-  },
-  {
     q: 'How long does it take to build my website?',
-    a: 'Most websites are delivered in 3-7 business days depending on the tier. Starter sites are ready in 3-5 days, Premium and Cinematic sites take 10-14 days.',
+    a: 'Most websites are delivered in 7 business days. Complex builds take 10-14 days.',
   },
   {
-    q: 'Do I own my website if I cancel?',
-    a: 'Yes, 100%. You own all the code, content, and design. We\u2019ll hand over everything \u2014 no hostage situations, no proprietary lock-in.',
+    q: 'Do I own my website?',
+    a: 'Yes. You own all the code, content, and design. No lock-in, no proprietary platforms.',
   },
   {
     q: 'Are there any contracts?',
-    a: 'No contracts, ever. Pay month-to-month for hosting and maintenance. Cancel anytime with 30 days notice. Your site is yours.',
+    a: 'No. Month-to-month. Cancel anytime.',
   },
   {
-    q: 'What\u2019s included in the monthly fee?',
-    a: 'Hosting on Vercel\u2019s edge network, SSL certificate, CDN, security updates, uptime monitoring, and monthly content updates. Essentially, everything to keep your site fast and secure.',
-  },
-  {
-    q: 'How is this different from Wix or Squarespace?',
-    a: 'Night and day. We build with Next.js \u2014 the same framework used by Nike, Hulu, and TikTok. Your site loads in under 2 seconds (Wix averages 6-8s), ranks better on Google, and you own the code.',
-  },
-  {
-    q: 'What are Growth Systems?',
-    a: 'Growth Systems bundle your website with business automation: AI review requests, missed call text-back, appointment reminders, lead nurture sequences, and Google Business Profile optimization. It\u2019s your entire digital presence, managed.',
-  },
-  {
-    q: 'Can you work with my existing website?',
-    a: 'Yes. We can migrate your content, preserve your SEO rankings, and set up proper redirects. You\u2019ll get a faster, better-designed site without losing your Google juice.',
-  },
-  {
-    q: 'What industries do you specialize in?',
-    a: 'We work with dental practices, HVAC companies, plumbing contractors, electricians, roofing companies, med spas, and other local service businesses. Each industry gets tailored design and messaging.',
+    q: 'What industries do you work with?',
+    a: 'Dental practices, HVAC, plumbing, med spas, electricians, roofing, and other local service businesses.',
   },
 ];
 

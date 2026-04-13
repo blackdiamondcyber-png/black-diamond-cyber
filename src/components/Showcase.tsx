@@ -212,33 +212,6 @@ function PortfolioCard({
           {demo.description}
         </p>
 
-        {/* Feature pills */}
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '6px',
-            marginBottom: '16px',
-          }}
-        >
-          {demo.features.map((f) => (
-            <span
-              key={f}
-              style={{
-                fontSize: '11px',
-                fontWeight: 600,
-                padding: '4px 10px',
-                background: 'rgba(255,255,255,.04)',
-                border: '1px solid rgba(255,255,255,.08)',
-                borderRadius: '20px',
-                color: 'var(--t2)',
-              }}
-            >
-              {f}
-            </span>
-          ))}
-        </div>
-
         <span
           className="svc-link"
           style={{ display: 'inline-block', pointerEvents: 'none' }}

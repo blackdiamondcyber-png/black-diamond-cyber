@@ -106,16 +106,14 @@ export function CTA() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
               style={{ position: 'relative', zIndex: 1 }}
             >
-              <h2 style={{ marginBottom: '8px' }}>
-                Book Your Free
-                <br />
-                <em>Strategy Call</em>
+              <h2 style={{ marginBottom: '12px' }}>
+                Ready to grow with <em>AI?</em>
               </h2>
-              <p style={{ marginBottom: '32px', maxWidth: '520px', marginLeft: 'auto', marginRight: 'auto' }}>
-                30 minutes. No sales pressure. We&apos;ll audit your current website, show you what&apos;s costing you patients, and map out a plan to fix it.
+              <p style={{ marginBottom: '32px', maxWidth: '480px', marginLeft: 'auto', marginRight: 'auto' }}>
+                Book a free 30-minute strategy call. No sales pressure.
               </p>
 
-              {/* What you get */}
+              {/* Simplified benefit strip */}
               <div style={{
                 display: 'inline-flex',
                 gap: '24px',
@@ -127,7 +125,7 @@ export function CTA() {
                 border: '1px solid var(--hr)',
                 borderRadius: '12px',
               }}>
-                {['Free competitor analysis', 'Free website audit', 'Free content strategy', 'No commitment'].map((item) => (
+                {['Free website audit', 'Free competitor analysis', 'No commitment'].map((item) => (
                   <span key={item} style={{
                     display: 'flex',
                     alignItems: 'center',

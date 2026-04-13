@@ -48,11 +48,26 @@ export function Hero() {
           The AI growth partner for local businesses.
         </motion.h1>
 
-        {/* Single CTA — LeftClick pattern */}
+        {/* Problem-framing subtext */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          style={{
+            fontSize: '18px',
+            color: 'var(--t2)',
+            marginBottom: '40px',
+            lineHeight: 1.6,
+          }}
+        >
+          Your competitors are already showing up on ChatGPT and Google AI. Are you?
+        </motion.p>
+
+        {/* Single CTA */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ delay: 0.6, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <a href="#book" className="bp" style={{ fontSize: '14px' }}>
             Book a Free Strategy Call
