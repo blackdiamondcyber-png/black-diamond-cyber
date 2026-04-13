@@ -98,7 +98,7 @@ section{padding:140px 0;scroll-margin-top:80px}
 .mq::before,.mq::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2}
 .mq::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}.mq::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
 .mt{display:flex;gap:40px;animation:sx 28s linear infinite;width:max-content}
-.mi{font-size:13px;font-weight:500;color:var(--t3);white-space:nowrap;display:flex;align-items:center;gap:10px}
+.mi{font-size:15px;font-weight:500;color:var(--t3);white-space:nowrap;display:flex;align-items:center;gap:10px}
 .md{width:4px;height:4px;border-radius:50%;background:var(--t3)}
 @keyframes sx{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
@@ -266,8 +266,8 @@ section{padding:140px 0;scroll-margin-top:80px}
 .growth-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:800px;margin:0 auto}
 
 /* Responsive */
-@media(max-width:1024px){.hero .c,.fdr .c{grid-template-columns:1fr;gap:36px}.steps,.pgrid{grid-template-columns:1fr 1fr}.svcs{grid-template-columns:1fr 1fr}.why-grid{grid-template-columns:1fr 1fr}.fg{grid-template-columns:1fr 1fr}.nl a:nth-child(n+5){display:none}.hero-vis{display:none}}
-@media(max-width:768px){.pc{flex:0 0 280px}.rc{flex:0 0 300px}.audit-grid{grid-template-columns:1fr}.hbar{flex-wrap:wrap;gap:20px}.audit-results-row{flex-direction:column;text-align:center}.audit-card{padding:24px 20px !important}.fg{grid-template-columns:1fr 1fr}}
+@media(max-width:1024px){.hero .c,.fdr .c{grid-template-columns:1fr;gap:36px}.steps,.pgrid{grid-template-columns:1fr 1fr}.svcs{grid-template-columns:1fr 1fr}.why-grid{grid-template-columns:1fr 1fr}.fg{grid-template-columns:1fr 1fr}.nl a:nth-child(n+5){display:none}.hero-vis{display:none}#why-grid{grid-template-columns:repeat(2,1fr) !important}}
+@media(max-width:768px){.pc{flex:0 0 280px}.rc{flex:0 0 300px}.audit-grid{grid-template-columns:1fr}.hbar{flex-wrap:wrap;gap:20px}.audit-results-row{flex-direction:column;text-align:center}.audit-card{padding:24px 20px !important}.fg{grid-template-columns:1fr 1fr}#showcase-grid{grid-template-columns:1fr !important}#founding-grid{grid-template-columns:1fr !important}#outcomes-grid{grid-template-columns:1fr !important}#why-grid{grid-template-columns:1fr !important}}
 @media(max-width:640px){.nav{left:10px;right:10px;transform:none;padding:8px 8px 8px 14px;gap:8px}.nl{display:none}.steps,.pgrid,.svcs,.why-grid,.growth-grid{grid-template-columns:1fr}.fg{grid-template-columns:1fr}section{padding:72px 0}.hero{padding:100px 0 60px;min-height:auto}.hbar{gap:16px;flex-wrap:wrap}.hv{font-size:28px}.cta-i{padding:40px 20px}.pc{flex:0 0 85vw}.rc{flex:0 0 85vw}.ti{gap:16px}.tp{display:none}.audit-grid{grid-template-columns:1fr}.hero .bp,.hero .bs{width:100%;justify-content:center;text-align:center}body{font-size:16px}.bp,.bs,.pb,.nc{min-height:48px;display:inline-flex;align-items:center;justify-content:center}}
 
 /* Fallback: ensure sections visible even if IntersectionObserver misses */

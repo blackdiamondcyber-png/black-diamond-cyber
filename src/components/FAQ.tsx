@@ -13,10 +13,6 @@ const faqItems = [
     a: 'Traditional SEO gets you ranked on Google\u2019s search results page. GEO gets you recommended inside AI-generated answers. Both matter \u2014 but AI search is growing fast, and most agencies don\u2019t offer GEO at all. We optimize for both simultaneously.',
   },
   {
-    q: 'Why should I trust a new agency?',
-    a: 'Fair question. Black Diamond Cyber is new, but its founder is not. Erik Pearson is a Patterson Dental territory sales rep who has worked inside 400+ dental practices across Austin and San Antonio. He is also a self-taught developer who has shipped 8 production web applications. The first 4 clients get founding pricing and Erik\u2019s personal attention on every detail. We succeed by delivering results \u2014 not by running ads.',
-  },
-  {
     q: 'How long does it take to build my website?',
     a: 'Most websites are delivered in 7 business days. Complex builds take 10-14 days.',
   },

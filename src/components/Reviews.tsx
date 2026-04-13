@@ -76,10 +76,7 @@ export function Reviews() {
         </motion.div>
       </div>
 
-      <style dangerouslySetInnerHTML={{ __html: `
-        @media(max-width:640px){#founding-grid{grid-template-columns:1fr!important}}
-        @media(max-width:640px){#outcomes-grid{grid-template-columns:1fr!important}}
-      ` }} />
+
 
       <div className="c">
         <div id="founding-grid" style={{

@@ -281,13 +281,6 @@ export function Showcase() {
         </motion.div>
       </div>
 
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-        @media(max-width:768px){#showcase-grid{grid-template-columns:1fr!important}}
-      `,
-        }}
-      />
     </section>
   );
 }

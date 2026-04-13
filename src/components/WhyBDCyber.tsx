@@ -106,10 +106,7 @@ export function WhyBDCyber() {
 
         {/* Removed villain framing for density */}
 
-        <style dangerouslySetInnerHTML={{ __html: `
-          @media(max-width:1024px){#why-grid{grid-template-columns:repeat(2,1fr)!important}}
-          @media(max-width:640px){#why-grid{grid-template-columns:1fr!important}}
-        ` }} />
+
 
         <div ref={gridRef} id="why-grid" style={{
           display: 'grid',
