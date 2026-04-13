@@ -185,10 +185,10 @@ export function Hero() {
           }}
         >
           {[
-            { icon: '⚡', label: '7-Day Build' },
-            { icon: '🔒', label: 'Code Ownership' },
-            { icon: '📱', label: 'Mobile-First' },
-            { icon: '🤖', label: 'AI Search Optimized' },
+            { label: '7-Day Build' },
+            { label: 'Code Ownership' },
+            { label: 'Mobile-First' },
+            { label: 'AI Search Optimized' },
           ].map((badge) => (
             <span
               key={badge.label}
@@ -206,7 +206,6 @@ export function Hero() {
                 color: 'var(--text)',
               }}
             >
-              <span style={{ fontSize: '14px' }}>{badge.icon}</span>
               {badge.label}
             </span>
           ))}

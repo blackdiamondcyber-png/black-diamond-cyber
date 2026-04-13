@@ -11,7 +11,7 @@ const DEMOS = [
     url: 'canyonlakefamilydentistry.com',
     href: '/demo/dental',
     name: 'Canyon Lake Family Dentistry',
-    industry: '🦷 Dental',
+    industry: 'Dental',
     description:
       'Full-service dental practice site with online booking, HIPAA-compliant forms, and local SEO.',
     features: ['Online Booking', 'HIPAA Forms', 'Patient Portal', 'Local SEO'],
@@ -23,7 +23,7 @@ const DEMOS = [
     url: 'hillcountryheatingandair.com',
     href: '/demo/hvac',
     name: 'Hill Country Heating & Air',
-    industry: '❄️ HVAC',
+    industry: 'HVAC',
     description:
       'Emergency-first HVAC site with service area pages, review integration, and mobile-optimized CTAs.',
     features: [
@@ -40,7 +40,7 @@ const DEMOS = [
     url: 'clearwaterplumbingco.com',
     href: '/demo/plumbing',
     name: 'Clearwater Plumbing Co.',
-    industry: '🔧 Plumbing',
+    industry: 'Plumbing',
     description:
       'Trust-building plumbing site with flat-rate pricing, before/after gallery, and 24/7 emergency line.',
     features: [
@@ -57,7 +57,7 @@ const DEMOS = [
     url: 'serenitymedspa.com',
     href: '/demo/medspa',
     name: 'Serenity Med Spa',
-    industry: '✨ Med Spa',
+    industry: 'Med Spa',
     description:
       'Luxury med spa site with consultation booking, treatment gallery, and new client offers.',
     features: [

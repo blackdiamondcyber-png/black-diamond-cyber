@@ -47,7 +47,7 @@ function BeforeSite() {
               flex: 1, background: '#fff', border: '1px solid #ddd',
               borderRadius: 2, padding: '6px 4px', textAlign: 'center',
             }}>
-              <div style={{ fontSize: 14, marginBottom: 2 }}>{'🦷'}</div>
+              <div style={{ fontSize: 10, fontWeight: 700, marginBottom: 2, color: '#666' }}>{'+'}</div>
               <div style={{ fontSize: 6, fontWeight: 700, color: '#333' }}>{s}</div>
             </div>
           ))}

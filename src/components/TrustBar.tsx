@@ -68,7 +68,7 @@ export function TrustBar() {
           <div className="nc2 trust-item" style={{ borderColor: 'var(--cyan)', color: 'var(--cyan)', background: 'rgba(93,196,232,.04)' }}>Own Your Website Code</div>
           <div className="tp trust-item"></div>
           <div className="nc2 trust-item" style={{ borderColor: 'var(--green)', color: 'var(--green)', background: 'rgba(52,211,153,.04)', fontSize: '12px', gap: '4px', display: 'inline-flex', alignItems: 'center' }}>
-            <span style={{ fontSize: '14px' }}>🇺🇸</span> US-Based · Texas
+            US-Based · Texas
           </div>
         </div>
       </div>

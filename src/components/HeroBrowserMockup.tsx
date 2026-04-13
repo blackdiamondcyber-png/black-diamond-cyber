@@ -306,10 +306,10 @@ export function HeroBrowserMockup() {
               }}
             >
               {[
-                { name: 'General', icon: '🦷', color: 'rgba(40,135,204,.12)' },
-                { name: 'Cosmetic', icon: '✨', color: 'rgba(52,211,153,.1)' },
-                { name: 'Implants', icon: '🔩', color: 'rgba(93,196,232,.1)' },
-                { name: 'Ortho', icon: '😁', color: 'rgba(139,92,246,.1)' },
+                { name: 'General', icon: '', color: 'rgba(40,135,204,.12)' },
+                { name: 'Cosmetic', icon: '', color: 'rgba(52,211,153,.1)' },
+                { name: 'Implants', icon: '', color: 'rgba(93,196,232,.1)' },
+                { name: 'Ortho', icon: '', color: 'rgba(139,92,246,.1)' },
               ].map((svc) => (
                 <div
                   key={svc.name}

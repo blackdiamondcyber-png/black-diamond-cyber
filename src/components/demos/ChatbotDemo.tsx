@@ -91,7 +91,7 @@ export function ChatbotDemo({ active }: { active: boolean }) {
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontSize: 14,
           }}>
-            💬
+            AI
           </div>
           <div style={{
             position: 'absolute', bottom: 0, right: 0,

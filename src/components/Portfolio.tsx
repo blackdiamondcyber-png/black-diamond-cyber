@@ -474,7 +474,7 @@ export function Portfolio() {
               desc: 'New patient specials available. Book your appointment online. Serving Austin families since 2012.',
               domain: 'brightsmile-dental.com',
               gradient: 'linear-gradient(135deg, #0B1820 0%, #1B4D5C 40%, #2A9AB5 100%)',
-              icon: '🦷',
+              icon: '',
               iconBg: 'rgba(42,154,181,.2)',
             },
             {
@@ -482,7 +482,7 @@ export function Portfolio() {
               desc: 'Licensed, insured & local. Same-day AC repair, furnace installation, and maintenance plans.',
               domain: 'summit-hvac.com',
               gradient: 'linear-gradient(135deg, #140A00 0%, #5C3A1A 40%, #D4893C 100%)',
-              icon: '❄️',
+              icon: '',
               iconBg: 'rgba(212,137,60,.2)',
             },
             {
@@ -490,7 +490,7 @@ export function Portfolio() {
               desc: 'Seasonal menu. Craft cocktails. Private events available. Reserve your table tonight.',
               domain: 'ember-and-oak.com',
               gradient: 'linear-gradient(135deg, #0E0806 0%, #4A1A10 40%, #C4442A 100%)',
-              icon: '🍽️',
+              icon: '',
               iconBg: 'rgba(196,68,42,.2)',
             },
           ].map((card, i) => (

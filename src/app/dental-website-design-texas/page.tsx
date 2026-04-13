@@ -431,7 +431,7 @@ export default function DentalWebsiteDesignTexasPage() {
                     color: 'var(--text)',
                   }}
                 >
-                  📍 {city}, TX
+                  {city}, TX
                 </div>
               ))}
             </div>

@@ -20,32 +20,32 @@ export const metadata: Metadata = {
 
 const WHAT_WE_DO = [
   {
-    icon: '\uD83D\uDCCB',
+    num: '01',
     title: 'Structured Data & Schema Markup',
     desc: 'We implement comprehensive schema markup so AI can parse and cite your business information accurately.',
   },
   {
-    icon: '\uD83D\uDCAC',
+    num: '02',
     title: 'Conversational Content',
     desc: 'FAQ-style content that matches how real customers ask AI questions about your services.',
   },
   {
-    icon: '\uD83D\uDCCD',
+    num: '03',
     title: 'Google Business Profile Optimization',
     desc: 'Complete GBP optimization with categories, attributes, and posts that feed AI recommendations.',
   },
   {
-    icon: '\u2B50',
+    num: '04',
     title: 'Review Strategy for AI Trust Signals',
     desc: 'Review volume and sentiment are key trust signals AI uses to decide who to recommend.',
   },
   {
-    icon: '\uD83D\uDCCA',
+    num: '05',
     title: 'Monthly AI Visibility Monitoring',
     desc: 'We track your citations across ChatGPT, Google AI, Gemini, and Perplexity every month.',
   },
   {
-    icon: '\uD83C\uDFE0',
+    num: '06',
     title: 'Topical Authority Content Hubs',
     desc: 'Content clusters that establish your business as the local expert AI engines trust.',
   },
@@ -152,8 +152,8 @@ export default function GeoPage() {
                   key={item.title}
                   className="svc"
                 >
-                  <div style={{ fontSize: '24px', marginBottom: '12px' }}>
-                    {item.icon}
+                  <div style={{ fontSize: '13px', fontWeight: 700, letterSpacing: '1px', color: 'var(--cyan)', marginBottom: '12px' }}>
+                    {item.num}
                   </div>
                   <h3
                     style={{
