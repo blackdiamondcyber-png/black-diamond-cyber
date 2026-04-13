@@ -215,7 +215,7 @@ export function CTA() {
                         type="text"
                         value={form.name}
                         onChange={(e) => update('name', e.target.value)}
-                        placeholder="Dr. Jane Smith"
+                        placeholder="Jane Smith"
                         required
                         style={inputStyle}
                       />
@@ -244,7 +244,7 @@ export function CTA() {
                         type="text"
                         value={form.practiceName}
                         onChange={(e) => update('practiceName', e.target.value)}
-                        placeholder="Smith Family Dental"
+                        placeholder="Your Business Name"
                         required
                         style={inputStyle}
                       />
