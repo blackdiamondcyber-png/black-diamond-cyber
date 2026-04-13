@@ -18,7 +18,7 @@ const DEMO_SITES = [
     services: ['Cleanings', 'Implants', 'Whitening', 'Crowns'],
     layout: 'centered',
     badge: 'New Patient Special',
-    rating: '4.9★  ·  127 reviews',
+    rating: 'Demo Site',
     glowColor: 'rgba(42,154,181,0.18)',
   },
   {
@@ -48,7 +48,7 @@ const DEMO_SITES = [
     services: ['Dinner', 'Brunch', 'Private Events', 'Catering'],
     layout: 'phone',
     badge: 'Open for Reservations',
-    rating: '4.8★  ·  312 reviews',
+    rating: 'Demo Site',
     glowColor: 'rgba(196,68,42,0.18)',
   },
 ];

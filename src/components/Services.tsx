@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { IconBolt, IconBot, IconStar, IconPhone, IconMapPin, IconBarChart } from '@/components/Icons';
+import { IconBolt, IconBot, IconStar, IconPhone, IconMapPin, IconBarChart, IconGlobe } from '@/components/Icons';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -37,6 +37,20 @@ const SERVICES: Service[] = [
       'Custom design that matches your practice brand',
     ],
     highlight: true,
+  },
+  {
+    Icon: IconGlobe,
+    title: 'AI Search Optimization (GEO)',
+    badge: 'New',
+    description:
+      'Get recommended when customers ask AI "who\'s the best near me?" We optimize your content so ChatGPT, Google AI, and Perplexity cite your business first.',
+    tags: ['ChatGPT', 'Google AI', 'Perplexity'],
+    features: [
+      'Show up when patients ask AI for recommendations',
+      'Structured data and schema markup optimization',
+      'Monthly AI visibility monitoring across all platforms',
+      'Content optimized for conversational AI queries',
+    ],
   },
   {
     Icon: IconBot,

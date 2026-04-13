@@ -56,7 +56,7 @@ export function Hero() {
             marginBottom: '28px',
           }}
         >
-          AI-Powered Websites for Local Businesses
+          AI Growth Systems for Local Businesses
         </motion.div>
 
         {/* Headline */}
@@ -74,8 +74,8 @@ export function Hero() {
             marginBottom: '20px',
           }}
         >
-          Your Website Should Book Appointments{' '}
-          <span style={{ color: 'var(--cyan)' }}>While You Sleep.</span>
+          Be the First Answer When Customers Search{' '}
+          <span style={{ color: 'var(--cyan)' }}>&mdash; On Google and AI.</span>
         </motion.h1>
 
         {/* Rotating industries */}
@@ -139,8 +139,9 @@ export function Hero() {
             textAlign: 'center',
           }}
         >
-          AI-powered websites for local businesses — built in 7 days, code
-          yours to keep.
+          We build high-performance websites and optimize your business to show
+          up first on Google, ChatGPT, and every AI search engine. Built in 7
+          days. No contracts. You own everything.
         </motion.p>
 
         {/* CTAs */}
@@ -187,7 +188,7 @@ export function Hero() {
             { icon: '⚡', label: '7-Day Build' },
             { icon: '🔒', label: 'Code Ownership' },
             { icon: '📱', label: 'Mobile-First' },
-            { icon: '⭐', label: '97 PageSpeed' },
+            { icon: '🤖', label: 'AI Search Optimized' },
           ].map((badge) => (
             <span
               key={badge.label}
