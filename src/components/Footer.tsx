@@ -1,7 +1,42 @@
+import { NewsletterForm } from '@/components/NewsletterForm';
+
 export function Footer() {
   return (
     <footer className="foot">
       <div className="c">
+        {/* Newsletter capture */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '24px',
+            padding: '32px 0 40px',
+            borderBottom: '1px solid var(--hr)',
+            marginBottom: '40px',
+            flexWrap: 'wrap',
+          }}
+        >
+          <div>
+            <h3
+              style={{
+                fontFamily: "'Instrument Serif', Georgia, serif",
+                fontSize: '24px',
+                fontWeight: 400,
+                color: 'var(--text)',
+                lineHeight: 1.2,
+                marginBottom: '4px',
+              }}
+            >
+              AI marketing insights, weekly.
+            </h3>
+            <p style={{ fontSize: '14px', color: 'var(--t2)', margin: 0 }}>
+              GEO tips, local SEO wins, and growth tactics for service businesses.
+            </p>
+          </div>
+          <NewsletterForm />
+        </div>
+
         <div className="fg" style={{ gridTemplateColumns: '1.6fr 1fr 1fr 1fr 1fr' }}>
           <div>
             <div className="fw">

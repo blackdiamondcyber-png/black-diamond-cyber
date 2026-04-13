@@ -107,10 +107,10 @@ export function CTA() {
               style={{ position: 'relative', zIndex: 1 }}
             >
               <h2 style={{ marginBottom: '12px' }}>
-                Ready to grow with <em>AI?</em>
+                Let&apos;s talk <em>growth.</em>
               </h2>
               <p style={{ marginBottom: '32px', maxWidth: '480px', marginLeft: 'auto', marginRight: 'auto' }}>
-                Book a free 30-minute strategy call. No sales pressure.
+                30 minutes. No sales pressure. Just a clear plan for your online presence.
               </p>
 
               {/* Simplified benefit strip */}

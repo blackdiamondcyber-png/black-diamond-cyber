@@ -1,12 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import { motion } from 'framer-motion';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
-
-gsap.registerPlugin(ScrollTrigger);
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 
 const STEPS = [
   {
@@ -37,78 +32,36 @@ const STEPS = [
 
 export function HowItWorks() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
-  const stepsContainerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: '-40px' });
+  const stepsRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(
-    () => {
-      // Header reveal
-      if (headerRef.current) {
-        gsap.from(headerRef.current, {
-          opacity: 0,
-          y: 40,
-          filter: 'blur(6px)',
-          duration: 0.9,
-          ease: 'power4.out',
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: 'top 85%',
-            once: true,
-          },
-        });
-      }
+  const { scrollYProgress } = useScroll({
+    target: stepsRef,
+    offset: ['start 75%', 'end 60%'],
+  });
 
-      // Progress line — scrubbed on scroll
-      if (progressRef.current) {
-        gsap.to(progressRef.current, {
-          height: '100%',
-          ease: 'none',
-          scrollTrigger: {
-            trigger: stepsContainerRef.current,
-            start: 'top 75%',
-            end: 'bottom 60%',
-            scrub: 0.5,
-          },
-        });
-      }
-
-      // Step cards stagger
-      if (stepsContainerRef.current) {
-        const steps = stepsContainerRef.current.querySelectorAll('.hiw-step');
-        gsap.from(steps, {
-          opacity: 0,
-          x: -30,
-          filter: 'blur(4px)',
-          duration: 0.8,
-          stagger: 0.15,
-          ease: 'power4.out',
-          scrollTrigger: {
-            trigger: stepsContainerRef.current,
-            start: 'top 75%',
-            once: true,
-          },
-        });
-      }
-    },
-    { scope: sectionRef }
-  );
+  const progressHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
 
   return (
     <section id="process" ref={sectionRef}>
       <div className="c">
-        <div className="sh sc" ref={headerRef} data-gsap-reveal>
+        <motion.div
+          className="sh sc"
+          initial={{ opacity: 0, y: 28 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
+        >
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', padding: '8px 18px', borderRadius: '100px', background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.06)', marginBottom: '24px' }}>
-            <span style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(255,255,255,.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 700, color: 'var(--t2)' }}>2</span>
+            <span style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(255,255,255,.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 700, color: 'var(--t2)' }}>3</span>
             <span style={{ fontSize: '12px', fontWeight: 600, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--text)' }}>The Diamond Method</span>
           </div>
           <h2 className="st">
             From first call to <em>launch.</em>
           </h2>
-        </div>
+        </motion.div>
 
-        <div ref={stepsContainerRef} style={{ position: 'relative', maxWidth: '640px', margin: '0 auto' }}>
-          {/* Progress line (vertical) */}
+        <div ref={stepsRef} style={{ position: 'relative', maxWidth: '640px', margin: '0 auto' }}>
+          {/* Progress line */}
           <div style={{
             position: 'absolute',
             left: '19px',
@@ -118,11 +71,10 @@ export function HowItWorks() {
             background: 'var(--hr)',
             borderRadius: '1px',
           }}>
-            <div
-              ref={progressRef}
+            <motion.div
               style={{
                 width: '100%',
-                height: '0%',
+                height: progressHeight,
                 background: 'linear-gradient(180deg, var(--cyan), var(--blue))',
                 borderRadius: '1px',
               }}
@@ -131,9 +83,16 @@ export function HowItWorks() {
 
           {/* Steps */}
           {STEPS.map((step, i) => (
-            <div
+            <motion.div
               key={step.title}
-              className="hiw-step"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{
+                duration: 0.6,
+                delay: i * 0.1,
+                ease: [0.16, 1, 0.3, 1] as const,
+              }}
               style={{
                 display: 'flex',
                 gap: '20px',
@@ -197,7 +156,7 @@ export function HowItWorks() {
                   {step.detail}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

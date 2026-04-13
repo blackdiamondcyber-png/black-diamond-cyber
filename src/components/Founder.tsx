@@ -14,12 +14,12 @@ export function Founder() {
       <div className="c">
         <motion.div
           className="sh sc"
-          initial={{ opacity: 0, y: 28, filter: 'blur(5px)' }}
-          animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+          initial={{ opacity: 0, y: 28, /* no blur */ }}
+          animate={isInView ? { opacity: 1, y: 0, /* no blur */ } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
         >
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', padding: '8px 18px', borderRadius: '100px', background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.06)', marginBottom: '24px' }}>
-            <span style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(255,255,255,.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 700, color: 'var(--t2)' }}>4</span>
+            <span style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(255,255,255,.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 700, color: 'var(--t2)' }}>5</span>
             <span style={{ fontSize: '12px', fontWeight: 600, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--text)' }}>About Us</span>
           </div>
           <h2 className="st">
@@ -44,8 +44,8 @@ export function Founder() {
         }}>
           {/* Left: Photo */}
           <motion.div
-            initial={{ opacity: 0, x: -32, filter: 'blur(6px)' }}
-            animate={isInView ? { opacity: 1, x: 0, filter: 'blur(0px)' } : {}}
+            initial={{ opacity: 0, x: -32, /* no blur */ }}
+            animate={isInView ? { opacity: 1, x: 0, /* no blur */ } : {}}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <div id="founder-photo" style={{
@@ -106,8 +106,8 @@ export function Founder() {
 
           {/* Right: Story */}
           <motion.div
-            initial={{ opacity: 0, x: 32, filter: 'blur(6px)' }}
-            animate={isInView ? { opacity: 1, x: 0, filter: 'blur(0px)' } : {}}
+            initial={{ opacity: 0, x: 32, /* no blur */ }}
+            animate={isInView ? { opacity: 1, x: 0, /* no blur */ } : {}}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <p style={{ fontSize: '16px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '20px' }}>

@@ -7,27 +7,33 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 const SERVICES = [
   {
     title: 'High-Performance Websites',
+    desc: 'Hand-coded sites that load fast and convert visitors into customers.',
     tags: ['Custom Design', '7-Day Build', 'Code Ownership'],
   },
   {
     title: 'AI Search Optimization',
+    desc: 'Get recommended when customers ask AI for suggestions.',
     tags: ['ChatGPT', 'Google AI', 'Perplexity'],
     badge: 'GEO',
   },
   {
     title: 'Local SEO & Maps',
+    desc: 'Dominate the map pack so nearby customers find you first.',
     tags: ['Map Pack', 'Google Business', 'Citations'],
   },
   {
     title: 'AI Concierge',
+    desc: 'A chatbot that books appointments while you sleep.',
     tags: ['24/7 Booking', 'Smart Routing', 'Lead Capture'],
   },
   {
     title: 'Review Generation',
+    desc: 'Automatically ask happy customers to leave Google reviews.',
     tags: ['Google Reviews', 'Automated', 'Post-Service SMS'],
   },
   {
     title: 'Missed Call Recovery',
+    desc: 'Every missed call gets an instant text — no lead left behind.',
     tags: ['Instant SMS', 'AI Follow-Up', 'No-Show Recovery'],
   },
 ] as const;
@@ -178,7 +184,7 @@ export function Services() {
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '16px',
+            gap: '20px',
           }}
         >
           {SERVICES.map((svc: ServiceItem) => (
@@ -211,11 +217,21 @@ export function Services() {
                   fontWeight: 400,
                   color: 'var(--text)',
                   lineHeight: 1.2,
-                  marginBottom: '20px',
+                  marginBottom: '10px',
                 }}
               >
                 {svc.title}
               </h3>
+              <p
+                style={{
+                  fontSize: '14px',
+                  color: 'var(--t2)',
+                  lineHeight: 1.6,
+                  marginBottom: '20px',
+                }}
+              >
+                {svc.desc}
+              </p>
               <div
                 style={{
                   display: 'flex',
@@ -245,10 +261,10 @@ export function Services() {
           ))}
         </div>
 
-        {/* Single CTA */}
+        {/* CTA — contextual to services */}
         <div style={{ textAlign: 'center', marginTop: '56px' }}>
-          <a href="#book" className="bp">
-            Book a Free Strategy Call
+          <a href="/free-audit" className="bp">
+            See What We&apos;d Build for You
           </a>
         </div>
       </div>

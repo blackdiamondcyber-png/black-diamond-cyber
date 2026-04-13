@@ -72,23 +72,13 @@ export function FAQ() {
       style={{ padding: '100px 0', position: 'relative' }}
     >
       <div className="c">
-        <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-          <div
-            className="tag"
-            style={{ display: 'inline-flex', marginBottom: '16px' }}
-          >
-            Got Questions?
+        <div className="sh sc">
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', padding: '8px 18px', borderRadius: '100px', background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.06)', marginBottom: '24px' }}>
+            <span style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(255,255,255,.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 700, color: 'var(--t2)' }}>?</span>
+            <span style={{ fontSize: '12px', fontWeight: 600, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--text)' }}>FAQ</span>
           </div>
-          <h2
-            style={{
-              fontFamily: "'Instrument Serif', serif",
-              fontSize: 'clamp(32px, 5vw, 48px)',
-              color: 'var(--text)',
-              fontWeight: 400,
-              lineHeight: 1.15,
-            }}
-          >
-            Frequently Asked Questions
+          <h2 className="st">
+            Common <em>questions.</em>
           </h2>
         </div>
 

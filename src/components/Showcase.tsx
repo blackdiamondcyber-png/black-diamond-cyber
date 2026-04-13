@@ -12,6 +12,7 @@ const DEMOS = [
     name: 'Canyon Lake Family Dentistry',
     industry: 'Dental',
     accent: '#5DC4E8',
+    stats: ['Lighthouse 98', '< 0.8s Load', 'Mobile-First'],
   },
   {
     slug: 'hvac',
@@ -20,6 +21,7 @@ const DEMOS = [
     name: 'Hill Country Heating & Air',
     industry: 'HVAC',
     accent: '#F59E0B',
+    stats: ['Lighthouse 96', '< 1s Load', 'Mobile-First'],
   },
   {
     slug: 'plumbing',
@@ -28,6 +30,7 @@ const DEMOS = [
     name: 'Clearwater Plumbing Co.',
     industry: 'Plumbing',
     accent: '#2887CC',
+    stats: ['Lighthouse 97', '< 0.9s Load', 'Mobile-First'],
   },
   {
     slug: 'medspa',
@@ -36,6 +39,7 @@ const DEMOS = [
     name: 'Serenity Med Spa',
     industry: 'Med Spa',
     accent: '#8B5CF6',
+    stats: ['Lighthouse 95', '< 1s Load', 'Mobile-First'],
   },
 ] as const;
 
@@ -102,43 +106,65 @@ function PortfolioCard({
         />
       </div>
 
-      {/* Info — name + industry tag only */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <div>
-          <h3
-            style={{
-              fontFamily: "'Outfit', system-ui, sans-serif",
-              fontSize: '17px',
-              color: 'var(--text)',
-              fontWeight: 600,
-              lineHeight: 1.3,
-              marginBottom: '4px',
-            }}
-          >
-            {demo.name}
-          </h3>
+      {/* Info — name + industry tag + stats */}
+      <div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
+          <div>
+            <h3
+              style={{
+                fontFamily: "'Outfit', system-ui, sans-serif",
+                fontSize: '17px',
+                color: 'var(--text)',
+                fontWeight: 600,
+                lineHeight: 1.3,
+                marginBottom: '4px',
+              }}
+            >
+              {demo.name}
+            </h3>
+            <span
+              style={{
+                fontSize: '12px',
+                fontWeight: 600,
+                letterSpacing: '1px',
+                textTransform: 'uppercase',
+                color: demo.accent,
+              }}
+            >
+              {demo.industry}
+            </span>
+          </div>
           <span
             style={{
-              fontSize: '12px',
+              fontSize: '13px',
               fontWeight: 600,
-              letterSpacing: '1px',
-              textTransform: 'uppercase',
-              color: demo.accent,
+              color: 'var(--t2)',
+              transition: 'color .2s',
             }}
           >
-            {demo.industry}
+            View Demo &rarr;
           </span>
         </div>
-        <span
-          style={{
-            fontSize: '13px',
-            fontWeight: 600,
-            color: 'var(--t2)',
-            transition: 'color .2s',
-          }}
-        >
-          View Demo &rarr;
-        </span>
+        {/* Micro-stats */}
+        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+          {demo.stats.map((stat) => (
+            <span
+              key={stat}
+              style={{
+                fontSize: '11px',
+                fontWeight: 600,
+                letterSpacing: '0.5px',
+                color: 'var(--t3)',
+                padding: '3px 10px',
+                borderRadius: '20px',
+                background: 'rgba(255,255,255,.03)',
+                border: '1px solid rgba(255,255,255,.05)',
+              }}
+            >
+              {stat}
+            </span>
+          ))}
+        </div>
       </div>
     </motion.a>
   );
@@ -161,7 +187,7 @@ export function Showcase() {
           }}
         >
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', padding: '8px 18px', borderRadius: '100px', background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.06)', marginBottom: '24px' }}>
-            <span style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(255,255,255,.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 700, color: 'var(--t2)' }}>3</span>
+            <span style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(255,255,255,.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 700, color: 'var(--t2)' }}>4</span>
             <span style={{ fontSize: '12px', fontWeight: 600, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--text)' }}>Our Work</span>
           </div>
           <h2 className="st">

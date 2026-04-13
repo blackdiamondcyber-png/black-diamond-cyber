@@ -45,7 +45,17 @@ export function Hero() {
             marginBottom: '32px',
           }}
         >
-          The AI growth partner for local businesses.
+          The AI growth partner for{' '}
+          <span
+            style={{
+              background: 'linear-gradient(135deg, var(--cyan), var(--ice))',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+          >
+            local businesses.
+          </span>
         </motion.h1>
 
         {/* Problem-framing subtext */}
@@ -54,13 +64,14 @@ export function Hero() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.6 }}
           style={{
-            fontSize: '18px',
+            fontSize: '19px',
             color: 'var(--t2)',
             marginBottom: '40px',
-            lineHeight: 1.6,
+            lineHeight: 1.7,
+            maxWidth: '520px',
           }}
         >
-          Your competitors are already showing up on ChatGPT and Google AI. Are you?
+          Websites, AI search optimization, and automation systems — built in 7 days, no contracts.
         </motion.p>
 
         {/* Single CTA */}
