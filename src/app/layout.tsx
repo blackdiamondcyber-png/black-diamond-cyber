@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Instrument_Serif } from "next/font/google";
+import { Outfit, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import { Chatbot } from "@/components/Chatbot";
 import { GSAPProvider } from "@/components/GSAPProvider";
@@ -18,6 +18,13 @@ const instrumentSerif = Instrument_Serif({
   weight: ["400"],
   style: ["normal", "italic"],
   variable: "--font-instrument",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -69,7 +76,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${outfit.variable} ${instrumentSerif.variable}`}>
+    <html lang="en" className={`${outfit.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}>
       <head />
       <body>
         <ScrollProgress />

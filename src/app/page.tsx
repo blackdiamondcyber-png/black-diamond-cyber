@@ -2,15 +2,19 @@ import { Suspense } from "react";
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
 import { Marquee } from "@/components/Marquee";
+import { PainPoints } from "@/components/PainPoints";
 import { Services } from "@/components/Services";
 import { Results } from "@/components/Results";
-import { HowItWorks } from "@/components/HowItWorks";
-import { Showcase } from "@/components/Showcase";
 import { Founder } from "@/components/Founder";
+import { AIEra } from "@/components/AIEra";
+import { HowItWorks } from "@/components/HowItWorks";
+import { BeforeAfter } from "@/components/BeforeAfter";
+import { Pricing } from "@/components/Pricing";
 import { FAQ } from "@/components/FAQ";
 import { CTA } from "@/components/CTA";
 import { Footer } from "@/components/Footer";
 import { BookingHandler } from "@/components/BookingHandler";
+import { ExitIntent } from "@/components/ExitIntent";
 import { SuccessModal } from "@/components/SuccessModal";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
@@ -188,26 +192,29 @@ export default function Home() {
         <main>
           <Hero />
           <Marquee />
+          <PainPoints />
           <Services />
           <div className="sep" />
           <Results />
           <div className="sep" />
           <ScrollReveal>
-            <HowItWorks />
-          </ScrollReveal>
-          <div className="sep" />
-          <Showcase />
-          <div className="sep" />
-          <ScrollReveal>
             <Founder />
           </ScrollReveal>
-          <CTA />
+          <AIEra />
+          <div className="sep" />
+          <ScrollReveal>
+            <HowItWorks />
+          </ScrollReveal>
+          <BeforeAfter />
+          <Pricing />
           <ScrollReveal>
             <FAQ />
           </ScrollReveal>
+          <CTA />
         </main>
         <Footer />
       </div>
+      <ExitIntent />
     </>
   );
 }

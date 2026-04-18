@@ -29,9 +29,9 @@ export function Founder() {
 
         <style dangerouslySetInnerHTML={{ __html: `
           @media(max-width:768px){
-            #founder-grid{grid-template-columns:1fr!important;text-align:center}
+            #founder-grid{grid-template-columns:1fr!important;text-align:left}
             #founder-photo{margin:0 auto}
-            #founder-stats{justify-content:center!important}
+            #founder-stats{grid-template-columns:repeat(2,1fr)!important;gap:16px!important}
           }
         ` }} />
 
@@ -65,6 +65,34 @@ export function Founder() {
                 style={{ objectFit: 'cover', objectPosition: 'center 15%', width: '100%', height: '100%' }}
                 priority
               />
+              {/* Frosted glass founder tag */}
+              <div style={{
+                position: 'absolute',
+                left: 16,
+                right: 16,
+                bottom: 16,
+                background: 'rgba(6, 8, 12, 0.82)',
+                backdropFilter: 'blur(16px)',
+                WebkitBackdropFilter: 'blur(16px)',
+                border: '1px solid rgba(255,255,255,0.06)',
+                borderRadius: 10,
+                padding: '12px 14px',
+              }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                  <b style={{ fontFamily: 'var(--sans)', fontSize: 14, fontWeight: 600, color: 'var(--text)' }}>
+                    Erik Pearson
+                  </b>
+                  <span style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--t2)', letterSpacing: '0.18em' }}>
+                    FOUNDER
+                  </span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 4 }}>
+                  <span style={{ fontSize: 11, color: 'var(--t2)' }}>Black Diamond Cyber</span>
+                  <span style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--cyan)', letterSpacing: '0.1em' }}>
+                    Canyon Lake, TX
+                  </span>
+                </div>
+              </div>
             </div>
             <div style={{ marginTop: '16px', textAlign: 'center' }}>
               <div style={{
@@ -118,57 +146,170 @@ export function Founder() {
               After years of watching businesses struggle with overpriced agencies and zero AI search visibility, I built Black Diamond Cyber to fix it.
             </p>
 
-            {/* Stats row with animated counters */}
-            <div id="founder-stats" style={{
-              display: 'flex',
-              gap: '12px',
-              flexWrap: 'wrap',
-              marginBottom: '32px',
-            }}>
-              {[
-                { num: 400, suffix: '+', label: 'Dental Accounts' },
-                { num: 8, suffix: '', label: 'Apps Shipped' },
-                { num: 7, suffix: '-Day', label: 'Avg Delivery' },
-              ].map((stat, i) => (
-                <motion.span
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.3 + i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  style={{
-                    padding: '8px 18px',
-                    background: 'rgba(40,135,204,.06)',
-                    border: '1px solid rgba(93,196,232,.1)',
-                    borderRadius: '40px',
-                    fontSize: '12px',
-                    fontWeight: 700,
-                    letterSpacing: '0.5px',
-                    color: 'var(--text)',
-                    whiteSpace: 'nowrap',
-                  }}
-                >
-                  <AnimatedCounter value={stat.num} duration={2} suffix={stat.suffix} /> {stat.label}
-                </motion.span>
-              ))}
-              <motion.span
-                initial={{ opacity: 0, y: 16 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.6, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            {/* Work history timeline */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.25, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              style={{
+                marginTop: 4,
+                paddingTop: 28,
+                borderTop: '1px solid rgba(255,255,255,0.04)',
+              }}
+            >
+              <div
                 style={{
-                  padding: '8px 18px',
-                  background: 'rgba(40,135,204,.06)',
-                  border: '1px solid rgba(93,196,232,.1)',
-                  borderRadius: '40px',
-                  fontSize: '12px',
-                  fontWeight: 700,
-                  letterSpacing: '0.5px',
-                  color: 'var(--text)',
-                  whiteSpace: 'nowrap',
+                  fontFamily: 'var(--mono)',
+                  fontSize: 10,
+                  letterSpacing: '0.22em',
+                  color: 'var(--t3)',
+                  textTransform: 'uppercase',
+                  marginBottom: 20,
                 }}
               >
-                Zero Long-Term Contracts
-              </motion.span>
-            </div>
+                Experience
+              </div>
+              <ul
+                style={{
+                  listStyle: 'none',
+                  margin: 0,
+                  padding: 0,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 18,
+                }}
+              >
+                {[
+                  {
+                    year: '2026\u2013Now',
+                    role: 'Black Diamond Cyber LLC',
+                    title: 'Founder & Developer',
+                    desc: 'Building AI-powered websites for local service businesses across Texas and nationwide.',
+                    current: true,
+                  },
+                  {
+                    year: '2019\u2013Now',
+                    role: 'Patterson Dental',
+                    title: 'Territory Sales Rep \u2014 Austin / San Antonio',
+                    desc: 'Managed 400+ dental practices. Shipped 8 production web apps used by field reps daily.',
+                    current: false,
+                  },
+                  {
+                    year: '2024',
+                    role: 'Self-Taught Developer',
+                    title: 'Shipped 8 Production Apps',
+                    desc: 'Prospector LIVE, RootCRM, PracticePulse, SMCC, and 4 more \u2014 all in active use.',
+                    current: false,
+                  },
+                ].map(({ year, role, title, desc, current }) => (
+                  <li
+                    key={year}
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: '110px 1fr',
+                      gap: 20,
+                      alignItems: 'baseline',
+                      position: 'relative',
+                      paddingLeft: 16,
+                      borderLeft: '1px solid rgba(255,255,255,0.04)',
+                    }}
+                  >
+                    <span
+                      style={{
+                        position: 'absolute',
+                        left: -4,
+                        top: 7,
+                        width: 7,
+                        height: 7,
+                        borderRadius: '50%',
+                        background: current ? 'var(--cyan)' : 'var(--t3)',
+                        boxShadow: current ? '0 0 0 3px rgba(93,196,232,0.2)' : 'none',
+                      }}
+                    />
+                    <span
+                      style={{
+                        fontFamily: 'var(--mono)',
+                        fontSize: 11,
+                        color: 'var(--t3)',
+                        letterSpacing: '0.08em',
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {year}
+                    </span>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                      <b
+                        style={{
+                          fontFamily: "'Instrument Serif', serif",
+                          fontSize: 17,
+                          fontWeight: 500,
+                          color: 'var(--text)',
+                          letterSpacing: '-0.005em',
+                        }}
+                      >
+                        {role}
+                      </b>
+                      <em style={{ fontStyle: 'normal', fontSize: 13, color: 'var(--cyan)' }}>
+                        {title}
+                      </em>
+                      <span style={{ fontSize: 13, color: 'var(--t2)', lineHeight: 1.45 }}>
+                        {desc}
+                      </span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Credibility bar — 4 columns */}
+            <motion.div
+              id="founder-stats"
+              initial={{ opacity: 0, y: 16 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.45, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(4, 1fr)',
+                gap: 20,
+                marginTop: 40,
+                marginBottom: 32,
+                paddingTop: 32,
+                borderTop: '1px solid rgba(255,255,255,0.04)',
+              }}
+            >
+              {[
+                { value: <AnimatedCounter value={8} duration={2} suffix="" />, label: 'Apps Shipped' },
+                { value: 'Patterson', label: 'Dental \u2014 Real Client' },
+                { value: 'Canyon Lake', label: 'Texas \u2014 Local' },
+                { value: '7-Day', label: 'Delivery Guarantee' },
+              ].map(({ value, label }) => (
+                <div key={label} style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                  <b
+                    style={{
+                      fontFamily: "'Instrument Serif', serif",
+                      fontSize: 'clamp(18px, 2vw, 26px)',
+                      fontWeight: 400,
+                      color: 'var(--text)',
+                      lineHeight: 1.05,
+                      letterSpacing: '-0.01em',
+                    }}
+                  >
+                    {value}
+                  </b>
+                  <span
+                    style={{
+                      fontFamily: 'var(--mono)',
+                      fontSize: 10,
+                      color: 'var(--t3)',
+                      letterSpacing: '0.12em',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    {label}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
 
             {/* CTA */}
             <a href="#book" style={{
