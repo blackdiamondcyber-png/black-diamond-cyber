@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Outfit, DM_Serif_Display, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import { Chatbot } from "@/components/Chatbot";
 import { GSAPProvider } from "@/components/GSAPProvider";
@@ -13,7 +13,7 @@ const outfit = Outfit({
   display: "swap",
 });
 
-const instrumentSerif = Instrument_Serif({
+const instrumentSerif = DM_Serif_Display({
   subsets: ["latin"],
   weight: ["400"],
   style: ["normal", "italic"],
