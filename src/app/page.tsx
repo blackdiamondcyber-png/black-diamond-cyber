@@ -36,7 +36,7 @@ const jsonLd = {
     knowsAbout: [
       "Generative Engine Optimization",
       "AI search optimization",
-      "dental practice marketing",
+      "small business growth systems",
       "local SEO",
       "web development",
     ],
@@ -136,7 +136,7 @@ const faqJsonLd = {
       name: "What industries do you work with?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Dental practices, HVAC, plumbing, med spas, electricians, roofing, and other local service businesses.",
+        text: "HVAC, plumbing, dental, med spas, electricians, roofing, landscaping, auto repair, law firms, and other local service businesses.",
       },
     },
   ],

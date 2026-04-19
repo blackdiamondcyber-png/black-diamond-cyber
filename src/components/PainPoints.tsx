@@ -35,7 +35,7 @@ function AIInvisibleArt() {
           CHATGPT
         </div>
         <div style={{ fontSize: 11, lineHeight: 1.4 }}>
-          <span style={{ color: 'var(--cyan)', fontWeight: 500 }}>1. Canyon Lake Dental</span>
+          <span style={{ color: 'var(--cyan)', fontWeight: 500 }}>1. Canyon Lake HVAC Co.</span>
           <br />
           <span style={{ color: 'var(--t3)', fontSize: 9 }}>4.9★ · 127 reviews</span>
         </div>
@@ -207,7 +207,7 @@ const PAIN_POINTS: PainPoint[] = [
   {
     stat: '46%',
     headline: 'Your competitors show up in AI search. You don\u2019t.',
-    body: 'When a patient asks ChatGPT "best dentist near me," your practice isn\u2019t in the answer. Your competitor down the street is. We fix that.',
+    body: 'When a customer asks ChatGPT "best [service] near me," your business isn\u2019t in the answer. Your competitor down the street is. We fix that.',
     art: <AIInvisibleArt />,
   },
   {
@@ -218,8 +218,8 @@ const PAIN_POINTS: PainPoint[] = [
   },
   {
     stat: '$1,400',
-    headline: 'Every missed call is a $1,400 patient walking to your competitor.',
-    body: '67% of HVAC and dental calls happen outside business hours. Without automated text-back, those leads are gone forever.',
+    headline: 'Every missed call is a $1,400 customer walking to your competitor.',
+    body: '67% of service business calls happen outside business hours. Without automated text-back, those leads are gone forever.',
     art: <MissedCallsArt />,
   },
   {
@@ -277,7 +277,7 @@ export function PainPoints() {
             }}
           >
             Four Silent Reasons Your Website Is{' '}
-            <em style={{ color: 'var(--cyan)', fontStyle: 'italic' }}>Bleeding Patients</em>
+            <em style={{ color: 'var(--cyan)', fontStyle: 'italic' }}>Losing Customers</em>
           </h2>
         </motion.div>
 
