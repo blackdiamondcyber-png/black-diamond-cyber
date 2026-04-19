@@ -68,7 +68,7 @@ export function DentalROICalculator() {
       <div className="c">
         <motion.div
           className="sh sc"
-          initial={{ opacity: 0, y: 28, filter: 'blur(5px)' }}
+          initial={{ opacity: 1, y: 0, filter: 'none' }}
           animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
         >
@@ -84,7 +84,7 @@ export function DentalROICalculator() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 32, filter: 'blur(6px)' }}
+          initial={{ opacity: 1, y: 0, filter: 'none' }}
           animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
           style={{
@@ -208,7 +208,7 @@ export function DentalROICalculator() {
             <AnimatePresence>
               {showResult && (
                 <motion.div
-                  initial={{ opacity: 0, y: 20, height: 0 }}
+                  initial={{ opacity: 1, y: 0, height: 0 }}
                   animate={{ opacity: 1, y: 0, height: 'auto' }}
                   exit={{ opacity: 0, y: -10, height: 0 }}
                   transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -225,7 +225,7 @@ export function DentalROICalculator() {
                     Your Practice May Be Losing
                   </div>
                   <motion.div
-                    initial={{ scale: 0.7, opacity: 0 }}
+                    initial={{ scale: 1, opacity: 1 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ delay: 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                     style={{

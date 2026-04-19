@@ -203,7 +203,7 @@ export function ProductDemoReel() {
         {/* Ambient glow matching active demo */}
         <motion.div
           key={activeDemo.id + '-glow'}
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, ease: 'easeInOut' }}
           style={{
@@ -285,7 +285,7 @@ export function ProductDemoReel() {
       {/* Pause indicator */}
       {paused && (
         <motion.div
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           style={{

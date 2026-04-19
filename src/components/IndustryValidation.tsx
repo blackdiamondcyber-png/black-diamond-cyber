@@ -30,7 +30,7 @@ export function IndustryValidation() {
       <div className="c">
         <motion.div
           className="sh sc"
-          initial={{ opacity: 0, y: 28, filter: 'blur(5px)' }}
+          initial={{ opacity: 1, y: 0, filter: 'none' }}
           animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
         >
@@ -56,7 +56,7 @@ export function IndustryValidation() {
           {QUOTES.map((q, i) => (
             <motion.div
               key={q.attribution}
-              initial={{ opacity: 0, y: 36, filter: 'blur(6px)' }}
+              initial={{ opacity: 1, y: 0, filter: 'none' }}
               animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
               transition={{
                 duration: 0.7,

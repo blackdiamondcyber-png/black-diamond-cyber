@@ -47,7 +47,7 @@ function BeforeSite() {
               flex: 1, background: '#fff', border: '1px solid #ddd',
               borderRadius: 2, padding: '6px 4px', textAlign: 'center',
             }}>
-              <div style={{ fontSize: 10, fontWeight: 700, marginBottom: 2, color: '#666' }}>{'+'}</div>
+              <div style={{ fontSize: 10, fontWeight: 700, marginBottom: 2, color: '#4a4a4a' }}>{'+'}</div>
               <div style={{ fontSize: 6, fontWeight: 700, color: '#333' }}>{s}</div>
             </div>
           ))}
@@ -65,7 +65,7 @@ function BeforeSite() {
           <div style={{
             padding: '3px 8px', background: '#fff8e1',
             border: '1px solid #f39c12', borderRadius: 2,
-            fontSize: 7, color: '#e67e22',
+            fontSize: 7, color: '#b15600',
           }}>
             ⚠️ Page speed: 42/100
           </div>
@@ -238,7 +238,7 @@ export function BeforeAfterDemo({ active }: { active: boolean }) {
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', gap: 10 }}>
       {/* Label bar */}
       <motion.div
-        initial={{ opacity: 0 }}
+        initial={{ opacity: 1 }}
         animate={active ? { opacity: 1 } : { opacity: 0 }}
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
       >
@@ -263,7 +263,7 @@ export function BeforeAfterDemo({ active }: { active: boolean }) {
 
       {/* Split comparison */}
       <motion.div
-        initial={{ opacity: 0, y: 8 }}
+        initial={{ opacity: 1, y: 0 }}
         animate={active ? { opacity: 1, y: 0 } : { opacity: 0 }}
         transition={{ delay: 0.2, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         style={{
@@ -288,7 +288,7 @@ export function BeforeAfterDemo({ active }: { active: boolean }) {
               flex: 1, height: 12, borderRadius: 6, marginLeft: 6,
               background: '#d0d0d0', display: 'flex', alignItems: 'center', padding: '0 6px',
             }}>
-              <span style={{ fontSize: 7, color: '#999' }}>smileclinic.com</span>
+              <span style={{ fontSize: 7, color: '#5c5c5c' }}>smileclinic.com</span>
             </div>
           </div>
           <BeforeSite />
@@ -354,7 +354,7 @@ export function BeforeAfterDemo({ active }: { active: boolean }) {
       <AnimatePresence>
         {phase === 'after' && (
           <motion.div
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             style={{ display: 'flex', gap: 8 }}

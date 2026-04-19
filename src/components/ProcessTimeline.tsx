@@ -98,7 +98,7 @@ export function ProcessTimeline() {
             {STEPS.map((step, i) => (
               <motion.div
                 key={step.day}
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 1, x: 0 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.6, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
                 style={{
@@ -110,7 +110,7 @@ export function ProcessTimeline() {
               >
                 {/* Number circle */}
                 <motion.div
-                  initial={{ scale: 0 }}
+                  initial={{ scale: 1 }}
                   animate={isInView ? { scale: 1 } : {}}
                   transition={{ duration: 0.4, delay: i * 0.12 + 0.1, ease: [0.16, 1, 0.3, 1] }}
                   style={{

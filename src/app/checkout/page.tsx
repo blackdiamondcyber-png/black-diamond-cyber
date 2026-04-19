@@ -1,17 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import type { Metadata } from 'next';
-
-/* ------------------------------------------------------------------ */
-/*  Plan data                                                          */
-/* ------------------------------------------------------------------ */
+import { Nav } from '@/components/Nav';
+import { Footer } from '@/components/Footer';
 
 interface Plan {
-  id: string;
+  id: 'starter' | 'professional' | 'premium' | 'cinematic';
   name: string;
+  setupPrice: number;
   monthlyPrice: number;
-  annualPrice: number;
   features: string[];
   recommended?: boolean;
 }
@@ -20,53 +17,64 @@ const PLANS: Plan[] = [
   {
     id: 'starter',
     name: 'Starter',
-    monthlyPrice: 299,
-    annualPrice: 249,
+    setupPrice: 997,
+    monthlyPrice: 79,
     features: [
-      'Custom website included',
-      'Hosting & maintenance',
-      'Monthly analytics report',
+      'Professional 5-7 page website',
+      'Mobile-first responsive design',
+      'Hosting, SSL & CDN included',
+      'Priority support',
+      'Live in 3-5 business days',
     ],
   },
   {
-    id: 'growth',
-    name: 'Growth',
-    monthlyPrice: 599,
-    annualPrice: 499,
+    id: 'professional',
+    name: 'Professional',
+    setupPrice: 1997,
+    monthlyPrice: 129,
     recommended: true,
     features: [
       'Everything in Starter',
-      'GEO optimization',
-      'Local SEO & Google Maps',
-      'Monthly AI visibility report',
+      '8-15 page semi-custom build',
+      'Competitor analysis',
+      'Online booking integration',
+      'Monthly performance reporting',
+      '5-7 day delivery',
     ],
   },
   {
-    id: 'scale',
-    name: 'Scale',
-    monthlyPrice: 999,
-    annualPrice: 833,
+    id: 'premium',
+    name: 'Premium',
+    setupPrice: 2997,
+    monthlyPrice: 199,
     features: [
-      'Everything in Growth',
-      'AI chatbot',
-      'Review generation',
-      'Missed call recovery',
-      'Priority support',
+      'Everything in Professional',
+      '15-25+ pages, fully custom',
+      'Custom copywriting',
+      'Full SEO + GEO optimization',
+      'Lead-capture forms',
+      'Unlimited content updates',
+      '10-14 day delivery',
+    ],
+  },
+  {
+    id: 'cinematic',
+    name: 'Cinematic',
+    setupPrice: 4997,
+    monthlyPrice: 249,
+    features: [
+      'Everything in Premium',
+      'AI 3D animated hero',
+      'Scroll-driven animations',
+      'Video backgrounds',
+      'Quarterly strategy call',
     ],
   },
 ];
 
-/* ------------------------------------------------------------------ */
-/*  Helpers                                                            */
-/* ------------------------------------------------------------------ */
-
-function formatPrice(cents: number): string {
-  return cents.toLocaleString('en-US');
+function formatPrice(n: number): string {
+  return n.toLocaleString('en-US');
 }
-
-/* ------------------------------------------------------------------ */
-/*  Components                                                         */
-/* ------------------------------------------------------------------ */
 
 function CheckIcon() {
   return (
@@ -89,97 +97,15 @@ function CheckIcon() {
   );
 }
 
-function BillingToggle({
-  annual,
-  onToggle,
-}: {
-  annual: boolean;
-  onToggle: () => void;
-}) {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '14px',
-        marginBottom: '48px',
-      }}
-    >
-      <div
-        style={{
-          display: 'inline-flex',
-          background: 'rgba(255,255,255,.04)',
-          border: '1px solid rgba(255,255,255,.08)',
-          borderRadius: '40px',
-          padding: '3px',
-        }}
-      >
-        <button
-          onClick={() => annual && onToggle()}
-          style={{
-            padding: '8px 24px',
-            borderRadius: '36px',
-            fontSize: '13px',
-            fontWeight: 600,
-            border: 'none',
-            cursor: 'pointer',
-            fontFamily: "'Outfit', sans-serif",
-            transition: 'all .3s ease',
-            background: !annual ? '#2887CC' : 'transparent',
-            color: !annual ? '#fff' : 'rgba(222,224,231,.5)',
-          }}
-        >
-          Monthly
-        </button>
-        <button
-          onClick={() => !annual && onToggle()}
-          style={{
-            padding: '8px 24px',
-            borderRadius: '36px',
-            fontSize: '13px',
-            fontWeight: 600,
-            border: 'none',
-            cursor: 'pointer',
-            fontFamily: "'Outfit', sans-serif",
-            transition: 'all .3s ease',
-            background: annual ? '#2887CC' : 'transparent',
-            color: annual ? '#fff' : 'rgba(222,224,231,.5)',
-          }}
-        >
-          Annual
-        </button>
-      </div>
-      <span
-        style={{
-          fontSize: '11px',
-          fontWeight: 700,
-          letterSpacing: '0.5px',
-          color: '#34D399',
-          background: 'rgba(52,211,153,.1)',
-          padding: '4px 12px',
-          borderRadius: '40px',
-          whiteSpace: 'nowrap',
-        }}
-      >
-        Save 2 months
-      </span>
-    </div>
-  );
-}
-
 function PlanCard({
   plan,
-  annual,
   loading,
   onSelect,
 }: {
   plan: Plan;
-  annual: boolean;
   loading: string | null;
-  onSelect: (id: string) => void;
+  onSelect: (id: Plan['id']) => void;
 }) {
-  const price = annual ? plan.annualPrice : plan.monthlyPrice;
   const isLoading = loading === plan.id;
 
   return (
@@ -230,7 +156,7 @@ function PlanCard({
             fontFamily: "'Outfit', sans-serif",
           }}
         >
-          Recommended
+          Most Popular
         </div>
       )}
 
@@ -254,12 +180,12 @@ function PlanCard({
             fontSize: '48px',
             fontWeight: 700,
             color: '#DEE0E7',
-            fontFamily: "'Instrument Serif', serif",
+            fontFamily: "'DM Serif Display', serif",
             lineHeight: 1,
             letterSpacing: '-0.02em',
           }}
         >
-          ${formatPrice(price)}
+          ${formatPrice(plan.monthlyPrice)}
         </span>
         <span
           style={{
@@ -273,19 +199,25 @@ function PlanCard({
         </span>
       </div>
 
-      {annual && (
-        <div
-          style={{
-            fontSize: '12px',
-            color: '#34D399',
-            fontWeight: 500,
-            marginBottom: '4px',
-            fontFamily: "'Outfit', sans-serif",
-          }}
-        >
-          Billed annually (${formatPrice(price * 12)}/yr)
-        </div>
-      )}
+      <div
+        style={{
+          fontSize: '13px',
+          color: 'rgba(222,224,231,.55)',
+          fontFamily: "'Outfit', sans-serif",
+          marginBottom: '4px',
+        }}
+      >
+        + ${formatPrice(plan.setupPrice)} one-time setup
+      </div>
+      <div
+        style={{
+          fontSize: '11px',
+          color: 'rgba(222,224,231,.35)',
+          fontFamily: "'Outfit', sans-serif",
+        }}
+      >
+        No contracts · Cancel anytime
+      </div>
 
       <div
         style={{
@@ -335,19 +267,13 @@ function PlanCard({
           fontSize: '14px',
           fontWeight: 600,
           fontFamily: "'Outfit', sans-serif",
-          border: 'none',
+          border: plan.recommended ? 'none' : '1px solid rgba(93,196,232,.25)',
           cursor: isLoading ? 'wait' : 'pointer',
           transition: 'all .3s ease',
-          background: plan.recommended
-            ? '#2887CC'
-            : 'transparent',
+          background: plan.recommended ? '#2887CC' : 'transparent',
           color: plan.recommended ? '#fff' : '#5DC4E8',
-          ...(plan.recommended
-            ? {}
-            : {
-                border: '1px solid rgba(93,196,232,.25)',
-              }),
           opacity: isLoading ? 0.6 : 1,
+          minHeight: '44px',
         }}
         onMouseEnter={(e) => {
           if (plan.recommended) {
@@ -357,11 +283,9 @@ function PlanCard({
           }
         }}
         onMouseLeave={(e) => {
-          if (plan.recommended) {
-            e.currentTarget.style.background = '#2887CC';
-          } else {
-            e.currentTarget.style.background = 'transparent';
-          }
+          e.currentTarget.style.background = plan.recommended
+            ? '#2887CC'
+            : 'transparent';
         }}
       >
         {isLoading ? 'Loading...' : 'Get Started'}
@@ -370,31 +294,17 @@ function PlanCard({
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Page                                                               */
-/* ------------------------------------------------------------------ */
-
 export default function CheckoutPage() {
-  const [annual, setAnnual] = useState(false);
   const [loading, setLoading] = useState<string | null>(null);
 
-  async function handleSelect(planId: string) {
+  async function handleSelect(planId: Plan['id']) {
     setLoading(planId);
 
     try {
-      /* Map checkout plan IDs to existing Stripe tier keys if available */
-      const tierMap: Record<string, string> = {
-        starter: 'starter',
-        growth: 'professional',
-        scale: 'premium',
-      };
-
-      const stripeTier = tierMap[planId];
-
       const res = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ tier: stripeTier }),
+        body: JSON.stringify({ tier: planId }),
       });
 
       const data = await res.json();
@@ -402,7 +312,6 @@ export default function CheckoutPage() {
       if (data.url) {
         window.location.href = data.url;
       } else {
-        /* Fallback: scroll to booking section or redirect */
         window.location.href = '/#book';
       }
     } catch {
@@ -413,105 +322,103 @@ export default function CheckoutPage() {
   }
 
   return (
-    <main
-      style={{
-        minHeight: '100dvh',
-        background: '#06080C',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        padding: '80px 20px 60px',
-      }}
-    >
-      {/* Header */}
-      <div
+    <>
+      <Nav />
+      <main
         style={{
-          textAlign: 'center',
-          maxWidth: '600px',
-          marginBottom: '16px',
+          minHeight: '100dvh',
+          background: '#06080C',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          padding: '120px 20px 60px',
         }}
       >
-        <h1
+        <div
           style={{
-            fontSize: 'clamp(32px, 5vw, 48px)',
-            fontWeight: 400,
-            color: '#DEE0E7',
-            fontFamily: "'Instrument Serif', serif",
-            lineHeight: 1.15,
-            letterSpacing: '-0.02em',
-            marginBottom: '16px',
+            textAlign: 'center',
+            maxWidth: '600px',
+            marginBottom: '48px',
           }}
         >
-          Start Your Growth Plan
-        </h1>
+          <h1
+            style={{
+              fontSize: 'clamp(32px, 5vw, 48px)',
+              fontWeight: 400,
+              color: '#DEE0E7',
+              fontFamily: "'DM Serif Display', serif",
+              lineHeight: 1.15,
+              letterSpacing: '-0.02em',
+              marginBottom: '16px',
+            }}
+          >
+            Start Your Growth Plan
+          </h1>
+          <p
+            style={{
+              fontSize: '16px',
+              color: 'rgba(222,224,231,.55)',
+              fontFamily: "'Outfit', sans-serif",
+              lineHeight: 1.6,
+            }}
+          >
+            Your custom website is included with every plan. Monthly growth maintenance keeps it fast, ranking, and ahead of the AI era.
+          </p>
+        </div>
+
+        <div
+          className="checkout-grid"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: '20px',
+            maxWidth: '1240px',
+            width: '100%',
+          }}
+        >
+          {PLANS.map((plan) => (
+            <PlanCard
+              key={plan.id}
+              plan={plan}
+              loading={loading}
+              onSelect={handleSelect}
+            />
+          ))}
+        </div>
+
         <p
           style={{
-            fontSize: '16px',
-            color: 'rgba(222,224,231,.55)',
+            marginTop: '48px',
+            fontSize: '13px',
+            color: 'rgba(222,224,231,.35)',
             fontFamily: "'Outfit', sans-serif",
-            lineHeight: 1.6,
+            textAlign: 'center',
+            letterSpacing: '0.02em',
           }}
         >
-          Your custom website is included free with every plan.
+          One-time setup fee billed at checkout. Monthly maintenance auto-renews. Cancel anytime.
         </p>
-      </div>
 
-      {/* Billing toggle */}
-      <BillingToggle annual={annual} onToggle={() => setAnnual((a) => !a)} />
-
-      {/* Plan cards grid */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '24px',
-          maxWidth: '1040px',
-          width: '100%',
-        }}
-      >
-        {PLANS.map((plan) => (
-          <PlanCard
-            key={plan.id}
-            plan={plan}
-            annual={annual}
-            loading={loading}
-            onSelect={handleSelect}
-          />
-        ))}
-      </div>
-
-      {/* Footer note */}
-      <p
-        style={{
-          marginTop: '48px',
-          fontSize: '13px',
-          color: 'rgba(222,224,231,.35)',
-          fontFamily: "'Outfit', sans-serif",
-          textAlign: 'center',
-          letterSpacing: '0.02em',
-        }}
-      >
-        No setup fees. No contracts. Cancel anytime.
-      </p>
-
-      {/* Responsive overrides */}
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-          @media (max-width: 768px) {
-            main > div:nth-child(3) {
-              grid-template-columns: 1fr !important;
-              max-width: 420px !important;
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+            @media (max-width: 1024px) {
+              .checkout-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                max-width: 720px !important;
+              }
             }
-          }
-          @media (min-width: 769px) and (max-width: 1024px) {
-            main > div:nth-child(3) {
-              grid-template-columns: repeat(2, 1fr) !important;
+            @media (max-width: 640px) {
+              .checkout-grid {
+                grid-template-columns: 1fr !important;
+                max-width: 420px !important;
+              }
             }
-          }
-        `,
-        }}
-      />
-    </main>
+          `,
+          }}
+        />
+      </main>
+      <Footer />
+    </>
   );
 }

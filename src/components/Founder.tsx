@@ -14,7 +14,7 @@ export function Founder() {
       <div className="c">
         <motion.div
           className="sh sc"
-          initial={{ opacity: 0, y: 28, /* no blur */ }}
+          initial={{ opacity: 1, y: 0, /* no blur */ }}
           animate={isInView ? { opacity: 1, y: 0, /* no blur */ } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
         >
@@ -44,7 +44,7 @@ export function Founder() {
         }}>
           {/* Left: Photo */}
           <motion.div
-            initial={{ opacity: 0, x: -32, /* no blur */ }}
+            initial={{ opacity: 1, x: 0, /* no blur */ }}
             animate={isInView ? { opacity: 1, x: 0, /* no blur */ } : {}}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
@@ -134,7 +134,7 @@ export function Founder() {
 
           {/* Right: Story */}
           <motion.div
-            initial={{ opacity: 0, x: 32, /* no blur */ }}
+            initial={{ opacity: 1, x: 0, /* no blur */ }}
             animate={isInView ? { opacity: 1, x: 0, /* no blur */ } : {}}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
@@ -148,7 +148,7 @@ export function Founder() {
 
             {/* Work history timeline */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 0 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.25, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               style={{
@@ -182,7 +182,7 @@ export function Founder() {
                 {[
                   {
                     year: '2026\u2013Now',
-                    role: 'Black Diamond Cyber LLC',
+                    role: 'Black Diamond Cybersecurity Consulting LLC',
                     title: 'Founder & Developer',
                     desc: 'Building AI-powered websites for local service businesses across Texas and nationwide.',
                     current: true,
@@ -264,7 +264,7 @@ export function Founder() {
             {/* Credibility bar — 4 columns */}
             <motion.div
               id="founder-stats"
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 1, y: 0 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.45, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               style={{

@@ -1,4 +1,4 @@
-# Black Diamond Cyber LLC — Full Status Briefing for Midas
+# Black Diamond Cybersecurity Consulting LLC — Full Status Briefing for Midas
 
 **Date**: 2026-03-23
 **Prepared by**: Claude Code (Session 7, G7 machine)

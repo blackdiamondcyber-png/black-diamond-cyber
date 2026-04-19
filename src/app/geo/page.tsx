@@ -109,7 +109,7 @@ export default function GeoPage() {
               >
                 Customers aren&apos;t just Googling anymore. They&apos;re asking
                 ChatGPT, Google AI Overviews, and Perplexity: &ldquo;Who&apos;s
-                the best dentist near me?&rdquo; If your business isn&apos;t
+                the best [service] near me?&rdquo; If your business isn&apos;t
                 optimized for AI search, you&apos;re invisible during the moment
                 that matters most.
               </p>

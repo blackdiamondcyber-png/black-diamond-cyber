@@ -245,7 +245,7 @@ export function PainPoints() {
     >
       <div className="c" style={{ maxWidth: 1180, margin: '0 auto' }}>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           style={{ textAlign: 'center', marginBottom: 56 }}
@@ -295,7 +295,7 @@ export function PainPoints() {
           {PAIN_POINTS.map((point, i) => (
             <motion.div
               key={point.stat}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 0 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               className="pain-cell"

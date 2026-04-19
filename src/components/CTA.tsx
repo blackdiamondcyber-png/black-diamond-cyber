@@ -101,7 +101,7 @@ export function CTA() {
             }} />
 
             <motion.div
-              initial={{ opacity: 0, y: 28, filter: 'blur(5px)' }}
+              initial={{ opacity: 1, y: 0, filter: 'none' }}
               animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
               style={{ position: 'relative', zIndex: 1 }}
@@ -143,7 +143,7 @@ export function CTA() {
 
             {/* Booking form */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 0 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] as const }}
               style={{

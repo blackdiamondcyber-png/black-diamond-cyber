@@ -58,7 +58,7 @@ function buildStatusEmail(status: string, businessName: string, siteUrl: string 
         <!-- Footer -->
         <tr><td style="padding:20px 40px;border-top:1px solid rgba(255,255,255,.04);text-align:center">
           <p style="font-size:10px;color:#474C5E;margin:0">
-            &copy; ${new Date().getFullYear()} Black Diamond Cyber LLC
+            &copy; ${new Date().getFullYear()} Black Diamond Cybersecurity Consulting LLC
           </p>
         </td></tr>
       </table>
@@ -112,7 +112,7 @@ function buildStatusEmail(status: string, businessName: string, siteUrl: string 
         <!-- Footer -->
         <tr><td style="padding:20px 40px;border-top:1px solid rgba(255,255,255,.04);text-align:center">
           <p style="font-size:10px;color:#474C5E;margin:0">
-            &copy; ${new Date().getFullYear()} Black Diamond Cyber LLC
+            &copy; ${new Date().getFullYear()} Black Diamond Cybersecurity Consulting LLC
           </p>
         </td></tr>
       </table>

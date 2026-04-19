@@ -76,7 +76,7 @@ export function AIEra() {
     >
       <div className="c" style={{ maxWidth: 1180, margin: '0 auto' }}>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           style={{ textAlign: 'center', marginBottom: 56 }}
@@ -136,7 +136,7 @@ export function AIEra() {
           {ENGINES.map((engine, i) => (
             <motion.div
               key={engine.name}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 0 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="engine-card"
@@ -213,7 +213,7 @@ export function AIEra() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.5, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="geo-demo"
