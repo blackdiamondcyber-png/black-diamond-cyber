@@ -1,17 +1,13 @@
 import { getSupabaseAdmin } from '@/lib/supabase';
 import { NextRequest, NextResponse } from 'next/server';
 
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
-
-if (!ADMIN_PASSWORD) {
-  throw new Error('ADMIN_PASSWORD environment variable is required');
-}
-
 function validateAdmin(request: NextRequest): boolean {
+  const expected = process.env.ADMIN_PASSWORD;
+  if (!expected) return false;
   const authHeader = request.headers.get('authorization');
   if (!authHeader) return false;
   const pass = authHeader.replace('Bearer ', '');
-  return pass === ADMIN_PASSWORD;
+  return pass === expected;
 }
 
 export async function GET(request: NextRequest) {

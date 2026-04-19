@@ -2,12 +2,6 @@ import { getSupabaseAdmin } from '@/lib/supabase';
 import { sendEmail, isEmailConfigured } from '@/lib/email';
 import { NextRequest, NextResponse } from 'next/server';
 
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
-
-if (!ADMIN_PASSWORD) {
-  throw new Error('ADMIN_PASSWORD environment variable is required');
-}
-
 interface UpdateStatusBody {
   clientId: string;
   status: string;
@@ -137,7 +131,8 @@ export async function POST(request: NextRequest) {
 
   const { clientId, status, password, statusDetail } = body;
 
-  if (password !== ADMIN_PASSWORD) {
+  const expected = process.env.ADMIN_PASSWORD;
+  if (!expected || password !== expected) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
