@@ -45,7 +45,7 @@ export function Hero() {
             marginBottom: '32px',
           }}
         >
-          The AI growth partner for{' '}
+          The definitive AI growth partner for{' '}
           <span
             style={{
               background: 'linear-gradient(135deg, var(--cyan), var(--ice))',
@@ -54,7 +54,7 @@ export function Hero() {
               backgroundClip: 'text',
             }}
           >
-            local businesses.
+            local service businesses.
           </span>
         </motion.h1>
 
@@ -66,23 +66,69 @@ export function Hero() {
           style={{
             fontSize: '19px',
             color: 'var(--t2)',
-            marginBottom: '40px',
+            marginBottom: '28px',
             lineHeight: 1.7,
-            maxWidth: '520px',
+            maxWidth: '560px',
           }}
         >
-          Websites, AI search optimization, and automation systems — built in 7 days, no contracts.
+          Websites, AI search optimization, and automation — built in 7 days, no contracts, you own the code.
         </motion.p>
 
-        {/* Single CTA */}
+        {/* Trust line — real credibility, not fake logos */}
+        <motion.p
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.6 }}
+          style={{
+            fontSize: '13px',
+            color: 'var(--t3)',
+            marginBottom: '32px',
+            letterSpacing: '0.3px',
+          }}
+        >
+          Built by the team behind <strong style={{ color: 'var(--text)' }}>8 production apps</strong> in daily use at{' '}
+          <strong style={{ color: 'var(--text)' }}>Patterson Dental</strong> — 400+ practices served.
+        </motion.p>
+
+        {/* Dual CTA — primary + secondary */}
         <motion.div
           initial={{ opacity: 1, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}
         >
           <a href="#book" className="bp" style={{ fontSize: '14px' }}>
             Book a Free Strategy Call
           </a>
+          <a href="/free-audit" className="bs" style={{ fontSize: '14px' }}>
+            Get a Free Audit
+          </a>
+        </motion.div>
+
+        {/* Guarantee band — LeftClick doesn't have one, this is our moat */}
+        <motion.div
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.75, duration: 0.6 }}
+          style={{
+            marginTop: '28px',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '10px',
+            padding: '10px 18px',
+            borderRadius: '100px',
+            background: 'rgba(52,211,153,.06)',
+            border: '1px solid rgba(52,211,153,.18)',
+            fontSize: '12px',
+            color: 'var(--t2)',
+            letterSpacing: '0.2px',
+          }}
+        >
+          <span style={{ color: 'var(--green)', fontSize: '14px', lineHeight: 1 }}>●</span>
+          <span>
+            <strong style={{ color: 'var(--text)' }}>90+ PageSpeed &amp; top-3 ranking in 60 days</strong>
+            {' '}or we rebuild for free.
+          </span>
         </motion.div>
       </div>
 

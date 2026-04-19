@@ -12,6 +12,7 @@ import { BeforeAfter } from "@/components/BeforeAfter";
 import { Pricing } from "@/components/Pricing";
 import { FAQ } from "@/components/FAQ";
 import { CTA } from "@/components/CTA";
+import { InlineCTA } from "@/components/InlineCTA";
 import { Footer } from "@/components/Footer";
 import { BookingHandler } from "@/components/BookingHandler";
 import { ExitIntent } from "@/components/ExitIntent";
@@ -193,6 +194,13 @@ export default function Home() {
           <Hero />
           <Marquee />
           <PainPoints />
+          <InlineCTA
+            eyebrow="See where you stand"
+            headline="Find out exactly which of these is costing your business the most."
+            subhead="Free audit of your website speed, AI search visibility, and Google rankings — delivered in 24 hours. No sales pitch, just data."
+            primary={{ href: '/free-audit', label: 'Run My Free Audit' }}
+            secondary={{ href: '#book', label: 'Book a Strategy Call' }}
+          />
           <Services />
           <div className="sep" />
           <Results />
@@ -200,6 +208,12 @@ export default function Home() {
           <ScrollReveal>
             <Founder />
           </ScrollReveal>
+          <InlineCTA
+            eyebrow="Work directly with Erik"
+            headline="Twenty minutes, zero pitch. Walk away with a plan either way."
+            subhead="Every strategy call is with the founder himself — no SDRs, no junior reps. Get a straight answer on whether BDC is the right fit, and what your next move should be."
+            accent="green"
+          />
           <AIEra />
           <div className="sep" />
           <ScrollReveal>
