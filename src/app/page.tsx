@@ -1,15 +1,18 @@
 import { Suspense } from "react";
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
+import { StackBar } from "@/components/StackBar";
 import { Marquee } from "@/components/Marquee";
 import { PainPoints } from "@/components/PainPoints";
 import { Services } from "@/components/Services";
 import { Results } from "@/components/Results";
+import { CaseStudies } from "@/components/CaseStudies";
 import { Founder } from "@/components/Founder";
 import { AIEra } from "@/components/AIEra";
 import { HowItWorks } from "@/components/HowItWorks";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { Pricing } from "@/components/Pricing";
+import { FoundingClientBand } from "@/components/FoundingClientBand";
 import { FAQ } from "@/components/FAQ";
 import { CTA } from "@/components/CTA";
 import { InlineCTA } from "@/components/InlineCTA";
@@ -192,6 +195,7 @@ export default function Home() {
         <Nav />
         <main>
           <Hero />
+          <StackBar />
           <Marquee />
           <PainPoints />
           <InlineCTA
@@ -204,6 +208,8 @@ export default function Home() {
           <Services />
           <div className="sep" />
           <Results />
+          <div className="sep" />
+          <CaseStudies />
           <div className="sep" />
           <ScrollReveal>
             <Founder />
@@ -221,6 +227,7 @@ export default function Home() {
           </ScrollReveal>
           <BeforeAfter />
           <Pricing />
+          <FoundingClientBand />
           <ScrollReveal>
             <FAQ />
           </ScrollReveal>
