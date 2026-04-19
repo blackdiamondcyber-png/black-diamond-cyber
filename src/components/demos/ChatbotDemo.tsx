@@ -71,7 +71,7 @@ export function ChatbotDemo({ active }: { active: boolean }) {
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       {/* Chat header */}
       <motion.div
-        initial={{ opacity: 0 }}
+        initial={{ opacity: 1 }}
         animate={active ? { opacity: 1 } : { opacity: 0 }}
         style={{
           background: 'rgba(0,0,0,0.4)',
@@ -122,7 +122,7 @@ export function ChatbotDemo({ active }: { active: boolean }) {
       >
         {/* Welcome */}
         <motion.div
-          initial={{ opacity: 0, y: 8 }}
+          initial={{ opacity: 1, y: 0 }}
           animate={active ? { opacity: 1, y: 0 } : { opacity: 0 }}
           transition={{ delay: 0.1 }}
           style={{ textAlign: 'center', marginBottom: 4 }}
@@ -140,7 +140,7 @@ export function ChatbotDemo({ active }: { active: boolean }) {
           {messages.map((msg) => (
             <motion.div
               key={msg.id}
-              initial={{ opacity: 0, y: 8, scale: 0.96 }}
+              initial={{ opacity: 1, y: 0, scale: 1 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
@@ -173,7 +173,7 @@ export function ChatbotDemo({ active }: { active: boolean }) {
           {typingBot && (
             <motion.div
               key="typing"
-              initial={{ opacity: 0, y: 8 }}
+              initial={{ opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -4 }}
               style={{ display: 'flex', justifyContent: 'flex-start' }}
@@ -203,7 +203,7 @@ export function ChatbotDemo({ active }: { active: boolean }) {
 
       {/* Input area */}
       <motion.div
-        initial={{ opacity: 0 }}
+        initial={{ opacity: 1 }}
         animate={active ? { opacity: 1 } : { opacity: 0 }}
         style={{
           borderTop: '1px solid rgba(255,255,255,0.05)',

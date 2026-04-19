@@ -267,7 +267,7 @@ export function BeforeAfter() {
     >
       <div className="c" style={{ maxWidth: 1180, margin: '0 auto' }}>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           style={{ textAlign: 'center', marginBottom: 40 }}
@@ -307,7 +307,7 @@ export function BeforeAfter() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           ref={sliderRef}
@@ -421,7 +421,7 @@ export function BeforeAfter() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 1, y: 0 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.25, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="ba-stats"

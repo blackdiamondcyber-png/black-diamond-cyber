@@ -87,7 +87,7 @@ function DemoCard({
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      initial={{ opacity: 0, y: 48, filter: 'blur(8px)' }}
+      initial={{ opacity: 1, y: 0, filter: 'none' }}
       animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
       transition={{
         duration: 0.8,
@@ -334,7 +334,7 @@ function DemoCard({
 
         {/* Hover glow overlay */}
         <motion.div
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 1 }}
           whileHover={{ opacity: 1 }}
           style={{
             position: 'absolute',
@@ -395,7 +395,7 @@ export function Portfolio() {
       <div className="c">
         <motion.div
           className="sh rv"
-          initial={{ opacity: 0, y: 28, filter: 'blur(5px)' }}
+          initial={{ opacity: 1, y: 0, filter: 'none' }}
           animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
         >
@@ -440,7 +440,7 @@ export function Portfolio() {
       {/* OG-style preview cards — what your site looks like when shared */}
       <div className="c" style={{ marginTop: '48px' }}>
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 1, y: 0 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] as const }}
           style={{ marginBottom: '24px' }}
@@ -496,7 +496,7 @@ export function Portfolio() {
           ].map((card, i) => (
             <motion.div
               key={card.domain}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 0 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.5 + i * 0.12, ease: [0.16, 1, 0.3, 1] as const }}
               style={{
@@ -596,7 +596,7 @@ export function Portfolio() {
       {/* Founding client CTA */}
       <div className="c" style={{ marginTop: '32px' }}>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.55, ease: [0.16, 1, 0.3, 1] as const }}
           style={{

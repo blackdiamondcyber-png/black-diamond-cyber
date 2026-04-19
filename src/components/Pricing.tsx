@@ -40,7 +40,7 @@ function PricingCard({
     <motion.div
       ref={ref}
       className={`pri rv${featured ? ' ft' : ''}`}
-      initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
+      initial={{ opacity: 1, y: 0, filter: 'none' }}
       whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{
@@ -97,7 +97,7 @@ export function Pricing() {
       <div className="c">
         <motion.div
           className="sh sc"
-          initial={{ opacity: 0, y: 28, filter: 'blur(5px)' }}
+          initial={{ opacity: 1, y: 0, filter: 'none' }}
           animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
         >
@@ -108,7 +108,7 @@ export function Pricing() {
 
         {/* Performance Guarantee */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           style={{
@@ -201,7 +201,7 @@ export function Pricing() {
               </button>
             </div>
             <motion.span
-              initial={{ opacity: 0, x: -8 }}
+              initial={{ opacity: 1, x: 0 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2, duration: 0.4, ease: [0.16, 1, 0.3, 1] as const }}
               style={{
@@ -275,14 +275,14 @@ export function Pricing() {
           <div className="pgrid">
             <PricingCard tierGlow={TIER_GLOWS.starter} delay={0}>
               <div className="pt">Starter</div>
-              <div className="pa">$997</div>
-              <div className="pmm" title="Hosting + SSL + CDN, monthly performance monitoring, content updates (up to 2/mo), priority support">then <b>$<AnimatedCounter value={wp.starter} duration={0.6} />/mo</b> <span style={{ fontSize: '10px', color: 'var(--t3)', fontWeight: 400 }}>Growth Maintenance</span></div>
+              <div className="pa">$<AnimatedCounter value={wp.starter} duration={0.6} /><span style={{ fontSize: '0.45em', color: 'var(--t2)', fontWeight: 400, letterSpacing: '0.02em', marginLeft: '4px' }}>/mo</span></div>
+              <div className="pmm" title="Hosting + SSL + CDN, monthly performance monitoring, content updates (up to 2/mo), priority support">+ $997 one-time setup<span style={{ display: 'block', fontSize: '11px', color: 'var(--t3)', fontWeight: 400, marginTop: '4px' }}>No contracts · Cancel anytime</span></div>
               <ul className="pf">
                 <li>Professional 5-7 page website</li>
                 <li>Turn visitors into booked appointments</li>
                 <li>Look great on every device</li>
                 <li>Fast loading with SSL &amp; CDN</li>
-                <li>Show up in &ldquo;dentist near me&rdquo; searches</li>
+                <li>Show up in local &ldquo;near me&rdquo; searches</li>
                 <li>Live in 3-5 business days</li>
               </ul>
               <PricingButton tier="starter" />
@@ -291,15 +291,15 @@ export function Pricing() {
             <PricingCard featured tierGlow={TIER_GLOWS.professional} delay={0.08}>
               <div style={{ position: 'absolute', top: '-11px', left: '50%', transform: 'translateX(-50%)', background: 'var(--blue)', color: '#fff', fontSize: '9px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', padding: '3px 13px', borderRadius: '40px', whiteSpace: 'nowrap', zIndex: 2 }}>Most Popular</div>
               <div className="pt">Professional</div>
-              <div className="pa">$1,997</div>
-              <div className="pmm" title="Hosting + SSL + CDN, monthly performance monitoring, content updates (up to 2/mo), priority support">then <b>$<AnimatedCounter value={wp.professional} duration={0.6} />/mo</b> <span style={{ fontSize: '10px', color: 'var(--t3)', fontWeight: 400 }}>Growth Maintenance</span></div>
+              <div className="pa">$<AnimatedCounter value={wp.professional} duration={0.6} /><span style={{ fontSize: '0.45em', color: 'var(--t2)', fontWeight: 400, letterSpacing: '0.02em', marginLeft: '4px' }}>/mo</span></div>
+              <div className="pmm" title="Hosting + SSL + CDN, monthly performance monitoring, content updates (up to 2/mo), priority support">+ $1,997 one-time setup<span style={{ display: 'block', fontSize: '11px', color: 'var(--t3)', fontWeight: 400, marginTop: '4px' }}>No contracts · Cancel anytime</span></div>
               <ul className="pf">
                 <li>8-15 pages</li>
                 <li>Semi-custom design</li>
                 <li>Competitor analysis</li>
-                <li>Rank for &ldquo;dentist near me&rdquo; searches</li>
-                <li>Let patients book online 24/7</li>
-                <li>Know exactly how many new patients come in each month</li>
+                <li>Rank for local &ldquo;near me&rdquo; searches</li>
+                <li>Let customers book online 24/7</li>
+                <li>Know exactly how many new customers come in each month</li>
                 <li>5-7 day delivery</li>
               </ul>
               <PricingButton tier="professional" featured />
@@ -307,8 +307,8 @@ export function Pricing() {
 
             <PricingCard tierGlow={TIER_GLOWS.premium} delay={0.16}>
               <div className="pt">Premium</div>
-              <div className="pa">$2,997</div>
-              <div className="pmm" title="Hosting + SSL + CDN, monthly performance monitoring, unlimited content updates, priority support">then <b>$<AnimatedCounter value={wp.premium} duration={0.6} />/mo</b> <span style={{ fontSize: '10px', color: 'var(--t3)', fontWeight: 400 }}>Growth Maintenance</span></div>
+              <div className="pa">$<AnimatedCounter value={wp.premium} duration={0.6} /><span style={{ fontSize: '0.45em', color: 'var(--t2)', fontWeight: 400, letterSpacing: '0.02em', marginLeft: '4px' }}>/mo</span></div>
+              <div className="pmm" title="Hosting + SSL + CDN, monthly performance monitoring, unlimited content updates, priority support">+ $2,997 one-time setup<span style={{ display: 'block', fontSize: '11px', color: 'var(--t3)', fontWeight: 400, marginTop: '4px' }}>No contracts · Cancel anytime</span></div>
               <ul className="pf">
                 <li>15-25+ pages</li>
                 <li>Fully custom design</li>
@@ -323,8 +323,8 @@ export function Pricing() {
 
             <PricingCard tierGlow={TIER_GLOWS.cinematic} delay={0.24}>
               <div className="pt">Cinematic</div>
-              <div className="pa">$4,997</div>
-              <div className="pmm" title="Hosting + SSL + CDN, monthly performance monitoring, unlimited content updates, priority support, quarterly strategy call">then <b>$<AnimatedCounter value={wp.cinematic} duration={0.6} />/mo</b> <span style={{ fontSize: '10px', color: 'var(--t3)', fontWeight: 400 }}>Growth Maintenance</span></div>
+              <div className="pa">$<AnimatedCounter value={wp.cinematic} duration={0.6} /><span style={{ fontSize: '0.45em', color: 'var(--t2)', fontWeight: 400, letterSpacing: '0.02em', marginLeft: '4px' }}>/mo</span></div>
+              <div className="pmm" title="Hosting + SSL + CDN, monthly performance monitoring, unlimited content updates, priority support, quarterly strategy call">+ $4,997 one-time setup<span style={{ display: 'block', fontSize: '11px', color: 'var(--t3)', fontWeight: 400, marginTop: '4px' }}>No contracts · Cancel anytime</span></div>
               <ul className="pf">
                 <li>Everything in Premium</li>
                 <li>AI 3D animated hero</li>

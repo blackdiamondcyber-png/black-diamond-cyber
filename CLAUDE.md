@@ -20,7 +20,7 @@ Act as a senior UI designer and front-end developer. Prioritize visual quality, 
 
 ## Overview
 AI-powered website design, automation, and growth systems for local service businesses.
-Owner: Erik Pearson | LLC: Black Diamond Cyber LLC | Email: blackdiamondcyber@gmail.com
+Owner: Erik Pearson | LLC: Black Diamond Cybersecurity Consulting LLC | Email: blackdiamondcyber@gmail.com
 
 ## Stack
 - **Framework**: Next.js 16 App Router, React 19, TypeScript strict

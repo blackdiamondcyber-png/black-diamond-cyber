@@ -124,7 +124,7 @@ export function AIBuildDemo({ active }: { active: boolean }) {
       <AnimatePresence>
         {(buildPhase === 'building' || buildPhase === 'done') && (
           <motion.div
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             style={{
               background: 'rgba(0,0,0,0.3)',
@@ -138,13 +138,13 @@ export function AIBuildDemo({ active }: { active: boolean }) {
               {SITE_SECTIONS.slice(0, sectionIdx).map((s, i) => (
                 <motion.div
                   key={s.label}
-                  initial={{ opacity: 0, x: -8 }}
+                  initial={{ opacity: 1, x: 0 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.05 }}
                   style={{ display: 'flex', alignItems: 'center', gap: 8 }}
                 >
                   <motion.div
-                    initial={{ scale: 0 }}
+                    initial={{ scale: 1 }}
                     animate={{ scale: 1 }}
                     style={{ width: 5, height: 5, borderRadius: '50%', background: i < sectionIdx - 1 ? '#34D399' : '#5DC4E8', flexShrink: 0 }}
                   />
@@ -169,7 +169,7 @@ export function AIBuildDemo({ active }: { active: boolean }) {
       <AnimatePresence>
         {showSite && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: 10 }}
+            initial={{ opacity: 1, scale: 1, y: 0 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             style={{ flex: 1, minHeight: 0 }}
@@ -208,7 +208,7 @@ export function AIBuildDemo({ active }: { active: boolean }) {
                 {MINI_SITE_BLOCKS.slice(0, visibleBlocks).map((block, i) => (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, scaleX: 0.6 }}
+                    initial={{ opacity: 1, scaleX: 0.6 }}
                     animate={{ opacity: 1, scaleX: 1 }}
                     style={{ transformOrigin: 'left' }}
                     transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
@@ -232,7 +232,7 @@ export function AIBuildDemo({ active }: { active: boolean }) {
                 ))}
                 {visibleBlocks >= MINI_SITE_BLOCKS.length && (
                   <motion.div
-                    initial={{ opacity: 0, y: 4 }}
+                    initial={{ opacity: 1, y: 0 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
                     style={{

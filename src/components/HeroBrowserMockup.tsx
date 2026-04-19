@@ -6,7 +6,7 @@ export function HeroBrowserMockup() {
   return (
     <motion.div
       className="hero-mockup-wrap"
-      initial={{ opacity: 0, y: 50, scale: 0.95 }}
+      initial={{ opacity: 1, y: 0, scale: 1 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ delay: 1.8, duration: 1, ease: [0.16, 1, 0.3, 1] }}
       style={{

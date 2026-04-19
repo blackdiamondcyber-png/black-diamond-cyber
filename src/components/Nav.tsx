@@ -64,7 +64,7 @@ export function Nav() {
     <>
       <motion.nav
         className="nav"
-        initial={{ y: -80, opacity: 0 }}
+        initial={{ y: 0, opacity: 1 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         style={{
@@ -114,7 +114,7 @@ export function Nav() {
           <>
             <motion.div
               key="nav-backdrop"
-              initial={{ opacity: 0 }}
+              initial={{ opacity: 1 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
@@ -130,7 +130,7 @@ export function Nav() {
 
             <motion.div
               key="nav-mobile-menu"
-              initial={{ opacity: 0, y: -20 }}
+              initial={{ opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
@@ -155,7 +155,7 @@ export function Nav() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  initial={{ opacity: 0, x: -16 }}
+                  initial={{ opacity: 1, x: 0 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.05 + i * 0.06, duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   style={{
@@ -175,7 +175,7 @@ export function Nav() {
               ))}
 
               <motion.div
-                initial={{ opacity: 0, y: 8 }}
+                initial={{ opacity: 1, y: 0 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.3 }}
                 style={{ display: 'flex', gap: '10px', marginTop: '12px' }}

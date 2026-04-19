@@ -16,8 +16,8 @@
 --sans:'Outfit',system-ui,sans-serif;
 --ease:cubic-bezier(.16,1,.3,1)
 }
-html{scroll-behavior:smooth;-webkit-font-smoothing:subpixel-antialiased;-moz-osx-font-smoothing:auto;scroll-padding-top:100px}
-body{font-family:'Outfit',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.75;overflow-x:hidden;font-weight:400;font-size:17px;-webkit-font-smoothing:subpixel-antialiased;text-rendering:optimizeLegibility}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-padding-top:100px}
+body{font-family:'Outfit',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.75;overflow-x:hidden;font-weight:400;font-size:17px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
 h1,h2,h3{font-family:'DM Serif Display',Georgia,serif;font-weight:400;line-height:1.08;letter-spacing:-.025em}
 a{text-decoration:none;color:inherit;transition:color .2s ease,opacity .2s ease}
 .c{max-width:1180px;margin:0 auto;padding:0 24px}
@@ -78,7 +78,7 @@ section{padding:140px 0;scroll-margin-top:80px}
 .ha{display:flex;gap:12px;flex-wrap:wrap}
 .hbar{display:flex;gap:40px;margin-top:56px;padding-top:32px;border-top:1px solid var(--hr)}
 .hv{font-family:'DM Serif Display',serif;font-size:38px;color:var(--text);line-height:1}.hv span{color:var(--cyan);font-size:28px}
-.hl{font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--t3);margin-top:4px}
+.hl{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--t3);margin-top:4px}
 
 /* Hero visual with 3D perspective */
 .hero-vis{position:relative;height:440px;perspective:1000px}
@@ -400,4 +400,13 @@ section{padding:120px 0;scroll-margin-top:80px}
   object-fit: cover;
   width: 100%;
   height: 100%;
+}
+
+/* Apr 19 audit — minimum legible sizes */
+[class*="eyebrow"], [class*="section-label"] { font-size: 13px; }
+
+@media (max-width: 768px) {
+  body, p, li, input, textarea, select { font-size: 16px; }
+  .bp, .bs, button { min-height: 44px; }
+  #founder-grid p, [class*="founder"] p { word-break: break-word; overflow-wrap: anywhere; }
 }

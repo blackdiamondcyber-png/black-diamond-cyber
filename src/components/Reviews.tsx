@@ -60,7 +60,7 @@ export function Reviews() {
       <div className="c">
         <motion.div
           className="sh sc"
-          initial={{ opacity: 0, y: 28, filter: 'blur(5px)' }}
+          initial={{ opacity: 1, y: 0, filter: 'none' }}
           animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
         >
@@ -89,7 +89,7 @@ export function Reviews() {
             <motion.div
               key={g.title}
               className="svc"
-              initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
+              initial={{ opacity: 1, y: 0, filter: 'none' }}
               animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
               transition={{
                 duration: 0.7,
@@ -228,7 +228,7 @@ export function Reviews() {
             {PROJECTED_OUTCOMES.map((o, i) => (
               <motion.div
                 key={o.stat}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 1, y: 0 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 + i * 0.1, ease: [0.16, 1, 0.3, 1] as const }}
                 style={{

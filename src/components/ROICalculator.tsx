@@ -177,7 +177,7 @@ export function ROICalculator() {
               {results ? (
                 <motion.div
                   key="results"
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 1, y: 0 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
@@ -220,7 +220,7 @@ export function ROICalculator() {
                   ].map((item, i) => (
                     <motion.div
                       key={item.label}
-                      initial={{ opacity: 0, x: 20 }}
+                      initial={{ opacity: 1, x: 0 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{
                         delay: i * 0.12,
@@ -267,7 +267,7 @@ export function ROICalculator() {
 
                   {/* CTA */}
                   <motion.div
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 1, y: 0 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6, duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
                     style={{ textAlign: 'center', marginTop: '12px' }}
@@ -290,7 +290,7 @@ export function ROICalculator() {
               ) : (
                 <motion.div
                   key="placeholder"
-                  initial={{ opacity: 0 }}
+                  initial={{ opacity: 1 }}
                   animate={{ opacity: 1 }}
                   style={{
                     padding: '60px 32px',

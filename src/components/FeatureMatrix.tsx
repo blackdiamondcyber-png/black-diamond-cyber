@@ -166,7 +166,7 @@ export function FeatureMatrix() {
             {visibleFeatures.map((row, i) => (
               <motion.div
                 key={row.label}
-                initial={{ opacity: 0, height: 0 }}
+                initial={{ opacity: 1, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] as const, delay: i >= INITIAL_ROWS ? (i - INITIAL_ROWS) * 0.04 : 0 }}

@@ -45,7 +45,7 @@ export function Results() {
       <div className="c">
         <motion.div
           className="sh sc"
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 1, y: 0 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
         >
@@ -109,7 +109,7 @@ export function Results() {
           {STATS.map((stat, i) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 1, y: 0 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{
                 duration: 0.6,
@@ -169,7 +169,7 @@ export function Results() {
 
         {/* Proof points */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 1, y: 0 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
           style={{

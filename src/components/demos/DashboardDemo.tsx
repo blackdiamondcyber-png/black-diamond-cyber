@@ -80,7 +80,7 @@ function MetricCard({ m, active, delay }: { m: Metric; active: boolean; delay: n
   const val = useAnimatedValue(m.value, active, 1600);
   return (
     <motion.div
-      initial={{ opacity: 0, y: 12 }}
+      initial={{ opacity: 1, y: 0 }}
       animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
       transition={{ delay, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       style={{
@@ -152,7 +152,7 @@ export function DashboardDemo({ active }: { active: boolean }) {
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', gap: 10 }}>
       {/* Header */}
       <motion.div
-        initial={{ opacity: 0 }}
+        initial={{ opacity: 1 }}
         animate={active ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.4 }}
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
@@ -237,7 +237,7 @@ export function DashboardDemo({ active }: { active: boolean }) {
             {events.map((e, i) => (
               <motion.div
                 key={`${e.text}-${i}`}
-                initial={{ opacity: 0, x: -12 }}
+                initial={{ opacity: 1, x: 0 }}
                 animate={{ opacity: 1 - i * 0.25, x: 0 }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}

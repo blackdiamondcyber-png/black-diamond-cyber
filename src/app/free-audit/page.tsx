@@ -6,6 +6,8 @@ import {
   AUDIT_INDUSTRIES,
   type AuditResult,
 } from '@/lib/audit';
+import { Nav } from '@/components/Nav';
+import { Footer } from '@/components/Footer';
 
 type AuditState = 'form' | 'scanning' | 'results';
 
@@ -227,6 +229,8 @@ export default function FreeAuditPage() {
   // FORM STATE
   if (state === 'form') {
     return (
+      <>
+        <Nav />
       <div
         style={{
           minHeight: '100dvh',
@@ -259,19 +263,19 @@ export default function FreeAuditPage() {
                 marginBottom: '10px',
               }}
             >
-              Your Practice Is Losing Patients Right Now.{' '}
-              <em style={{ color: 'var(--cyan)', fontStyle: 'italic' }}>We Will Show You Why.</em>
+              Your Business Is Losing Customers Right Now.{' '}
+              <em style={{ color: 'var(--cyan)', fontStyle: 'italic' }}>We&rsquo;ll Show You Where.</em>
             </h1>
             <p
               style={{
                 fontSize: '14px',
                 color: 'var(--t2)',
                 lineHeight: 1.85,
-                maxWidth: '420px',
+                maxWidth: '440px',
                 margin: '0 auto 8px',
               }}
             >
-              A free, no-strings audit built specifically for dental and healthcare practices.
+              A no-strings audit of your website, your Google rankings, and how you appear in AI search &mdash; delivered within 24 hours.
             </p>
             <p
               style={{
@@ -294,8 +298,9 @@ export default function FreeAuditPage() {
             }}>
               {[
                 'Your Google ranking vs. your top 3 local competitors',
-                'Your site\u2019s PageSpeed score — and what it\u2019s costing you in patients',
-                '3 specific fixes you can make this week to rank higher — free, whether you hire us or not',
+                'Your AI search visibility across ChatGPT, Google AI Overviews, and Perplexity',
+                'Your PageSpeed score \u2014 and what slow load times cost you in lost customers',
+                '3 specific fixes you can make this week to rank higher \u2014 free, whether you hire us or not',
               ].map((item) => (
                 <div key={item} style={{
                   display: 'flex',
@@ -329,7 +334,7 @@ export default function FreeAuditPage() {
                   type="text"
                   value={businessName}
                   onChange={(e) => setBusinessName(e.target.value)}
-                  placeholder="Bright Smile Dental"
+                  placeholder="Your Business Name"
                   style={inputStyle}
                 />
                 {errors.businessName && (
@@ -343,7 +348,7 @@ export default function FreeAuditPage() {
                   type="url"
                   value={websiteUrl}
                   onChange={(e) => setWebsiteUrl(e.target.value)}
-                  placeholder="https://brightsmile.com"
+                  placeholder="https://yourbusiness.com"
                   style={inputStyle}
                 />
                 {errors.websiteUrl && (
@@ -357,7 +362,7 @@ export default function FreeAuditPage() {
                   type="text"
                   value={cityState}
                   onChange={(e) => setCityState(e.target.value)}
-                  placeholder="Austin, TX"
+                  placeholder="Your City, State"
                   style={inputStyle}
                 />
                 {errors.cityState && (
@@ -455,12 +460,16 @@ export default function FreeAuditPage() {
           </div>
         </div>
       </div>
+        <Footer />
+      </>
     );
   }
 
   // SCANNING STATE
   if (state === 'scanning') {
     return (
+      <>
+        <Nav />
       <div
         style={{
           minHeight: '100dvh',
@@ -556,6 +565,8 @@ export default function FreeAuditPage() {
           </p>
         </div>
       </div>
+        <Footer />
+      </>
     );
   }
 
@@ -563,6 +574,8 @@ export default function FreeAuditPage() {
   if (!result) return null;
 
   return (
+    <>
+      <Nav />
     <div
       style={{
         minHeight: '100dvh',
@@ -823,5 +836,7 @@ export default function FreeAuditPage() {
         </div>
       </div>
     </div>
+      <Footer />
+    </>
   );
 }

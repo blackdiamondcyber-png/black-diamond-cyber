@@ -58,7 +58,7 @@ function PortfolioCard({
   return (
     <motion.a
       href={demo.href}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 1, y: 0 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{
@@ -179,7 +179,7 @@ export function Showcase() {
       <div className="c">
         <motion.div
           className="sh sc"
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 1, y: 0 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{
             duration: 0.8,
