@@ -66,12 +66,14 @@ export function AIEra() {
 
   return (
     <section
+      id="ai-era"
       ref={sectionRef}
       className="rv"
       style={{
         padding: '100px 24px',
         position: 'relative',
         background: 'var(--bg)',
+        scrollMarginTop: '80px',
       }}
     >
       <div className="c" style={{ maxWidth: 1180, margin: '0 auto' }}>
@@ -120,7 +122,7 @@ export function AIEra() {
             }}
           >
             46% of local searches now happen on AI platforms. If your site isn&rsquo;t GEO-optimized,
-            you&rsquo;re invisible to the fastest-growing source of new patients.
+            you&rsquo;re invisible to the fastest-growing source of new customers.
           </p>
         </motion.div>
 
@@ -252,7 +254,7 @@ export function AIEra() {
                   textTransform: 'uppercase',
                 }}
               >
-                Patient asks ChatGPT
+                Customer asks ChatGPT
               </div>
               <div
                 style={{
@@ -264,7 +266,7 @@ export function AIEra() {
                   letterSpacing: '-0.01em',
                 }}
               >
-                &ldquo;Best dentist near Canyon Lake that accepts new patients?&rdquo;
+                &ldquo;Best [service] near me that has good reviews and is open today?&rdquo;
               </div>
               <div
                 style={{
@@ -319,10 +321,9 @@ export function AIEra() {
               >
                 Based on local reviews and availability, I recommend{' '}
                 <span style={{ color: 'var(--cyan)', fontWeight: 500 }}>
-                  Canyon Lake Family Dentistry
+                  your business
                 </span>
-                . They&rsquo;re currently accepting new patients, have a 4.9★ rating across 127
-                reviews, and offer same-week appointments.
+                . They&rsquo;re open now, have a 4.9★ rating across 127 reviews, and respond to inquiries within an hour.
               </div>
               <div
                 style={{
