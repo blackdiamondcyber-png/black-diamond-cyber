@@ -86,8 +86,7 @@ export function Hero() {
             letterSpacing: '0.3px',
           }}
         >
-          Built by the team behind <strong style={{ color: 'var(--text)' }}>8 production apps</strong> in daily use at{' '}
-          <strong style={{ color: 'var(--text)' }}>Patterson Dental</strong> — 400+ practices served.
+          Built by a field operator who spends every week inside <strong style={{ color: 'var(--text)' }}>local service businesses</strong> — not a remote agency guessing from a spreadsheet.
         </motion.p>
 
         {/* Dual CTA — primary + secondary */}

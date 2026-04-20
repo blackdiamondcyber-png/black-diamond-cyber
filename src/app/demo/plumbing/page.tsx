@@ -470,7 +470,7 @@ export default function PlumbingDemoPage() {
           />
           {/* Hero background photo */}
           <Image
-            src="/images/plumbing-bathroom.jpg"
+            src="/images/ai/plumbing-bathroom.jpg"
             alt="Renovated luxury bathroom"
             fill
             priority
@@ -964,9 +964,9 @@ export default function PlumbingDemoPage() {
             </p>
             <div className="plumb-grid-3col" style={{ display: "grid", gap: "32px" }}>
               {[
-                { img: "/images/plumbing-technician.jpg", name: "Carlos Rivera", role: "Master Plumber — TX License #M-40821" },
-                { img: "/images/plumbing-greeting.jpg", name: "Customer Service", role: "Friendly, on-time, every time" },
-                { img: "/images/plumbing-bathroom.jpg", name: "Quality Craftsmanship", role: "Luxury remodels & emergency repairs" },
+                { img: "/images/ai/plumbing-technician.jpg", name: "Carlos Rivera", role: "Master Plumber — TX License #M-40821" },
+                { img: "/images/ai/plumbing-greeting.jpg", name: "Customer Service", role: "Friendly, on-time, every time" },
+                { img: "/images/ai/plumbing-bathroom.jpg", name: "Quality Craftsmanship", role: "Luxury remodels & emergency repairs" },
               ].map((m) => (
                 <div key={m.name} style={{ background: "#fff", borderRadius: "16px", overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,.06)" }}>
                   <div style={{ position: "relative", width: "100%", height: "320px" }}>
@@ -995,8 +995,8 @@ export default function PlumbingDemoPage() {
             </p>
             <div className="plumb-grid-2col" style={{ display: "grid", gap: "32px" }}>
               {[
-                { img: "/images/plumbing-greeting.jpg", name: "Amanda & Tom S.", quote: "Pipe burst at 2 AM and Carlos was at our door within 30 minutes. Saved our kitchen from serious water damage. Can't recommend them enough." },
-                { img: "/images/plumbing-bathroom.jpg", name: "Michelle D.", quote: "They completely transformed our master bathroom. Came in on budget and ahead of schedule — the attention to detail was incredible." },
+                { img: "/images/ai/plumbing-greeting.jpg", name: "Amanda & Tom S.", quote: "Pipe burst at 2 AM and Carlos was at our door within 30 minutes. Saved our kitchen from serious water damage. Can't recommend them enough." },
+                { img: "/images/ai/plumbing-bathroom.jpg", name: "Michelle D.", quote: "They completely transformed our master bathroom. Came in on budget and ahead of schedule — the attention to detail was incredible." },
               ].map((t) => (
                 <div key={t.name} className="demo-client-card" style={{ display: "flex", gap: "24px", background: C.bgSoft, borderRadius: "16px", padding: "24px", alignItems: "center" }}>
                   <div style={{ position: "relative", width: "160px", minWidth: "160px", height: "160px", borderRadius: "12px", overflow: "hidden" }}>

@@ -407,7 +407,7 @@ export default function DentalDemoPage() {
           />
           {/* Hero background photo */}
           <Image
-            src="/images/dental-reception.jpg"
+            src="/images/ai/dental-reception.jpg"
             alt="Modern dental office reception"
             fill
             priority
@@ -560,7 +560,7 @@ export default function DentalDemoPage() {
             <div className="demo-grid-2col" style={{ display: "grid", gap: "48px", alignItems: "center" }}>
               {/* About Photo */}
               <div style={{ position: "relative", borderRadius: "16px", overflow: "hidden", aspectRatio: "4/3" }}>
-                <Image src="/images/dental-dentist-male.jpg" alt="Dr. Sarah Mitchell and Team" fill style={{ objectFit: "cover" }} />
+                <Image src="/images/ai/dental-dentist-male.jpg" alt="Dr. Sarah Mitchell and Team" fill style={{ objectFit: "cover" }} />
               </div>
               <div>
                 <p style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: C.teal, marginBottom: "8px" }}>
@@ -876,9 +876,9 @@ export default function DentalDemoPage() {
             </p>
             <div className="demo-grid-3col" style={{ display: "grid", gap: "32px" }}>
               {[
-                { img: "/images/dental-dentist-female.jpg", name: "Dr. Maria Santos, DDS", role: "General & Cosmetic Dentistry" },
-                { img: "/images/dental-dentist-male.jpg", name: "Dr. James Mitchell, DMD", role: "Implants & Oral Surgery" },
-                { img: "/images/dental-team.jpg", name: "Our Dental Team", role: "Hygienists, Assistants & Front Office" },
+                { img: "/images/ai/dental-dentist-female.jpg", name: "Dr. Maria Santos, DDS", role: "General & Cosmetic Dentistry" },
+                { img: "/images/ai/dental-dentist-male.jpg", name: "Dr. James Mitchell, DMD", role: "Implants & Oral Surgery" },
+                { img: "/images/ai/dental-team.jpg", name: "Our Dental Team", role: "Hygienists, Assistants & Front Office" },
               ].map((m) => (
                 <div key={m.name} style={{ background: "#fff", borderRadius: "16px", overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,.06)" }}>
                   <div style={{ position: "relative", width: "100%", height: "320px" }}>
@@ -907,8 +907,8 @@ export default function DentalDemoPage() {
             </p>
             <div className="demo-grid-2col" style={{ display: "grid", gap: "32px" }}>
               {[
-                { img: "/images/dental-patient-happy.jpg", name: "Sarah M.", quote: "Best dental experience I've ever had. The team made me feel completely at ease — I actually look forward to my visits now!" },
-                { img: "/images/dental-exam-room.jpg", name: "Robert K.", quote: "State-of-the-art facility with a warm, welcoming atmosphere. Dr. Santos explained every step and my results are incredible." },
+                { img: "/images/ai/dental-patient-happy.jpg", name: "Sarah M.", quote: "Best dental experience I've ever had. The team made me feel completely at ease — I actually look forward to my visits now!" },
+                { img: "/images/ai/dental-exam-room.jpg", name: "Robert K.", quote: "State-of-the-art facility with a warm, welcoming atmosphere. Dr. Santos explained every step and my results are incredible." },
               ].map((t) => (
                 <div key={t.name} className="demo-client-card" style={{ display: "flex", gap: "24px", background: C.bgSoft, borderRadius: "16px", padding: "24px", alignItems: "center" }}>
                   <div style={{ position: "relative", width: "160px", minWidth: "160px", height: "160px", borderRadius: "12px", overflow: "hidden" }}>

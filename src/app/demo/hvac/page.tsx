@@ -429,7 +429,7 @@ export default function HvacDemoPage() {
           />
           {/* Hero background photo */}
           <Image
-            src="/images/hvac-technician.jpg"
+            src="/images/ai/hvac-technician.jpg"
             alt="HVAC technician servicing outdoor unit"
             fill
             priority
@@ -894,7 +894,7 @@ export default function HvacDemoPage() {
               See the difference quality installation makes
             </p>
             <div style={{ position: "relative", width: "100%", height: "480px", borderRadius: "16px", overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,.08)" }}>
-              <Image src="/images/hvac-before-after.jpg" alt="Before and after HVAC installation" fill style={{ objectFit: "cover" }} />
+              <Image src="/images/ai/hvac-before-after.jpg" alt="Before and after HVAC installation" fill style={{ objectFit: "cover" }} />
             </div>
             <p style={{ textAlign: "center", color: C.textLight, marginTop: "16px", fontSize: "14px" }}>
               Complete system replacement — old inefficient unit → new high-efficiency heat pump
@@ -915,9 +915,9 @@ export default function HvacDemoPage() {
             </p>
             <div className="hvac-grid-3col" style={{ display: "grid", gap: "32px" }}>
               {[
-                { img: "/images/hvac-technician.jpg", name: "Marcus Johnson", role: "Lead Technician — 15 yrs experience" },
-                { img: "/images/hvac-team-truck.jpg", name: "Our Field Team", role: "Factory-trained & background-checked" },
-                { img: "/images/hvac-handshake.jpg", name: "Customer First", role: "100% satisfaction guaranteed" },
+                { img: "/images/ai/hvac-technician.jpg", name: "Marcus Johnson", role: "Lead Technician — 15 yrs experience" },
+                { img: "/images/ai/hvac-team-truck.jpg", name: "Our Field Team", role: "Factory-trained & background-checked" },
+                { img: "/images/ai/hvac-handshake.jpg", name: "Customer First", role: "100% satisfaction guaranteed" },
               ].map((m) => (
                 <div key={m.name} style={{ background: "#fff", borderRadius: "16px", overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,.06)" }}>
                   <div style={{ position: "relative", width: "100%", height: "320px" }}>
@@ -946,8 +946,8 @@ export default function HvacDemoPage() {
             </p>
             <div className="hvac-grid-2col" style={{ display: "grid", gap: "32px" }}>
               {[
-                { img: "/images/hvac-handshake.jpg", name: "David & Lisa R.", quote: "Our AC died in July — they had a new system installed the next day. Professional, fair pricing, and our energy bill dropped 40%." },
-                { img: "/images/hvac-team-truck.jpg", name: "Jennifer T.", quote: "Finally found an HVAC company that shows up on time and does what they say. Marcus and his crew are the real deal." },
+                { img: "/images/ai/hvac-handshake.jpg", name: "David & Lisa R.", quote: "Our AC died in July — they had a new system installed the next day. Professional, fair pricing, and our energy bill dropped 40%." },
+                { img: "/images/ai/hvac-team-truck.jpg", name: "Jennifer T.", quote: "Finally found an HVAC company that shows up on time and does what they say. Marcus and his crew are the real deal." },
               ].map((t) => (
                 <div key={t.name} className="demo-client-card" style={{ display: "flex", gap: "24px", background: C.bgSoft, borderRadius: "16px", padding: "24px", alignItems: "center" }}>
                   <div style={{ position: "relative", width: "160px", minWidth: "160px", height: "160px", borderRadius: "12px", overflow: "hidden" }}>

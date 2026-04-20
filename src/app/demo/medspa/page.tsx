@@ -562,7 +562,7 @@ export default function MedSpaDemoPage() {
                 >
                   <div style={{ position: "relative", height: "240px", overflow: "hidden" }}>
                     <Image
-                      src={t.name.includes("Elena") ? "/images/medspa-aesthetician.jpg" : "/images/medspa-botox.jpg"}
+                      src={t.name.includes("Elena") ? "/images/ai/medspa-aesthetician.jpg" : "/images/ai/medspa-botox.jpg"}
                       alt={t.name}
                       fill
                       style={{ objectFit: "cover", objectPosition: "top" }}

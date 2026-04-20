@@ -6,7 +6,7 @@ import { Marquee } from "@/components/Marquee";
 import { PainPoints } from "@/components/PainPoints";
 import { Services } from "@/components/Services";
 import { Results } from "@/components/Results";
-import { CaseStudies } from "@/components/CaseStudies";
+import { Demos } from "@/components/Demos";
 import { Founder } from "@/components/Founder";
 import { AIEra } from "@/components/AIEra";
 import { HowItWorks } from "@/components/HowItWorks";
@@ -209,7 +209,7 @@ export default function Home() {
           <div className="sep" />
           <Results />
           <div className="sep" />
-          <CaseStudies />
+          <Demos />
           <div className="sep" />
           <ScrollReveal>
             <Founder />

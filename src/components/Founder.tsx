@@ -139,7 +139,7 @@ export function Founder() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <p style={{ fontSize: '16px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '20px' }}>
-              I manage <strong style={{ color: 'var(--text)' }}>400+ business accounts</strong> across Austin and San Antonio — and I&apos;ve built 8 production apps used by field reps daily. I&apos;ve walked into hundreds of offices and seen what actually drives customers through the door.
+              I manage <strong style={{ color: 'var(--text)' }}>400+ business accounts</strong> across Austin and San Antonio as a territory sales rep. I&apos;ve walked into hundreds of offices and seen what actually drives customers through the door.
             </p>
 
             <p style={{ fontSize: '16px', color: 'var(--t2)', lineHeight: 1.9, marginBottom: '32px' }}>
@@ -191,14 +191,14 @@ export function Founder() {
                     year: '2019\u2013Now',
                     role: 'Patterson Dental',
                     title: 'Territory Sales Rep \u2014 Austin / San Antonio',
-                    desc: 'Managed 400+ business accounts across Texas. Shipped 8 production web apps used by field reps daily.',
+                    desc: 'Managed 400+ business accounts across Texas. Deep field exposure to how local service businesses actually win or lose.',
                     current: false,
                   },
                   {
                     year: '2024',
                     role: 'Self-Taught Developer',
-                    title: 'Shipped 8 Production Apps',
-                    desc: 'Prospector LIVE, RootCRM, PracticePulse, SMCC, and 4 more \u2014 all in active use.',
+                    title: 'Next.js, React, TypeScript, Supabase',
+                    desc: 'Shipping production websites end-to-end: design system, build, deploy, SEO, analytics, and the automations that convert.',
                     current: false,
                   },
                 ].map(({ year, role, title, desc, current }) => (
@@ -278,10 +278,10 @@ export function Founder() {
               }}
             >
               {[
-                { value: <AnimatedCounter value={8} duration={2} suffix="" />, label: 'Apps Shipped' },
                 { value: '400+', label: 'Accounts Managed' },
-                { value: 'Canyon Lake', label: 'Texas \u2014 Local' },
                 { value: '7-Day', label: 'Delivery Guarantee' },
+                { value: 'Canyon Lake', label: 'Texas \u2014 Local' },
+                { value: 'You own it', label: 'Code Ownership' },
               ].map(({ value, label }) => (
                 <div key={label} style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                   <b
